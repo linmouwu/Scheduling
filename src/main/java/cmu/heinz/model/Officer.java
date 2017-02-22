@@ -9,17 +9,14 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "USER")
-public class User {
+@Table(name = "OFFICER")
+public class Officer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
-    private String Id;
+    private String id;
 
-    @Column(name = "FirstName", nullable = false)
     private String firstName;
 
-    @Column(name = "LastName", nullable = false)
     private String lastName;
 
     private String gender;
@@ -39,11 +36,11 @@ public class User {
     private Integer trainerId;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -126,6 +123,11 @@ public class User {
         this.trainerId = trainerId;
     }
 
+    @Override
+    public String toString() {
+        return "[Officer ID: " + this.id + ", Last Name: " + this.lastName + ", First Name: " + this.firstName
+                + ", Gender: " + this.gender + "]";
+    }
 
 }
 
