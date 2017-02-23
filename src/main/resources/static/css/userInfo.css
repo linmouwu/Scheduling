@@ -75,7 +75,7 @@ div#details {
     padding-top: 20px;
     position: absolute;
     top: 5%;
-    left: 41%;
+    left: 25%;
     opacity: 0;
     -webkit-animation: fadeIn ease-in 1;
     animation: fadeIn ease-in 1;

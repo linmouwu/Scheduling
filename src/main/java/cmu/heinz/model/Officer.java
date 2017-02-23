@@ -33,7 +33,9 @@ public class Officer {
 
     private Date hireDate;
 
-    private Integer trainerId;
+    private String trainerId;
+
+    private String permission_group;
 
     public String getId() {
         return id;
@@ -115,12 +117,20 @@ public class Officer {
         this.hireDate = hireDate;
     }
 
-    public Integer getTrainerId() {
+    public String getTrainerId() {
         return trainerId;
     }
 
-    public void setTrainerId(Integer trainerId) {
+    public void setTrainerId(String trainerId) {
         this.trainerId = trainerId;
+    }
+
+    public String getPermission_group() {
+        return permission_group;
+    }
+
+    public void setPermission_group(String permission_group) {
+        this.permission_group = permission_group;
     }
 
     @Override

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
+
 /**
  * @author Mouwu Lin
  * @AndrewID mouwul
@@ -20,40 +22,20 @@ public class LoginController {
     @Autowired
     private OfficerRepository officerRepository;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "name", required = false, defaultValue = "World") String name, Model model) {
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    public String login(@RequestParam(value = "username") String username,
+                        @RequestParam(value = "password") String password,
+                        Model model) {
 
-        System.out.println(name);
-
-        Officer officer = officerRepository.findByLastName(name);
-
-        String lastName = "defaultLastName";
-        String firstName = "defaultFirstName";
-        String gender = "defaultGender";
+        Officer officer = officerRepository.findOne(username);
 
         if (officer != null) {
-
-            System.out.println(officer);
-            System.out.println(officer.getLastName());
-            System.out.println(officer.getFirstName());
-            System.out.println(officer.getGender());
-            System.out.println(officer.getContractEmployee());
-            System.out.println(officer.getHireDate());
-            System.out.println(officer.getPromotionDate());
-            System.out.println(officer.getSeniority());
-            System.out.println(officer.getTrainerId());
-            System.out.println(officer.getTitle());
-
-            lastName = officer.getLastName();
-            firstName = officer.getFirstName();
-            gender = officer.getGender();
-
+            model.addAttribute("officer", officer);
         }
 
-        model.addAttribute("lastName", lastName);
-        model.addAttribute("firstName", firstName);
-        model.addAttribute("gender", gender);
-        return "greeting";
+        return "userinfo";
 
     }
+
+
 }
