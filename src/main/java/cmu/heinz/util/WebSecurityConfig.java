@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .successForwardUrl("/authenticate")
+                .successForwardUrl("/home")
                 .permitAll()
                 .and()
                 .logout()
@@ -37,5 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("001").password("123").roles("USER");
+        auth
+                .inMemoryAuthentication()
+                .withUser("002").password("123").roles("USER");
     }
 }

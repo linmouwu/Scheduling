@@ -19,6 +19,8 @@ public class Officer {
 
     private String lastName;
 
+    private String badgeNum;
+
     private String gender;
 
     private Integer seniority;
@@ -131,6 +133,14 @@ public class Officer {
 
     public void setPermission_group(String permission_group) {
         this.permission_group = permission_group;
+    }
+
+    public String getBadgeNum() {
+        return badgeNum;
+    }
+
+    public void setBadgeNum(String badgeNum) {
+        this.badgeNum = badgeNum;
     }
 
     @Override

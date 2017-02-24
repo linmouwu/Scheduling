@@ -1,0 +1,131 @@
+h4 {
+
+    color: #4F9D9D;
+}
+
+table {
+    max-width: 620px;
+}
+
+td {
+    padding-right: 10px;
+}
+
+td.profileTd {
+    padding-left: 10px;
+}
+
+td.nameTd {
+    width: 620px;
+}
+
+td#deleteTd {
+    width: 200px;
+}
+
+a.commentA {
+    font-weight: normal;
+}
+
+a.reply {
+    font-weight: normal;
+    font-size: small;
+}
+
+h6 {
+    font-size: small;
+}
+
+.widget-area.blank {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+}
+
+div.media {
+    height: auto;
+    width: 850px;
+}
+
+img {
+    max-height: 250px;
+    max-width: 200px;
+}
+
+div#pic.row {
+    width: auto;
+    align-content: center;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+div.row {
+    padding-top: 20px;
+}
+
+div#outer.panel.panel-success {
+    width: 300px;
+    align-content: center;
+}
+
+div#details {
+    padding-top: 20px;
+    position: absolute;
+    top: 5%;
+    left: 25%;
+    opacity: 0;
+    -webkit-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+div#details.col-md-6 {
+    padding-top: 20px;
+}
+
+div.panel-heading.clearfix {
+    font-weight: bold;
+}
+
+a {
+    color: #355C70;
+    font-weight: bold;
+}
+
+thead {
+    font-weight: bold;
+}
+
+button.btn.btn-info {
+    font-family: inherit;
+}
+
+input#email {
+    width: 300px;
+}
+
+textarea {
+    width: 500px;
+}
+
+img.commentImg {
+    max-height: 30px;
+    max-width: 30px;
+}
