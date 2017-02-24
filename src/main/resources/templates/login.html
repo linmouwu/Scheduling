@@ -1,17 +1,68 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <title>Log In</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/register.css" rel="stylesheet"/>
+
 </head>
+
 <body>
-<div>
-    <h4>User Name</h4>
-    <form action="/login" method="post">
-        <input title="username" name="name" required="required" />
-        <button type="submit">Submit</button>
-    </form>
-    <p>New user?<a href="/login"> Register Here!</a></p>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-3">
+            <ul class="nav navbar-nav navbar-left">
+                <!--<li><a href="/finalproject"><img class="img-responsive" height="30" width="60" src="{% static 'image/logo.jpeg' %}"></a></li>-->
+                <li><a href="/">Home</a></li>
+            </ul>
+            <div class="collapse nav navbar-nav nav-collapse slide-down" id="nav-collapse3">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search"/>
+                    </div>
+                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-search"
+                                                                       aria-hidden="true"></span></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="col-sm-6 register-intro">
+    <h1 class="alt-h1 text-white text-shadow-dark lh-condensed mb-3">City of Lansing</h1>
+    <p class="alt-lead text-white text-shadow-dark">"We bring you the most beautiful city ever."</p>
+</div>
+<div class="col-sm-5 container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="/images/loginProfile.jpg"/>
+        <p id="profile-name" class="profile-name-card"></p>
+
+        <form class="form-register" method="post" action="/login">
+
+
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <span id="reauth-email" class="reauth-email"></span>
+
+            <input class="form-control" name="username" type="text" placeholder="User Name"/>
+            <br/>
+            <input class="form-control" name="password" type="password" placeholder="Password"/>
+            <br/>
+            <button class="btn btn-primary btn-block login" type="submit">Log In</button>
+        </form>
+        <a href="#" class="login-in"> New Hire? </a>
+
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/template.css" rel="stylesheet"/>
+    <link href="/css/userinfo.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="/js/grumblr.js" type="text/javascript"></script>
+    <title>User Infomation</title>
+    <link href="../static/css/userInfo_backup.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("[data-toggle=tooltip]").tooltip();
+        });
+    </script>
+</head>
+<body>
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="#">Home</a>
+            <a class="blog-nav-item" href="#">News</a>
+            <a class="blog-nav-item" href="/logout">Log out</a>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <!-- if user -->
+    <div class="row">
+        <div class="col-md-6" id="details">
+            <div class="panel with-nav-tabs panel-success">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1success" data-toggle="tab">Information</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1success">
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <td>
+                                        Properties
+                                    </td>
+                                    <td>
+                                        Value
+                                    </td>
+                                </tr>
+                                </thead>
+                                <tbody th:if="${officer} != null">
+                                <tr>
+                                    <td>User Name</td>
+                                    <td><p th:text=" ${officer.id} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>First Name</td>
+                                    <td><p th:text=" ${officer.firstName} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name</td>
+                                    <td><p th:text=" ${officer.lastName} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Gender</td>
+                                    <td><p th:text=" ${officer.gender} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Seniority</td>
+                                    <td><p th:text=" ${officer.seniority} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Hire Date</td>
+                                    <td><p th:text=" ${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Promotion Date</td>
+                                    <td><p th:text=" ${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Union/Recruit</td>
+                                    <td><p th:text=" ${officer.unionRecruit} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Contract Employee</td>
+                                    <td><p th:text=" ${officer.contractEmployee} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Trainer</td>
+                                    <td><p th:text=" ${officer.trainerId} "/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <!--{% for errorInfo in error %}-->
+                        <!--<div class="alert alert-danger">-->
+                        <!--{{ errorInfo }}-->
+                        <!--</div>-->
+                        <!--{% endfor %}-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- endif -->
+</div>
+
+</body>
+</html>
