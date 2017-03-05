@@ -27,7 +27,9 @@ public class Officer {
 
     private String title;
 
-    private String unionRecruit;
+    private String unionId;
+
+    private String recruitId;
 
     private String contractEmployee;
 
@@ -87,12 +89,19 @@ public class Officer {
         this.title = title;
     }
 
-    public String getUnionRecruit() {
-        return unionRecruit;
+    public String getUnionId() {
+        return unionId;
     }
 
-    public void setUnionRecruit(String unionRecruit) {
-        this.unionRecruit = unionRecruit;
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
+    public String getRecruitId() {
+        return recruitId;
+    }
+
+    public void setRecruitId(String recruit) {
+        this.recruitId = recruit;
     }
 
     public String getContractEmployee() {

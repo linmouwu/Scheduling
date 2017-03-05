@@ -86,8 +86,12 @@
                                     <td><p th:text=" ${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "/></td>
                                 </tr>
                                 <tr>
-                                    <td>Union/Recruit</td>
-                                    <td><p th:text=" ${officer.unionRecruit} "/></td>
+                                    <td>Unions</td>
+                                    <td><p th:text=" ${officer.unionId} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Recruit</td>
+                                    <td><p th:text=" ${officer.recruitId} "/></td>
                                 </tr>
                                 <tr>
                                     <td>Contract Employee</td>

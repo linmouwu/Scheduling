@@ -122,7 +122,7 @@
                                 </thead>
                                 <tbody th:if="${officer} != null">
                                 <tr>
-                                    <td>User Name</td>
+                                    <td>UID</td>
                                     <td><p th:text=" ${officer.id} "/></td>
                                 </tr>
                                 <tr>
@@ -162,8 +162,12 @@
                                     <td><p th:text=" ${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "/></td>
                                 </tr>
                                 <tr>
-                                    <td>Union/Recruit</td>
-                                    <td><p th:text=" ${officer.unionRecruit} "/></td>
+                                    <td>Union</td>
+                                    <td><p th:text=" ${officer.unionId} "/></td>
+                                </tr>
+                                <tr>
+                                    <td>Recruit</td>
+                                    <td><p th:text=" ${officer.recruitId} "/></td>
                                 </tr>
                                 <tr>
                                     <td>Contract Employee</td>
