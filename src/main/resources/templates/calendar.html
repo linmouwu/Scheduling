@@ -27,19 +27,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.min.css" media = 'print' />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+    <script src="/js/jquery-1.11.3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js"></script>
+
+
     <script>
         $(document).ready(function() {
-
-            // page is now ready, initialize the calendar...
 
             $('#calendar').fullCalendar({
                 header: {
@@ -75,17 +77,12 @@
 
 <!-- /#wrapper -->
 <div id='calendar'></div>
-<!-- jQuery -->
-<script src="/js/jquery-3.1.1.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
 <script src="/js/plugins/morris/raphael.min.js"></script>
 <script src="/js/plugins/morris/morris.min.js"></script>
 <script src="/js/plugins/morris/morris-data.js"></script>
-
+<a href="createEvent">Create A New Event</a>
 </body>
 
 </html>
