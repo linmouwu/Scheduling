@@ -39,7 +39,7 @@ public class Officer {
 
     private String trainerId;
 
-    private String permission_group;
+    private String permissionGroup;
 
     public String getId() {
         return id;
@@ -136,12 +136,12 @@ public class Officer {
         this.trainerId = trainerId;
     }
 
-    public String getPermission_group() {
-        return permission_group;
+    public String getPermissionGroup() {
+        return permissionGroup;
     }
 
-    public void setPermission_group(String permission_group) {
-        this.permission_group = permission_group;
+    public void setPermission_group(String permissionGroup) {
+        this.permissionGroup = permissionGroup;
     }
 
     public String getBadgeNum() {
