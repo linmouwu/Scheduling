@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 /**
  * @author Mouwu Lin
  * @AndrewID mouwul
@@ -33,6 +35,10 @@ public class HomeController {
         Officer officer = officerRepository.findOne(username);
 
         model.addAttribute("officer", officer);
+
+        List<Officer> officerList = (List<Officer>) officerRepository.findAll();
+
+        model.addAttribute("officerList", officerList);
 
         return "home";
     }

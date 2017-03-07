@@ -96,6 +96,7 @@ public class Officer {
     public void setUnionId(String unionId) {
         this.unionId = unionId;
     }
+
     public String getRecruitId() {
         return recruitId;
     }
