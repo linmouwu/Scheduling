@@ -230,3 +230,8 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+}
