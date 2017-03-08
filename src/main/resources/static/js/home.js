@@ -188,6 +188,8 @@ function addUser() {
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
 
+    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+
     $.post("add_user", {
         'uid': uid_ID,
         'lastName': lastName_ID,
@@ -195,15 +197,34 @@ function addUser() {
         'badgeNum': badgeNum_ID,
         'title': title_ID,
         'gender': gender_ID,
+        'seniority': seniority,
         'permissionGroup': permissionGroup_ID,
         'union': union_ID,
-        'recruit':recruit_ID,
+        'recruit': recruit_ID,
         'contractEmployee': contractEmployee_id,
         'hireDate': hireDate_ID,
         'promoteDate': promoteDate_ID,
-        'trainerID': trainerID_ID
+        'trainer': trainerID_ID
     }).done(function (data) {
-        console.log("successfully");
+
+        console.log(data);
+
+        var markup =
+            "<tr><td>" + data.uid +
+            "</td><td>" + data.badgeNum +
+            "</td><td>" + data.lastName +
+            "</td><td>" + data.firstName +
+            "</td><td>" + data.title +
+            "</td><td>" + data.gender +
+            "</td><td>" + data.seniority +
+            "</td><td>" + data.permissionGroup +
+            "</td><td>" + data.union.name +
+            "</td><td>" + hireDate_ID +
+            "</td><td>" + promoteDate_ID +
+            (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
+            "</td></tr>";
+
+        $('#user_list_table > tbody').append(markup).hide().slideDown();
         cancelAddUser();
     })
 

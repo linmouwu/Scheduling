@@ -2,7 +2,6 @@ package cmu.heinz.controller;
 
 import cmu.heinz.model.Officer;
 import cmu.heinz.model.OfficerRepository;
-import cmu.heinz.model.Union;
 import cmu.heinz.model.UnionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -50,20 +47,14 @@ public class UserInfoController {
                                       @RequestParam(value = "badgeNum") String badgeNum,
                                       @RequestParam(value = "title") String title,
                                       @RequestParam(value = "gender") String gender,
+                                      @RequestParam(value = "seniority") int seniority,
                                       @RequestParam(value = "permissionGroup") String permissionGroup,
                                       @RequestParam(value = "union") String union,
                                       @RequestParam(value = "recruit") String recruit,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
                                       @RequestParam(value = "hireDate") Date hireDate,
                                       @RequestParam(value = "promoteDate") Date promoteDate,
-                                      @RequestParam(value = "trainerID") String trainerID){
-
-        Calendar promotionCalendar = Calendar.getInstance();
-        Calendar hireCalendar = Calendar.getInstance();
-        promotionCalendar.setTime(promoteDate);
-        hireCalendar.setTime(hireDate);
-
-        int seniority = promotionCalendar.get(Calendar.YEAR) - hireCalendar.get(Calendar.YEAR);
+                                      @RequestParam(value = "trainer") String trainer) {
 
         Officer officer = new Officer();
         officer.setUid(uid);
@@ -79,12 +70,12 @@ public class UserInfoController {
         officer.setContractEmployee(contractEmployee);
         officer.setHireDate(hireDate);
         officer.setPromotionDate(promoteDate);
-        if(trainerID != null && !trainerID.isEmpty() && !trainerID.equals("")){
-            officer.setTrainer(officerRepository.findByUID(trainerID));
+        if (trainer != null && !trainer.isEmpty() && !trainer.equals("")) {
+            officer.setTrainer(officerRepository.findByUID(trainer));
         }
 
-        officerRepository.save(officer);
+        Officer newOfficer = officerRepository.save(officer);
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(newOfficer);
     }
 }
