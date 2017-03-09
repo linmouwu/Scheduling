@@ -40,11 +40,18 @@ public class HomeController {
 
         Officer officer = officerRepository.findOne(username);
 
-        model.addAttribute("officer", officer);
 
         List<Officer> officerList = (List<Officer>) officerRepository.findAll();
 
+
+        List<Union> unionList = (List<Union>) unionRepository.findAll();
+
+
+        model.addAttribute("officer", officer);
+
         model.addAttribute("officerList", officerList);
+
+        model.addAttribute("unionList", unionList);
 
         return "home";
     }

@@ -289,7 +289,7 @@
                                     </tr>
                                     <tr>
                                         <td>Gender</td>
-                                        <td><select name="gender" id="gender_ID">
+                                        <td><select class="form-control" name="gender" id="gender_ID">
                                             <option value=" " selected="selected" disabled="disabled"></option>
                                             <option value="Male"> Male</option>
                                             <option value="Female"> Female</option>
@@ -298,7 +298,7 @@
                                     </tr>
                                     <tr>
                                         <td>Permission Group</td>
-                                        <td><select name="permissionGroup" id="permissionGroup_ID">
+                                        <td><select class="form-control" name="permissionGroup" id="permissionGroup_ID">
                                             <option value=" " selected="selected" disabled="disabled"></option>
                                             <option value="Administrator"> Administrator</option>
                                             <option value="User"> User</option>
@@ -306,7 +306,13 @@
                                     </tr>
                                     <tr>
                                         <td>Union</td>
-                                        <td><input name="union" id="union_ID" type="text"/></td>
+                                        <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+                                        <td>
+                                            <select class="form-control" name="union" id="union_ID">
+                                                <option value=" " selected="selected" disabled="disabled"></option>
+                                                <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Recruit</td>
@@ -314,7 +320,7 @@
                                     </tr>
                                     <tr>
                                         <td>Contract Employee</td>
-                                        <td><select name="contractEmployee" id="contractEmployee_id">
+                                        <td><select class="form-control" name="contractEmployee" id="contractEmployee_id">
                                             <option value=" " selected="selected" disabled="disabled"></option>
                                             <option value="Yes"> Yes</option>
                                             <option value="No"> No</option>
