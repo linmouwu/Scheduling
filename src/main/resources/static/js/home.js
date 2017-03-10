@@ -156,22 +156,35 @@ function updatePostComment() {
 function changeToRequest() {
     $('#pending_request').delay(350).fadeIn();
     $('#calendar').fadeOut();
+    $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
 }
 function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
-    $('#staff_management').fadeOut();
+    $('#schedule').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#schedule').fadeOut();
     $('#staff_management').delay(350).fadeIn();
 }
 function newUserForm() {
     $('#add_user_div_id').slideToggle();
 }
 
+function changeToCreateRequest() {
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#schedule').delay(350).fadeIn();
+}
+
+function changeToSchedule() {
+    $('#schedule').delay(350).fadeIn();
+    $('#pending_request').fadeOut();
+    $('#staff_management').fadeOut();
+}
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();
@@ -277,6 +290,29 @@ $(document)
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            events: [
+                {
+                    title: 'New Years Day',
+                    start: '2017-01-01',
+                },
+                {
+                    title: 'Martin Luther King Jr.Day',
+                    start: '2017-02-15',
+                },
+                {
+                    title: 'Independence Day',
+                    start: '2017-07-04',
+                },
+
+                {
+                    title :'Veterans Day',
+                    start: '2017-11-11',
+                },
+                {
+                    title :'Christmas Day',
+                    start: '2017-12-25',
+                }
+            ]
         })
 
         function getCookie(name) {
