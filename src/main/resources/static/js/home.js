@@ -156,6 +156,7 @@ function updatePostComment() {
 function changeToRequest() {
     $('#pending_request').delay(350).fadeIn();
     $('#calendar').fadeOut();
+    $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
 }
 function changeToCalendar() {
@@ -166,6 +167,7 @@ function changeToCalendar() {
 function changeToStaff() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#schedule').fadeOut();
     $('#staff_management').delay(350).fadeIn();
 }
 function newUserForm() {
