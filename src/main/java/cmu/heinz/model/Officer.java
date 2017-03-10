@@ -11,10 +11,11 @@ import java.util.Date;
 @Entity
 @Table(name = "OFFICER")
 public class Officer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
 
+    private String id;
     private String uid;
 
     private String firstName;
@@ -54,6 +55,7 @@ public class Officer {
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String getUid() {
         return uid;
