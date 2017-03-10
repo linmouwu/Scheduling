@@ -177,6 +177,12 @@ function changeToCreateRequest() {
     $('#calendar').fadeOut();
     $('#schedule').delay(350).fadeIn();
 }
+
+function changeToSchedule() {
+    $('#schedule').delay(350).fadeIn();
+    $('#pending_request').fadeOut();
+    $('#staff_management').fadeOut();
+}
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();

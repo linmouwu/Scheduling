@@ -76,7 +76,7 @@
                         Request</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i>
+                    <a href="javascript:void(0)" onclick="changeToSchedule()"><i class="fa fa-fw fa-bar-chart-o"></i>
                         Daily Schedule</a>
                 </li>
                 <li>
@@ -111,7 +111,7 @@
             </ul>
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
                 <li class="active">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Work week</a>
+                    <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i> Pending Requests</a>
                 </li>
                 <li>
                     <a href="javascript:void(0)" onclick="changeToCalendar()"><i class="fa fa-fw fa-table"></i> Current Schedule </a>
@@ -120,7 +120,7 @@
                     <a href="javascript:void(0)" onclick="changeToCreateRequest()"><i class="fa fa-fw fa-table"></i> Create Request </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Training</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i>Schedule Details</a>
                 </li>
             </ul>
         </div>
@@ -243,6 +243,19 @@
                             <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
                         </select>
                     </td>
+                </tr>
+                <tr>
+                    <td>Recruit</td>
+                    <td><input name="recruit" id="recruit_ID" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><select class="form-control" name="type" id="type_ID">
+                        <option value=" " selected="selected" disabled="disabled"></option>
+                        <option value="Train"> Train</option>
+                        <option value="Vocation"> Vocation</option>
+                        <option value="Decline to answer"> Decline to answer</option>
+                    </select></td>
                 </tr>
                 <tr>
                     <td>Description</td>
