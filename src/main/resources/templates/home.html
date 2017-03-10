@@ -53,7 +53,7 @@
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                    <span th:text="${officer.firstName}"/> <span th:text="${officer.lastName}"/>
+                    <span th:text="${officer.firstName}"></span> <span th:text="${officer.lastName}"></span>
                     <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -257,7 +257,7 @@
                     <td>
                         <select class="form-control" name="union" id="union_ID">
                             <option value=" " selected="selected" disabled="disabled"></option>
-                            <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
+                            <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"></option>
                         </select>
                     </td>
                 </tr>
@@ -329,6 +329,7 @@
                                     <th>Promotion Date</th>
                                     <th>Trainer ID</th>
                                 </tr>
+                                </thead>
                                 <tbody>
                                 <tr th:each="officer:${officerList}">
                                     <td th:text="${officer.uid}"></td>
@@ -346,7 +347,7 @@
                                     <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
                                 </tr>
                                 </tbody>
-                                </thead>
+
                             </table>
                             <div class="text-right">
                                 <a href="javascript:;" onclick="newUserForm()">Add new User <i
@@ -403,7 +404,7 @@
                                         <td>Union</td>
                                         <!--<td><input name="union" id="union_ID" type="text"/></td>-->
                                         <td>
-                                            <select class="form-control" name="union" id="union_ID">
+                                            <select class="form-control" name="union" id="unio_ID">
                                                 <option value=" " selected="selected" disabled="disabled"></option>
                                                 <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
                                             </select>
@@ -411,7 +412,7 @@
                                     </tr>
                                     <tr>
                                         <td>Recruit</td>
-                                        <td><input name="recruit" id="recruit_ID" type="text"/></td>
+                                        <td><input name="recruit" id="recrui_ID" type="text"/></td>
                                     </tr>
                                     <tr>
                                         <td>Contract Employee</td>

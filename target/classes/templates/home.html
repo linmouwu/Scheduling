@@ -21,7 +21,10 @@
 
     <script src="/js/home.js"></script>
 
-
+    <!-- Calendar CSS -->
+    <script src="/js/jquery-1.11.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -35,6 +38,10 @@
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
 
+    <!-- Calendar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.min.css" media = 'print' />
 </head>
 
 <body>
@@ -46,7 +53,7 @@
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                    <span th:text="${officer.firstName}"/> <span th:text="${officer.lastName}"/>
+                    <span th:text="${officer.firstName}"></span> <span th:text="${officer.lastName}"></span>
                     <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -69,7 +76,7 @@
                         Request</a>
                 </li>
                 <li>
-                    <a href="/calendar"><i class="fa fa-fw fa-bar-chart-o"></i>
+                    <a href="javascript:void(0)" onclick="changeToSchedule()"><i class="fa fa-fw fa-bar-chart-o"></i>
                         Daily Schedule</a>
                 </li>
                 <li>
@@ -104,13 +111,33 @@
             </ul>
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
                 <li class="active">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Work week</a>
+                    <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i> Pending Requests</a>
                 </li>
                 <li>
-                    <a href="/calendar"><i class="fa fa-fw fa-table"></i> Vocation</a>
+                    <a href="javascript:void(0)" onclick="changeToCalendar()"><i class="fa fa-fw fa-table"></i> Current Schedule </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Training</a>
+                    <a href="javascript:void(0)" onclick="changeToCreateRequest()"><i class="fa fa-fw fa-table"></i> Create Request </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" data-toggle="collapse"
+                       data-target="#scheduledetails"><i
+                            class="fa fa-fw fa-user"></i> Schedule Details<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="scheduledetails" class="collapse">
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Work Day</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Vocation </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <i
+                                    class="fa fa-fw fa-info"></i> Train </a>
+                        </li>
+
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -198,6 +225,74 @@
 
         <div class="container-fluid" id="calendar" style="display: none">
         </div>
+        <div class="container-fluid" id="schedule" style="display: none">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Create New Event
+                    </h1>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Attributes</th>
+                    <th>Values</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Start Time</td>
+                    <td><input name="startTime" id="startTime_ID" type="date"/></td>
+                </tr>
+                <tr>
+                    <td>End Timeme</td>
+                    <td><input name="endTime" id="endTime_ID" type="date"/></td>
+                </tr>
+
+                <tr>
+                    <td>Union</td>
+                    <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+                    <td>
+                        <select class="form-control" name="union" id="union_ID">
+                            <option value=" " selected="selected" disabled="disabled"></option>
+                            <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Recruit</td>
+                    <td><input name="recruit" id="recruit_ID" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><select class="form-control" name="type" id="type_ID">
+                        <option value=" " selected="selected" disabled="disabled"></option>
+                        <option value="Train"> Train</option>
+                        <option value="Vocation"> Vocation</option>
+                        <option value="Decline to answer"> Decline to answer</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input name="description" id="description_ID" type="text"/></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button id="submit_Event" type="button" class="btn btn-success">Submit
+                        </button>
+                    </td>
+                    <td>
+                        <button id="cancel_Event" type="button" class="btn btn-cancel">Cancel
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
 
 
         <div class="container-fluid" id="staff_management" style="display: none">
@@ -234,6 +329,7 @@
                                     <th>Promotion Date</th>
                                     <th>Trainer ID</th>
                                 </tr>
+                                </thead>
                                 <tbody>
                                 <tr th:each="officer:${officerList}">
                                     <td th:text="${officer.uid}"></td>
@@ -251,7 +347,7 @@
                                     <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
                                 </tr>
                                 </tbody>
-                                </thead>
+
                             </table>
                             <div class="text-right">
                                 <a href="javascript:;" onclick="newUserForm()">Add new User <i
@@ -308,7 +404,7 @@
                                         <td>Union</td>
                                         <!--<td><input name="union" id="union_ID" type="text"/></td>-->
                                         <td>
-                                            <select class="form-control" name="union" id="union_ID">
+                                            <select class="form-control" name="union" id="unio_ID">
                                                 <option value=" " selected="selected" disabled="disabled"></option>
                                                 <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
                                             </select>
@@ -316,7 +412,7 @@
                                     </tr>
                                     <tr>
                                         <td>Recruit</td>
-                                        <td><input name="recruit" id="recruit_ID" type="text"/></td>
+                                        <td><input name="recruit" id="recrui_ID" type="text"/></td>
                                     </tr>
                                     <tr>
                                         <td>Contract Employee</td>
