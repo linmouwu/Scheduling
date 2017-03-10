@@ -4,6 +4,9 @@ import cmu.heinz.model.Officer;
 import cmu.heinz.model.OfficerRepository;
 import cmu.heinz.model.UnionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,8 +55,8 @@ public class UserInfoController {
                                       @RequestParam(value = "union") String union,
                                       @RequestParam(value = "recruit") String recruit,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
-                                      @RequestParam(value = "hireDate") Date hireDate,
-                                      @RequestParam(value = "promoteDate") Date promoteDate,
+                                      @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date hireDate,
+                                      @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date promoteDate,
                                       @RequestParam(value = "trainer") String trainer) {
 
         Officer officer = new Officer();
@@ -64,18 +67,25 @@ public class UserInfoController {
         officer.setTitle(title);
         officer.setGender(gender);
         officer.setPermissionGroup(permissionGroup);
-        officer.setUnion(unionRepository.findOne(union));
+        officer.setUnion(unionRepository.findByName(union));
         officer.setRecruitId(recruit);
         officer.setSeniority(seniority);
         officer.setContractEmployee(contractEmployee);
         officer.setHireDate(hireDate);
         officer.setPromotionDate(promoteDate);
+        System.out.println("what h");
+        System.out.println(officerRepository.findByUID(uid));
+        if(officerRepository.findByUID(uid) != null) {
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("MyResponseHeader", "MyValue");
+            return new ResponseEntity<String>("Already existed", responseHeaders, HttpStatus.CREATED);
+        }
         if (trainer != null && !trainer.isEmpty() && !trainer.equals("")) {
             officer.setTrainer(officerRepository.findByUID(trainer));
         }
 
         Officer newOfficer = officerRepository.save(officer);
-
+        newOfficer.setTrainer(null);
         return ResponseEntity.ok(newOfficer);
     }
 }
