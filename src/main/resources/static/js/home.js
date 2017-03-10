@@ -153,18 +153,124 @@ function updatePostComment() {
     }
 }
 
+function changeToRequest() {
+    $('#pending_request').delay(350).fadeIn();
+    $('#calendar').fadeOut();
+    $('#staff_management').fadeOut();
+}
+function changeToCalendar() {
+    $('#pending_request').fadeOut();
+    $('#calendar').delay(350).fadeIn();
+    $('#staff_management').fadeOut();
+}
+function changeToStaff() {
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#staff_management').delay(350).fadeIn();
+}
+function newUserForm() {
+    $('#add_user_div_id').slideToggle();
+}
+
+function addUser() {
+
+    var uid_ID = $('#uid_ID').val();
+    var lastName_ID = $('#lastName_ID').val();
+    var firstName_ID = $('#firstName_ID').val();
+    var badgeNum_ID = $('#badgeNum_ID').val();
+    var title_ID = $('#title_ID').val();
+    var gender_ID = $('#gender_ID').val();
+    var permissionGroup_ID = $('#permissionGroup_ID').val();
+    var union_ID = $('#union_ID').val();
+    var recruit_ID = $('#recruit_ID').val();
+    var contractEmployee_id = $('#contractEmployee_id').val();
+    var hireDate_ID = $('#hireDate_ID').val();
+    var promoteDate_ID = $('#promoteDate_ID').val();
+    var trainerID_ID = $('#trainerID_ID').val();
+
+    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+
+    $.post("add_user", {
+        'uid': uid_ID,
+        'lastName': lastName_ID,
+        'firstName': firstName_ID,
+        'badgeNum': badgeNum_ID,
+        'title': title_ID,
+        'gender': gender_ID,
+        'seniority': seniority,
+        'permissionGroup': permissionGroup_ID,
+        'union': union_ID,
+        'recruit': recruit_ID,
+        'contractEmployee': contractEmployee_id,
+        'hireDate': hireDate_ID,
+        'promoteDate': promoteDate_ID,
+        'trainer': trainerID_ID
+    }).done(function (data) {
+
+        console.log(data);
+
+        var markup =
+            "<tr><td>" + data.uid +
+            "</td><td>" + data.badgeNum +
+            "</td><td>" + data.lastName +
+            "</td><td>" + data.firstName +
+            "</td><td>" + data.title +
+            "</td><td>" + data.gender +
+            "</td><td>" + data.seniority +
+            "</td><td>" + data.permissionGroup +
+            "</td><td>" + data.union.name +
+            "</td><td>" + hireDate_ID +
+            "</td><td>" + promoteDate_ID +
+            (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
+            "</td></tr>";
+
+        $('#user_list_table > tbody').append(markup).hide().slideDown();
+        cancelAddUser();
+    })
+
+}
+
+function cancelAddUser() {
+    $('#uid_ID').val("");
+    $('#lastName_ID').val("");
+    $('#firstNam_ID').val("");
+    $('#badgeNum_ID').val("");
+    $('#title_ID').val("");
+    $('#gender_ID').val("");
+    $('#permissionGroup_ID').val("");
+    $('#union_ID').val("");
+    $('#recruit_ID').val("");
+    $('#contractEmployee_id').val("");
+    $('#hireDate_ID').val("");
+    $('#promoteDate_ID').val("");
+    $('#trainerID_ID').val("");
+}
 
 $(document)
     .ready(function () {
 
-        getPostList();
-        $("#newPost").focus();
-        $('#submit').click(addPost);
-        window.clearInterval(0);
-        window.clearInterval(1);
-        window.setInterval(updatePostList, 5000);
-        window.setInterval(updatePostComment, 1000);
-        // CSRF set-up copied from Django docs
+        // getPostList();
+        // $("#newPost").focus();
+        // $('#submit').click(addPost);
+        // window.clearInterval(0);
+        // window.clearInterval(1);
+        // window.setInterval(updatePostList, 5000);
+        // window.setInterval(updatePostComment, 1000);
+        // // CSRF set-up copied from Django docs
+
+        $('#submit_button').click(addUser);
+        $('#cancel_button').click(cancelAddUser);
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+        })
 
         function getCookie(name) {
             var cookieValue = null;

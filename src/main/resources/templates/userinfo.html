@@ -46,7 +46,7 @@
                             class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a th:href="@{/userinfo(username=${officer.id})}"><i
+                        <a th:href="@{/userinfo(id=${officer.id})}"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
                     <li class="divider"></li>
@@ -58,34 +58,57 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a href="/home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'">
+                <li>
+                    <a href="/home" onclick="changeToRequest()"><i class="fa fa-fw fa-flag"></i> Pending
+                        Request</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Schedule</a>
+                    <a href="/calendar"><i class="fa fa-fw fa-bar-chart-o"></i>
+                        Daily Schedule</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-table"></i> Overtime Schedule</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> OT by Officer</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Work Status</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Leave</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Support</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-wrench"></i> Shift Type</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> Organizational Unit</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Officer Management</a>
+                    <a href="javascript:void(0)" onclick="changeToStaff()" data-toggle="collapse"
+                       data-target="#staffing"><i
+                            class="fa fa-fw fa-user"></i> Staffing Management<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="staffing" class="collapse">
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Number per shift</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Days off</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <i
+                                    class="fa fa-fw fa-info"></i> Staffing for day</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="collapse" data-target="#gender"><i
+                                    class="fa fa-fw fa-info"></i> Male/Female needed</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
+                <li class="active">
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Dash Board</a>
+                </li>
+                <li>
+                    <a href="/calendar"><i class="fa fa-fw fa-table"></i> Schedule</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Details</a>
+                </li>
+            </ul>
+        </div>        <!-- /.navbar-collapse -->
     </nav>
 
     <div id="page-wrapper">
@@ -123,7 +146,7 @@
                                 <tbody th:if="${officer} != null">
                                 <tr>
                                     <td>UID</td>
-                                    <td><p th:text=" ${officer.id} "/></td>
+                                    <td><p th:text=" ${officer.uid} "/></td>
                                 </tr>
                                 <tr>
                                     <td>First Name</td>
@@ -163,7 +186,7 @@
                                 </tr>
                                 <tr>
                                     <td>Union</td>
-                                    <td><p th:text=" ${officer.unionId} "/></td>
+                                    <td><p th:text=" ${officer.union.name} "/></td>
                                 </tr>
                                 <tr>
                                     <td>Recruit</td>
@@ -175,13 +198,13 @@
                                 </tr>
                                 <tr>
                                     <td>Trainer</td>
-                                    <td><p th:text=" ${officer.trainerId} "/></td>
+                                    <td><p th:if="${officer.trainer}!= null" th:text="${officer.trainer.id} "/></td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <div class="text-right">
-                                <a href="javascript:void(0)"> Update Profile</a>
-                            </div>
+                            <!--<div class="text-right">-->
+                                <!--<a href="javascript:void(0)"> Update Profile</a>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

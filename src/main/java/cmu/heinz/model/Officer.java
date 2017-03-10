@@ -15,6 +15,8 @@ public class Officer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
+    private String uid;
+
     private String firstName;
 
     private String lastName;
@@ -27,7 +29,9 @@ public class Officer {
 
     private String title;
 
-    private String unionId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Union_ID")
+    private Union union;
 
     private String recruitId;
 
@@ -37,7 +41,9 @@ public class Officer {
 
     private Date hireDate;
 
-    private String trainerId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Trainer_ID")
+    private Officer trainer;
 
     private String permissionGroup;
 
@@ -47,6 +53,14 @@ public class Officer {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getFirstName() {
@@ -89,13 +103,14 @@ public class Officer {
         this.title = title;
     }
 
-    public String getUnionId() {
-        return unionId;
+    public Union getUnion() {
+        return union;
     }
 
-    public void setUnionId(String unionId) {
-        this.unionId = unionId;
+    public void setUnion(Union union) {
+        this.union = union;
     }
+
     public String getRecruitId() {
         return recruitId;
     }
@@ -128,19 +143,19 @@ public class Officer {
         this.hireDate = hireDate;
     }
 
-    public String getTrainerId() {
-        return trainerId;
+    public Officer getTrainer() {
+        return trainer;
     }
 
-    public void setTrainerId(String trainerId) {
-        this.trainerId = trainerId;
+    public void setTrainer(Officer trainer) {
+        this.trainer = trainer;
     }
 
     public String getPermissionGroup() {
         return permissionGroup;
     }
 
-    public void setPermission_group(String permissionGroup) {
+    public void setPermissionGroup(String permissionGroup) {
         this.permissionGroup = permissionGroup;
     }
 

@@ -11,6 +11,17 @@
 
     <title>City of Lansing Scheduling Application</title>
 
+    <script src="/js/jquery-3.1.1.js"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/js/plugins/morris/raphael.min.js"></script>
+    <script src="/js/plugins/morris/morris.min.js"></script>
+    <script src="/js/plugins/morris/morris-data.js"></script>
+
+    <script src="/js/home.js"></script>
+
+
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -23,12 +34,6 @@
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -41,11 +46,11 @@
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                    <span th:text="${officer.firstName}" /> <span th:text="${officer.lastName}" />
+                    <span th:text="${officer.firstName}"/> <span th:text="${officer.lastName}"/>
                     <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a th:href="@{/userinfo(username=${officer.id})}"><i
+                        <a th:href="@{/userinfo(id=${officer.id})}"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
 
@@ -58,42 +63,55 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'">
+                <li>
+                    <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-flag"></i> Pending
+                        Request</a>
+                </li>
+                <li>
+                    <a href="/calendar"><i class="fa fa-fw fa-bar-chart-o"></i>
+                        Daily Schedule</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> OT by Officer</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Leave</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="changeToStaff()" data-toggle="collapse"
+                       data-target="#staffing"><i
+                            class="fa fa-fw fa-user"></i> Staffing Management<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="staffing" class="collapse">
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Number per shift</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"><i
+                                    class="fa fa-fw fa-info"></i> Days off</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)"> <i
+                                    class="fa fa-fw fa-info"></i> Staffing for day</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="collapse" data-target="#gender"><i
+                                    class="fa fa-fw fa-info"></i> Male/Female needed</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
                 <li class="active">
-                    <a href="/home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Work week</a>
                 </li>
                 <li>
-                    <a href="/calendar"><i class="fa fa-fw fa-bar-chart-o"></i> Schedule</a>
+                    <a href="/calendar"><i class="fa fa-fw fa-table"></i> Vocation</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-table"></i> Overtime Schedule</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Training</a>
                 </li>
-                <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Work Status</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-wrench"></i> Shift Type</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> Organizational Unit</a>
-                </li>
-                <li th:if="${officer.permissionGroup} == 'Administrator'">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Officer Management</a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Support</a>
-                </li>
-                <!--<li>-->
-                <!--<a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>-->
-                <!--<ul id="demo" class="collapse">-->
-                <!--<li>-->
-                <!--<a href="#">Dropdown Item</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<a href="#">Dropdown Item</a>-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--</li>-->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -101,7 +119,7 @@
 
     <div id="page-wrapper">
 
-        <div class="container-fluid">
+        <div class="container-fluid" id="pending_request">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -178,22 +196,174 @@
         </div>
         <!-- /.container-fluid -->
 
+        <div class="container-fluid" id="calendar" style="display: none">
+        </div>
+
+
+        <div class="container-fluid" id="staff_management" style="display: none">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Staff Management
+                    </h1>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> User List</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-hover" id="user_list_table">
+                                <thead>
+                                <tr>
+                                    <th>UID</th>
+                                    <th>Badge Number</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Title</th>
+                                    <th>Gender</th>
+                                    <th>Seniority</th>
+                                    <th>Permission Group</th>
+                                    <th>Union</th>
+                                    <th>Hire Date</th>
+                                    <th>Promotion Date</th>
+                                    <th>Trainer ID</th>
+                                </tr>
+                                <tbody>
+                                <tr th:each="officer:${officerList}">
+                                    <td th:text="${officer.uid}"></td>
+                                    <td th:text="${officer.badgeNum}"></td>
+                                    <td th:text="${officer.lastName}"></td>
+                                    <td th:text="${officer.firstName}"></td>
+                                    <td th:text="${officer.title}"></td>
+                                    <td th:text="${officer.gender}"></td>
+                                    <td th:text="${officer.seniority}"></td>
+                                    <td th:text="${officer.permissionGroup}"></td>
+                                    <td th:text="${officer.union.name}"></td>
+                                    <td th:text="${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "></td>
+                                    <td th:text="${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "></td>
+                                    <td th:if="${officer.trainer} == null"></td>
+                                    <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
+                                </tr>
+                                </tbody>
+                                </thead>
+                            </table>
+                            <div class="text-right">
+                                <a href="javascript:;" onclick="newUserForm()">Add new User <i
+                                        class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                            <div class="col-lg-4"></div>
+                            <div class="panel-default col-lg-4" id="add_user_div_id" style="display: none">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Attributes</th>
+                                        <th>Values</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>UID</td>
+                                        <td><input name="uid" id="uid_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td><input name="lastName" id="lastName_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td><input name="firstName" id="firstName_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Badge Number</td>
+                                        <td><input name="badgeNum" id="badgeNum_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title</td>
+                                        <td><input name="title" id="title_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td><select class="form-control" name="gender" id="gender_ID">
+                                            <option value=" " selected="selected" disabled="disabled"></option>
+                                            <option value="Male"> Male</option>
+                                            <option value="Female"> Female</option>
+                                            <option value="Decline to answer"> Decline to answer</option>
+                                        </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Permission Group</td>
+                                        <td><select class="form-control" name="permissionGroup" id="permissionGroup_ID">
+                                            <option value=" " selected="selected" disabled="disabled"></option>
+                                            <option value="Administrator"> Administrator</option>
+                                            <option value="User"> User</option>
+                                        </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Union</td>
+                                        <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+                                        <td>
+                                            <select class="form-control" name="union" id="union_ID">
+                                                <option value=" " selected="selected" disabled="disabled"></option>
+                                                <option th:each="union:${unionList}" th:text="${union.name}" th:value="${union.name}"> </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recruit</td>
+                                        <td><input name="recruit" id="recruit_ID" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Contract Employee</td>
+                                        <td><select class="form-control" name="contractEmployee" id="contractEmployee_id">
+                                            <option value=" " selected="selected" disabled="disabled"></option>
+                                            <option value="Yes"> Yes</option>
+                                            <option value="No"> No</option>
+                                        </select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hire Date</td>
+                                        <td><input name="hireDate" id="hireDate_ID" type="date"
+                                                   placeholder="MM/DD/YYYY"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Promote Date</td>
+                                        <td><input name="promoteDate" id="promoteDate_ID" type="date"
+                                                   placeholder="MM/DD/YYYY"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trainer ID</td>
+                                        <td><input name="trainerID" id="trainerID_ID"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id="submit_button" type="button" class="btn btn-success">Submit
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button id="cancel_button" type="button" class="btn btn-cancel">Cancel
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
+        </div>
     </div>
     <!-- /#page-wrapper -->
 
 </div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="/js/jquery-3.1.1.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="/js/plugins/morris/raphael.min.js"></script>
-<script src="/js/plugins/morris/morris.min.js"></script>
-<script src="/js/plugins/morris/morris-data.js"></script>
 
 </body>
 
