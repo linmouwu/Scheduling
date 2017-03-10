@@ -398,34 +398,14 @@
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="95" parent="13" name="Holiday_ID">
+    <column id="95" parent="13" name="Description">
       <Position>3</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="96" parent="13" name="Description">
-      <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="97" parent="13" name="FK5d4143axemrha2p204n2otck1">
-      <ColNames>Holiday_ID</ColNames>
-    </index>
-    <key id="98" parent="13" name="PRIMARY">
+    <key id="96" parent="13" name="PRIMARY">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="99" parent="13" name="FK5d4143axemrha2p204n2otck1">
-      <ColNames>Holiday_ID</ColNames>
-      <RefSchemaName>scheduleappdb</RefSchemaName>
-      <RefTableName>holiday</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <foreign-key id="100" parent="13" name="unions_ibfk_1">
-      <ColNames>Holiday_ID</ColNames>
-      <RefSchemaName>scheduleappdb</RefSchemaName>
-      <RefTableName>HOLIDAY</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
   </database-model>
 </dataSource>

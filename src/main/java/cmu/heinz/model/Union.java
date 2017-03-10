@@ -17,10 +17,6 @@ public class Union {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Holiday_ID")
-    private Holiday holiday;
-
     private String description;
 
     public String getId() {
@@ -37,14 +33,6 @@ public class Union {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Holiday getHoliday() {
-        return holiday;
-    }
-
-    public void setHoliday(Holiday holiday) {
-        this.holiday = holiday;
     }
 
     public String getDescription() {

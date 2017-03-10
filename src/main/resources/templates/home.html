@@ -65,7 +65,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'">
                 <li>
-                    <a href="/home" onclick="changeToRequest()"><i class="fa fa-fw fa-flag"></i> Pending
+                    <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-flag"></i> Pending
                         Request</a>
                 </li>
                 <li>
@@ -104,13 +104,13 @@
             </ul>
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
                 <li class="active">
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Dash Board</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-bar-chart-o"></i> Work week</a>
                 </li>
                 <li>
-                    <a href="/calendar"><i class="fa fa-fw fa-table"></i> Schedule</a>
+                    <a href="/calendar"><i class="fa fa-fw fa-table"></i> Vocation</a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Details</a>
+                    <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Training</a>
                 </li>
             </ul>
         </div>
@@ -328,12 +328,12 @@
                                     </tr>
                                     <tr>
                                         <td>Hire Date</td>
-                                        <td><input name="hireDate" id="hireDate_ID" type="text"
+                                        <td><input name="hireDate" id="hireDate_ID" type="date"
                                                    placeholder="MM/DD/YYYY"/></td>
                                     </tr>
                                     <tr>
                                         <td>Promote Date</td>
-                                        <td><input name="promoteDate" id="promoteDate_ID" type="text"
+                                        <td><input name="promoteDate" id="promoteDate_ID" type="date"
                                                    placeholder="MM/DD/YYYY"/></td>
                                     </tr>
                                     <tr>
