@@ -341,8 +341,8 @@
                                     <td th:text="${officer.seniority}"></td>
                                     <td th:text="${officer.permissionGroup}"></td>
                                     <td th:text="${officer.union.name}"></td>
-                                    <td th:text="${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "></td>
-                                    <td th:text="${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "></td>
+                                    <td th:text="${#calendars.format(officer.hireDate,'yyyy-MM-dd')} "></td>
+                                    <td th:text="${#calendars.format(officer.promotionDate,'yyyy-MM-dd')} "></td>
                                     <td th:if="${officer.trainer} == null"></td>
                                     <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
                                 </tr>

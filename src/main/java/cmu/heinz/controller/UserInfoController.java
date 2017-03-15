@@ -55,8 +55,8 @@ public class UserInfoController {
                                       @RequestParam(value = "union") String union,
                                       @RequestParam(value = "recruit") String recruit,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
-                                      @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date hireDate,
-                                      @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date promoteDate,
+                                      @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date hireDate,
+                                      @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date promoteDate,
                                       @RequestParam(value = "trainer") String trainer) {
 
         Officer officer = new Officer();
