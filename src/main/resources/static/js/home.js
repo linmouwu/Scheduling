@@ -243,13 +243,56 @@ function addUser() {
             $('#user_list_table > tbody').append(markup).hide().slideDown();
         }
 
+        cancelAddUser();
+    })
 
+}
+function addEvent() {
+
+
+    // var recruit_ID = $('#recrui_ID').val();
+    var startTime_id = $('#startTime_ID').val();
+    var endTime_id = $('#endTime_ID').val();
+    var description = $('#event_description').val();
+    var event_type = $('#individualRequestType').val();
+    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    // console.log(promoteDate_ID);
+    var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+    $.post("create_Event", {
+        'startTime': startTime_id,
+        'endTime': endTime_id,
+        'description': description,
+        'event_type': event_type,
+        'total': totalDays
+    }).done(function (data) {
+
+        console.log(data);
+        console.log("guess what happened");
+        if(data == "Remain Day is not enough") {
+            // $('#staff_management').append(data);
+        }
+        else{
+            // var markup =
+            //     "<tr><td>" + data.uid +
+            //     "</td><td>" + data.badgeNum +
+            //     "</td><td>" + data.lastName +
+            //     "</td><td>" + data.firstName +
+            //     "</td><td>" + data.title +
+            //     "</td><td>" + data.gender +
+            //     "</td><td>" + data.seniority +
+            //     "</td><td>" + data.permissionGroup +
+            //     "</td><td>" + data.union.name +
+            //     "</td><td>" + hireDate_ID +
+            //     "</td><td>" + promoteDate_ID +
+            //     (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
+            //     "</td></tr>";
+            // $('#user_list_table > tbody').append(markup).hide().slideDown();
+        }
 
         cancelAddUser();
     })
 
 }
-
 function cancelAddUser() {
     $('#uid_ID').val("");
     $('#lastName_ID').val("");
@@ -264,6 +307,12 @@ function cancelAddUser() {
     $('#hireDate_ID').val("");
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
+}
+function cancelAddEvent() {
+    $('#startTime_ID').val("");
+    $('#endTime_ID').val("");
+    $('#event_description').val("");
+    $('#individualRequestType').val("");
 }
 
 $(document)
@@ -280,6 +329,8 @@ $(document)
 
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
+        $('#submit_Event').click(addEvent);
+        $('#cancel_Event').click(cancelAddUser);
 
         $('#calendar').fullCalendar({
             header: {
@@ -298,6 +349,22 @@ $(document)
                 {
                     title: 'Martin Luther King Jr.Day',
                     start: '2017-02-15',
+                },
+                {
+                    title: 'Presidents Day',
+                    start: '2017-02-20',
+                },
+                {
+                    title: 'Good Friday',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Memorial Day',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Labor Day',
+                    start: '2017-09-04',
                 },
                 {
                     title: 'Independence Day',
