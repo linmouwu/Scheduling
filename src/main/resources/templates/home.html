@@ -204,17 +204,21 @@
                                     <thead>
                                     <tr>
                                         <th>Request #</th>
-                                        <th>Request Date</th>
-                                        <th>Request Time</th>
-                                        <th>Organizational Unit</th>
+                                        <th>Request Start Time</th>
+                                        <th>Request End Time</th>
+                                        <th>Request Type</th>
+                                        <th>Status</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>000</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:29 PM</td>
-                                        <td>000</td>
+                                    <tr th:each="previousRequest:${previousEventList}">
+                                        <td th:text="${previousRequest.id}"></td>
+                                        <td th:text="${#calendars.format(previousRequest.startTime,'MM/dd/yyyy')}"></td>
+                                        <td th:text="${#calendars.format(previousRequest.endTime,'MM/dd/yyyy')}"></td>
+                                        <td th:text="${previousRequest.eventType}"></td>
+                                        <td th:text="${previousRequest.status}"></td>
+
                                     </tr>
                                     </tbody>
                                 </table>
@@ -277,11 +281,18 @@
 
                 <tr>
                     <td>Type</td>
-                    <td><select class="form-control" name="type" id="individualRequestType">
-                        <option value=" " selected="selected" disabled="disabled"></option>
+                    <td><select class="form-control" name="type" id="individualRequestType" th:if="${officer.permissionGroup} == 'User'">
+                        <option value=" " selected="selected" disabled="disabled" ></option>
                         <option value="Vacation"> Vacation</option>
                         <option value="Leave"> Leave</option>
                         <option value="Decline to answer"> Decline to answer</option>
+                    </select>
+                    <select class="form-control" name="type" id="individualRequestType" th:if="${officer.permissionGroup} == 'Administrator'">
+                        <option value=" " selected="selected" disabled="disabled" ></option>
+                        <option value="Vacation"> Vacation</option>
+                        <option value="Training"> Training</option>
+                        <option value="Event"> Event </option>
+                        <option value="Comp"> Comp </option>
                     </select></td>
 
                 </tr>

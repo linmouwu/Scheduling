@@ -49,11 +49,14 @@ public class HomeController {
 
         List<Union> unionList = (List<Union>) unionRepository.findAll();
         List<Event> pendingEventList = new ArrayList<Event>();
+        List<Event> previousEventList = new ArrayList<Event>();
 
         if (permissionGroup.equals("User")) {
             pendingEventList = (List<Event>)eventRepository.findByPendingUID(uid);
+            previousEventList = (List<Event>) eventRepository.findByPreviousUID(uid);
         } else if (permissionGroup.equals("Administrator")) {
             pendingEventList = (List<Event>)eventRepository.findByPendingUnionID(unionID);
+            previousEventList = (List<Event>) eventRepository.findByPreviousUnionID(unionID);
         }
 //        List<Event> pendingEventList = (List<Event>)eventRepository.findByPendingUID(uid);
 
@@ -64,6 +67,9 @@ public class HomeController {
         model.addAttribute("unionList", unionList);
 
         model.addAttribute("pendingEventList", pendingEventList);
+
+        model.addAttribute("previousEventList", previousEventList);
+
         return "home";
     }
 

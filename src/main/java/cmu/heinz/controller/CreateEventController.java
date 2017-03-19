@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by nan xia on 3/5/17.
@@ -38,23 +39,33 @@ public class CreateEventController {
 
         String username = userDetails.getUsername();
         Officer officer = officerRepository.findOne(username);
+        String permissionGroup = officer.getPermissionGroup();
+        String range = "";
+        String status = "pending";
+        if (permissionGroup.equals("User")) {
+            range = "Single";
+        } else if (permissionGroup.equals("Administrator")) {
+            range = "Union";
+            status = "unionevent";
+        }
 
         String unionID = "1";
-        String recruitID = officer.getRecruitId();
-        Event event = new Event();
 
         String uid = officer.getUid();
         int recruitId = Integer.valueOf(officer.getRecruitId());
+
+        Event event = new Event();
+
         event.setOfficerId(2);
         event.setRecruitId(recruitId);
         event.setUnionId(1);
         event.setUid(uid);
         event.setStartTime(startTime);
         event.setEndTime(endTime);
-        event.setStatus("pending");
+        event.setStatus(status);
         event.setEventType(type);
         event.setDescription(description);
-        System.out.println("the type" + " " + recruitID);
+//        System.out.println("the type" + " " + recruitID);
         Event newEvent = eventRepository.save(event);
         return ResponseEntity.ok(newEvent);
     }

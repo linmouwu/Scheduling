@@ -96,6 +96,14 @@ public class Event {
         this.description = description;
     }
 
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+
     private int officerId;
     private int unionId;
     private int recruitId;
@@ -104,7 +112,7 @@ public class Event {
     private String status;
     private String eventType;
     private String description;
-
+    private String range;
     private String uid;
     public Event() {
 
