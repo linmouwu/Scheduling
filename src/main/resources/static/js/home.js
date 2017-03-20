@@ -288,7 +288,7 @@ function addEvent() {
                 "</td></tr>";
             $('#pendinglisttable > tbody').append(markup).hide().slideDown();
         }
-
+        location.reload();
         cancelAddEvent();
     })
 
