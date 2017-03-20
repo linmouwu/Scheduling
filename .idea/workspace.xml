@@ -2,84 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/FontAwesome.otf" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/FontAwesome.otf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.eot" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.ttf" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.woff" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.eot" afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.ttf" afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff" afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff2" afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/images/bg4.jpg" afterPath="$PROJECT_DIR$/target/classes/static/images/bg4.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/images/loginProfile.jpg" afterPath="$PROJECT_DIR$/target/classes/static/images/loginProfile.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CityOfLansing.iml" afterPath="$PROJECT_DIR$/.idea/CityOfLansing.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/UserInfoController.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/UserInfoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/model/Officer.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/model/Officer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/model/OfficerRepository.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/model/OfficerRepository.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/OfficerRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/OfficerRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/userinfo.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/userinfo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/datepicker.css" afterPath="$PROJECT_DIR$/target/classes/static/css/datepicker.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/friendInfo.css" afterPath="$PROJECT_DIR$/target/classes/static/css/friendInfo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/friends.css" afterPath="$PROJECT_DIR$/target/classes/static/css/friends.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/login.css" afterPath="$PROJECT_DIR$/target/classes/static/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/main.css" afterPath="$PROJECT_DIR$/target/classes/static/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/plugins/morris.css" afterPath="$PROJECT_DIR$/target/classes/static/css/plugins/morris.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/register.css" afterPath="$PROJECT_DIR$/target/classes/static/css/register.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/registration.css" afterPath="$PROJECT_DIR$/target/classes/static/css/registration.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/sb-admin.css" afterPath="$PROJECT_DIR$/target/classes/static/css/sb-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/userInfo.css" afterPath="$PROJECT_DIR$/target/classes/static/css/userInfo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/userInfo_backup.css" afterPath="$PROJECT_DIR$/target/classes/static/css/userInfo_backup.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/css/font-awesome.css" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/css/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/css/font-awesome.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.svg" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/bordered-pulled.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/bordered-pulled.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/core.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/core.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/fixed-width.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/fixed-width.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/font-awesome.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/font-awesome.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/icons.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/icons.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/larger.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/larger.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/list.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/list.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/mixins.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/mixins.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/path.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/path.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/rotated-flipped.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/rotated-flipped.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/spinning.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/spinning.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/stacked.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/stacked.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/less/variables.less" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/less/variables.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_bordered-pulled.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_bordered-pulled.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_core.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_core.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_fixed-width.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_fixed-width.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_icons.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_icons.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_larger.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_larger.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_list.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_list.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_mixins.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_mixins.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_path.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_path.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_rotated-flipped.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_rotated-flipped.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_spinning.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_spinning.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_stacked.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_stacked.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_variables.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/_variables.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/font-awesome.scss" afterPath="$PROJECT_DIR$/target/classes/static/font-awesome/scss/font-awesome.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/css/font-awesome.css" afterPath="$PROJECT_DIR$/target/classes/static/fonts/css/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/target/classes/static/fonts/css/font-awesome.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.svg" afterPath="$PROJECT_DIR$/target/classes/static/fonts/glyphicons-halflings-regular.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/index.html" afterPath="$PROJECT_DIR$/target/classes/static/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker.js" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.js" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/excanvas.min.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/excanvas.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/flot-data.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/flot-data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.pie.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.pie.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.resize.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.resize.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.tooltip.min.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/flot/jquery.flot.tooltip.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris-data.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris-data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris.min.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/morris.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/raphael.min.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/morris/raphael.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/error.html" afterPath="$PROJECT_DIR$/target/classes/templates/error.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/login.html" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/home.js" afterPath="$PROJECT_DIR$/target/classes/static/js/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/home.html" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/userinfo.html" afterPath="$PROJECT_DIR$/target/classes/templates/userinfo.html" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -205,8 +134,8 @@
       <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-747">
-              <caret line="119" column="136" lean-forward="false" selection-start-line="119" selection-start-column="136" selection-end-line="119" selection-end-column="136" />
+            <state relative-caret-position="573">
+              <caret line="237" column="49" lean-forward="false" selection-start-line="237" selection-start-column="41" selection-end-line="237" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -999,7 +928,7 @@
       <workItem from="1489162898446" duration="189000" />
       <workItem from="1489964389377" duration="5243000" />
       <workItem from="1490030883794" duration="3426000" />
-      <workItem from="1490038499701" duration="2123000" />
+      <workItem from="1490038499701" duration="2837000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -1029,11 +958,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490032689884</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="03/20/2017 Officer changed.">
+      <created>1490040787971</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1490040787971</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32345000" />
+    <option name="totallyTimeSpent" value="33059000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1069,7 +1005,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934132" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26824033" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26824033" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1101,7 +1037,8 @@
     <MESSAGE value="03/20/2017 Merge nanxia." />
     <MESSAGE value="03/20/2017 Commit changes." />
     <MESSAGE value="03/20/2017 CreateEvent refresh pages." />
-    <option name="LAST_COMMIT_MESSAGE" value="03/20/2017 CreateEvent refresh pages." />
+    <MESSAGE value="03/20/2017 Officer changed." />
+    <option name="LAST_COMMIT_MESSAGE" value="03/20/2017 Officer changed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1551,8 +1488,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-747">
-          <caret line="119" column="136" lean-forward="false" selection-start-line="119" selection-start-column="136" selection-end-line="119" selection-end-column="136" />
+        <state relative-caret-position="573">
+          <caret line="237" column="49" lean-forward="false" selection-start-line="237" selection-start-column="41" selection-end-line="237" selection-end-column="49" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
