@@ -79,7 +79,6 @@ public class CreateEventController {
         if (event != null) {
             model.addAttribute("currentEvent", event);
         }
-
         return ResponseEntity.ok(event);
 
     }

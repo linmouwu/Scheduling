@@ -279,24 +279,16 @@ function addEvent() {
             // $('#staff_management').append(data);
         }
         else{
-            // var markup =
-            //     "<tr><td>" + data.uid +
-            //     "</td><td>" + data.badgeNum +
-            //     "</td><td>" + data.lastName +
-            //     "</td><td>" + data.firstName +
-            //     "</td><td>" + data.title +
-            //     "</td><td>" + data.gender +
-            //     "</td><td>" + data.seniority +
-            //     "</td><td>" + data.permissionGroup +
-            //     "</td><td>" + data.union.name +
-            //     "</td><td>" + hireDate_ID +
-            //     "</td><td>" + promoteDate_ID +
-            //     (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
-            //     "</td></tr>";
-            // $('#user_list_table > tbody').append(markup).hide().slideDown();
+            var markup =
+                "<tr><td>" + data.id +
+                "</td><td>" + startTime_id +
+                "</td><td>" + endTime_id +
+                "</td><td>" + event_type +
+                "</td></tr>";
+            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
         }
 
-        cancelAddUser();
+        cancelAddEvent();
     })
 
 }
