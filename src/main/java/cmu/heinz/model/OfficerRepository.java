@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface OfficerRepository extends CrudRepository<Officer, String> {
+public interface OfficerRepository extends CrudRepository<Officer, Integer> {
 
     @Query(value = "select * from OFFICER where last_name = (:param1) limit 1", nativeQuery = true)
     Officer findByLastName(@Param("param1") String lastName);
