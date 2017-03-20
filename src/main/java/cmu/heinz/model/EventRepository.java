@@ -20,4 +20,7 @@ public interface EventRepository extends CrudRepository<Event, String> {
     List<Event> findByPreviousUnionID(@Param("param1") String uid);
     @Query(value = "select * from EVENT_REQUEST where id = (:param1)", nativeQuery = true)
     Event findByID(@Param("param1") int id);
+
+    @Query(value = "select * from EVENT_REQUEST where union_id = (:param1) AND event_status != 'pending'", nativeQuery = true)
+    List<Event> findByAllUnionID(@Param("param1") int unionid);
 }

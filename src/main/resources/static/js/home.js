@@ -340,6 +340,14 @@ $(document)
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            eventSource:[
+                {
+                    url: 'localhost:8080/allEvent?union_id=1',
+                    color: 'blue',
+                    textColor: 'black'
+                }
+            ],
+
             events: [
                 {
                     title: 'New Years Day',
