@@ -332,7 +332,8 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-
+        var union_ID = $('#currentUnionId').val();
+        var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -342,6 +343,10 @@ $(document)
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            eventSources: [
+                eventsUrl
+            ],
+
             events: [
                 {
                     title: 'New Years Day',

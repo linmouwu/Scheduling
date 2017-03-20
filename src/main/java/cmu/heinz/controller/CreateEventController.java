@@ -80,7 +80,17 @@ public class CreateEventController {
             model.addAttribute("currentEvent", event);
         }
         return ResponseEntity.ok(event);
+    }
+    @RequestMapping(value = "/allEvent", method = RequestMethod.GET)
+    public ResponseEntity getAllEvent(@RequestParam(value = "union_id") int union_id,
+                                   Model model) {
 
+        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+
+        if (allEvent != null) {
+            model.addAttribute("allEvent", allEvent);
+        }
+        return ResponseEntity.ok(allEvent);
     }
 }
 
