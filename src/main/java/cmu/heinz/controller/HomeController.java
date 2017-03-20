@@ -40,7 +40,11 @@ public class HomeController {
 
         String username = userDetails.getUsername();
 
-        Officer officer = officerRepository.findOne(username);
+        Officer officer = officerRepository.findByUID(username);
+
+        int id = officer.getId();
+        System.out.println(id);
+
         String uid = officer.getUid();
         String unionID = "1";
         String permissionGroup = officer.getPermissionGroup();

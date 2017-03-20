@@ -208,7 +208,8 @@ function addUser() {
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
     console.log(recruit_ID);
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
+        : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     console.log(promoteDate_ID);
     $.post("add_user", {
         'uid': uid_ID,
@@ -229,10 +230,10 @@ function addUser() {
 
         console.log(data);
         console.log("guess what happened");
-        if(data == "Already existed") {
+        if (data == "Already existed") {
             $('#staff_management').append(data);
         }
-        else{
+        else {
             var markup =
                 "<tr><td>" + data.uid +
                 "</td><td>" + data.badgeNum +
@@ -275,28 +276,20 @@ function addEvent() {
 
         console.log(data);
         console.log("guess what happened");
-        if(data == "Remain Day is not enough") {
+        if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
-        else{
-            // var markup =
-            //     "<tr><td>" + data.uid +
-            //     "</td><td>" + data.badgeNum +
-            //     "</td><td>" + data.lastName +
-            //     "</td><td>" + data.firstName +
-            //     "</td><td>" + data.title +
-            //     "</td><td>" + data.gender +
-            //     "</td><td>" + data.seniority +
-            //     "</td><td>" + data.permissionGroup +
-            //     "</td><td>" + data.union.name +
-            //     "</td><td>" + hireDate_ID +
-            //     "</td><td>" + promoteDate_ID +
-            //     (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
-            //     "</td></tr>";
-            // $('#user_list_table > tbody').append(markup).hide().slideDown();
+        else {
+            var markup =
+                "<tr><td>" + data.id +
+                "</td><td>" + startTime_id +
+                "</td><td>" + endTime_id +
+                "</td><td>" + event_type +
+                "</td></tr>";
+            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
         }
 
-        cancelAddUser();
+        cancelAddEvent();
     })
 
 }
@@ -379,11 +372,11 @@ $(document)
                 },
 
                 {
-                    title :'Veterans Day',
+                    title: 'Veterans Day',
                     start: '2017-11-11',
                 },
                 {
-                    title :'Christmas Day',
+                    title: 'Christmas Day',
                     start: '2017-12-25',
                 }
             ]
