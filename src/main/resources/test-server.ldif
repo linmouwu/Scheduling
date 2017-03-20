@@ -57,7 +57,7 @@ objectclass: inetOrgPerson
 cn: Bob Hamilton
 sn: Hamilton
 uid: bob
-userPassword: bobspassword
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
 
 dn: uid=ttest,ou=people,dc=springframework,dc=org
 objectclass: top
