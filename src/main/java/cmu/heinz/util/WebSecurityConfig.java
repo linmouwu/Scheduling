@@ -1,5 +1,4 @@
 package cmu.heinz.util;
-import java.util.Arrays;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 
+import java.util.Arrays;
+
 
 /**
  * @author Mouwu Lin
@@ -22,37 +23,37 @@ import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements AuthenticationProvider {
-    
+
     @Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-                                .antMatchers("/", "/login").permitAll()
-				.anyRequest().fullyAuthenticated()
-				.and()
-                        .formLogin()
-                        .loginPage("/login")
-                        .successForwardUrl("/home")
-                        ;
-                http.csrf().disable();
-	}
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/login").permitAll()
+//				.anyRequest().fullyAuthenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .successForwardUrl("/home")
+        ;
+        http.csrf().disable();
+    }
 
-	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.ldapAuthentication()
-				.userDnPatterns("uid={0},ou=people")
-				.groupSearchBase("ou=groups")
-				.contextSource(contextSource())
-				.passwordCompare()
-					.passwordEncoder(new LdapShaPasswordEncoder())
-					.passwordAttribute("userPassword");
-	}
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .ldapAuthentication()
+                .userDnPatterns("uid={0},ou=people")
+                .groupSearchBase("ou=groups")
+                .contextSource(contextSource())
+                .passwordCompare()
+                .passwordEncoder(new LdapShaPasswordEncoder())
+                .passwordAttribute("userPassword");
+    }
 
-	@Bean
-	public DefaultSpringSecurityContextSource contextSource() {
-		return  new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"), "dc=springframework,dc=org");
-	}
+    @Bean
+    public DefaultSpringSecurityContextSource contextSource() {
+        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"), "dc=springframework,dc=org");
+    }
 
     @Override
     public Authentication authenticate(Authentication a) throws AuthenticationException {

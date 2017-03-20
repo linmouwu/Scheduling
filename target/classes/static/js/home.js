@@ -163,6 +163,7 @@ function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
     $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
@@ -185,6 +186,13 @@ function changeToSchedule() {
     $('#pending_request').fadeOut();
     $('#staff_management').fadeOut();
 }
+
+function changeToEditEvent() {
+    $('#editEvent').delay(350).fadeIn();
+    $('#pending_request').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#calendar').fadeOut();
+}
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();
@@ -201,7 +209,8 @@ function addUser() {
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
     console.log(recruit_ID);
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
+        : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     console.log(promoteDate_ID);
     $.post("add_user", {
         'uid': uid_ID,
@@ -222,10 +231,10 @@ function addUser() {
 
         console.log(data);
         console.log("guess what happened");
-        if(data == "Already existed") {
+        if (data == "Already existed") {
             $('#staff_management').append(data);
         }
-        else{
+        else {
             var markup =
                 "<tr><td>" + data.uid +
                 "</td><td>" + data.badgeNum +
@@ -243,13 +252,48 @@ function addUser() {
             $('#user_list_table > tbody').append(markup).hide().slideDown();
         }
 
-
-
         cancelAddUser();
     })
 
 }
+function addEvent() {
 
+
+    // var recruit_ID = $('#recrui_ID').val();
+    var startTime_id = $('#startTime_ID').val();
+    var endTime_id = $('#endTime_ID').val();
+    var description = $('#event_description').val();
+    var event_type = $('#individualRequestType').val();
+    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    // console.log(promoteDate_ID);
+    var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+    $.post("create_Event", {
+        'startTime': startTime_id,
+        'endTime': endTime_id,
+        'description': description,
+        'event_type': event_type,
+        'total': totalDays
+    }).done(function (data) {
+
+        console.log(data);
+        console.log("guess what happened");
+        if (data == "Remain Day is not enough") {
+            // $('#staff_management').append(data);
+        }
+        else {
+            var markup =
+                "<tr><td>" + data.id +
+                "</td><td>" + startTime_id +
+                "</td><td>" + endTime_id +
+                "</td><td>" + event_type +
+                "</td></tr>";
+            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+        }
+        location.reload();
+        cancelAddEvent();
+    })
+
+}
 function cancelAddUser() {
     $('#uid_ID').val("");
     $('#lastName_ID').val("");
@@ -264,6 +308,12 @@ function cancelAddUser() {
     $('#hireDate_ID').val("");
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
+}
+function cancelAddEvent() {
+    $('#startTime_ID').val("");
+    $('#endTime_ID').val("");
+    $('#event_description').val("");
+    $('#individualRequestType').val("");
 }
 
 $(document)
@@ -280,7 +330,10 @@ $(document)
 
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
-
+        $('#submit_Event').click(addEvent);
+        $('#cancel_Event').click(cancelAddUser);
+        var union_ID = $('#currentUnionId').val();
+        var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -290,6 +343,10 @@ $(document)
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
+            eventSources: [
+                eventsUrl
+            ],
+
             events: [
                 {
                     title: 'New Years Day',
@@ -300,16 +357,32 @@ $(document)
                     start: '2017-02-15',
                 },
                 {
+                    title: 'Presidents Day',
+                    start: '2017-02-20',
+                },
+                {
+                    title: 'Good Friday',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Memorial Day',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Labor Day',
+                    start: '2017-09-04',
+                },
+                {
                     title: 'Independence Day',
                     start: '2017-07-04',
                 },
 
                 {
-                    title :'Veterans Day',
+                    title: 'Veterans Day',
                     start: '2017-11-11',
                 },
                 {
-                    title :'Christmas Day',
+                    title: 'Christmas Day',
                     start: '2017-12-25',
                 }
             ]

@@ -14,8 +14,8 @@ public class Officer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    private String id;
     private String uid;
 
     private String firstName;
@@ -48,11 +48,11 @@ public class Officer {
 
     private String permissionGroup;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
