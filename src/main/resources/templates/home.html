@@ -110,7 +110,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
-                <li class="active">
+                <li>
                     <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i> Pending Requests</a>
                 </li>
                 <li>
@@ -236,6 +236,9 @@
         <!-- /.container-fluid -->
 
         <div class="container-fluid" id="calendar" style="display: none">
+        </div>
+        <div>
+            <input type="hidden" th:value="${officer.union.id}" id="currentUnionId"></input>
         </div>
         <div class="container-fluid" id="schedule" style="display: none">
             <div class="row">

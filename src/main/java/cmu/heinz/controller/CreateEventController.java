@@ -38,7 +38,7 @@ public class CreateEventController {
         UserDetails userDetails = (UserDetails) principal;
 
         String username = userDetails.getUsername();
-        Officer officer = officerRepository.findOne(username);
+        Officer officer = officerRepository.findByUID(username);
         String permissionGroup = officer.getPermissionGroup();
         String range = "";
         String status = "pending";

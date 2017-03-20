@@ -208,7 +208,8 @@ function addUser() {
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
     console.log(recruit_ID);
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
+        : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     console.log(promoteDate_ID);
     $.post("add_user", {
         'uid': uid_ID,
@@ -229,10 +230,10 @@ function addUser() {
 
         console.log(data);
         console.log("guess what happened");
-        if(data == "Already existed") {
+        if (data == "Already existed") {
             $('#staff_management').append(data);
         }
-        else{
+        else {
             var markup =
                 "<tr><td>" + data.uid +
                 "</td><td>" + data.badgeNum +
@@ -275,10 +276,10 @@ function addEvent() {
 
         console.log(data);
         console.log("guess what happened");
-        if(data == "Remain Day is not enough") {
+        if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
-        else{
+        else {
             var markup =
                 "<tr><td>" + data.id +
                 "</td><td>" + startTime_id +
@@ -287,7 +288,7 @@ function addEvent() {
                 "</td></tr>";
             $('#pendinglisttable > tbody').append(markup).hide().slideDown();
         }
-
+        location.reload();
         cancelAddEvent();
     })
 
@@ -330,7 +331,8 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-
+        var union_ID = $('#currentUnionId').val();
+        var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -340,12 +342,8 @@ $(document)
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            eventSource:[
-                {
-                    url: 'localhost:8080/allEvent?union_id=1',
-                    color: 'blue',
-                    textColor: 'black'
-                }
+            eventSources: [
+                eventsUrl
             ],
 
             events: [
@@ -379,11 +377,11 @@ $(document)
                 },
 
                 {
-                    title :'Veterans Day',
+                    title: 'Veterans Day',
                     start: '2017-11-11',
                 },
                 {
-                    title :'Christmas Day',
+                    title: 'Christmas Day',
                     start: '2017-12-25',
                 }
             ]
