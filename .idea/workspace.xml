@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/model/Officer.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/model/Officer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/CreateEventController.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/CreateEventController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/home.js" afterPath="$PROJECT_DIR$/target/classes/static/js/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/home.html" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="290" column="26" lean-forward="true" selection-start-line="290" selection-start-column="26" selection-end-line="290" selection-end-column="26" />
+            <state relative-caret-position="394">
+              <caret line="276" column="23" lean-forward="false" selection-start-line="276" selection-start-column="23" selection-end-line="276" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -895,7 +894,7 @@
       <workItem from="1489129651243" duration="2475000" />
       <workItem from="1489162898446" duration="189000" />
       <workItem from="1489964389377" duration="5243000" />
-      <workItem from="1490030883794" duration="1368000" />
+      <workItem from="1490030883794" duration="3426000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -918,11 +917,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490032218697</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="03/20/2017 CreateEvent refresh pages.">
+      <created>1490032689884</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1490032689884</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28164000" />
+    <option name="totallyTimeSpent" value="30222000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -989,7 +995,8 @@
     <MESSAGE value="fix a bug" />
     <MESSAGE value="03/20/2017 Merge nanxia." />
     <MESSAGE value="03/20/2017 Commit changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="03/20/2017 Commit changes." />
+    <MESSAGE value="03/20/2017 CreateEvent refresh pages." />
+    <option name="LAST_COMMIT_MESSAGE" value="03/20/2017 CreateEvent refresh pages." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1365,8 +1372,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="290" column="26" lean-forward="true" selection-start-line="290" selection-start-column="26" selection-end-line="290" selection-end-column="26" />
+        <state relative-caret-position="394">
+          <caret line="276" column="23" lean-forward="false" selection-start-line="276" selection-start-column="23" selection-end-line="276" selection-end-column="23" />
           <folding />
         </state>
       </provider>
