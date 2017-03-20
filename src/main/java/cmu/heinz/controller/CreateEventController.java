@@ -62,11 +62,26 @@ public class CreateEventController {
         event.setUid(uid);
         event.setStartTime(startTime);
         event.setEndTime(endTime);
-        event.setStatus(status);
+        event.setEventStatus(status);
         event.setEventType(type);
         event.setDescription(description);
 //        System.out.println("the type" + " " + recruitID);
         Event newEvent = eventRepository.save(event);
         return ResponseEntity.ok(newEvent);
     }
+
+    @RequestMapping(value = "/editEvent", method = RequestMethod.GET)
+    public ResponseEntity getEvent(@RequestParam(value = "id") int id,
+                              Model model) {
+
+        Event event = eventRepository.findByID(id);
+
+        if (event != null) {
+            model.addAttribute("currentEvent", event);
+        }
+
+        return ResponseEntity.ok(event);
+
+    }
 }
+

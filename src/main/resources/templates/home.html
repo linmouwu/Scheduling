@@ -180,7 +180,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="pendingRequest:${pendingEventList}">
-                                        <td th:text="${pendingRequest.id}"></td>
+                                        <td><a th:href="@{/editEvent(id=${pendingRequest.id})}" onclick="changeToEditEvent()" th:text="${pendingRequest.id}"></a></td>
                                         <td th:text="${#calendars.format(pendingRequest.startTime,'MM/dd/yyyy')}"></td>
                                         <td th:text="${#calendars.format(pendingRequest.endTime,'MM/dd/yyyy')}"></td>
                                         <td th:text="${pendingRequest.eventType}"></td>
@@ -217,7 +217,7 @@
                                         <td th:text="${#calendars.format(previousRequest.startTime,'MM/dd/yyyy')}"></td>
                                         <td th:text="${#calendars.format(previousRequest.endTime,'MM/dd/yyyy')}"></td>
                                         <td th:text="${previousRequest.eventType}"></td>
-                                        <td th:text="${previousRequest.status}"></td>
+                                        <td th:text="${previousRequest.eventStatus}"></td>
 
                                     </tr>
                                     </tbody>
@@ -287,13 +287,13 @@
                         <option value="Leave"> Leave</option>
                         <option value="Decline to answer"> Decline to answer</option>
                     </select>
-                    <select class="form-control" name="type" id="individualRequestType" th:if="${officer.permissionGroup} == 'Administrator'">
-                        <option value=" " selected="selected" disabled="disabled" ></option>
-                        <option value="Vacation"> Vacation</option>
-                        <option value="Training"> Training</option>
-                        <option value="Event"> Event </option>
-                        <option value="Comp"> Comp </option>
-                    </select></td>
+                        <select class="form-control" name="type" id="individualRequestType" th:if="${officer.permissionGroup} == 'Administrator'">
+                            <option value=" " selected="selected" disabled="disabled" ></option>
+                            <option value="Vacation"> Vacation</option>
+                            <option value="Training"> Training</option>
+                            <option value="Event"> Event </option>
+                            <option value="Comp"> Comp </option>
+                        </select></td>
 
                 </tr>
                 <tr>

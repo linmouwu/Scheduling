@@ -185,6 +185,13 @@ function changeToSchedule() {
     $('#pending_request').fadeOut();
     $('#staff_management').fadeOut();
 }
+
+function changeToEditEvent() {
+    $('#editEvent').delay(350).fadeIn();
+    $('#pending_request').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#calendar').fadeOut();
+}
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();

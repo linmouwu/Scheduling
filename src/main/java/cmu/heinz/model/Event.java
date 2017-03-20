@@ -64,12 +64,12 @@ public class Event {
         this.endTime = endTime;
     }
 
-    public String getStatus() {
-        return status;
+    public String getEventStatus() {
+        return eventStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setEventStatus(String eventStatus) {
+        this.eventStatus = eventStatus;
     }
 
     public int getOfficerId() {
@@ -96,12 +96,12 @@ public class Event {
         this.description = description;
     }
 
-    public String getRange() {
-        return range;
+    public String getEventRange() {
+        return eventRange;
     }
 
-    public void setRange(String range) {
-        this.range = range;
+    public void setEventRange(String eventRange) {
+        this.eventRange = eventRange;
     }
 
     private int officerId;
@@ -109,12 +109,13 @@ public class Event {
     private int recruitId;
     private Date startTime;
     private Date endTime;
-    private String status;
+    private String eventStatus;
     private String eventType;
     private String description;
-    private String range;
+    private String eventRange;
     private String uid;
     public Event() {
 
     }
 }
+
