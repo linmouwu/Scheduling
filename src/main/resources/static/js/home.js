@@ -158,17 +158,20 @@ function changeToRequest() {
     $('#calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
 }
 function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
     $('#schedule').fadeOut();
+    $('#editEvent').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').delay(350).fadeIn();
+    $('#editEvent').fadeOut();
 }
 function newUserForm() {
     $('#add_user_div_id').slideToggle();
@@ -178,20 +181,39 @@ function changeToCreateRequest() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#schedule').delay(350).fadeIn();
+    $('#editEvent').fadeOut();
 }
 
 function changeToSchedule() {
     $('#schedule').delay(350).fadeIn();
     $('#pending_request').fadeOut();
     $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
 }
 
-function changeToEditEvent() {
+function changeToEditEvent(editRequest_id) {
     $('#editEvent').delay(350).fadeIn();
     $('#pending_request').fadeOut();
     $('#staff_management').fadeOut();
     $('#calendar').fadeOut();
+
+    $.get("getEditEvent", {
+        'id': editRequest_id,
+    }).done(function (data) {
+
+        // console.log(new Date(data.startTime));
+        var start = new Date(data.startTime);
+        var format = moment(start).format('MM/DD/YYYY');
+        console.log(format);
+        $('#edit_StartTime_ID').val(format);
+        $('#edit_EndTime_ID').val(data.endTime);
+        $('#edit_event_description').val(data.description);
+        $('#currentEditId').val(data.id);
+
+    })
 }
+
+
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();
@@ -293,6 +315,45 @@ function addEvent() {
     })
 
 }
+function updateEvent() {
+
+    var editRequest_id = $('#currentEditId').val();
+    // var recruit_ID = $('#recrui_ID').val();
+    var startTime_id = $('#edit_StartTime_ID').val();
+    var endTime_id = $('#edit_EndTime_ID').val();
+    var description = $('#edit_event_description').val();
+    var event_type = $('#edit_individualRequestType').val();
+    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    // console.log(promoteDate_ID);
+    var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+    $.post("update_Event", {
+        'id':editRequest_id,
+        'startTime': startTime_id,
+        'endTime': endTime_id,
+        'description': description,
+        'event_type': event_type,
+        'total': totalDays
+    }).done(function (data) {
+
+        console.log(data);
+        console.log("guess what happened");
+        if (data == "Remain Day is not enough") {
+            // $('#staff_management').append(data);
+        }
+        else {
+            var markup =
+                "<tr><td>" + data.id +
+                "</td><td>" + startTime_id +
+                "</td><td>" + endTime_id +
+                "</td><td>" + event_type +
+                "</td></tr>";
+            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+        }
+        location.reload();
+        cancelAddEvent();
+    })
+
+}
 function cancelAddUser() {
     $('#uid_ID').val("");
     $('#lastName_ID').val("");
@@ -331,6 +392,7 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
+        $('#submit_Edit_Event').click(updateEvent)
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#calendar').fullCalendar({

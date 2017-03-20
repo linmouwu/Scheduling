@@ -1,5 +1,7 @@
 package cmu.heinz.model;
-import java.util.*;
+
+import java.util.Date;
+
 /**
  * Created by hhahann on 3/20/17.
  */

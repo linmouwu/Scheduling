@@ -180,7 +180,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="pendingRequest:${pendingEventList}">
-                                        <td><a th:href="@{/editEvent(id=${pendingRequest.id})}" onclick="changeToEditEvent()" th:text="${pendingRequest.id}"></a></td>
+                                        <td><a href="javascript:;" th:onclick="'javascript:changeToEditEvent('+${pendingRequest.id}+');'" th:text="${pendingRequest.id}"></a></td>
                                         <td th:text="${#calendars.format(pendingRequest.startTime,'yyyy-MM-dd')}"></td>
                                         <td th:text="${#calendars.format(pendingRequest.endTime,'yyyy-MM-dd')}"></td>
                                         <td th:text="${pendingRequest.eventType}"></td>
@@ -239,6 +239,87 @@
         </div>
         <div>
             <input type="hidden" th:value="${officer.union.id}" id="currentUnionId"></input>
+        </div>
+        <div>
+            <input type="hidden"  id="currentEditId"></input>
+        </div>
+        <div class="container-fluid" id="editEvent" style="display: none">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Edit Pending Request
+                    </h1>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Attributes</th>
+                    <th>Values</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>UID</td>
+                    <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+
+                    <td th:text="${officer.uid}"></td>
+
+                </tr>
+
+                <tr>
+                    <td>Start Time</td>
+                    <td><input name="startTime" id="edit_StartTime_ID" type="date"/></td>
+                </tr>
+                <tr>
+                    <td>End Timeme</td>
+                    <td><input name="endTime" id="edit_EndTime_ID" type="date"/></td>
+                </tr>
+
+                <tr>
+                    <td>Union</td>
+                    <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+
+                    <td th:text="${officer.union.name}"></td>
+
+                </tr>
+
+                <tr>
+                    <td>Type</td>
+                    <td><select class="form-control" name="type" id="edit_individualRequestType" th:if="${officer.permissionGroup} == 'User'">
+                        <option value=" " selected="selected" disabled="disabled" ></option>
+                        <option value="Vacation"> Vacation</option>
+                        <option value="Leave"> Leave</option>
+                        <option value="Decline to answer"> Decline to answer</option>
+                    </select>
+                        <select class="form-control" name="type" id="edit_individualRequestType" th:if="${officer.permissionGroup} == 'Administrator'">
+                            <option value=" " selected="selected" disabled="disabled" ></option>
+                            <option value="Vacation"> Vacation</option>
+                            <option value="Training"> Training</option>
+                            <option value="Event"> Event </option>
+                            <option value="Comp"> Comp </option>
+                        </select></td>
+
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><input name="description" id="edit_event_description" type="text" size="100"/></td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button id="submit_Edit_Event" type="button" class="btn btn-success">Submit
+                        </button>
+                    </td>
+                    <td>
+                        <button id="cancel_Edit_Event" type="button" class="btn btn-cancel">Cancel
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
         <div class="container-fluid" id="schedule" style="display: none">
             <div class="row">
