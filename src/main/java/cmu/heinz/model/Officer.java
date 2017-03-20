@@ -15,6 +15,7 @@ public class Officer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String uid;
 
     private String firstName;

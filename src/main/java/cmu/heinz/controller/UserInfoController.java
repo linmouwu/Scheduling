@@ -30,7 +30,7 @@ public class UserInfoController {
     private UnionRepository unionRepository;
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
-    public String getUserInfo(@RequestParam(value = "id") String id,
+    public String getUserInfo(@RequestParam(value = "id") int id,
                               Model model) {
 
         Officer officer = officerRepository.findOne(id);

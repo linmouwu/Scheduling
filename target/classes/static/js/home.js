@@ -163,6 +163,7 @@ function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
     $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
