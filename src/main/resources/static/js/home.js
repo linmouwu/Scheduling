@@ -287,7 +287,8 @@ function addEvent() {
     var event_type = $('#individualRequestType').val();
     var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     // console.log(promoteDate_ID);
-    var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+    var totalDays = (startTime_id == '' || endTime_id == '') ? 0
+        : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("create_Event", {
         'startTime': startTime_id,
         'endTime': endTime_id,
@@ -323,15 +324,17 @@ function updateEvent() {
     var endTime_id = $('#edit_EndTime_ID').val();
     var description = $('#edit_event_description').val();
     var event_type = $('#edit_individualRequestType').val();
+    var event_status = $('#editEventStatus').val();
     var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
-    // console.log(promoteDate_ID);
+    console.log("the id is " + editRequest_id);
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("update_Event", {
-        'id':editRequest_id,
+        'edit_id':editRequest_id,
         'startTime': startTime_id,
         'endTime': endTime_id,
         'description': description,
         'event_type': event_type,
+        'event_status': event_status,
         'total': totalDays
     }).done(function (data) {
 

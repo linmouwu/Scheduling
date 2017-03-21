@@ -73,26 +73,32 @@ public class CreateEventController {
 
     @RequestMapping(value = "/update_Event", method = {RequestMethod.POST,RequestMethod.GET})
     public ResponseEntity updateEvent(
-            @RequestParam(value = "id") int id,
+            @RequestParam(value = "edit_id") String id,
             @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
+            @RequestParam(value = "event_status") String status,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
             @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+        System.out.println("thd id is " + id);
         UserDetails userDetails = (UserDetails) principal;
 
         String username = userDetails.getUsername();
+        System.out.println(username + " id " + id);
         Officer officer = officerRepository.findByUID(username);
         String permissionGroup = officer.getPermissionGroup();
 
         Event event = eventRepository.findByID(Integer.valueOf(id));
 
-        event.setStartTime(startTime);
-        event.setEndTime(endTime);
-        event.setEventType(type);
-        event.setDescription(description);
+        if (officer.getPermissionGroup().equals("Administrator")) {
+            event.setEventStatus(status);
+        } else if (officer.getPermissionGroup().equals("User")) {
+            event.setStartTime(startTime);
+            event.setEndTime(endTime);
+            event.setEventType(type);
+            event.setDescription(description);
+        }
 //        System.out.println("the type" + " " + recruitID);
         Event newEvent = eventRepository.save(event);
         return ResponseEntity.ok(newEvent);

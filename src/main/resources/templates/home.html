@@ -182,7 +182,6 @@
                                         <td th:text="${#calendars.format(pendingRequest.startTime,'yyyy-MM-dd')}"></td>
                                         <td th:text="${#calendars.format(pendingRequest.endTime,'yyyy-MM-dd')}"></td>
                                         <td th:text="${pendingRequest.eventType}"></td>
-
                                     </tr>
                                     </tbody>
                                 </table>
@@ -300,10 +299,23 @@
                         </select></td>
 
                 </tr>
+                <tr th:if="${officer.permissionGroup} == 'Administrator'">
+                    <td>Status</td>
+                    <td><select class="form-control" name="status" id="editEventStatus">
+                        <option value="declilned">Decline</option>
+                        <option value="approved">Approve</option>
+                    </select>
+
+                    </td>
+
+                </tr>
                 <tr>
                     <td>Description</td>
-                    <td><input name="description" id="edit_event_description" type="text" size="100"/></td>
-                </tr>
+                    <td th:switch="${officer.permissionGroup}">
+                        <input th:case="'User'" id="edit_event_description" type="text" size="100" />
+                        <input th:case="'Administrator'" id="edit_event_description" type="text" size="100" readonly="readonly"/>
+                    </td>
+                    </tr>
 
                 <tr>
                     <td>
