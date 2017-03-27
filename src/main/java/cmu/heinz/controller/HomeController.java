@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Home controller.
+ * When user visit the home page, we needs to retrieve the basic user info
+ * and all listing events.
+ *
  * @author Mouwu Lin
  * @AndrewID mouwul
  */
@@ -20,14 +24,21 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    /**
+     * Officer repository interface.
+     */
     @Autowired
     private OfficerRepository officerRepository;
 
+    /**
+     * Union repository interface.
+     */
     @Autowired
     private UnionRepository unionRepository;
 
-    @Autowired
-    private HolidayRepository holidayRepository;
+    /**
+     * Event repository interface.
+     */
     @Autowired
     private EventRepository eventRepository;
 
@@ -56,13 +67,12 @@ public class HomeController {
         List<Event> previousEventList = new ArrayList<Event>();
 
         if (permissionGroup.equals("User")) {
-            pendingEventList = (List<Event>)eventRepository.findByPendingUID(uid);
+            pendingEventList = (List<Event>) eventRepository.findByPendingUID(uid);
             previousEventList = (List<Event>) eventRepository.findByPreviousUID(uid);
         } else if (permissionGroup.equals("Administrator")) {
-            pendingEventList = (List<Event>)eventRepository.findByPendingUnionID(unionID);
+            pendingEventList = (List<Event>) eventRepository.findByPendingUnionID(unionID);
             previousEventList = (List<Event>) eventRepository.findByPreviousUnionID(unionID);
         }
-//        List<Event> pendingEventList = (List<Event>)eventRepository.findByPendingUID(uid);
 
         model.addAttribute("officer", officer);
 

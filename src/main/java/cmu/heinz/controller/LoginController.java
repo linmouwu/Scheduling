@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 /**
+ * Login controller.
  * @author Mouwu Lin
  * @AndrewID mouwul
  */
@@ -16,6 +17,11 @@ import java.util.Optional;
 @Controller
 public class LoginController {
 
+    /**
+     * Defining login path and error path.
+     * @param error
+     * @return
+     */
     @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
         return new ModelAndView("login", "error", error);
