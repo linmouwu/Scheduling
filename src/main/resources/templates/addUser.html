@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="panel-default col-lg-4" id="add_user_div_id" style="display: none" th:fragment="addUser">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Attributes</th>
+            <th>Values</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>UID</td>
+            <td><input name="uid" id="uid_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input name="lastName" id="lastName_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input name="firstName" id="firstName_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Badge Number</td>
+            <td><input name="badgeNum" id="badgeNum_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td><input name="title" id="title_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><select class="form-control" name="gender" id="gender_ID">
+                <option value=" " selected="selected" disabled="disabled"></option>
+                <option value="Male"> Male</option>
+                <option value="Female"> Female</option>
+                <option value="Decline to answer"> Decline to answer</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Permission Group</td>
+            <td><select class="form-control" name="permissionGroup" id="permissionGroup_ID">
+                <option value=" " selected="selected" disabled="disabled"></option>
+                <option value="Administrator"> Administrator</option>
+                <option value="User"> User</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Union</td>
+            <!--<td><input name="union" id="union_ID" type="text"/></td>-->
+            <td>
+                <select class="form-control" name="union" id="unio_ID">
+                    <option value=" " selected="selected" disabled="disabled"></option>
+                    <option th:each="union:${unionList}" th:text="${union.name}"
+                            th:value="${union.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Recruit</td>
+            <td><input name="recruit" id="recrui_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Contract Employee</td>
+            <td><select class="form-control" name="contractEmployee"
+                        id="contractEmployee_id">
+                <option value=" " selected="selected" disabled="disabled"></option>
+                <option value="Yes"> Yes</option>
+                <option value="No"> No</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td>Hire Date</td>
+            <td><input name="hireDate" id="hireDate_ID" type="date"
+                       placeholder="MM/DD/YYYY"/></td>
+        </tr>
+        <tr>
+            <td>Promote Date</td>
+            <td><input name="promoteDate" id="promoteDate_ID" type="date"
+                       placeholder="MM/DD/YYYY"/></td>
+        </tr>
+        <tr>
+            <td>Trainer ID</td>
+            <td><input name="trainerID" id="trainerID_ID"/></td>
+        </tr>
+        <tr>
+            <td>
+                <button id="submit_button" type="button" class="btn btn-success">Submit
+                </button>
+            </td>
+            <td>
+                <button id="cancel_button" type="button" class="btn btn-cancel">Cancel
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>
