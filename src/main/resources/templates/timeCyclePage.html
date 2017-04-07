@@ -1,0 +1,52 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div class="container-fluid" id="pending_request" th:fragment="timeCyclePage">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Time Cycle
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Current Time Cycle</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped" id="timeCycleList">
+                            <thead>
+                            <tr>
+                                <th>TimeCycle ID</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Activate/Deactivate</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="${activatedTimeCycle.id}"></td>
+                                <td th:text="${#calendars.format(activatedTimeCycle.startDate,'yyyy-MM-dd')}"></td>
+                                <td th:text="${#calendars.format(activatedTimeCycle.endDate,'yyyy-MM-dd')}"></td>
+                                <td th:text="${activatedTimeCycle.activated}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <!-- /.row -->
+
+    </div>
+</div>
+</html>

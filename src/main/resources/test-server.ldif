@@ -59,6 +59,26 @@ sn: Hamilton
 uid: bob
 userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
 
+dn: uid=mouwul,ou=people,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Mouwu Lin
+sn: Lin
+uid: mouwul
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+
+dn: uid=nanx,ou=people,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Nan Xia
+sn: Xia
+uid: nanx
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+
 dn: uid=ttest,ou=people,dc=springframework,dc=org
 objectclass: top
 objectclass: person
@@ -138,6 +158,8 @@ cn: developers
 ou: developer
 uniqueMember: uid=ben,ou=people,dc=springframework,dc=org
 uniqueMember: uid=bob,ou=people,dc=springframework,dc=org
+uniqueMember: uid=mouwul,ou=people,dc=springframework,dc=org
+uniqueMember: uid=nanx,ou=people,dc=springframework,dc=org
 uniqueMember: uid=ttest,ou=people,dc=springframework,dc=org
 uniqueMember: uid=ttest2,ou=people,dc=springframework,dc=org
 

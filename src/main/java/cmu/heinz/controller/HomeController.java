@@ -42,6 +42,12 @@ public class HomeController {
     @Autowired
     private EventRepository eventRepository;
 
+    /**
+     * Time Cycle interface.
+     */
+    @Autowired
+    private TimeCycleRepository timeCycleRepository;
+
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
 
@@ -67,14 +73,34 @@ public class HomeController {
         List<Event> previousEventList = new ArrayList<Event>();
 
         if (permissionGroup.equals("User")) {
+
+            // If the current user is a regular user.
             pendingEventList = (List<Event>) eventRepository.findByPendingUID(uid);
             previousEventList = (List<Event>) eventRepository.findByPreviousUID(uid);
         } else if (permissionGroup.equals("Administrator")) {
+
+            // If the current user  is a administrator.
             pendingEventList = (List<Event>) eventRepository.findByPendingUnionID(unionID);
             previousEventList = (List<Event>) eventRepository.findByPreviousUnionID(unionID);
+        } else if (permissionGroup.equals("Master Administrator")) {
+
+            TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
+
+            model.addAttribute("activatedTimeCycle", timeCycleActivated);
+
+            System.out.println("Current activated time cycle: " + timeCycleActivated.getId());
+
+        } else if (permissionGroup.equals("Technical Administrator")) {
+
+        } else {
+            // Other users.
+            pendingEventList = new ArrayList<Event>();
+            previousEventList = new ArrayList<Event>();
         }
 
         model.addAttribute("officer", officer);
+
+        System.out.println("PG: " + officer.getPermissionGroup());
 
         model.addAttribute("officerList", officerList);
 
