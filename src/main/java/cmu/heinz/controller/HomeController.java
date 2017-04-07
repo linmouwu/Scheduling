@@ -86,7 +86,15 @@ public class HomeController {
 
             TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
 
-            model.addAttribute("activatedTimeCycle", timeCycleActivated);
+            if (timeCycleActivated != null) {
+
+                model.addAttribute("activatedTimeCycle", timeCycleActivated);
+
+            } else {
+
+                model.addAttribute("activatedTimeCycle");
+
+            }
 
         } else if (permissionGroup.equals("Technical Administrator")) {
 
