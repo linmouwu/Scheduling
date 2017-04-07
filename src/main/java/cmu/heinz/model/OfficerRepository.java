@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
+ * Officer repository.
  * @author Mouwu Lin
  * @AndrewID mouwul
  */

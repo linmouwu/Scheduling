@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
+ * Officer model.
+ * Referring to OFFICER table.
  * @author Mouwu Lin
  * @AndrewID mouwul
  */

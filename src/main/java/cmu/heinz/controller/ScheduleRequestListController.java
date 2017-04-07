@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
+ * Schedule request list controller.
+ * List the schedule requests of the user.
+ *
  * @author Mouwu Lin
  * @AndrewID mouwul
  */
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ScheduleRequestListController {
 
     @RequestMapping(value = "/schedule_request_list", method = RequestMethod.GET)
-    public String scheduleRequestList(){
+    public String scheduleRequestList() {
         return "schedule_request_list";
     }
 

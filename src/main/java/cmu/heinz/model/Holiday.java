@@ -3,6 +3,8 @@ package cmu.heinz.model;
 import javax.persistence.*;
 
 /**
+ * Holiday model.
+ * Referring to HOLIDAY table.
  * @author Mouwu Lin
  * @AndrewID mouwul
  */

@@ -16,6 +16,9 @@ import java.util.Arrays;
 
 
 /**
+ * Security configuration class.
+ * Within this class we define the user authentication strategy.
+ *
  * @author Mouwu Lin
  * @AndrewID mouwul
  */
@@ -24,6 +27,12 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements AuthenticationProvider {
 
+    /**
+     * Basic user authentication configuration, including login in path, authentications and so on.
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -38,6 +47,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
         http.csrf().disable();
     }
 
+    /**
+     * Authentication method connecting to ldap.
+     *
+     * @param auth
+     * @throws Exception
+     */
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth

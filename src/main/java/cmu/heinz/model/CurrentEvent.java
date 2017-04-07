@@ -1,7 +1,10 @@
 package cmu.heinz.model;
-import java.util.*;
+
+import java.util.Date;
+
 /**
- * Created by hhahann on 3/20/17.
+ * Current Event module.
+ * Created by NanXia on 3/20/17.
  */
 public class CurrentEvent {
     private int id;

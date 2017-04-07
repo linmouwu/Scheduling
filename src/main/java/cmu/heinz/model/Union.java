@@ -3,6 +3,8 @@ package cmu.heinz.model;
 import javax.persistence.*;
 
 /**
+ * Union model.
+ * Referring to UNIONS table.
  * @author Mouwu Lin
  * @AndrewID mouwul
  */
