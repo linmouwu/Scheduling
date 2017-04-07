@@ -88,8 +88,6 @@ public class HomeController {
 
             model.addAttribute("activatedTimeCycle", timeCycleActivated);
 
-            System.out.println("Current activated time cycle: " + timeCycleActivated.getId());
-
         } else if (permissionGroup.equals("Technical Administrator")) {
 
         } else {

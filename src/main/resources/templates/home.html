@@ -88,17 +88,17 @@
 
     <div id="page-wrapper">
 
-        <!--<div th:if="${officer.permissionGroup} == 'Administrator' or-->
-        <!--${officer.permissionGroup} != 'User'"-->
-             <!--th:replace="scheduleRequestList :: scheduleRequestList">-->
-        <!--</div>-->
+        <div th:if="${officer.permissionGroup} == 'Administrator' or
+        ${officer.permissionGroup} == 'User'"
+             th:include="scheduleRequestList :: scheduleRequestList">
+        </div>
 
         <div th:if="${officer.permissionGroup} == 'Master Administrator'"
-             th:replace="timeCyclePage :: timeCyclePage">
+             th:include="timeCyclePage :: timeCyclePage">
         </div>
 
         <div th:if="${officer.permissionGroup} == 'Technical Administrator'"
-             th:replace="timeCyclePage :: timeCyclePage">
+             th:include="timeCyclePage :: timeCyclePage">
         </div>
 
         <div class="container-fluid" id="calendar" style="display: none">
