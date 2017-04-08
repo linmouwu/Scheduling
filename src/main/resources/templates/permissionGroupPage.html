@@ -29,6 +29,7 @@
                             <th>Gender</th>
                             <th>Seniority</th>
                             <th>Permission Group</th>
+                            <th>Update Change</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,7 +40,24 @@
                             <td th:text="${officer.title}"></td>
                             <td th:text="${officer.gender}"></td>
                             <td th:text="${officer.seniority}"></td>
-                            <td th:text="${officer.permissionGroup}"></td>
+                            <td>
+                                <select name="pgSelect" id="pgSelect" class="form-control">
+                                    <option th:text="${officer.permissionGroup}" selected="selected"
+                                            disabled="disabled"></option>
+                                    <option>Master Administrator</option>
+                                    <option>Master Technician</option>
+                                    <option>Cross Administrator</option>
+                                    <option>Training Administrator</option>
+                                    <option>Technical Administrator</option>
+                                    <option>Staffing Administrator</option>
+                                    <option>Leadership</option>
+                                    <option>Staff Member I</option>
+                                    <option>Staff Member II</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" type="button">Submit</button>
+                            </td>
                         </tr>
                         </tbody>
 

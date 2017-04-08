@@ -32,8 +32,8 @@
                             <tbody>
                             <tr th:if="${activatedTimeCycle} != null">
                                 <td th:text="${activatedTimeCycle.id}"></td>
-                                <td th:text="${#calendars.format(activatedTimeCycle.startDate,'yyyy-MM-dd')}"></td>
-                                <td th:text="${#calendars.format(activatedTimeCycle.endDate,'yyyy-MM-dd')}"></td>
+                                <td th:text="${#calendars.format(activatedTimeCycle.startDate,'MM/dd/yyyy')}"></td>
+                                <td th:text="${#calendars.format(activatedTimeCycle.endDate,'MM/dd/yyyy')}"></td>
                                 <td>
                                     <button id="deactivate_time_cycle" type="button"
                                             th:onclick="'javascript:deactivate_time_cycle('+${activatedTimeCycle.id}+');'"
@@ -53,8 +53,13 @@
                 </div>
                 <div class="panel-body ">
                     <div id="add_time_cycle">
-                        <div class="col-lg-5">Start Date: <input id="startDate" type="date" name="startDate"/></div>
-                        <div class="col-lg-5"> End Date: <input type="date" id="endDate" name="endDate"/></div>
+                        <div class="col-lg-5">Start Date:
+                            <input class="form-control" id="startDate" name="startDate" placeholder="MM/DD/YYYY"
+                                   type="text"/>
+                        </div>
+                        <div class="col-lg-5"> End Date:
+                            <input class="form-control" id="endDate" name="endDate" placeholder="MM/DD/YYYY"
+                                   type="text"/></div>
                         <div class="col-lg-1">
                             <button type="button" onclick="add_time_cycle()" class="btn btn-success"> Submit
                             </button>

@@ -271,14 +271,7 @@ function add_time_cycle() {
 $(document)
     .ready(function () {
 
-        // getPostList();
-        // $("#newPost").focus();
-        // $('#submit').click(addPost);
-        // window.clearInterval(0);
-        // window.clearInterval(1);
-        // window.setInterval(updatePostList, 5000);
-        // window.setInterval(updatePostComment, 1000);
-        // // CSRF set-up copied from Django docs
+
 
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);

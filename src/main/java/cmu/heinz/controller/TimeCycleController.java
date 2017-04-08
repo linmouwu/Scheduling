@@ -43,8 +43,8 @@ public class TimeCycleController {
 
     @RequestMapping(value = "/add_time_cycle", method = {RequestMethod.POST})
     public ResponseEntity addTimeCycle(
-            @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-            @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+            @RequestParam(value = "startDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startDate,
+            @RequestParam(value = "endDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endDate) {
 
         TimeCycle timeCycle = new TimeCycle();
 
