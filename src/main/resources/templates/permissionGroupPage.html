@@ -41,7 +41,7 @@
                             <td th:text="${officer.gender}"></td>
                             <td th:text="${officer.seniority}"></td>
                             <td>
-                                <select name="pgSelect" id="pgSelect" class="form-control">
+                                <select name="pgSelect" th:id="'pageSelect'+${officer.uid}" class="form-control">
                                     <option th:text="${officer.permissionGroup}" selected="selected"
                                             disabled="disabled"></option>
                                     <option>Master Administrator</option>
@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <button class="btn btn-success" type="button"
-                                        th:onclick="'javascript:updatePG('+${officer.uid}+')'">Submit
+                                        th:onclick="'javascript:updatePG(\''+${officer.uid}+'\')'">Submit
                                 </button>
                             </td>
                         </tr>

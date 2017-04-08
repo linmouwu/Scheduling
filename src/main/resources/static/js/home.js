@@ -269,7 +269,9 @@ function add_time_cycle() {
 
 function updatePG(uid) {
 
-    var updatePG = $('#pgselect').val();
+    var selectId = '#pageSelect'+uid;
+
+    var updatePG = $(selectId).val();
 
     $.post('/update_permission_group', {
         'uid': uid,

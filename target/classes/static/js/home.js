@@ -258,19 +258,38 @@ function add_time_cycle() {
     var endDate = $('#endDate').val();
 
     $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
-        .done(function(){
+        .done(function () {
 
             alert("Time Cycle Configured Successfully.");
 
             location.reload();
         });
 
+}
+
+function updatePG(uid) {
+
+    var selectId = '#pageSelect'+uid;
+
+    console.log(selectId);
+
+    var updatePG = $(selectId).val();
+
+    console.log(updatePG);
+
+    $.post('/update_permission_group', {
+        'uid': uid,
+        'permissionGroup': updatePG
+    }).done(function () {
+
+        alert("Permission Group Updated: " + uid);
+
+    });
 
 }
 
 $(document)
     .ready(function () {
-
 
 
         $('#submit_button').click(addUser);

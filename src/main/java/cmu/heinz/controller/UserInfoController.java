@@ -139,12 +139,13 @@ public class UserInfoController {
 
     @RequestMapping(value = "/update_permission_group", method = RequestMethod.POST)
     public ResponseEntity updatePermissionGroup(@RequestParam(value = "uid") String uid,
-                                                @RequestParam(value = "permissionGroup") String permissionGroup){
+                                                @RequestParam(value = "permissionGroup") String permissionGroup) {
 
         Officer officer = officerRepository.findByUID(uid);
 
-        if(officer == null){
+        if (officer == null) {
 
+            System.out.println("No user found: " + uid);
             return ResponseEntity.badRequest().build();
 
         }
