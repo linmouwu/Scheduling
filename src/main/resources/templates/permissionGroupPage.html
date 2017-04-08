@@ -56,7 +56,9 @@
                                 </select>
                             </td>
                             <td>
-                                <button class="btn btn-success" type="button">Submit</button>
+                                <button class="btn btn-success" type="button"
+                                        th:onclick="'javascript:updatePG('+${officer.uid}+')'">Submit
+                                </button>
                             </td>
                         </tr>
                         </tbody>

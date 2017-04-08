@@ -135,4 +135,24 @@ public class UserInfoController {
 
         return ResponseEntity.ok(newOfficer);
     }
+
+
+    @RequestMapping(value = "/update_permission_group", method = RequestMethod.POST)
+    public ResponseEntity updatePermissionGroup(@RequestParam(value = "uid") String uid,
+                                                @RequestParam(value = "permissionGroup") String permissionGroup){
+
+        Officer officer = officerRepository.findByUID(uid);
+
+        if(officer == null){
+
+            return ResponseEntity.badRequest().build();
+
+        }
+
+        officer.setPermissionGroup(permissionGroup);
+
+        officerRepository.save(officer);
+
+        return ResponseEntity.ok().build();
+    }
 }

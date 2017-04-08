@@ -96,10 +96,10 @@
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Master Technician'"
                 th:include="techAdminSideBar :: techAdminSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Staffing Administrator'"
                 th:include="administratorSideBar :: administratorSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Officer'"
                 th:include="userSideBar :: userSideBar">
             </ul>
         </div>
@@ -108,8 +108,8 @@
     <div id="page-wrapper">
 
         <!--Display the main according to permission group.-->
-        <div th:if="${officer.permissionGroup} == 'Administrator' or
-        ${officer.permissionGroup} == 'User'">
+        <div th:if="${officer.permissionGroup} == 'Staffing Administrator' or
+        ${officer.permissionGroup} == 'Officer'">
             <div th:replace="scheduleRequestList :: scheduleRequestList"></div>
         </div>
 
