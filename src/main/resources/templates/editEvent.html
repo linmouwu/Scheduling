@@ -43,7 +43,7 @@
         <tr>
             <td>Type</td>
             <td><select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup} == 'Officer'">
+                        th:if="${officer.permissionGroup} == 'Staff Member I'">
                 <option value=" " selected="selected" disabled="disabled"></option>
                 <option value="Vacation"> Vacation</option>
                 <option value="Leave"> Leave</option>
@@ -72,7 +72,7 @@
         <tr>
             <td>Description</td>
             <td th:switch="${officer.permissionGroup}">
-                <input th:case="'Officer'" id="edit_event_description" type="text" size="100"/>
+                <input th:case="'Staff Member I'" id="edit_event_description" type="text" size="100"/>
                 <input th:case="'Staffing Administrator'" id="edit_event_description" type="text" size="100"
                        readonly="readonly"/>
             </td>

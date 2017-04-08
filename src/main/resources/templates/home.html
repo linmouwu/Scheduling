@@ -99,7 +99,7 @@
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Staffing Administrator'"
                 th:include="administratorSideBar :: administratorSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Officer'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Staff Member I'"
                 th:include="userSideBar :: userSideBar">
             </ul>
         </div>
@@ -109,7 +109,7 @@
 
         <!--Display the main according to permission group.-->
         <div th:if="${officer.permissionGroup} == 'Staffing Administrator' or
-        ${officer.permissionGroup} == 'Officer'">
+        ${officer.permissionGroup} == 'Staff Member I'">
             <div th:replace="scheduleRequestList :: scheduleRequestList"></div>
         </div>
 
