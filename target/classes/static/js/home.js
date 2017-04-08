@@ -36,6 +36,16 @@ function changeToSchedule() {
     $('#editEvent').fadeOut();
 }
 
+function changeToTCC() {
+    $('#time_cycle_div').delay(350).fadeIn();
+    $('#permission_group').fadeOut();
+}
+
+function changeToPGM() {
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').delay(350).fadeIn();
+}
+
 function changeToEditEvent(editRequest_id) {
     $('#editEvent').delay(350).fadeIn();
     $('#pending_request').fadeOut();

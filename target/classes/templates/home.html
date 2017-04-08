@@ -25,6 +25,7 @@
     <script src="/js/jquery-1.11.3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -36,7 +37,6 @@
 
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
 
     <!-- Calendar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"/>
@@ -88,19 +88,21 @@
 
     <div id="page-wrapper">
 
+        <!--Display the main according to permission group.-->
         <div th:if="${officer.permissionGroup} == 'Administrator' or
-        ${officer.permissionGroup} == 'User'"
-             th:include="scheduleRequestList :: scheduleRequestList">
+        ${officer.permissionGroup} == 'User'">
+            <div th:replace="scheduleRequestList :: scheduleRequestList"></div>
         </div>
 
-        <div th:if="${officer.permissionGroup} == 'Master Administrator'"
-             th:include="timeCyclePage :: timeCyclePage">
+        <div th:if="${officer.permissionGroup} == 'Master Administrator'">
+            <div th:replace="timeCyclePage :: timeCyclePage"></div>
         </div>
 
-        <div th:if="${officer.permissionGroup} == 'Technical Administrator'"
-             th:include="timeCyclePage :: timeCyclePage">
+        <div th:if="${officer.permissionGroup} == 'Technical Administrator'">
+            <div th:replace="timeCyclePage :: timeCyclePage"></div>
         </div>
 
+        <!--Other components.-->
         <div class="container-fluid" id="calendar" style="display: none">
         </div>
 
@@ -119,6 +121,9 @@
         </div>
 
         <div th:replace="staffManagement :: staffManagement">
+        </div>
+
+        <div th:replace="permissionGroupPage :: permissionGroupPage">
         </div>
 
 
