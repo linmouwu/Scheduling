@@ -1,7 +1,9 @@
 package cmu.heinz.controller;
 
+import cmu.heinz.model.TimeCycle;
 import cmu.heinz.model.TimeCycleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,10 +43,18 @@ public class TimeCycleController {
 
     @RequestMapping(value = "/add_time_cycle", method = {RequestMethod.POST})
     public ResponseEntity addTimeCycle(
-            @RequestParam(value = "startDate") Date startDate,
-            @RequestParam(value = "endDate") Date endDate) {
+            @RequestParam(value = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam(value = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
 
+        TimeCycle timeCycle = new TimeCycle();
 
+        timeCycle.setStartDate(startDate);
+
+        timeCycle.setEndDate(endDate);
+
+        timeCycle.setActivated(true);
+
+        timeCycleRepository.save(timeCycle);
 
         return ResponseEntity.ok().build();
     }

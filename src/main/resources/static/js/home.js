@@ -236,9 +236,25 @@ function deactivate_time_cycle(timeCycleId) {
 
 }
 
-function configure_time_cycle(){
+function configure_time_cycle() {
 
     $('#configure_time_cycle_div').slideToggle();
+
+}
+
+function add_time_cycle() {
+
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+
+    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
+        .done(function(){
+
+            alert("Time Cycle Configured Successfully.");
+
+            location.reload();
+        });
+
 
 }
 

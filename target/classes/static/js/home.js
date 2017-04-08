@@ -174,7 +174,7 @@ function updateEvent() {
     console.log("the id is " + editRequest_id);
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("update_Event", {
-        'edit_id':editRequest_id,
+        'edit_id': editRequest_id,
         'startTime': startTime_id,
         'endTime': endTime_id,
         'description': description,
@@ -224,6 +224,40 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 
+function deactivate_time_cycle(timeCycleId) {
+
+    $.get('/deactivate_event', {'timeCycleId': timeCycleId})
+        .done(function () {
+
+            alert("Time Cycle Deactivated");
+
+            location.reload();
+        });
+
+}
+
+function configure_time_cycle() {
+
+    $('#configure_time_cycle_div').slideToggle();
+
+}
+
+function add_time_cycle() {
+
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+
+    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
+        .done(function(){
+
+            alert("Time Cycle Configured Successfully.");
+
+            location.reload();
+        });
+
+
+}
+
 $(document)
     .ready(function () {
 
@@ -240,7 +274,8 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-        $('#submit_Edit_Event').click(updateEvent)
+        $('#submit_Edit_Event').click(updateEvent);
+
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#calendar').fullCalendar({
@@ -295,7 +330,7 @@ $(document)
                     start: '2017-12-25',
                 }
             ]
-        })
+        });
 
         function getCookie(name) {
             var cookieValue = null;
