@@ -43,6 +43,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.min.css"
           media='print'/>
+
+    <!--Date Picker-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('#startDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#endDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -74,7 +93,7 @@
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Master Administrator'"
                 th:include="masterAdminSideBar :: masterAdminSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Technical Administrator'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Master Technician'"
                 th:include="techAdminSideBar :: techAdminSideBar">
             </ul>
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'"
@@ -98,7 +117,7 @@
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
         </div>
 
-        <div th:if="${officer.permissionGroup} == 'Technical Administrator'">
+        <div th:if="${officer.permissionGroup} == 'Master Technician'">
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
         </div>
 
@@ -114,6 +133,7 @@
             <input type="hidden" id="currentEditId"/>
         </div>
 
+        <!--Sub-pages depending on roles.-->
         <div th:replace="editEvent :: editEvent">
         </div>
 
