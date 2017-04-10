@@ -1,9 +1,6 @@
 package cmu.heinz.controller;
 
-import cmu.heinz.model.Officer;
-import cmu.heinz.model.OfficerRepository;
-import cmu.heinz.model.PermissionGroup;
-import cmu.heinz.model.UnionRepository;
+import cmu.heinz.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -37,6 +34,12 @@ public class UserInfoController {
      */
     @Autowired
     private UnionRepository unionRepository;
+
+    /**
+     * Permission Group repository interface.
+     */
+    @Autowired
+    private PermissionGroupRepository permissionGroupRepository;
 
     /**
      * Retrieve user information based on user id.
@@ -140,18 +143,22 @@ public class UserInfoController {
 
     @RequestMapping(value = "/update_permission_group", method = RequestMethod.POST)
     public ResponseEntity updatePermissionGroup(@RequestParam(value = "uid") String uid,
-                                                @RequestParam(value = "permissionGroup") PermissionGroup permissionGroup) {
+                                                @RequestParam(value = "permissionGroup") String permissionGroup) {
 
         Officer officer = officerRepository.findByUID(uid);
 
-        if (officer == null) {
+        System.out.println("Permission Group: " + permissionGroup);
+
+        PermissionGroup newPG = permissionGroupRepository.findByRole(permissionGroup);
+
+        if (officer == null || newPG == null) {
 
             System.out.println("No user found: " + uid);
             return ResponseEntity.badRequest().build();
 
         }
 
-        officer.setPermissionGroup(permissionGroup);
+        officer.setPermissionGroup(newPG);
 
         officerRepository.save(officer);
 
