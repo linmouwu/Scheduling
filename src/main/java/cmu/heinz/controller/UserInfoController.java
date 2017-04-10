@@ -2,6 +2,7 @@ package cmu.heinz.controller;
 
 import cmu.heinz.model.Officer;
 import cmu.heinz.model.OfficerRepository;
+import cmu.heinz.model.PermissionGroup;
 import cmu.heinz.model.UnionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -85,7 +86,7 @@ public class UserInfoController {
                                       @RequestParam(value = "title") String title,
                                       @RequestParam(value = "gender") String gender,
                                       @RequestParam(value = "seniority") int seniority,
-                                      @RequestParam(value = "permissionGroup") String permissionGroup,
+                                      @RequestParam(value = "permissionGroup") PermissionGroup permissionGroup,
                                       @RequestParam(value = "union") String union,
                                       @RequestParam(value = "recruit") String recruit,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
@@ -139,7 +140,7 @@ public class UserInfoController {
 
     @RequestMapping(value = "/update_permission_group", method = RequestMethod.POST)
     public ResponseEntity updatePermissionGroup(@RequestParam(value = "uid") String uid,
-                                                @RequestParam(value = "permissionGroup") String permissionGroup) {
+                                                @RequestParam(value = "permissionGroup") PermissionGroup permissionGroup) {
 
         Officer officer = officerRepository.findByUID(uid);
 

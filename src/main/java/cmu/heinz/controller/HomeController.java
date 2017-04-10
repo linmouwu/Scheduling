@@ -69,7 +69,7 @@ public class HomeController {
 
         String unionID = "1";
 
-        String permissionGroup = officer.getPermissionGroup();
+        PermissionGroup permissionGroup = officer.getPermissionGroup();
 
         System.out.println("the id is " + uid);
 
@@ -83,19 +83,19 @@ public class HomeController {
         List<Event> pendingEventList = new ArrayList<Event>();
         List<Event> previousEventList = new ArrayList<Event>();
 
-        if (permissionGroup.equals("User")) {
+        if (permissionGroup.getId() == 7) {
 
             // If the current user is a regular user.
             pendingEventList = eventRepository.findByPendingUID(uid);
             previousEventList = eventRepository.findByPreviousUID(uid);
 
-        } else if (permissionGroup.equals("Administrator")) {
+        } else if (permissionGroup.getId() == 6) {
 
             // If the current user  is a administrator.
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
-        } else if (permissionGroup.equals("Master Administrator")) {
+        } else if (permissionGroup.getId() == 1) {
 
             // If the current user is a master administrator.
             TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
@@ -110,7 +110,7 @@ public class HomeController {
 
             }
 
-        } else if (permissionGroup.equals("Master Technician")) {
+        } else if (permissionGroup.getId() == 2) {
 
             // TODO: if a current user is a master technician
         } else {

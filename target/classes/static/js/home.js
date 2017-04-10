@@ -271,11 +271,7 @@ function updatePG(uid) {
 
     var selectId = '#pageSelect'+uid;
 
-    console.log(selectId);
-
     var updatePG = $(selectId).val();
-
-    console.log(updatePG);
 
     $.post('/update_permission_group', {
         'uid': uid,

@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * Event model.
  * Referring to Event_Request table.
+ *
  * @author Nan
  * @AndrewID nxia
  */
@@ -17,6 +18,21 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    private int officerId;
+    private int unionId;
+    private int recruitId;
+    private Date startTime;
+    private Date endTime;
+    private String eventStatus;
+    private String eventType;
+    private String description;
+    private String eventRange;
+    private String uid;
+
+    public Event() {
+
+    }
 
     public int getId() {
         return id;
@@ -106,18 +122,6 @@ public class Event {
         this.eventRange = eventRange;
     }
 
-    private int officerId;
-    private int unionId;
-    private int recruitId;
-    private Date startTime;
-    private Date endTime;
-    private String eventStatus;
-    private String eventType;
-    private String description;
-    private String eventRange;
-    private String uid;
-    public Event() {
 
-    }
 }
 

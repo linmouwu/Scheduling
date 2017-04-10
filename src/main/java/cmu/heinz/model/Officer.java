@@ -48,7 +48,9 @@ public class Officer {
     @JoinColumn(name = "Trainer_ID")
     private Officer trainer;
 
-    private String permissionGroup;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Permission_Group")
+    private PermissionGroup permissionGroup;
 
     public int getId() {
         return id;
@@ -155,11 +157,11 @@ public class Officer {
         this.trainer = trainer;
     }
 
-    public String getPermissionGroup() {
+    public PermissionGroup getPermissionGroup() {
         return permissionGroup;
     }
 
-    public void setPermissionGroup(String permissionGroup) {
+    public void setPermissionGroup(PermissionGroup permissionGroup) {
         this.permissionGroup = permissionGroup;
     }
 
