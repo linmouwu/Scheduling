@@ -42,7 +42,7 @@
                             <td th:text="${officer.seniority}"></td>
                             <td>
                                 <select name="pgSelect" th:id="'pageSelect'+${officer.uid}" class="form-control">
-                                    <option th:text="${officer.permissionGroup}" selected="selected"
+                                    <option th:text="${officer.permissionGroup.role}" selected="selected"
                                             disabled="disabled"></option>
                                     <option>Master Administrator</option>
                                     <option>Master Technician</option>

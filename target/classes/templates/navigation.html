@@ -71,13 +71,13 @@
                 <li>
                     <a href="javascript:void(0)"><i class="fa fa-fw fa-edit"></i> Work Status</a>
                 </li>
-                <li th:if="${officer.permission_group} == 'Staffing Administrator'">
+                <li th:if="${officer.permission_group.id} == 'Staffing Administrator'">
                     <a href="javascript:void(0)"><i class="fa fa-fw fa-wrench"></i> Shift Type</a>
                 </li>
-                <li th:if="${officer.permission_group} == 'Staffing Administrator'">
+                <li th:if="${officer.permission_group.id} == 'Staffing Administrator'">
                     <a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> Organizational Unit</a>
                 </li>
-                <li th:if="${officer.permission_group} == 'Staffing Administrator'">
+                <li th:if="${officer.permission_group.id} == 'Staffing Administrator'">
                     <a href="javascript:void(0)"><i class="fa fa-fw fa-user"></i> Officer Management</a>
                 </li>
                 <li>

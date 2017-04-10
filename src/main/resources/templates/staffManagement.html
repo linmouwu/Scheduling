@@ -44,7 +44,7 @@
                             <td th:text="${officer.title}"></td>
                             <td th:text="${officer.gender}"></td>
                             <td th:text="${officer.seniority}"></td>
-                            <td th:text="${officer.permissionGroup}"></td>
+                            <td th:text="${officer.permissionGroup.role}"></td>
                             <td th:text="${officer.union.name}"></td>
                             <td th:text="${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "></td>
                             <td th:text="${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "></td>
