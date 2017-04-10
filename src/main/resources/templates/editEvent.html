@@ -43,14 +43,14 @@
         <tr>
             <td>Type</td>
             <td><select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup} == 'Staff Member I'">
+                        th:if="${officer.permissionGroup.id} == 7">
                 <option value=" " selected="selected" disabled="disabled"></option>
                 <option value="Vacation"> Vacation</option>
                 <option value="Leave"> Leave</option>
                 <option value="Decline to answer"> Decline to answer</option>
             </select>
                 <select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup} == 'Staffing Administrator'">
+                        th:if="${officer.permissionGroup.id} == 6">
                     <option value=" " selected="selected" disabled="disabled"></option>
                     <option value="Vacation"> Vacation</option>
                     <option value="Training"> Training</option>
@@ -59,7 +59,7 @@
                 </select></td>
 
         </tr>
-        <tr th:if="${officer.permissionGroup} == 'Staffing Administrator'">
+        <tr th:if="${officer.permissionGroup.id} == 7">
             <td>Status</td>
             <td><select class="form-control" name="status" id="editEventStatus">
                 <option value="declilned">Decline</option>
@@ -71,9 +71,9 @@
         </tr>
         <tr>
             <td>Description</td>
-            <td th:switch="${officer.permissionGroup}">
-                <input th:case="'Staff Member I'" id="edit_event_description" type="text" size="100"/>
-                <input th:case="'Staffing Administrator'" id="edit_event_description" type="text" size="100"
+            <td th:switch="${officer.permissionGroup.id}">
+                <input th:case="7" id="edit_event_description" type="text" size="100"/>
+                <input th:case="6" id="edit_event_description" type="text" size="100"
                        readonly="readonly"/>
             </td>
         </tr>

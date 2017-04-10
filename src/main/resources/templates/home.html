@@ -45,8 +45,8 @@
           media='print'/>
 
     <!--Date Picker-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css"/>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
     <script>
@@ -90,16 +90,16 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Master Administrator'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 1"
                 th:include="masterAdminSideBar :: masterAdminSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Master Technician'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 2"
                 th:include="techAdminSideBar :: techAdminSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Staffing Administrator'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 6"
                 th:include="administratorSideBar :: administratorSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Staff Member I'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 7"
                 th:include="userSideBar :: userSideBar">
             </ul>
         </div>
@@ -108,16 +108,16 @@
     <div id="page-wrapper">
 
         <!--Display the main according to permission group.-->
-        <div th:if="${officer.permissionGroup} == 'Staffing Administrator' or
-        ${officer.permissionGroup} == 'Staff Member I'">
+        <div th:if="${officer.permissionGroup.id} == 6 or
+        ${officer.permissionGroup.id} == 7">
             <div th:replace="scheduleRequestList :: scheduleRequestList"></div>
         </div>
 
-        <div th:if="${officer.permissionGroup} == 'Master Administrator'">
+        <div th:if="${officer.permissionGroup.id} == 1">
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
         </div>
 
-        <div th:if="${officer.permissionGroup} == 'Master Technician'">
+        <div th:if="${officer.permissionGroup.id} == 2">
             <!--<div th:replace="timeCyclePage :: timeCyclePage"></div>-->
         </div>
 
