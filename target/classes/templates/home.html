@@ -77,10 +77,19 @@
                     <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a th:href="@{/userinfo(id=${officer.id})}"><i
+                        <a href="javascript:void(0);" onclick="changeToUserProfile()"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
-
+                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1">
+                        <a href="javascript:void(0);" onclick="changeToTCC()"><i
+                                class="fa fa-fw fa-user"></i> Configure Time Cycle</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1">
+                        <a href="javascript:void(0);" onclick="changeToPGM()"><i
+                                class="fa fa-fw fa-user"></i> Manage Permission Group</a>
+                    </li>
                     <li class="divider"></li>
                     <li>
                         <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -146,6 +155,8 @@
         <div th:replace="permissionGroupPage :: permissionGroupPage">
         </div>
 
+        <div th:replace="userProfile :: userProfile">
+        </div>
 
     </div>
     <!-- /#page-wrapper -->
