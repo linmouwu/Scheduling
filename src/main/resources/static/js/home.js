@@ -110,7 +110,7 @@ function changeToPGM() {
 function changeToEditEvent(editRequest_id) {
     $('#editEvent').delay(350).fadeIn();
     $('#time_cycle_div').fadeOut();
-    $('#permission_group').delay(350).fadeIn();
+    $('#permission_group').fadeOut();
     $('#user_profile').fadeOut();
     $('#schedule').fadeOut();
     $('#pending_request').fadeOut();
