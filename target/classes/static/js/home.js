@@ -2,6 +2,7 @@ function changeToUserProfile() {
     $('#user_profile').delay(350).fadeIn();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
@@ -11,6 +12,7 @@ function changeToUserProfile() {
 function changeToRequest() {
     $('#pending_request').delay(350).fadeIn();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
     $('#user_profile').fadeOut();
@@ -22,6 +24,18 @@ function changeToRequest() {
 function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
+    $('#group_calendar').fadeOut();
+    $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+}
+function changeToGroupCalendar() {
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').delay(350).fadeIn();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
     $('#user_profile').fadeOut();
@@ -32,6 +46,7 @@ function changeToCalendar() {
 function changeToStaff() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').delay(350).fadeIn();
     $('#editEvent').fadeOut();
@@ -46,6 +61,7 @@ function newUserForm() {
 function changeToCreateRequest() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#schedule').delay(350).fadeIn();
     $('#staff_management').fadeOut();
     $('#user_profile').fadeOut();
@@ -53,17 +69,18 @@ function changeToCreateRequest() {
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
 }
-
-function changeToSchedule() {
-    $('#schedule').delay(350).fadeIn();
-    $('#pending_request').fadeOut();
-    $('#calendar').fadeOut();
-    $('#staff_management').fadeOut();
-    $('#editEvent').fadeOut();
-    $('#user_profile').fadeOut();
-    $('#time_cycle_div').fadeOut();
-    $('#permission_group').fadeOut();
-}
+//
+// function changeToSchedule() {
+//     $('#schedule').delay(350).fadeIn();
+//     $('#pending_request').fadeOut();
+//     $('#calendar').fadeOut();
+//     $('#group_calendar').fadeOut();
+//     $('#staff_management').fadeOut();
+//     $('#editEvent').fadeOut();
+//     $('#user_profile').fadeOut();
+//     $('#time_cycle_div').fadeOut();
+//     $('#permission_group').fadeOut();
+// }
 
 function changeToTCC() {
     $('#time_cycle_div').delay(350).fadeIn();
@@ -72,6 +89,7 @@ function changeToTCC() {
     $('#schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
 
@@ -84,15 +102,21 @@ function changeToPGM() {
     $('#schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
 }
 
 function changeToEditEvent(editRequest_id) {
     $('#editEvent').delay(350).fadeIn();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').delay(350).fadeIn();
+    $('#user_profile').fadeOut();
+    $('#schedule').fadeOut();
     $('#pending_request').fadeOut();
-    $('#staff_management').fadeOut();
     $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#staff_management').fadeOut();
 
     $.get("getEditEvent", {
         'id': editRequest_id,
