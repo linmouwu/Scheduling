@@ -281,15 +281,6 @@ function cancelAddEvent() {
 $(document)
     .ready(function () {
 
-        // getPostList();
-        // $("#newPost").focus();
-        // $('#submit').click(addPost);
-        // window.clearInterval(0);
-        // window.clearInterval(1);
-        // window.setInterval(updatePostList, 5000);
-        // window.setInterval(updatePostComment, 1000);
-        // // CSRF set-up copied from Django docs
-
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
@@ -297,9 +288,7 @@ $(document)
         $('#submit_Edit_Event').click(updateEvent)
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
-        // var numsUrl = '/getOfficerNumber?union_id=' + union_ID + '';
-        //
-        $('#calendar').fullCalendar({
+        $('#group_calendar').fullCalendar({
             customButtons: {
                 invertButton: {
                     text: $('#currentShiftType').val(),
@@ -317,10 +306,6 @@ $(document)
                             this.innerHTML = "Day";
                         }
                         console.log($('#currentShiftType').val());
-                        // alert('clicked the custom button!');
-                        // var moment = $('#calendar').fullCalendar('getDate');
-                        // alert("The current date of the calendar is " + moment.format());
-
                     }
                 },
                 getOffNumberButton:{
@@ -338,6 +323,65 @@ $(document)
             }, //invert button
             header: {
                 left: 'prev,next today invertButton getOffNumberButton',
+                center: 'title',
+                right: 'basicWeek,basicDay'
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            selectable: true,
+            // eventSources: [
+            //     eventsUrl
+            // ],
+
+            events: [
+                {
+                    title: 'New Years Day',
+                    start: '2017-01-01',
+                },
+                {
+                    title: 'Martin Luther King Jr.Day',
+                    start: '2017-02-15',
+                },
+                {
+                    title: 'Presidents Day',
+                    start: '2017-02-20',
+                },
+                {
+                    title: 'Good Friday',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Memorial Day',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Labor Day',
+                    start: '2017-09-04',
+                },
+                {
+                    title: 'Independence Day',
+                    start: '2017-07-04',
+                },
+
+                {
+                    title: 'Veterans Day',
+                    start: '2017-11-11',
+                },
+                {
+                    title: 'Christmas Day',
+                    start: '2017-12-25',
+                }
+            ],
+            defaultView: 'basicWeek',
+            duration: { days: 5 }
+
+        })
+
+        $('#calendar').fullCalendar({
+
+            header: {
+                left: 'prev,next today ',
                 center: 'title',
                 right: 'basicWeek,basicDay'
             },
