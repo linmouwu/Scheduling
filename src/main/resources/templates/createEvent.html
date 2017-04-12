@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Create New Request
+                Create Special Request
             </h1>
         </div>
     </div>
@@ -53,7 +53,7 @@
                 <option value="Decline to answer"> Decline to answer</option>
             </select>
                 <select class="form-control" name="type" id="individualRequestType"
-                        th:if="${officer.permissionGroup.id} == 6">
+                        th:if="${officer.permissionGroup} == 'Administrator'">
                     <option value=" " selected="selected" disabled="disabled"></option>
                     <option value="Vacation"> Vacation</option>
                     <option value="Training"> Training</option>

@@ -44,8 +44,16 @@
         $(document).ready(function() {
 
             $('#calendar').fullCalendar({
+                customButtons: {
+                    invertButton: {
+                        click: function() {
+                            alert('clicked the custom button!');
+                        },
+                        text: 'custom!'
+                    }
+                },
                 header: {
-                    left: 'prev,next today',
+                    left: 'prev,next today invertButton ',
                     center: 'title',
                     right: 'month,basicWeek,basicDay'
                 },

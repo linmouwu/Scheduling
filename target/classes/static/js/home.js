@@ -343,18 +343,57 @@ $(document)
 
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
+        // var numsUrl = '/getOfficerNumber?union_id=' + union_ID + '';
+        //
         $('#calendar').fullCalendar({
+            customButtons: {
+                invertButton: {
+                    text: $('#currentShiftType').val(),
+                    id:"123",
+                    click: function() {
+                        var self = this.innerHTML;
+                        //
+                        // var shiftType = $('#currentShiftType').val();
+
+                        if (self ==="Day"){
+                            $('#currentShiftType').val("Night");
+                            this.innerHTML = "Night";
+                        } else {
+                            $('#currentShiftType').val("Day");
+                            this.innerHTML = "Day";
+                        }
+                        console.log($('#currentShiftType').val());
+                        // alert('clicked the custom button!');
+                        // var moment = $('#calendar').fullCalendar('getDate');
+                        // alert("The current date of the calendar is " + moment.format());
+
+                    }
+                },
+                getOffNumberButton:{
+                    text:"OffNumber",
+                    click:function () {
+                        var moment = $('#calendar').fullCalendar('getDate');
+                        var shiftType = $('#currentShiftType').val();
+                        var date = new Date(moment._d),
+                            d = date.getDate(),
+                            m = date.getMonth(),
+                            y = date.getFullYear();
+                        getOffNumbers(date, union_ID,shiftType);
+                    }
+                }
+            }, //invert button
             header: {
-                left: 'prev,next today',
+                left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
-                right: 'month,basicWeek,basicDay'
+                right: 'basicWeek,basicDay'
             },
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            eventSources: [
-                eventsUrl
-            ],
+            selectable: true,
+            // eventSources: [
+            //     eventsUrl
+            // ],
 
             events: [
                 {
@@ -394,9 +433,23 @@ $(document)
                     title: 'Christmas Day',
                     start: '2017-12-25',
                 }
+            ],
+            defaultView: 'basicWeek',
+            duration: { days: 5 }
+
+        })
             ]
         });
 
+        function getOffNumbers(date, union_ID, shiftType) {
+            $.get("getOfficerNumber", {
+                'date': date,
+                'union_id':union_ID,
+                'shiftType':shiftType
+            }).done(function (data) {
+                alert(data);
+            })
+        }
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {

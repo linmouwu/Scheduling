@@ -174,7 +174,6 @@ function addUser() {
     })
 
 }
-
 function addEvent() {
 
 
@@ -214,7 +213,6 @@ function addEvent() {
     })
 
 }
-
 function updateEvent() {
 
     var editRequest_id = $('#currentEditId').val();
@@ -280,81 +278,61 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 
-function deactivate_time_cycle(timeCycleId) {
-
-    $.get('/deactivate_event', {'timeCycleId': timeCycleId})
-        .done(function () {
-
-            alert("Time Cycle Deactivated");
-
-            location.reload();
-        });
-
-}
-
-function configure_time_cycle() {
-
-    $('#configure_time_cycle_div').slideToggle();
-
-}
-
-function add_time_cycle() {
-
-    var startDate = $('#startDate').val();
-    var endDate = $('#endDate').val();
-
-    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
-        .done(function () {
-
-            alert("Time Cycle Configured Successfully.");
-
-            location.reload();
-        });
-
-}
-
-function updatePG(uid) {
-
-    var selectId = '#pageSelect' + uid;
-
-    var updatePG = $(selectId).val();
-
-    $.post('/update_permission_group', {
-        'uid': uid,
-        'permissionGroup': updatePG
-    }).done(function () {
-
-        alert("Permission Group Updated: " + uid);
-
-    });
-
-}
-
-
 $(document)
     .ready(function () {
-
 
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-        $('#submit_Edit_Event').click(updateEvent);
-
+        $('#submit_Edit_Event').click(updateEvent)
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
-        $('#calendar').fullCalendar({
+        $('#group_calendar').fullCalendar({
+            customButtons: {
+                invertButton: {
+                    text: $('#currentShiftType').val(),
+                    id:"123",
+                    click: function() {
+                        var self = this.innerHTML;
+                        //
+                        // var shiftType = $('#currentShiftType').val();
+
+                        if (self ==="Day"){
+                            $('#currentShiftType').val("Night");
+                            this.innerHTML = "Night";
+                        } else {
+                            $('#currentShiftType').val("Day");
+                            this.innerHTML = "Day";
+                        }
+                        console.log($('#currentShiftType').val());
+                    }
+                },
+                getOffNumberButton:{
+                    text:"OffNumber",
+                    click:function () {
+                        var moment = $('#calendar').fullCalendar('getDate');
+                        var shiftType = $('#currentShiftType').val();
+                        var date = new Date(moment._d),
+                            d = date.getDate(),
+                            m = date.getMonth(),
+                            y = date.getFullYear();
+                        getOffNumbers(date, union_ID,shiftType);
+                    }
+                }
+            }, //invert button
             header: {
-                left: 'prev,next today',
+                left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
-                right: 'month,basicWeek,basicDay'
+                right: 'basicWeek,basicDay'
             },
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            eventSources: [
-                eventsUrl
-            ],
+            selectable: true,
+            // eventSources: [
+            //     eventsUrl
+            // ],
 
             events: [
                 {
@@ -394,9 +372,80 @@ $(document)
                     title: 'Christmas Day',
                     start: '2017-12-25',
                 }
-            ]
-        });
+            ],
+            defaultView: 'basicWeek',
+            duration: { days: 5 }
 
+        })
+
+        $('#calendar').fullCalendar({
+
+            header: {
+                left: 'prev,next today ',
+                center: 'title',
+                right: 'basicWeek,basicDay'
+            },
+            navLinks: true, // can click day/week names to navigate views
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            selectable: true,
+            // eventSources: [
+            //     eventsUrl
+            // ],
+
+            events: [
+                {
+                    title: 'New Years Day',
+                    start: '2017-01-01',
+                },
+                {
+                    title: 'Martin Luther King Jr.Day',
+                    start: '2017-02-15',
+                },
+                {
+                    title: 'Presidents Day',
+                    start: '2017-02-20',
+                },
+                {
+                    title: 'Good Friday',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Memorial Day',
+                    start: '2017-04-14',
+                },
+                {
+                    title: 'Labor Day',
+                    start: '2017-09-04',
+                },
+                {
+                    title: 'Independence Day',
+                    start: '2017-07-04',
+                },
+
+                {
+                    title: 'Veterans Day',
+                    start: '2017-11-11',
+                },
+                {
+                    title: 'Christmas Day',
+                    start: '2017-12-25',
+                }
+            ],
+            defaultView: 'basicWeek',
+            duration: { days: 5 }
+
+        })
+
+        function getOffNumbers(date, union_ID, shiftType) {
+            $.get("getOfficerNumber", {
+                'date': date,
+                'union_id':union_ID,
+                'shiftType':shiftType
+            }).done(function (data) {
+                alert(data);
+            })
+        }
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
