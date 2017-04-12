@@ -1010,7 +1010,7 @@
       <workItem from="1491584095318" duration="29125000" />
       <workItem from="1491682529657" duration="44000" />
       <workItem from="1491943980193" duration="6740000" />
-      <workItem from="1492032181882" duration="927000" />
+      <workItem from="1492032181882" duration="1003000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -1040,11 +1040,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490644781751</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add shiftType">
+      <created>1492033125216</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1492033125216</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85405000" />
+    <option name="totallyTimeSpent" value="85481000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1112,7 +1119,8 @@
     <MESSAGE value="Add to calendar view&#10;" />
     <MESSAGE value="Update edit Event function" />
     <MESSAGE value="03/28/2017 Comments added." />
-    <option name="LAST_COMMIT_MESSAGE" value="03/28/2017 Comments added." />
+    <MESSAGE value="Add shiftType" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add shiftType" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

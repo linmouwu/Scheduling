@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -207,6 +209,31 @@ public class CreateEventController {
         }
 
         return ResponseEntity.ok(allCurrentEvent);
+    }
+
+@RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
+    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") String shiftType, Model model) {
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String sd = df.format(start_date);
+//        String ed = df.format(end_date);
+//        Integer num = eventRepository.findByAllDate(union_id, sd);
+        String rst = "ShiftType:" + shiftType + "\n";
+        for (int i = 0; i < 7; i++) {
+            Date curDate = addDays(start_date, i);
+            String cd = df.format(curDate);
+            Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
+            System.out.println(next);
+            rst += cd + " " + next + "\n";
+        }
+        return ResponseEntity.ok(rst);
+    }
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 }
 
