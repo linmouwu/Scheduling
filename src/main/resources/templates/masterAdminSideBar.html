@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="administratorSideBar">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="masterAdminSideBar">
 <li>
     <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i>
         Pending Requests</a>
@@ -64,5 +64,11 @@
                     class="fa fa-fw fa-info"></i> Male/Female needed</a>
         </li>
     </ul>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToTCC()"><i class="fa fa-fw fa-flag"></i> Time Cycle Configuration</a>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToPGM()"><i class="fa fa-fw fa-desktop"></i> Permission Group Management</a>
 </li>
 </html>

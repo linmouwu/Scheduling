@@ -42,38 +42,84 @@ public class HomeController {
     @Autowired
     private EventRepository eventRepository;
 
+    /**
+     * Time Cycle interface.
+     */
+    @Autowired
+    private TimeCycleRepository timeCycleRepository;
+
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
 
+        // User log in evidence.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserDetails userDetails = (UserDetails) principal;
 
         String username = userDetails.getUsername();
 
+        // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
 
         int id = officer.getId();
         System.out.println(id);
 
+        // User details.
         String uid = officer.getUid();
+
         String unionID = "1";
-        String permissionGroup = officer.getPermissionGroup();
+
+        PermissionGroup permissionGroup = officer.getPermissionGroup();
+
         System.out.println("the id is " + uid);
+
+        // List all users.
         List<Officer> officerList = (List<Officer>) officerRepository.findAll();
 
+        // List all unions.
         List<Union> unionList = (List<Union>) unionRepository.findAll();
+
+        // List all pending and previous events.
         List<Event> pendingEventList = new ArrayList<Event>();
         List<Event> previousEventList = new ArrayList<Event>();
 
-        if (permissionGroup.equals("User")) {
-            pendingEventList = (List<Event>) eventRepository.findByPendingUID(uid);
-            previousEventList = (List<Event>) eventRepository.findByPreviousUID(uid);
-        } else if (permissionGroup.equals("Administrator")) {
-            pendingEventList = (List<Event>) eventRepository.findByPendingUnionID(unionID);
-            previousEventList = (List<Event>) eventRepository.findByPreviousUnionID(unionID);
+        if (permissionGroup.getId() == 7) {
+
+            // If the current user is a regular user.
+            pendingEventList = eventRepository.findByPendingUID(uid);
+            previousEventList = eventRepository.findByPreviousUID(uid);
+
+        } else if (permissionGroup.getId() == 6) {
+
+            // If the current user  is a administrator.
+            pendingEventList = eventRepository.findByPendingUnionID(unionID);
+            previousEventList = eventRepository.findByPreviousUnionID(unionID);
+
+        } else if (permissionGroup.getId() == 1) {
+
+            // If the current user is a master administrator.
+            TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
+
+            if (timeCycleActivated != null) {
+
+                model.addAttribute("activatedTimeCycle", timeCycleActivated);
+
+            } else {
+
+                model.addAttribute("activatedTimeCycle");
+
+            }
+
+        } else if (permissionGroup.getId() == 2) {
+
+            // TODO: if a current user is a master technician
+        } else {
+            // Other users.
+            pendingEventList = new ArrayList<Event>();
+            previousEventList = new ArrayList<Event>();
         }
 
+        // Model attributes.
         model.addAttribute("officer", officer);
 
         model.addAttribute("officerList", officerList);

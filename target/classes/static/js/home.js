@@ -1,170 +1,33 @@
-function getPostList() {
-    var list = $("#postList");
-    $.get("/grumblr/getPostList")
-        .done(function (data) {
-            list.data('maxTime', data['maxTime']);
-            var length = data.posts.length;
-            for (var i = 0; i < length; i++) {
-                var post = data.posts[i];
-                var newPost = $(post.html);
-                newPost.data("postId", post.id);
-                list.append(newPost);
-                getCommentList(post.id);
-            }
-        });
+function changeToUserProfile() {
+    $('#user_profile').delay(350).fadeIn();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
 }
-
-function updatePostList() {
-    var list = $("#postList");
-    var maxTime = list.data("maxTime");
-    if (maxTime === undefined) {
-        maxTime = "1970-01-01T00:00+00:00";
-    }
-    $.get("/grumblr/updatePostList/" + maxTime)
-        .done(function (data) {
-            list.data('maxTime', data['maxTime']);
-            var length = data.posts.length;
-            for (var i = 0; i < length; i++) {
-                var post = data.posts[i];
-                if (post.deleted) {
-                    var postIdToDelete = $("#postId" + post.id);
-                    postIdToDelete.fadeOut();
-                    postIdToDelete.remove();
-                } else {
-                    var newPost = $(post.html).hide();
-                    newPost.data("postId", post.id);
-                    list.prepend(newPost);
-                    newPost.slideDown();
-                }
-            }
-        });
-}
-
-function addPost() {
-    var newPost = $("#newPost");
-    var list = $("#postList");
-    var maxTime = list.data("maxTime");
-    if (maxTime === undefined) {
-        maxTime = "1970-01-01T00:00+00:00";
-    }
-    $.post("/grumblr/post", {post: newPost.val()})
-        .done(function (data) {
-            newPost.val("").focus();
-            list.data('maxTime', data['maxTime']);
-            var length = data.posts.length;
-            for (var i = 0; i < length; i++) {
-                var post = data.posts[i];
-                var newPostToAppend = $(post.html).hide();
-                newPostToAppend.data("postId", post.id);
-                list.prepend(newPostToAppend);
-                newPostToAppend.slideDown();
-            }
-        });
-}
-
-function getCommentList(id) {
-    var commentList = $('#commentList' + id);
-    $.get("/grumblr/getCommentList/" + id)
-        .done(function (data) {
-            commentList.data('maxTime', data['maxTime']);
-            var length = data.myComments.length;
-            for (var i = 0; i < length; i++) {
-                var comment = data.myComments[i];
-                var newComment = $(comment.html);
-                newComment.data("commentId", comment.id);
-                commentList.append(newComment);
-            }
-        });
-}
-
-function updateCommentList(id) {
-    var commentList = $('#commentList' + id);
-    var maxTime = commentList.data("maxTime");
-    if (maxTime === undefined) {
-        maxTime = "1970-01-01T00:00+00:00";
-    }
-    $.get("/grumblr/updateCommentList/" + id + "/" + maxTime)
-        .done(function (data) {
-            commentList.data('maxTime', data['maxTime']);
-            var length = data.myComments.length;
-            for (var i = 0; i < length; i++) {
-                var comment = data.myComments[i];
-                if (comment.deleted) {
-                    var commentIdToDelete = $('#commentId' + comment.id);
-                    commentIdToDelete.slideUp();
-                    commentIdToDelete.remove();
-                } else {
-                    var newComment = $(comment.html);
-                    newComment.data("commentId", comment.id);
-                    commentList.append(newComment);
-                    var commentCountA = $('#comments' + id);
-                    var commentCount = commentCountA.html().trim().split(" ");
-                    var newCount = parseInt(commentCount[0]) + 1;
-                    var newText = " " + newCount + " " + commentCount[1];
-                    commentCountA.html(newText);
-
-                }
-            }
-        });
-}
-
-
-function taggleCommentList(id) {
-    var commentList = $('#commentList' + id);
-    commentList.slideToggle();
-}
-
-function addComment(id) {
-    var commentList = $('#commentList' + id);
-    var newComment = $("#newComment" + id);
-    if (newComment.val() == '') {
-        return;
-    }
-
-    $.post("/grumblr/addComment/" + id, {comment: newComment.val()})
-        .done(function (data) {
-            var postComment = $('#comments' + id);
-            var postCommentCount = postComment.html().trim().split(" ");
-            var newCount = parseInt(postCommentCount[0]) + 1;
-            var newText = " " + newCount + " " + postCommentCount[1];
-            postComment.html(newText);
-
-            newComment.val("").focus();
-            commentList.data('maxTime', data['maxTime']);
-            var length = data.myComments.length;
-            for (var i = 0; i < length; i++) {
-                var comment = data.myComments[i];
-                var newCommentToAppend = $(comment.html).hide();
-                newCommentToAppend.data("commentId", comment.id);
-                commentList.append(newCommentToAppend);
-                newCommentToAppend.slideDown();
-            }
-        });
-}
-
-function updatePostComment() {
-    var postList = $('#postList').children();
-    var length = postList.length;
-    for (var i = 0; i < length; i++) {
-        var currentPost = postList.eq(i);
-        var postIdAll = currentPost.attr('id');
-        var postId = postIdAll.substr(6, postIdAll.length);
-        updateCommentList(postId);
-    }
-}
-
 function changeToRequest() {
     $('#pending_request').delay(350).fadeIn();
     $('#calendar').fadeOut();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
     $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+
 }
 function changeToCalendar() {
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
     $('#schedule').fadeOut();
     $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
@@ -172,6 +35,9 @@ function changeToStaff() {
     $('#schedule').fadeOut();
     $('#staff_management').delay(350).fadeIn();
     $('#editEvent').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
 }
 function newUserForm() {
     $('#add_user_div_id').slideToggle();
@@ -181,12 +47,43 @@ function changeToCreateRequest() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#schedule').delay(350).fadeIn();
+    $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
     $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
 }
 
 function changeToSchedule() {
     $('#schedule').delay(350).fadeIn();
     $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+}
+
+function changeToTCC() {
+    $('#time_cycle_div').delay(350).fadeIn();
+    $('#permission_group').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#schedule').fadeOut();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
+
+}
+
+function changeToPGM() {
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').delay(350).fadeIn();
+    $('#user_profile').fadeOut();
+    $('#schedule').fadeOut();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
 }
@@ -277,6 +174,7 @@ function addUser() {
     })
 
 }
+
 function addEvent() {
 
 
@@ -316,6 +214,7 @@ function addEvent() {
     })
 
 }
+
 function updateEvent() {
 
     var editRequest_id = $('#currentEditId').val();
@@ -329,7 +228,7 @@ function updateEvent() {
     console.log("the id is " + editRequest_id);
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("update_Event", {
-        'edit_id':editRequest_id,
+        'edit_id': editRequest_id,
         'startTime': startTime_id,
         'endTime': endTime_id,
         'description': description,
@@ -357,6 +256,7 @@ function updateEvent() {
     })
 
 }
+
 function cancelAddUser() {
     $('#uid_ID').val("");
     $('#lastName_ID').val("");
@@ -372,6 +272,7 @@ function cancelAddUser() {
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
 }
+
 function cancelAddEvent() {
     $('#startTime_ID').val("");
     $('#endTime_ID').val("");
@@ -379,23 +280,67 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 
+function deactivate_time_cycle(timeCycleId) {
+
+    $.get('/deactivate_event', {'timeCycleId': timeCycleId})
+        .done(function () {
+
+            alert("Time Cycle Deactivated");
+
+            location.reload();
+        });
+
+}
+
+function configure_time_cycle() {
+
+    $('#configure_time_cycle_div').slideToggle();
+
+}
+
+function add_time_cycle() {
+
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+
+    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
+        .done(function () {
+
+            alert("Time Cycle Configured Successfully.");
+
+            location.reload();
+        });
+
+}
+
+function updatePG(uid) {
+
+    var selectId = '#pageSelect' + uid;
+
+    var updatePG = $(selectId).val();
+
+    $.post('/update_permission_group', {
+        'uid': uid,
+        'permissionGroup': updatePG
+    }).done(function () {
+
+        alert("Permission Group Updated: " + uid);
+
+    });
+
+}
+
+
 $(document)
     .ready(function () {
 
-        // getPostList();
-        // $("#newPost").focus();
-        // $('#submit').click(addPost);
-        // window.clearInterval(0);
-        // window.clearInterval(1);
-        // window.setInterval(updatePostList, 5000);
-        // window.setInterval(updatePostComment, 1000);
-        // // CSRF set-up copied from Django docs
 
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-        $('#submit_Edit_Event').click(updateEvent)
+        $('#submit_Edit_Event').click(updateEvent);
+
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
         // var numsUrl = '/getOfficerNumber?union_id=' + union_ID + '';
@@ -493,6 +438,8 @@ $(document)
             duration: { days: 5 }
 
         })
+            ]
+        });
 
         function getOffNumbers(date, union_ID, shiftType) {
             $.get("getOfficerNumber", {

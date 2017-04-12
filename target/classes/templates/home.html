@@ -25,6 +25,7 @@
     <script src="/js/jquery-1.11.3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js"></script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
 
@@ -37,12 +38,30 @@
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
-
     <!-- Calendar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.js"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.0/fullcalendar.print.min.css"
           media='print'/>
+
+    <!--Date Picker-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css"/>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(function () {
+            $('#startDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#endDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+        });
+    </script>
+
 </head>
 
 <body>
@@ -58,10 +77,19 @@
                     <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a th:href="@{/userinfo(id=${officer.id})}"><i
+                        <a href="javascript:void(0);" onclick="changeToUserProfile()"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
-
+                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1">
+                        <a href="javascript:void(0);" onclick="changeToTCC()"><i
+                                class="fa fa-fw fa-user"></i> Configure Time Cycle</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1">
+                        <a href="javascript:void(0);" onclick="changeToPGM()"><i
+                                class="fa fa-fw fa-user"></i> Manage Permission Group</a>
+                    </li>
                     <li class="divider"></li>
                     <li>
                         <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -71,10 +99,16 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 1"
+                th:include="masterAdminSideBar :: masterAdminSideBar">
+            </ul>
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 2"
+                th:include="techAdminSideBar :: techAdminSideBar">
+            </ul>
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 6"
                 th:include="administratorSideBar :: administratorSideBar">
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'"
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 7"
                 th:include="userSideBar :: userSideBar">
             </ul>
         </div>
@@ -82,10 +116,17 @@
 
     <div id="page-wrapper">
 
-        <div th:replace="scheduleRequestList :: scheduleRequestList">
-        </div>
-        <!-- /.container-fluid -->
+        <!--Display the main according to permission group.-->
 
+        <div th:if="${officer.permissionGroup.id} == 1">
+            <div th:replace="timeCyclePage :: timeCyclePage"></div>
+        </div>
+
+        <div th:if="${officer.permissionGroup.id} == 2">
+            <!--<div th:replace="timeCyclePage :: timeCyclePage"></div>-->
+        </div>
+
+        <!--Other components.-->
         <div class="container-fluid" id="calendar" style="display: none">
             <input type="hidden" th:value="Day" id="currentShiftType"/>
         </div>
@@ -98,6 +139,9 @@
             <input type="hidden" id="currentEditId"/>
         </div>
 
+        <div th:replace="scheduleRequestList :: scheduleRequestList">
+        </div>
+
         <div th:replace="editEvent :: editEvent">
         </div>
 
@@ -107,6 +151,11 @@
         <div th:replace="staffManagement :: staffManagement">
         </div>
 
+        <div th:replace="permissionGroupPage :: permissionGroupPage">
+        </div>
+
+        <div th:replace="userProfile :: userProfile">
+        </div>
 
     </div>
     <!-- /#page-wrapper -->

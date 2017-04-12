@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div class="container-fluid" id="user_profile" style="display: none" th:fragment="userProfile">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                User Profile
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title"> User Details</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>
+                                <h4>Properties</h4>
+                            </td>
+                            <td>
+                                <h4>Value</h4>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody th:if="${officer} != null">
+                        <tr>
+                            <td>UID</td>
+                            <td><p th:text=" ${officer.uid} "/></td>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td><p th:text=" ${officer.firstName} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td><p th:text=" ${officer.lastName} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Badge Num</td>
+                            <td><p th:text=" ${officer.badgeNum} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Title</td>
+                            <td><p th:text=" ${officer.title} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td><p th:text=" ${officer.gender} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Permission Group</td>
+                            <td><p th:text=" ${officer.permissionGroup.role} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Seniority</td>
+                            <td><p th:text=" ${officer.seniority} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Hire Date</td>
+                            <td><p th:text=" ${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Promotion Date</td>
+                            <td><p th:text=" ${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Union</td>
+                            <td><p th:text=" ${officer.union.name} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Recruit</td>
+                            <td><p th:text=" ${officer.recruitId} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Contract Employee</td>
+                            <td><p th:text=" ${officer.contractEmployee} "/></td>
+                        </tr>
+                        <tr>
+                            <td>Trainer</td>
+                            <td><p th:if="${officer.trainer}!= null" th:text="${officer.trainer.id} "/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+
+
+</html>

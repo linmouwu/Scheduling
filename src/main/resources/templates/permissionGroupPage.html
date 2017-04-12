@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div class="container-fluid" id="staff_management" style="display: none" th:fragment="staffManagement">
+<div class="container-fluid" id="permission_group" style="display: none" th:fragment="permissionGroupPage">
 
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Staff Management
+                Permission Group Management
             </h1>
         </div>
     </div>
 
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> User List</h3>
@@ -22,49 +23,52 @@
                         <thead>
                         <tr>
                             <th>UID</th>
-                            <th>Badge Number</th>
                             <th>Last Name</th>
                             <th>First Name</th>
                             <th>Title</th>
                             <th>Gender</th>
                             <th>Seniority</th>
                             <th>Permission Group</th>
-                            <th>Union</th>
-                            <th>Hire Date</th>
-                            <th>Promotion Date</th>
-                            <th>Trainer ID</th>
+                            <th>Update Change</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="officer:${officerList}">
                             <td th:text="${officer.uid}"></td>
-                            <td th:text="${officer.badgeNum}"></td>
                             <td th:text="${officer.lastName}"></td>
                             <td th:text="${officer.firstName}"></td>
                             <td th:text="${officer.title}"></td>
                             <td th:text="${officer.gender}"></td>
                             <td th:text="${officer.seniority}"></td>
-                            <td th:text="${officer.permissionGroup.role}"></td>
-                            <td th:text="${officer.union.name}"></td>
-                            <td th:text="${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "></td>
-                            <td th:text="${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "></td>
-                            <td th:if="${officer.trainer} == null"></td>
-                            <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
+                            <td>
+                                <select name="pgSelect" th:id="'pageSelect'+${officer.uid}" class="form-control">
+                                    <option th:text="${officer.permissionGroup.role}" selected="selected"
+                                            disabled="disabled"></option>
+                                    <option>Master Administrator</option>
+                                    <option>Master Technician</option>
+                                    <option>Cross Administrator</option>
+                                    <option>Training Administrator</option>
+                                    <option>Technical Administrator</option>
+                                    <option>Staffing Administrator</option>
+                                    <option>Leadership</option>
+                                    <option>Staff Member I</option>
+                                    <option>Staff Member II</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" type="button"
+                                        th:onclick="'javascript:updatePG(\''+${officer.uid}+'\')'">Submit
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
 
                     </table>
-                    <div class="text-right">
-                        <a href="javascript:;" onclick="newUserForm()">Add New User <i
-                                class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                    <div class="col-lg-4"></div>
-
-                    <div th:replace="addUser :: addUser"></div>
 
                 </div>
             </div>
         </div>
+        <div class="col-lg-2"></div>
     </div>
     <!-- /.row -->
 

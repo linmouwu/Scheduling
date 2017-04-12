@@ -68,7 +68,7 @@ public class CreateEventController {
         Officer officer = officerRepository.findByUID(username);
 
         // Officer infos.
-        String permissionGroup = officer.getPermissionGroup();
+        PermissionGroup permissionGroup = officer.getPermissionGroup();
 
         int unionID = officer.getUnion().getId();
 
@@ -84,9 +84,9 @@ public class CreateEventController {
         String status = "pending";
 
         // Verify user permission group.
-        if (permissionGroup.equals("User")) {
+        if (permissionGroup.getId() == 7) {
             range = "Single";
-        } else if (permissionGroup.equals("Administrator")) {
+        } else if (permissionGroup.getId() == 6) {
             range = "Union";
             status = "unionevent";
         }
@@ -143,15 +143,15 @@ public class CreateEventController {
         Officer officer = officerRepository.findByUID(username);
 
         // User infos.
-        String permissionGroup = officer.getPermissionGroup();
+        PermissionGroup permissionGroup = officer.getPermissionGroup();
 
         // Get event infos.
         Event event = eventRepository.findByID(Integer.valueOf(id));
 
         // Update event based on user permission group.
-        if (officer.getPermissionGroup().equals("Administrator")) {
+        if (officer.getPermissionGroup().getId() == 6) {
             event.setEventStatus(status);
-        } else if (officer.getPermissionGroup().equals("User")) {
+        } else if (officer.getPermissionGroup().getId() == 7) {
             event.setStartTime(startTime);
             event.setEndTime(endTime);
             event.setEventType(type);

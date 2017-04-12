@@ -58,7 +58,7 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'Administrator'">
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 6">
                 <li>
                     <a href="/home" onclick="changeToRequest()"><i class="fa fa-fw fa-flag"></i> Pending
                         Request</a>
@@ -97,7 +97,7 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup} == 'User'">
+            <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 7">
                 <li>
                     <a href="/home" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i> Pending Requests</a>
                 </li>
@@ -192,7 +192,7 @@
                                 </tr>
                                 <tr>
                                     <td>Permission Group</td>
-                                    <td><p th:text=" ${officer.permissionGroup} "/></td>
+                                    <td><p th:text=" ${officer.permissionGroup.role} "/></td>
                                 </tr>
                                 <tr>
                                     <td>Seniority</td>
