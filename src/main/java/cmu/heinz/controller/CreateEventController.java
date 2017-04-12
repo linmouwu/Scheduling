@@ -37,7 +37,8 @@ public class CreateEventController {
      */
     @Autowired
     private OfficerRepository officerRepository;
-
+    @Autowired
+    private Group_ScheduleRepository group_scheduleRepository;
     /**
      * Create event methods.
      *
@@ -216,15 +217,14 @@ public class CreateEventController {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String sd = df.format(start_date);
-//        String ed = df.format(end_date);
-//        Integer num = eventRepository.findByAllDate(union_id, sd);
         String rst = "ShiftType:" + shiftType + "\n";
         for (int i = 0; i < 7; i++) {
             Date curDate = addDays(start_date, i);
             String cd = df.format(curDate);
             Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
+            Integer groupNext = group_scheduleRepository.findByAllDate(union_id,cd,shiftType);
             System.out.println(next);
-            rst += cd + " " + next + "\n";
+            rst += cd + " " + (next + groupNext) + "\n";
         }
         return ResponseEntity.ok(rst);
     }
