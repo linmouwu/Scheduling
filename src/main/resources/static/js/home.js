@@ -119,16 +119,12 @@ function changeToEditEvent(editRequest_id) {
     $('#staff_management').fadeOut();
 
     $.get("getEditEvent", {
-        'id': editRequest_id,
+        'id': editRequest_id
     }).done(function (data) {
 
-        // console.log(new Date(data.startTime));
-        var start = new Date(data.startTime);
-        var formattedStart = moment(start).format('MM/DD/YYYY');
-        console.log(format);
+        var formattedStart = getFormattedDate(new Date(data.startTime));
 
-        var end = new Date(data.endTime);
-        var formattedEnd = moment(end).format('MM/DD/YYYY');
+        var formattedEnd = getFormattedDate(new Date(data.endTime));
 
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
@@ -138,6 +134,14 @@ function changeToEditEvent(editRequest_id) {
     })
 }
 
+function getFormattedDate(date) {
+    var year = date.getFullYear();
+    var month = (1 + date.getMonth()).toString();
+    month = month.length > 1 ? month : '0' + month;
+    var day = date.getDate().toString();
+    day = day.length > 1 ? day : '0' + day;
+    return month + '/' + day + '/' + year;
+}
 
 function addUser() {
 
