@@ -302,6 +302,41 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 
+
+function deactivate_time_cycle(timeCycleId) {
+
+    $.get('/deactivate_event', {'timeCycleId': timeCycleId})
+        .done(function () {
+
+            alert("Time Cycle Deactivated");
+
+            location.reload();
+        });
+
+}
+
+function configure_time_cycle() {
+
+    $('#configure_time_cycle_div').slideToggle();
+
+}
+
+function add_time_cycle() {
+
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+
+    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
+        .done(function () {
+
+            alert("Time Cycle Configured Successfully.");
+
+            location.reload();
+        });
+
+
+}
+
 function createGroupSchedule(adminId) {
 
     var startDate = $('#startTime').val();
