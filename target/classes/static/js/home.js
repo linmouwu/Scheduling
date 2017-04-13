@@ -119,7 +119,7 @@ function changeToEditEvent(editRequest_id) {
     $('#staff_management').fadeOut();
 
     $.get("getEditEvent", {
-        'id': editRequest_id,
+        'id': editRequest_id
     }).done(function (data) {
 
         var formattedStart = getFormattedDate(new Date(data.startTime));
