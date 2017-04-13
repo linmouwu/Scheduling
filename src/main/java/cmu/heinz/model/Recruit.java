@@ -1,12 +1,12 @@
 package cmu.heinz.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by hhahann on 4/12/17.
  */
+@Entity
+@Table(name = "Recruit")
 public class Recruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

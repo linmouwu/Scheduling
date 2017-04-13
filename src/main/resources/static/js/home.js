@@ -335,7 +335,7 @@ $(document)
                 getOffNumberButton:{
                     text:"OffNumber",
                     click:function () {
-                        var moment = $('#calendar').fullCalendar('getDate');
+                        var moment = $('#group_calendar').fullCalendar('getDate');
                         var shiftType = $('#currentShiftType').val();
                         var date = new Date(moment._d),
                             d = date.getDate(),

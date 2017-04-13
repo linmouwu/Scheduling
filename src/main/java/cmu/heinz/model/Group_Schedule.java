@@ -5,6 +5,8 @@ package cmu.heinz.model;
  */
 import javax.persistence.*;
 import java.util.*;
+@Entity
+@Table(name = "Group_Schedule")
 public class Group_Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

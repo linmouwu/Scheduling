@@ -5,6 +5,8 @@ import javax.persistence.*;
 /**
  * Created by hhahann on 4/12/17.
  */
+@Entity
+@Table(name = "Schedule_Officer")
 public class Schedule_Officer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

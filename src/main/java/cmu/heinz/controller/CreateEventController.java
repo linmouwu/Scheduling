@@ -39,6 +39,8 @@ public class CreateEventController {
     private OfficerRepository officerRepository;
     @Autowired
     private Group_ScheduleRepository group_scheduleRepository;
+    @Autowired
+    private Schedule_OfficerRepository schedule_officerRepository;
     /**
      * Create event methods.
      *
@@ -195,9 +197,19 @@ public class CreateEventController {
     @RequestMapping(value = "/allEvent", method = RequestMethod.GET)
     public ResponseEntity getAllEvent(@RequestParam(value = "union_id") int union_id,
                                       Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // Find events by union id.
-        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+        List<Event> allEvent = eventRepository.findByOfficerID(officerid);
+
+        List<Schedule_Officer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
 
@@ -208,7 +220,12 @@ public class CreateEventController {
             }
             model.addAttribute("allEvent", allCurrentEvent);
         }
-
+        if (groupSchedule != null) {
+            for (Schedule_Officer s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(),s.getGroupSchedule().getDescription(),s.getGroupSchedule().getStartTime(),s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
         return ResponseEntity.ok(allCurrentEvent);
     }
 
@@ -221,10 +238,14 @@ public class CreateEventController {
         for (int i = 0; i < 7; i++) {
             Date curDate = addDays(start_date, i);
             String cd = df.format(curDate);
+            System.out.println(cd);
             Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
             Integer groupNext = group_scheduleRepository.findByAllDate(union_id,cd,shiftType);
+            if (groupNext != null) {
+                next += groupNext;
+            }
             System.out.println(next);
-            rst += cd + " " + (next + groupNext) + "\n";
+            rst += cd + " " + next + "\n";
         }
         return ResponseEntity.ok(rst);
     }
