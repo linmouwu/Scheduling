@@ -30,7 +30,7 @@
                        placeholder="MM/DD/YYYY"/></td>
         </tr>
         <tr>
-            <td>End Timeme</td>
+            <td>End Time</td>
             <td><input class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"/>
             </td>
         </tr>
@@ -64,7 +64,7 @@
         <tr th:if="${officer.permissionGroup.id} == 7">
             <td>Status</td>
             <td><select class="form-control" name="status" id="editEventStatus">
-                <option value="declilned">Decline</option>
+                <option value="declined">Decline</option>
                 <option value="approved">Approve</option>
             </select>
 

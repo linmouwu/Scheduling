@@ -124,10 +124,14 @@ function changeToEditEvent(editRequest_id) {
 
         // console.log(new Date(data.startTime));
         var start = new Date(data.startTime);
-        var format = moment(start).format('MM/DD/YYYY');
+        var formattedStart = moment(start).format('MM/DD/YYYY');
         console.log(format);
-        $('#edit_StartTime_ID').val(format);
-        $('#edit_EndTime_ID').val(data.endTime);
+
+        var end = new Date(data.endTime);
+        var formattedEnd = moment(end).format('MM/DD/YYYY');
+
+        $('#edit_StartTime_ID').val(formattedStart);
+        $('#edit_EndTime_ID').val(formattedEnd);
         $('#edit_event_description').val(data.description);
         $('#currentEditId').val(data.id);
 
