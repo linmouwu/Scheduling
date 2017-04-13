@@ -54,7 +54,7 @@
                 <option value="Decline to answer"> Decline to answer</option>
             </select>
                 <select class="form-control" name="type" id="individualRequestType"
-                        th:if="${officer.permissionGroup} == 'Administrator'">
+                        th:if="${officer.permissionGroup.id} == 6">
                     <option value=" " selected="selected" disabled="disabled"></option>
                     <option value="Vacation"> Vacation</option>
                     <option value="Training"> Training</option>
