@@ -371,7 +371,7 @@
     </column>
     <column id="94" parent="15" name="end_time">
       <Position>3</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>date|0</DataType>
     </column>
     <column id="95" parent="15" name="event_range">
       <Position>4</Position>
@@ -397,7 +397,7 @@
     </column>
     <column id="100" parent="15" name="start_time">
       <Position>9</Position>
-      <DataType>datetime|0</DataType>
+      <DataType>date|0</DataType>
     </column>
     <column id="101" parent="15" name="uid">
       <Position>10</Position>
