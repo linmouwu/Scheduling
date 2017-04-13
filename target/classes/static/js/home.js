@@ -302,6 +302,64 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 
+
+function deactivate_time_cycle(timeCycleId) {
+
+    $.get('/deactivate_event', {'timeCycleId': timeCycleId})
+        .done(function () {
+
+            alert("Time Cycle Deactivated");
+
+            location.reload();
+        });
+
+}
+
+function configure_time_cycle() {
+
+    $('#configure_time_cycle_div').slideToggle();
+
+}
+
+function add_time_cycle() {
+
+    var startDate = $('#startDate').val();
+    var endDate = $('#endDate').val();
+
+    $.post('/add_time_cycle', {"startDate": startDate, "endDate": endDate})
+        .done(function () {
+
+            alert("Time Cycle Configured Successfully.");
+
+            location.reload();
+        });
+
+
+}
+
+function createGroupSchedule(adminId) {
+
+    var startDate = $('#startTime').val();
+    var endDate = $('#endTime').val();
+    var shiftType = $('#shiftType').val();
+
+    var userList = [];
+
+    $('input[name="users"]:checked').each(function () {
+        userList.push($(this).value());
+    });
+
+    $.post("/add_group_schedule", {
+        "startDate": startDate,
+        "endDate": endDate,
+        "shiftType": shiftType,
+        "userList": userList
+    }).done(function () {
+
+    });
+
+}
+
 $(document)
     .ready(function () {
 
@@ -316,13 +374,13 @@ $(document)
             customButtons: {
                 invertButton: {
                     text: $('#currentShiftType').val(),
-                    id:"123",
-                    click: function() {
+                    id: "123",
+                    click: function () {
                         var self = this.innerHTML;
                         //
                         // var shiftType = $('#currentShiftType').val();
 
-                        if (self ==="Day"){
+                        if (self === "Day") {
                             $('#currentShiftType').val("Night");
                             this.innerHTML = "Night";
                         } else {
@@ -332,16 +390,16 @@ $(document)
                         console.log($('#currentShiftType').val());
                     }
                 },
-                getOffNumberButton:{
-                    text:"OffNumber",
-                    click:function () {
+                getOffNumberButton: {
+                    text: "OffNumber",
+                    click: function () {
                         var moment = $('#calendar').fullCalendar('getDate');
                         var shiftType = $('#currentShiftType').val();
                         var date = new Date(moment._d),
                             d = date.getDate(),
                             m = date.getMonth(),
                             y = date.getFullYear();
-                        getOffNumbers(date, union_ID,shiftType);
+                        getOffNumbers(date, union_ID, shiftType);
                     }
                 }
             }, //invert button
@@ -398,7 +456,7 @@ $(document)
                 }
             ],
             defaultView: 'basicWeek',
-            duration: { days: 5 }
+            duration: {days: 5}
 
         })
 
@@ -457,19 +515,20 @@ $(document)
                 }
             ],
             defaultView: 'basicWeek',
-            duration: { days: 5 }
+            duration: {days: 5}
 
         })
 
         function getOffNumbers(date, union_ID, shiftType) {
             $.get("getOfficerNumber", {
                 'date': date,
-                'union_id':union_ID,
-                'shiftType':shiftType
+                'union_id': union_ID,
+                'shiftType': shiftType
             }).done(function (data) {
                 alert(data);
             })
         }
+
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
