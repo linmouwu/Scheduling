@@ -1,4 +1,5 @@
 function changeToUserProfile() {
+    $('#group_schedule').fadeOut();
     $('#user_profile').delay(350).fadeIn();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
@@ -10,6 +11,7 @@ function changeToUserProfile() {
     $('#permission_group').fadeOut();
 }
 function changeToRequest() {
+    $('#group_schedule').fadeOut();
     $('#pending_request').delay(350).fadeIn();
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
@@ -22,6 +24,7 @@ function changeToRequest() {
 
 }
 function changeToCalendar() {
+    $('#group_schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').delay(350).fadeIn();
     $('#group_calendar').fadeOut();
@@ -33,6 +36,7 @@ function changeToCalendar() {
     $('#permission_group').fadeOut();
 }
 function changeToGroupCalendar() {
+    $('#group_schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#group_calendar').delay(350).fadeIn();
@@ -44,6 +48,7 @@ function changeToGroupCalendar() {
     $('#permission_group').fadeOut();
 }
 function changeToStaff() {
+    $('#group_schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
@@ -59,6 +64,7 @@ function newUserForm() {
 }
 
 function changeToCreateRequest() {
+    $('#group_schedule').fadeOut();
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
@@ -68,6 +74,7 @@ function changeToCreateRequest() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+
 }
 //
 // function changeToSchedule() {
@@ -81,8 +88,20 @@ function changeToCreateRequest() {
 //     $('#time_cycle_div').fadeOut();
 //     $('#permission_group').fadeOut();
 // }
-
+function changeToCreateGroupRequest() {
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#group_schedule').delay(350).fadeIn();
+    $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#schedule').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+}
 function changeToTCC() {
+    $('#group_schedule').fadeOut();
     $('#time_cycle_div').delay(350).fadeIn();
     $('#permission_group').fadeOut();
     $('#user_profile').fadeOut();
@@ -96,6 +115,7 @@ function changeToTCC() {
 }
 
 function changeToPGM() {
+    $('#group_schedule').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').delay(350).fadeIn();
     $('#user_profile').fadeOut();
@@ -108,6 +128,7 @@ function changeToPGM() {
 }
 
 function changeToEditEvent(editRequest_id) {
+    $('#group_schedule').fadeOut();
     $('#editEvent').delay(350).fadeIn();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();

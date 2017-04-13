@@ -235,3 +235,34 @@ ul.alert-dropdown {
     max-width: 900px;
     margin: 0 auto;
 }
+
+.table-fixed thead {
+    width: 97%;
+    display:block;
+}
+.table-fixed tbody {
+    height: 140px;
+    overflow-y: auto;
+    display:block;
+
+}
+
+.table-fixed td, .table-fixed th{
+    border:none;
+    float:left;
+}
+.myborder{
+    border-bottom: 2px solid #f3f3f2;
+    font-style: normal;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 15px 0px;
+}
+/*.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {*/
+    /*display: block;*/
+    /*border: dashed;*/
+/*}*/
+/*.table-fixed tbody td, .table-fixed thead > tr> th {*/
+    /*border-bottom-width: 0;*/
+    /*float: left;*/
+/*}*/
