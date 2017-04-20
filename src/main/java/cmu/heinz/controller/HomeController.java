@@ -29,6 +29,8 @@ public class HomeController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+    @Autowired
+    private Group_ScheduleRepository groupScheduleRepository;
 
     /**
      * Union repository interface.
@@ -92,6 +94,10 @@ public class HomeController {
         } else if (permissionGroup.getId() == 6) {
 
             // If the current user  is a administrator.
+            int unionId = officer.getUnion().getId();
+            List<Group_Schedule> schedules = groupScheduleRepository.findByUnion(unionId);
+
+            model.addAttribute("groupScheduleList",schedules);
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 

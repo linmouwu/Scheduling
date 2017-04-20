@@ -16,16 +16,27 @@ public class Group_Schedule {
     private Date endTime;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "admin_ID")
-    private Officer adminId;
+    private Officer admin;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "union_ID")
-    private Union unionId;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "recruit_ID")
-    private Recruit recruitId;
+    private Union union;
+
+    private int recruitId;
     private String shiftType;
     private String status;
     private int selected_Officer;
+    public Group_Schedule(){}
+    public Group_Schedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected){
+        this.setDescription(d);
+        this.setRecruitId(recruit);
+        this.setSelected_Officer(selected);
+        this.setStartTime(s);
+        this.setEndTime(e);
+        this.setAdmin(admin);
+        this.setUnion(uni);
+        this.setShiftType(shift);
+        this.setStatus(status);
+    }
 
     public String getStatus() {
         return status;
@@ -67,30 +78,6 @@ public class Group_Schedule {
         this.endTime = endTime;
     }
 
-    public Officer getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Officer adminId) {
-        this.adminId = adminId;
-    }
-
-    public Union getUnionId() {
-        return unionId;
-    }
-
-    public void setUnionId(Union unionId) {
-        this.unionId = unionId;
-    }
-
-    public Recruit getRecruitId() {
-        return recruitId;
-    }
-
-    public void setRecruitId(Recruit recruitId) {
-        this.recruitId = recruitId;
-    }
-
     public String getShiftType() {
         return shiftType;
     }
@@ -105,5 +92,29 @@ public class Group_Schedule {
 
     public void setSelected_Officer(int selected_Officer) {
         this.selected_Officer = selected_Officer;
+    }
+
+    public Officer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Officer admin) {
+        this.admin = admin;
+    }
+
+    public Union getUnion() {
+        return union;
+    }
+
+    public void setUnion(Union union) {
+        this.union = union;
+    }
+
+    public int getRecruitId() {
+        return recruitId;
+    }
+
+    public void setRecruitId(int recruit) {
+        this.recruitId = recruit;
     }
 }

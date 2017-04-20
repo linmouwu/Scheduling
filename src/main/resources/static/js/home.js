@@ -92,6 +92,7 @@ function changeToCreateGroupRequest() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
+
     $('#group_schedule').delay(350).fadeIn();
     $('#staff_management').fadeOut();
     $('#user_profile').fadeOut();
@@ -99,6 +100,10 @@ function changeToCreateGroupRequest() {
     $('#schedule').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    // $.get('allGroupSchedule').done(function(data){
+    //     $('')
+    // });
+
 }
 function changeToTCC() {
     $('#group_schedule').fadeOut();
@@ -227,6 +232,59 @@ function addUser() {
     })
 
 }
+
+function addGroupEvent() {
+
+
+    // var recruit_ID = $('#recrui_ID').val();
+    var startTime_id = $('#start_time_group').val();
+    var endTime_id = $('#end_time_group').val();
+    var description = $('#group_schedule_description').val();
+    var shift_type = $('#shift_type').val();
+    var status = $('#status').val();
+    var selected_officers = []
+    console.log(1);
+    $("input:checked").each(function() {
+        selected_officers.push($(this).val());
+        console.log(selected_officers)
+
+    });
+
+    // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
+    //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+    $.post("createGroupEvent", {
+        'selectedOfficers[]' : selected_officers,
+        'startTime': startTime_id,
+        'endTime': endTime_id,
+        'description': description,
+        'shift_type': shift_type,
+        'status': status
+    }).done(function (data) {
+
+        console.log(data);
+        console.log("guess what happened");
+        if (data == "Remain Day is not enough") {
+            // $('#staff_management').append(data);
+        }
+        else {
+            var markup =
+                "<tr><td>" + data.id +
+                "</td><td>" + startTime_id +
+                "</td><td>" + endTime_id +
+                "</td><td>" + shift_type +
+                "</td><td>" + selected_officers.length +
+                "</td><td>" + description +
+                "</td><td>" + status +
+                "</td></tr>";
+            $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
+        }
+        //location.reload();
+        clearGroupSchedule();
+    })
+
+
+}
+
 function addEvent() {
 
 
@@ -261,7 +319,7 @@ function addEvent() {
                 "</td></tr>";
             $('#pendinglisttable > tbody').append(markup).hide().slideDown();
         }
-        location.reload();
+        //location.reload();
         cancelAddEvent();
     })
 
@@ -323,7 +381,14 @@ function cancelAddUser() {
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
 }
-
+function clearGroupSchedule() {
+    $('input:checkbox').prop( "checked", false );
+    $('#start_time_group').val("");
+    $('#end_time_group').val("");
+    $('#group_schedule_description').val("");
+    $('#shift_type').val("");
+    $('#status').val("");
+}
 function cancelAddEvent() {
     $('#startTime_ID').val("");
     $('#endTime_ID').val("");
@@ -366,38 +431,41 @@ function add_time_cycle() {
 
 }
 
-function createGroupSchedule(adminId) {
-
-    var startDate = $('#startTime').val();
-    var endDate = $('#endTime').val();
-    var shiftType = $('#shiftType').val();
-
-    var userList = [];
-
-    $('input[name="users"]:checked').each(function () {
-        userList.push($(this).value());
-    });
-
-    $.post("/add_group_schedule", {
-        "startDate": startDate,
-        "endDate": endDate,
-        "shiftType": shiftType,
-        "userList": userList
-    }).done(function () {
-
-    });
-
-}
+// function createGroupSchedule(adminId) {
+//
+//     var startDate = $('#startTime').val();
+//     var endDate = $('#endTime').val();
+//     var shiftType = $('#shiftType').val();
+//
+//     var userList = [];
+//
+//     $('input[name="users"]:checked').each(function () {
+//         userList.push($(this).value());
+//     });
+//
+//     $.post("/add_group_schedule", {
+//         "startDate": startDate,
+//         "endDate": endDate,
+//         "shiftType": shiftType,
+//         "userList": userList
+//     }).done(function () {
+//
+//     });
+//
+// }
 
 $(document)
     .ready(function () {
 
+        $('#submit_group_event').click(addGroupEvent);
+        $('#cancel_group_event').click(cancelGroupEvent);
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-        $('#submit_Edit_Event').click(updateEvent)
+        $('#submit_Edit_Event').click(updateEvent);
         var union_ID = $('#currentUnionId').val();
+        var groupEventsUrl = '/allGroupSchedule';
         var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#group_calendar').fullCalendar({
             customButtons: {
