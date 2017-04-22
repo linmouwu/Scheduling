@@ -38,11 +38,11 @@
                             <td>Emergency Call for 10 night shift</td>
                         </tr>
                         <!--<tr th:each="schedule:${groupScheduleList}">-->
-                            <!--<td th:text="${schedule.start_time}"></td>-->
-                            <!--<td th:text="${schedule.end_time}"></td>-->
-                            <!--<td th:text="${schedule.shift_type}"></td>-->
-                            <!--<td th:text="${schedule.selected_officer}"></td>-->
-                            <!--<td th:text="${schedule.description}"></td>-->
+                        <!--<td th:text="${schedule.start_time}"></td>-->
+                        <!--<td th:text="${schedule.end_time}"></td>-->
+                        <!--<td th:text="${schedule.shift_type}"></td>-->
+                        <!--<td th:text="${schedule.selected_officer}"></td>-->
+                        <!--<td th:text="${schedule.description}"></td>-->
                         <!--</tr>-->
                         </tbody>
 
@@ -53,74 +53,77 @@
         </div>
     </div>
 
-    <div class="panel panel-default myborder">
-                    <div class="panel-heading">
-                        <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Create Group Schedule</h4>
-                    </div>
-                    <div class="panel-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Create Group Schedule</h4>
+        </div>
+        <div class="panel-body">
+
+            <div class="row myborder">
+                <div class="col-sm-2"><h4>Start Time</h4></div>
+                <div class="col-sm-7"><input class="form-control" name="startTime" id="grou_schedule_StartTime_ID"
+                                             type="text" placeholder="MM/DD/YYYY"/></div>
+            </div>
+            <div class="row myborder">
+                <div class="col-sm-2"><h4>End Time</h4></div>
+                <div class="col-sm-7"><input class="form-control" name="endTime" id="grou_schedule_EndTime_ID"
+                                             type="text" placeholder="MM/DD/YYYY"/></div>
+            </div>
+
+            <div class="row myborder">
+                <div class="col-sm-2"><h4>Description</h4></div>
+                <div class="col-sm-7"><input name="description" id="event_description" type="text" size="40"/></div>
+            </div>
+            <div class="row myborder">
+                <div class="col-sm-2"><h4>Select Staff</h4></div>
+                <div class="col-sm-9">
+                    <table class="table table-hover table-fixed" id="user_list_table">
+                        <thead>
+                        <tr>
+
+                            <th class="col-xs-1">Selected</th>
+                            <th class="col-xs-2">UID</th>
+                            <th class="col-xs-3">Last Name</th>
+                            <th class="col-xs-3">First Name</th>
+                            <th class="col-xs-3">Title</th>
+                            <th class="col-xs-3">Gender</th>
+                            <th class="col-xs-1">Seniority</th>
 
 
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>Start Time</h4></div>
-        <div class="col-sm-7"><input name="startTime" id="startTime_ID" type="date"/></div>
-    </div>
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>End Time</h4></div>
-        <div class="col-sm-7"><input name="endTime" id="endTime_ID" type="date"/></div>
-    </div>
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>Description</h4></div>
-        <div class="col-sm-7"><input name="description" id="event_description" type="text" size="40"/></div>
-    </div>
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>Select Staff</h4></div>
-        <div class="col-sm-9">
-            <table class="table table-hover table-fixed" id="user_list_table">
-                <thead>
-                <tr>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="officer:${officerList}">
 
-                    <th class="col-xs-1">Selected</th>
-                    <th class="col-xs-2">UID</th>
-                    <th class="col-xs-3">Last Name</th>
-                    <th class="col-xs-3">First Name</th>
-                    <th class="col-xs-3">Title</th>
-                    <th class="col-xs-3">Gender</th>
-                    <th class="col-xs-1">Seniority</th>
+                            <td class="col-xs-2"><input type="checkbox"/></td>
+                            <td class="col-xs-2" th:text="${officer.uid}"></td>
+                            <td class="col-xs-2" th:text="${officer.lastName}"></td>
+                            <td class="col-xs-2" th:text="${officer.firstName}"></td>
+                            <td class="col-xs-2" th:text="${officer.title}"></td>
+                            <td class="col-xs-2" th:text="${officer.gender}"></td>
+                            <td class="col-xs-2" th:text="${officer.seniority}"></td>
 
+                        </tr>
+                        </tbody>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="officer:${officerList}">
-
-                    <td class="col-xs-2"><input type="checkbox"/></td>
-                    <td class="col-xs-2" th:text="${officer.uid}"></td>
-                    <td class="col-xs-2" th:text="${officer.lastName}"></td>
-                    <td class="col-xs-2" th:text="${officer.firstName}"></td>
-                    <td class="col-xs-2" th:text="${officer.title}"></td>
-                    <td class="col-xs-2" th:text="${officer.gender}"></td>
-                    <td class="col-xs-2" th:text="${officer.seniority}"></td>
-
-                </tr>
-                </tbody>
-
-            </table>
+                    </table>
+                </div>
+            </div>
+            <div class="row myborder">
+                <div class="col-sm-2">
+                    <button id="submit_Event" type="button" class="btn btn-success">Submit
+                    </button>
+                </div>
+                <div class="col-sm-9 text-left">
+                    <button id="cancel_Event" type="button" class="btn btn-cancel">Cancel
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row myborder">
-        <div class="col-sm-2">
-            <button id="submit_Event" type="button" class="btn btn-success">Submit
-            </button>
-        </div>
-        <div class="col-sm-9 text-left">
-            <button id="cancel_Event" type="button" class="btn btn-cancel">Cancel
-            </button>
-        </div>
-    </div>
-                    </div>
-    </div></div>
+</div>
 
-    <!-- /.row -->
+<!-- /.row -->
 
 
 </html>
