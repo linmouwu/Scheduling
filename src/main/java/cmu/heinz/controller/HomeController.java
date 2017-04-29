@@ -45,10 +45,17 @@ public class HomeController {
     private EventRepository eventRepository;
 
     /**
-     * Time Cycle interface.
+     * Time cycle repository interface.
      */
     @Autowired
     private TimeCycleRepository timeCycleRepository;
+
+
+    /**
+     * Shift type repository interface.
+     */
+    @Autowired
+    private ShiftTypeRepository shiftTypeRepository;
 
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
@@ -85,6 +92,8 @@ public class HomeController {
         List<Event> pendingEventList = new ArrayList<Event>();
         List<Event> previousEventList = new ArrayList<Event>();
 
+        List<ShiftType> shiftTypeList = new ArrayList<ShiftType>();
+
         if (permissionGroup.getId() == 7) {
 
             // If the current user is a regular user.
@@ -101,6 +110,7 @@ public class HomeController {
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
+            shiftTypeList = shiftTypeRepository.getShiftTypeByUnionId(unionId);
         } else if (permissionGroup.getId() == 1) {
 
             // If the current user is a master administrator.
@@ -135,6 +145,8 @@ public class HomeController {
         model.addAttribute("pendingEventList", pendingEventList);
 
         model.addAttribute("previousEventList", previousEventList);
+
+        model.addAttribute("shiftTypeList", shiftTypeList);
 
         return "home";
     }

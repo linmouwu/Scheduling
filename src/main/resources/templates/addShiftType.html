@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="panel-default col-lg-4" id="add_shift_type_div_id" style="display: none" th:fragment="addShiftType">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Attributes</th>
+            <th>Values</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Shift Type Name</td>
+            <td><input name="shiftTypeName" id="shiftTypeName_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Start Time</td>
+            <td><input name="startTime" id="startTimeShift_ID" type="text" placeholder="HH:MM"/></td>
+        </tr>
+        <tr>
+            <td>End Time</td>
+            <td><input name="endTime" id="endTimeShift_ID" type="text" placeholder="HH:MM"/></td>
+        </tr>
+        <tr>
+            <td>Notes</td>
+            <td><input name="notes" id="notes_ID" type="text"/></td>
+        </tr>
+        <tr>
+            <td>
+                <button id="submit_shift_type" type="button" class="btn btn-success">Submit
+                </button>
+            </td>
+            <td>
+                <button id="cancel_shift_type" type="button" class="btn btn-cancel">Cancel
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>

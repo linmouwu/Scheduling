@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid" id="shift_type_management" style="display: none" th:fragment="shiftTypeManagement">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Shift Type Management
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Shift List</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="shift_type_list_table">
+                        <thead>
+                        <tr>
+                            <th>Shift Name</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Notes</th>
+                            <th>Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="shiftType:${shiftTypeList}">
+                            <td th:text="${shiftType.shift_name}"></td>
+                            <td th:text="${shiftType.start_time}"></td>
+                            <td th:text="${shiftType.end_time}"></td>
+                            <td th:text="${shiftType.description}"></td>
+                            <td>
+                                <button id="remove_shift_type" type="button"
+                                        th:onclick="'javascript:remove_shift_type('+${shiftType.id}+');'"
+                                        class="btn btn-danger">Remove
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="text-right">
+                        <a href="javascript:void(0);" onclick="newShiftType()">Add Shift Type <i
+                                class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                    <div class="col-lg-4"></div>
+
+                    <div th:replace="addShiftType :: addShiftType"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+
+</html>

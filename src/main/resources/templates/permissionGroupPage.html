@@ -23,6 +23,7 @@
                         <thead>
                         <tr>
                             <th>UID</th>
+                            <th>Badge Number</th>
                             <th>Last Name</th>
                             <th>First Name</th>
                             <th>Title</th>
@@ -35,6 +36,7 @@
                         <tbody>
                         <tr th:each="officer:${officerList}">
                             <td th:text="${officer.uid}"></td>
+                            <td th:text="${officer.badgeNum}"></td>
                             <td th:text="${officer.lastName}"></td>
                             <td th:text="${officer.firstName}"></td>
                             <td th:text="${officer.title}"></td>

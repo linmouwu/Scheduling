@@ -9,6 +9,7 @@ function changeToUserProfile() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 function changeToRequest() {
     $('#group_schedule').fadeOut();
@@ -21,6 +22,7 @@ function changeToRequest() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 
 }
 function changeToCalendar() {
@@ -34,6 +36,7 @@ function changeToCalendar() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 function changeToGroupCalendar() {
     $('#group_schedule').fadeOut();
@@ -46,6 +49,7 @@ function changeToGroupCalendar() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 function changeToStaff() {
     $('#group_schedule').fadeOut();
@@ -58,9 +62,29 @@ function changeToStaff() {
     $('#user_profile').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
+
+function changeToShiftType() {
+    $('#group_schedule').fadeOut();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#shift_type_management').delay(350).fadeIn();
+    $('#editEvent').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+}
+
 function newUserForm() {
     $('#add_user_div_id').slideToggle();
+}
+
+function newShiftType() {
+    $('#add_shift_type_div_id').slideToggle();
 }
 
 function changeToCreateRequest() {
@@ -74,6 +98,7 @@ function changeToCreateRequest() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
 
 }
 //
@@ -100,6 +125,7 @@ function changeToCreateGroupRequest() {
     $('#schedule').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#shift_type_management').fadeOut();
     // $.get('allGroupSchedule').done(function(data){
     //     $('')
     // });
@@ -116,6 +142,7 @@ function changeToTCC() {
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
+    $('#shift_type_management').fadeOut();
 
 }
 
@@ -130,6 +157,7 @@ function changeToPGM() {
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 
 function changeToEditEvent(editRequest_id) {
@@ -143,6 +171,7 @@ function changeToEditEvent(editRequest_id) {
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
+    $('#shift_type_management').fadeOut();
 
     $.get("getEditEvent", {
         'id': editRequest_id
@@ -171,6 +200,8 @@ function changeToEditGroupSchedule(schedule_id) {
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
+    $('#shift_type_management').fadeOut();
+
     console.log(1);
     $.get("getEditSchedule", {
         'id': schedule_id
@@ -261,6 +292,39 @@ function addUser() {
 
 }
 
+function addShiftType() {
+
+    var shiftTypeName = $('#shiftTypeName_ID').val();
+    var startTime = $('#startTimeShift_ID').val();
+    var endTime = $('#endTimeShift_ID').val();
+    var description = $('#notes_ID').val();
+
+    $.post("add_user", {
+        'shiftTypeName': shiftTypeName,
+        'startTime': startTime,
+        'endTime': endTime,
+        'description': description
+    }).done(function (data) {
+
+        if (data == "Already existed") {
+            $('#shift_type_management').append(data);
+        }
+        else {
+            var markup =
+                "<tr><td>" + data.shiftTypeName +
+                "</td><td>" + data.startTime +
+                "</td><td>" + data.endTime +
+                "</td><td>" + data.description +
+                "</td><td><button id=\"remove_shift_type\" type=\"button\" onclick='remove_shift_type'\(" + data.id + "\)"+
+                " class=\"btn btn-danger\">Remove</button></td></tr>";
+            $('#shift_type_list_table > tbody').append(markup).hide().slideDown();
+        }
+
+        cancel_shift_type();
+    })
+
+}
+
 function addGroupEvent() {
 
 
@@ -271,7 +335,7 @@ function addGroupEvent() {
     var shift_type = $('#shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("input:checked").each(function() {
+    $("input:checked").each(function () {
         selected_officers.push($(this).val());
         console.log(selected_officers)
 
@@ -280,7 +344,7 @@ function addGroupEvent() {
     // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
     //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("createGroupEvent", {
-        'selectedOfficers[]' : selected_officers,
+        'selectedOfficers[]': selected_officers,
         'startTime': startTime_id,
         'endTime': endTime_id,
         'description': description,
@@ -407,8 +471,15 @@ function cancelAddUser() {
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
 }
+
+function cancel_shift_type() {
+    $('#shiftTypeName_ID').val("");
+    $('#startTime_ID').val("");
+    $('#endTime_ID').val("");
+    $('#notes_ID').val("");
+}
 function clearGroupSchedule() {
-    $('input:checkbox').prop( "checked", false );
+    $('input:checkbox').prop("checked", false);
     $('#start_time_group').val("");
     $('#end_time_group').val("");
     $('#group_schedule_description').val("");
@@ -433,6 +504,15 @@ function deactivate_time_cycle(timeCycleId) {
             location.reload();
         });
 
+}
+
+function remove_shift_type(shiftTypeId) {
+    $.get('/remove_shift_type', {'shiftTypeId': shiftTypeId})
+        .done(function () {
+
+            alert("Shift Type");
+
+        });
 }
 
 function configure_time_cycle() {
@@ -489,6 +569,8 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
+        $('#submit_shift_type').click(addShiftType);
+        $('#cancel_shift_type').click(cancelShiftType);
         $('#submit_Edit_Event').click(updateEvent);
         var union_ID = $('#currentUnionId').val();
         var groupEventsUrl = '/allGroupSchedule';
@@ -497,13 +579,13 @@ $(document)
             customButtons: {
                 invertButton: {
                     text: $('#currentShiftType').val(),
-                    id:"123",
-                    click: function() {
+                    id: "123",
+                    click: function () {
                         var self = this.innerHTML;
                         //
                         // var shiftType = $('#currentShiftType').val();
 
-                        if (self ==="Day"){
+                        if (self === "Day") {
                             $('#currentShiftType').val("Night");
                             this.innerHTML = "Night";
                         } else {
@@ -513,16 +595,17 @@ $(document)
                         console.log($('#currentShiftType').val());
                     }
                 },
-                getOffNumberButton:{
-                    text:"OffNumber",
-                    click:function () {3
+                getOffNumberButton: {
+                    text: "OffNumber",
+                    click: function () {
+                        3
                         var moment = $('#group_calendar').fullCalendar('getDate');
                         var shiftType = $('#currentShiftType').val();
                         var date = new Date(moment._d),
                             d = date.getDate(),
                             m = date.getMonth(),
                             y = date.getFullYear();
-                        getOffNumbers(date, union_ID,shiftType);
+                        getOffNumbers(date, union_ID, shiftType);
                     }
                 }
             }, //invert button
@@ -579,7 +662,7 @@ $(document)
                 }
             ],
             defaultView: 'basicWeek',
-            duration: { days: 5 }
+            duration: {days: 5}
 
         })
 
@@ -638,19 +721,20 @@ $(document)
                 }
             ],
             defaultView: 'basicWeek',
-            duration: { days: 5 }
+            duration: {days: 5}
 
         })
 
         function getOffNumbers(date, union_ID, shiftType) {
             $.get("getOfficerNumber", {
                 'date': date,
-                'union_id':union_ID,
-                'shiftType':shiftType
+                'union_id': union_ID,
+                'shiftType': shiftType
             }).done(function (data) {
                 alert(data);
             })
         }
+
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
