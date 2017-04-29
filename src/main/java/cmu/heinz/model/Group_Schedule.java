@@ -24,15 +24,15 @@ public class Group_Schedule {
     @JoinColumn(name = "recruit_ID")
     private Recruit recruitId;
     private String shiftType;
-    private String status;
+    private String schedule_status;
     private int selected_Officer;
 
     public String getStatus() {
-        return status;
+        return schedule_status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.schedule_status = status;
     }
 
     public int getId() {

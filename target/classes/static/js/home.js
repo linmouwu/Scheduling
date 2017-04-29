@@ -354,9 +354,6 @@ $(document)
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
-            // eventSources: [
-            //     eventsUrl
-            // ],
 
             events: [
                 {
@@ -397,6 +394,7 @@ $(document)
                     start: '2017-12-25',
                 }
             ],
+            color: '#378006',
             defaultView: 'basicWeek',
             duration: { days: 5 }
 
@@ -413,9 +411,14 @@ $(document)
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
-            // eventSources: [
-            //     eventsUrl
-            // ],
+            eventSources: [
+                {
+                    url: eventsUrl, // use the `url` property
+                    color: 'orange',    // an option!
+                    textColor: 'black'  // an option!
+                }
+
+            ],
 
             events: [
                 {
