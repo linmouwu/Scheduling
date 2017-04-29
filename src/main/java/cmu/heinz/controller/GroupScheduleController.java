@@ -41,7 +41,6 @@ public class GroupScheduleController {
 
     @RequestMapping(value = "/createGroupEvent", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity createGroupEvent(
-            @RequestParam(value = "status") String status,
             @RequestParam(value = "shift_type") String type,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
@@ -79,7 +78,7 @@ public class GroupScheduleController {
 //        }
 
         // New event instance.
-        Group_Schedule schedule = new Group_Schedule(recruitId, description, startTime, endTime, officer, union, type, status, selectedOfficers.size());
+        Group_Schedule schedule = new Group_Schedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
         schedule = group_scheduleRepository.save(schedule);
         for(String selectedOfficer : selectedOfficers) {
             Schedule_Officer record = new Schedule_Officer();
@@ -181,9 +180,10 @@ public class GroupScheduleController {
         Group_Schedule schedule = group_scheduleRepository.findById(thisId);
 
         // Set session value.
-        if (schedule != null) {
-            model.addAttribute("currentEditSchedule", schedule);
-        }
+//        if (schedule != null) {
+//            model.addAttribute("currentEditSchedule", schedule);
+//        }
+
 
         return ResponseEntity.ok(schedule);
     }

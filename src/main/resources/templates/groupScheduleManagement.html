@@ -28,6 +28,7 @@
                             <th>Number of Officer</th>
                             <th>Description</th>
                             <th>Status</th>
+                            <th></th>
 
                         </tr>
                         </thead>
@@ -41,6 +42,8 @@
                             <td th:text="${schedule.selected_Officer}"></td>
                             <td th:text="${schedule.description}"></td>
                             <td th:text="${schedule.status}"></td>
+
+                            <td><a href="javascript:void(0);" th:if="${schedule.status == 'pending'}" th:onclick="'javascript:changeToEditGroupSchedule('+${schedule.id}+');'" class="btn btn-xs btn-default">Edit</a></td>
                         </tr>
                         </tbody>
 
@@ -74,10 +77,7 @@
                             <div class="col-sm-2"><h4>Shift Type</h4></div>
                             <div class="col-sm-7"><input name="shifttype" id="shift_type" type="text" size="40"/></div>
                         </div>
-                        <div class="row myborder">
-                            <div class="col-sm-2"><h4>Status</h4></div>
-                            <div class="col-sm-7"><input name="status" id="status" type="text" size="40"/></div>
-                        </div>
+
     <div class="row myborder">
         <div class="col-sm-2"><h4>Select Staff</h4></div>
         <div class="col-sm-9">

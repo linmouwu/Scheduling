@@ -159,6 +159,34 @@ function changeToEditEvent(editRequest_id) {
 
     })
 }
+function changeToEditGroupSchedule(schedule_id) {
+    $('#group_schedule').fadeOut();
+    $('#edit_group_schedule').delay(350).fadeIn();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#schedule').fadeOut();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
+    console.log(1);
+    $.get("getEditSchedule", {
+        'id': schedule_id
+    }).done(function (data) {
+
+        var formattedStart = getFormattedDate(new Date(data.startTime));
+
+        var formattedEnd = getFormattedDate(new Date(data.endTime));
+        $('#edit_shift_type').val(data.shiftType);
+        $('#edit_start_time_group').val(formattedStart);
+        $('#edit_end_time_group').val(formattedEnd);
+        $('#edit_group_schedule_description').val(data.description);
+        // $('#currentEditId').val(data.id);
+
+    });
+}
 
 function getFormattedDate(date) {
     var year = date.getFullYear();
@@ -241,7 +269,6 @@ function addGroupEvent() {
     var endTime_id = $('#end_time_group').val();
     var description = $('#group_schedule_description').val();
     var shift_type = $('#shift_type').val();
-    var status = $('#status').val();
     var selected_officers = []
     console.log(1);
     $("input:checked").each(function() {
@@ -258,7 +285,6 @@ function addGroupEvent() {
         'endTime': endTime_id,
         'description': description,
         'shift_type': shift_type,
-        'status': status
     }).done(function (data) {
 
         console.log(data);
@@ -274,7 +300,7 @@ function addGroupEvent() {
                 "</td><td>" + shift_type +
                 "</td><td>" + selected_officers.length +
                 "</td><td>" + description +
-                "</td><td>" + status +
+                "</td><td>" + data.status +
                 "</td></tr>";
             $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
         }
@@ -458,7 +484,7 @@ $(document)
     .ready(function () {
 
         $('#submit_group_event').click(addGroupEvent);
-        $('#cancel_group_event').click(cancelGroupEvent);
+        $('#cancel_group_event').click(clearGroupSchedule);
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
@@ -489,7 +515,7 @@ $(document)
                 },
                 getOffNumberButton:{
                     text:"OffNumber",
-                    click:function () {
+                    click:function () {3
                         var moment = $('#group_calendar').fullCalendar('getDate');
                         var shiftType = $('#currentShiftType').val();
                         var date = new Date(moment._d),
