@@ -1,7 +1,7 @@
 package cmu.heinz.model;
 
 import javax.persistence.*;
-
+import java.util.*;
 /**
  * Holiday model.
  * Referring to HOLIDAY table.
@@ -19,6 +19,16 @@ public class Holiday {
     private String name;
 
     private String description;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    private Date date;
 
     public int getId() {
         return id;

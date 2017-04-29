@@ -312,6 +312,8 @@ $(document)
         $('#submit_Edit_Event').click(updateEvent)
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
+        var holidaysUrl = '/allHoliday?union_id=' + union_ID;
+        console.log(holidaysUrl);
         $('#group_calendar').fullCalendar({
             customButtons: {
                 invertButton: {
@@ -345,6 +347,7 @@ $(document)
                     }
                 }
             }, //invert button
+
             header: {
                 left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
@@ -354,46 +357,6 @@ $(document)
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
-
-            events: [
-                {
-                    title: 'New Years Day',
-                    start: '2017-01-01',
-                },
-                {
-                    title: 'Martin Luther King Jr.Day',
-                    start: '2017-02-15',
-                },
-                {
-                    title: 'Presidents Day',
-                    start: '2017-02-20',
-                },
-                {
-                    title: 'Good Friday',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Memorial Day',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Labor Day',
-                    start: '2017-09-04',
-                },
-                {
-                    title: 'Independence Day',
-                    start: '2017-07-04',
-                },
-
-                {
-                    title: 'Veterans Day',
-                    start: '2017-11-11',
-                },
-                {
-                    title: 'Christmas Day',
-                    start: '2017-12-25',
-                }
-            ],
             color: '#378006',
             defaultView: 'basicWeek',
             duration: { days: 5 }
@@ -416,48 +379,13 @@ $(document)
                     url: eventsUrl, // use the `url` property
                     color: 'orange',    // an option!
                     textColor: 'black'  // an option!
+                },
+                {
+                    url: holidaysUrl, // use the `url` property
+                    color: '#F0FFFF',    // an option!
+                    textColor: 'black'  // an option!
                 }
 
-            ],
-
-            events: [
-                {
-                    title: 'New Years Day',
-                    start: '2017-01-01',
-                },
-                {
-                    title: 'Martin Luther King Jr.Day',
-                    start: '2017-02-15',
-                },
-                {
-                    title: 'Presidents Day',
-                    start: '2017-02-20',
-                },
-                {
-                    title: 'Good Friday',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Memorial Day',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Labor Day',
-                    start: '2017-09-04',
-                },
-                {
-                    title: 'Independence Day',
-                    start: '2017-07-04',
-                },
-
-                {
-                    title: 'Veterans Day',
-                    start: '2017-11-11',
-                },
-                {
-                    title: 'Christmas Day',
-                    start: '2017-12-25',
-                }
             ],
             defaultView: 'basicWeek',
             duration: { days: 5 }
