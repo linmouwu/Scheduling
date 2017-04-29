@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Mouwu Lin
@@ -31,29 +33,38 @@ public class ShiftTypeController {
 
     @RequestMapping(value = "/add_shift_type", method = RequestMethod.POST)
     public ResponseEntity addShiftType(@RequestParam(value = "shiftTypeName") String shiftTypeName,
-                                       @RequestParam(value = "startTime") Time startTime,
-                                       @RequestParam(value = "endTime") Time endTime,
+                                       @RequestParam(value = "startTime") String startTime,
+                                       @RequestParam(value = "endTime") String endTime,
                                        @RequestParam(value = "description") String description) {
-
-        // User log in evidence.
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        UserDetails userDetails = (UserDetails) principal;
-
-        String username = userDetails.getUsername();
-
-        // Fetch user details by username(UID).
-        Officer officer = officerRepository.findByUID(username);
 
         ShiftType shiftType = new ShiftType();
 
-        shiftType.setShiftName(shiftTypeName);
-        shiftType.setStartTime(startTime);
-        shiftType.setEndTime(endTime);
-        shiftType.setDescription(description);
-        shiftType.setUnion(officer.getUnion());
+        try {
 
-        shiftTypeRepository.save(shiftType);
+            // User log in evidence.
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            UserDetails userDetails = (UserDetails) principal;
+
+            String username = userDetails.getUsername();
+
+            // Fetch user details by username(UID).
+            Officer officer = officerRepository.findByUID(username);
+
+            shiftType = new ShiftType();
+
+            DateFormat formatter = new SimpleDateFormat("HH:mm");
+
+            shiftType.setShiftName(shiftTypeName);
+            shiftType.setStartTime(new Time(formatter.parse(startTime).getTime()));
+            shiftType.setEndTime(new Time(formatter.parse(endTime).getTime()));
+            shiftType.setDescription(description);
+            shiftType.setUnion(officer.getUnion());
+
+            shiftTypeRepository.save(shiftType);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
 
         return ResponseEntity.ok(shiftType);
     }

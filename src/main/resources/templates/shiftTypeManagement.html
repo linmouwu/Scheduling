@@ -29,9 +29,9 @@
                         </thead>
                         <tbody>
                         <tr th:each="shiftType:${shiftTypeList}">
-                            <td th:text="${shiftType.shift_name}"></td>
-                            <td th:text="${shiftType.start_time}"></td>
-                            <td th:text="${shiftType.end_time}"></td>
+                            <td th:text="${shiftType.shiftName}"></td>
+                            <td th:text="${shiftType.startTime}"></td>
+                            <td th:text="${shiftType.endTime}"></td>
                             <td th:text="${shiftType.description}"></td>
                             <td>
                                 <button id="remove_shift_type" type="button"

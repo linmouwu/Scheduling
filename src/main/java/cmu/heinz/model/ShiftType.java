@@ -14,19 +14,19 @@ public class ShiftType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    private int id;
 
-    String shiftName;
+    private String shiftName;
 
-    Time startTime;
+    private Time startTime;
 
-    Time endTime;
+    private Time endTime;
 
-    String description;
+    private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "union_id")
-    Union union;
+    private Union union;
 
     public int getId() {
         return id;

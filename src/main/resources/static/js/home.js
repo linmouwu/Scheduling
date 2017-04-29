@@ -299,7 +299,7 @@ function addShiftType() {
     var endTime = $('#endTimeShift_ID').val();
     var description = $('#notes_ID').val();
 
-    $.post("add_user", {
+    $.post("add_shift_type", {
         'shiftTypeName': shiftTypeName,
         'startTime': startTime,
         'endTime': endTime,
@@ -311,16 +311,16 @@ function addShiftType() {
         }
         else {
             var markup =
-                "<tr><td>" + data.shiftTypeName +
+                "<tr><td>" + data.shiftName +
                 "</td><td>" + data.startTime +
                 "</td><td>" + data.endTime +
                 "</td><td>" + data.description +
-                "</td><td><button id=\"remove_shift_type\" type=\"button\" onclick='remove_shift_type'\(" + data.id + "\)"+
-                " class=\"btn btn-danger\">Remove</button></td></tr>";
+                "</td><td><button id=\"remove_shift_type\" type=\"button\" onclick='remove_shift_type\(" + data.id
+                + "\)' class=\"btn btn-danger\">Remove</button></td></tr>";
             $('#shift_type_list_table > tbody').append(markup).hide().slideDown();
         }
 
-        cancel_shift_type();
+        cancelShiftType();
     })
 
 }
@@ -472,7 +472,7 @@ function cancelAddUser() {
     $('#trainerID_ID').val("");
 }
 
-function cancel_shift_type() {
+function cancelShiftType() {
     $('#shiftTypeName_ID').val("");
     $('#startTime_ID').val("");
     $('#endTime_ID').val("");
@@ -510,8 +510,9 @@ function remove_shift_type(shiftTypeId) {
     $.get('/remove_shift_type', {'shiftTypeId': shiftTypeId})
         .done(function () {
 
-            alert("Shift Type");
+            alert("Shift Type Removed");
 
+            location.reload();
         });
 }
 

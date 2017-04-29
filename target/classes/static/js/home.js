@@ -292,6 +292,39 @@ function addUser() {
 
 }
 
+function addShiftType() {
+
+    var shiftTypeName = $('#shiftTypeName_ID').val();
+    var startTime = $('#startTimeShift_ID').val();
+    var endTime = $('#endTimeShift_ID').val();
+    var description = $('#notes_ID').val();
+
+    $.post("add_shift_type", {
+        'shiftTypeName': shiftTypeName,
+        'startTime': startTime,
+        'endTime': endTime,
+        'description': description
+    }).done(function (data) {
+
+        if (data == "Already existed") {
+            $('#shift_type_management').append(data);
+        }
+        else {
+            var markup =
+                "<tr><td>" + data.shiftName +
+                "</td><td>" + data.startTime +
+                "</td><td>" + data.endTime +
+                "</td><td>" + data.description +
+                "</td><td><button id=\"remove_shift_type\" type=\"button\" onclick='remove_shift_type\(" + data.id
+                + "\)' class=\"btn btn-danger\">Remove</button></td></tr>";
+            $('#shift_type_list_table > tbody').append(markup).hide().slideDown();
+        }
+
+        cancelShiftType();
+    })
+
+}
+
 function addGroupEvent() {
 
 
@@ -438,6 +471,13 @@ function cancelAddUser() {
     $('#promoteDate_ID').val("");
     $('#trainerID_ID').val("");
 }
+
+function cancelShiftType() {
+    $('#shiftTypeName_ID').val("");
+    $('#startTime_ID').val("");
+    $('#endTime_ID').val("");
+    $('#notes_ID').val("");
+}
 function clearGroupSchedule() {
     $('input:checkbox').prop("checked", false);
     $('#start_time_group').val("");
@@ -464,6 +504,16 @@ function deactivate_time_cycle(timeCycleId) {
             location.reload();
         });
 
+}
+
+function remove_shift_type(shiftTypeId) {
+    $.get('/remove_shift_type', {'shiftTypeId': shiftTypeId})
+        .done(function () {
+
+            alert("Shift Type");
+
+            location.reload();
+        });
 }
 
 function configure_time_cycle() {
@@ -520,6 +570,8 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
+        $('#submit_shift_type').click(addShiftType);
+        $('#cancel_shift_type').click(cancelShiftType);
         $('#submit_Edit_Event').click(updateEvent);
         var union_ID = $('#currentUnionId').val();
         var groupEventsUrl = '/allGroupSchedule';

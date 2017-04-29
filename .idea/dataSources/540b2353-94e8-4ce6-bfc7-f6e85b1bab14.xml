@@ -260,7 +260,7 @@
     </column>
     <column id="68" parent="10" name="End_time">
       <Position>4</Position>
-      <DataType>date|0</DataType>
+      <DataType>time|0</DataType>
     </column>
     <column id="69" parent="10" name="Shift_name">
       <Position>5</Position>
