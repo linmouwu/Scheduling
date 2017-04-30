@@ -97,7 +97,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="officer:${officerList}">
+                <tr th:each="officer:${officerList}" id="group_officers">
 
                     <td class="col-xs-2"><input type="checkbox" th:value="${officer.uid}"/></td>
                     <td class="col-xs-2" th:text="${officer.uid}"></td>

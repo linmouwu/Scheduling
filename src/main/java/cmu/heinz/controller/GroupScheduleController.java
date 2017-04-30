@@ -95,7 +95,6 @@ public class GroupScheduleController {
      *
      * @param id          event id to be updated
      * @param type        new event type
-     * @param status      new event status
      * @param description new description
      * @param startTime   new start time
      * @param endTime     new end time
@@ -103,11 +102,10 @@ public class GroupScheduleController {
      */
     @RequestMapping(value = "/update_group_schedule", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity updateGroupSchedule(
-            @RequestParam(value = "schedule_id") String id,
-            @RequestParam(value = "status") String status,
-            @RequestParam(value = "shift_type") String type,
+            @RequestParam(value = "scheduleId") String id,
+            @RequestParam(value = "shiftType") String type,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "selectedOfficer") List<String> selectedOfficers,
+            @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
             @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
             @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
 
@@ -135,12 +133,15 @@ public class GroupScheduleController {
         for(Schedule_Officer each : officers) {
             int thisId = each.getOfficer().getId();
             String thisUid = each.getOfficer().getUid();
+
             if(!selectedOfficers.contains(thisUid)) {
-                schedule_officerRepository.deleteScheduleOfficer(myId, thisId);
+                System.out.println("delete officer" + thisUid);
+                schedule_officerRepository.delete(each);
             } else {
                 visited[selectedOfficers.indexOf(thisUid)] = true;
             }
         }
+        System.out.println("delete extra officers");
         for(int i = 0; i < visited.length; i++) {
             if(!visited[i]) {
                 Schedule_Officer record = new Schedule_Officer();
@@ -150,18 +151,27 @@ public class GroupScheduleController {
 
             }
         }
-        if (admin.getPermissionGroup().getId() == 6) {
-            schedule.setStatus(status);
-        } else if (admin.getPermissionGroup().getId() == 7) {
-            schedule.setStartTime(startTime);
-            schedule.setEndTime(endTime);
-            schedule.setShiftType(type);
-            schedule.setSelected_Officer(selectedOfficers.size());
-            schedule.setDescription(description);
-        }
-        schedule = group_scheduleRepository.save(schedule);
+        System.out.println("create extra officers");
+//        if (admin.getPermissionGroup().getId() == 6) {
+//            //schedule.setStatus(status);
+//        } else if (admin.getPermissionGroup().getId() == 7) {
+//            schedule.setStartTime(startTime);
+//            schedule.setEndTime(endTime);
+//            schedule.setShiftType(type);
+//            System.out.println("what???");
+//            schedule.setSelected_Officer(selectedOfficers.size());
+//            schedule.setDescription(description);
+//        }
+        schedule.setStartTime(startTime);
+        schedule.setEndTime(endTime);
+        schedule.setShiftType(type);
+        System.out.println("what???");
+        schedule.setSelected_Officer(selectedOfficers.size());
+        schedule.setDescription(description);
+        System.out.println("update schedule");
+        Group_Schedule updated_schedule = group_scheduleRepository.save(schedule);
 
-        return ResponseEntity.ok(schedule);
+        return ResponseEntity.ok(updated_schedule);
     }
 
     /**

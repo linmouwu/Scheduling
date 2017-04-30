@@ -11,10 +11,10 @@ public class Schedule_Officer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "officer_ID")
     private Officer officer;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "schedule_ID")
     private Group_Schedule groupSchedule;
 
