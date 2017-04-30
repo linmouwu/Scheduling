@@ -21,7 +21,6 @@
                     <table class="table table-bordered table-hover" id="user_list_table">
                         <thead>
                         <tr>
-                            <th>UID</th>
                             <th>Badge Number</th>
                             <th>Last Name</th>
                             <th>First Name</th>
@@ -37,7 +36,6 @@
                         </thead>
                         <tbody>
                         <tr th:each="officer:${officerList}">
-                            <td th:text="${officer.uid}"></td>
                             <td th:text="${officer.badgeNum}"></td>
                             <td th:text="${officer.lastName}"></td>
                             <td th:text="${officer.firstName}"></td>
@@ -55,8 +53,10 @@
 
                     </table>
                     <div class="text-right">
-                        <a href="javascript:;" onclick="newUserForm()">Add New User <i
-                                class="fa fa-arrow-circle-right"></i></a>
+                        <div th:if="${officer.permissionGroup.id} == 1">
+                            <a href="javascript:void(0);" onclick="newUserForm()">Add New User <i
+                                    class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                     <div class="col-lg-4"></div>
 

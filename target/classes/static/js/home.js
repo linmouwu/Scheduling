@@ -510,7 +510,7 @@ function remove_shift_type(shiftTypeId) {
     $.get('/remove_shift_type', {'shiftTypeId': shiftTypeId})
         .done(function () {
 
-            alert("Shift Type");
+            alert("Shift Type Removed");
 
             location.reload();
         });

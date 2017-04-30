@@ -29,6 +29,7 @@ public class HomeController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+
     @Autowired
     private Group_ScheduleRepository groupScheduleRepository;
 
@@ -83,7 +84,7 @@ public class HomeController {
         System.out.println("the id is " + uid);
 
         // List all users.
-        List<Officer> officerList = (List<Officer>) officerRepository.findAll();
+        List<Officer> officerList = new ArrayList<Officer>();
 
         // List all unions.
         List<Union> unionList = (List<Union>) unionRepository.findAll();
@@ -105,8 +106,9 @@ public class HomeController {
             // If the current user  is a administrator.
             int unionId = officer.getUnion().getId();
             List<Group_Schedule> schedules = groupScheduleRepository.findByUnion(unionId);
+            officerList = (List<Officer>) officerRepository.findByUnion(unionId);
 
-            model.addAttribute("groupScheduleList",schedules);
+            model.addAttribute("groupScheduleList", schedules);
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
@@ -116,19 +118,19 @@ public class HomeController {
             // If the current user is a master administrator.
             TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
 
+            officerList = (List<Officer>) officerRepository.findAll();
+
             if (timeCycleActivated != null) {
-
                 model.addAttribute("activatedTimeCycle", timeCycleActivated);
-
             } else {
-
                 model.addAttribute("activatedTimeCycle");
-
             }
 
         } else if (permissionGroup.getId() == 2) {
 
             // TODO: if a current user is a master technician
+            officerList = (List<Officer>) officerRepository.findAll();
+
         } else {
             // Other users.
             pendingEventList = new ArrayList<Event>();
