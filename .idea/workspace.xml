@@ -4,13 +4,6 @@
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/HomeController.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/OfficerRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/OfficerRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/administratorSideBar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/administratorSideBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/staffManagement.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/staffManagement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/techAdminSideBar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/techAdminSideBar.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/home.js" afterPath="$PROJECT_DIR$/target/classes/static/js/home.js" />
     </list>
     <ignored path="CityOfLansing.iws" />
@@ -1113,7 +1106,7 @@
       <workItem from="1493043841922" duration="488000" />
       <workItem from="1493486652781" duration="623000" />
       <workItem from="1493487456176" duration="7807000" />
-      <workItem from="1493499907517" duration="3342000" />
+      <workItem from="1493499907517" duration="3363000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -1437,11 +1430,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493500687418</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="2017/04/29 Shift type add/remove.">
+      <created>1493511809888</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1493511809888</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123067000" />
+    <option name="totallyTimeSpent" value="123088000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
