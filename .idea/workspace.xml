@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-    </list>
+    <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="" />
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -1111,7 +1108,7 @@
       <workItem from="1493486652781" duration="623000" />
       <workItem from="1493487456176" duration="7807000" />
       <workItem from="1493499907517" duration="3363000" />
-      <workItem from="1493512148816" duration="901000" />
+      <workItem from="1493512148816" duration="945000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -1446,7 +1443,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123989000" />
+    <option name="totallyTimeSpent" value="124033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
