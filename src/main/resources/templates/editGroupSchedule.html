@@ -14,10 +14,10 @@
 
     <div class="panel panel-default myborder">
         <div class="panel-heading">
-            <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Create Group Schedule</h4>
+            <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Edit Group Schedule</h4>
         </div>
         <div class="panel-body">
-
+            <input type="hidden" id="edit_id" />
 
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Start Time</h4></div>
@@ -38,7 +38,7 @@
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Select Staff</h4></div>
                 <div class="col-sm-9">
-                    <table class="table table-hover table-fixed" id="user_list_table">
+                    <table class="table table-hover table-fixed" id="re_edit_user_list_table">
                         <thead>
                         <tr>
 
@@ -54,7 +54,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="officer:${officerList}">
+                        <tr th:each="officer:${officerList}" id="edit_group_officers">
 
                             <td class="col-xs-2"><input type="checkbox" th:value="${officer.uid}"/></td>
                             <td class="col-xs-2" th:text="${officer.uid}"></td>
@@ -72,11 +72,11 @@
             </div>
             <div class="row myborder">
                 <div class="col-sm-2">
-                    <button id="submit_group_event" type="button" class="btn btn-success">Submit
+                    <button id="re_submit_group_event" type="button" class="btn btn-success">Submit
                     </button>
                 </div>
                 <div class="col-sm-9 text-left">
-                    <button id="cancel_group_event" type="button" class="btn btn-cancel">Cancel
+                    <button id="re_cancel_group_event" type="button" class="btn btn-cancel">Cancel
                     </button>
                 </div>
             </div>

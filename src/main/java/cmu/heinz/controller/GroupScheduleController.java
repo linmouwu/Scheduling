@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class GroupScheduleController {
     private Group_ScheduleRepository group_scheduleRepository;
     @Autowired
     private Schedule_OfficerRepository schedule_officerRepository;
+
 
 
     @RequestMapping(value = "/createGroupEvent", method = {RequestMethod.POST, RequestMethod.GET})
@@ -76,7 +80,7 @@ public class GroupScheduleController {
         // New event instance.
         Group_Schedule schedule = new Group_Schedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
         schedule = group_scheduleRepository.save(schedule);
-        for (String selectedOfficer : selectedOfficers) {
+        for(String selectedOfficer : selectedOfficers) {
             Schedule_Officer record = new Schedule_Officer();
             record.setGroupSchedule(schedule);
             record.setOfficer(officerRepository.findByUID(selectedOfficer));
@@ -91,7 +95,6 @@ public class GroupScheduleController {
      *
      * @param id          event id to be updated
      * @param type        new event type
-     * @param status      new event status
      * @param description new description
      * @param startTime   new start time
      * @param endTime     new end time
@@ -99,11 +102,10 @@ public class GroupScheduleController {
      */
     @RequestMapping(value = "/update_group_schedule", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity updateGroupSchedule(
-            @RequestParam(value = "schedule_id") String id,
-            @RequestParam(value = "status") String status,
-            @RequestParam(value = "shift_type") String type,
+            @RequestParam(value = "scheduleId") String id,
+            @RequestParam(value = "shiftType") String type,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "selectedOfficer") List<String> selectedOfficers,
+            @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
             @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
             @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
 
@@ -128,17 +130,20 @@ public class GroupScheduleController {
         //change schedule_officer records
         boolean[] visited = new boolean[selectedOfficers.size()];
         List<Schedule_Officer> officers = schedule_officerRepository.findByScheduleId(myId);
-        for (Schedule_Officer each : officers) {
+        for(Schedule_Officer each : officers) {
             int thisId = each.getOfficer().getId();
             String thisUid = each.getOfficer().getUid();
-            if (!selectedOfficers.contains(thisUid)) {
-                schedule_officerRepository.deleteScheduleOfficer(myId, thisId);
+
+            if(!selectedOfficers.contains(thisUid)) {
+                System.out.println("delete officer" + thisUid);
+                schedule_officerRepository.delete(each);
             } else {
                 visited[selectedOfficers.indexOf(thisUid)] = true;
             }
         }
-        for (int i = 0; i < visited.length; i++) {
-            if (!visited[i]) {
+        System.out.println("delete extra officers");
+        for(int i = 0; i < visited.length; i++) {
+            if(!visited[i]) {
                 Schedule_Officer record = new Schedule_Officer();
                 record.setOfficer(officerRepository.findByUID(selectedOfficers.get(i)));
                 record.setGroupSchedule(schedule);
@@ -146,18 +151,27 @@ public class GroupScheduleController {
 
             }
         }
-        if (admin.getPermissionGroup().getId() == 6) {
-            schedule.setStatus(status);
-        } else if (admin.getPermissionGroup().getId() == 7) {
-            schedule.setStartTime(startTime);
-            schedule.setEndTime(endTime);
-            schedule.setShiftType(type);
-            schedule.setSelected_Officer(selectedOfficers.size());
-            schedule.setDescription(description);
-        }
-        schedule = group_scheduleRepository.save(schedule);
+        System.out.println("create extra officers");
+//        if (admin.getPermissionGroup().getId() == 6) {
+//            //schedule.setStatus(status);
+//        } else if (admin.getPermissionGroup().getId() == 7) {
+//            schedule.setStartTime(startTime);
+//            schedule.setEndTime(endTime);
+//            schedule.setShiftType(type);
+//            System.out.println("what???");
+//            schedule.setSelected_Officer(selectedOfficers.size());
+//            schedule.setDescription(description);
+//        }
+        schedule.setStartTime(startTime);
+        schedule.setEndTime(endTime);
+        schedule.setShiftType(type);
+        System.out.println("what???");
+        schedule.setSelected_Officer(selectedOfficers.size());
+        schedule.setDescription(description);
+        System.out.println("update schedule");
+        Group_Schedule updated_schedule = group_scheduleRepository.save(schedule);
 
-        return ResponseEntity.ok(schedule);
+        return ResponseEntity.ok(updated_schedule);
     }
 
     /**
@@ -169,7 +183,7 @@ public class GroupScheduleController {
      */
     @RequestMapping(value = "/getEditSchedule", method = RequestMethod.GET)
     public ResponseEntity getSchedule(@RequestParam(value = "id") Integer id,
-                                      Model model) {
+                                   Model model) {
 
         // Find event by given id.
         int thisId = id;
@@ -187,7 +201,7 @@ public class GroupScheduleController {
     /**
      * Get all events of one union.
      *
-     * @param model session model of the event
+     * @param model    session model of the event
      * @return corresponding http response
      */
     @RequestMapping(value = "/allGroupSchedule", method = RequestMethod.GET)
@@ -205,9 +219,9 @@ public class GroupScheduleController {
         System.out.println("group schedules");
         System.out.println(schedules.toString());
 
-        model.addAttribute("groupScheduleList", schedules);
+        model.addAttribute("groupScheduleList",schedules);
 
-        return ResponseEntity.ok("ok");
+        return ResponseEntity.ok("ok" );
     }
 
 }
