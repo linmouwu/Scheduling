@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="" />
+    <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -78,8 +80,8 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state relative-caret-position="375">
+              <caret line="25" column="52" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -1108,7 +1110,7 @@
       <workItem from="1493486652781" duration="623000" />
       <workItem from="1493487456176" duration="7807000" />
       <workItem from="1493499907517" duration="3363000" />
-      <workItem from="1493512148816" duration="945000" />
+      <workItem from="1493512148816" duration="1169000" />
     </task>
     <task id="LOCAL-00001" summary="fix a bug">
       <created>1489968277324</created>
@@ -1443,7 +1445,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124033000" />
+    <option name="totallyTimeSpent" value="124257000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2019,8 +2021,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        <state relative-caret-position="375">
+          <caret line="25" column="52" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="30" />
           <folding />
         </state>
       </provider>
