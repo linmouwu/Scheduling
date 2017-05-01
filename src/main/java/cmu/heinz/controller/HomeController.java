@@ -52,6 +52,11 @@ public class HomeController {
      */
     @Autowired
     private HolidayRepository holidayRepository;
+    /**
+     * Shift Type interface.
+     */
+    @Autowired
+    private ShiftTypeRepository  shiftTypeRepository;
 
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
@@ -90,6 +95,9 @@ public class HomeController {
 
         //List all holidays
         List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
+
+        //List all shift type
+        List<ShiftType> shiftTypeList = (List<ShiftType>) shiftTypeRepository.findAll();
 
         if (permissionGroup.getId() == 7) {
 
@@ -139,6 +147,10 @@ public class HomeController {
         model.addAttribute("pendingEventList", pendingEventList);
 
         model.addAttribute("previousEventList", previousEventList);
+
+        model.addAttribute("shiftTypeList", shiftTypeList);
+
+        System.out.println(shiftTypeList);
 
         return "home";
     }

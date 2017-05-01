@@ -134,18 +134,26 @@
 
         </div>
         <div class="container-fluid" id="group_calendar" style="display: none">
-            <input type="hidden" th:value="Day" id="currentShiftType"/>
+            <input type="hidden" th:value="1" id="currentShiftType"/>
             <label>Shift_Type</label>
             <select name="shiftTypeMenu" id="shiftTypeMenu"
                     onchange="updateEventByShift()">
+                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}" th:id="${shiftType.id}"></option>
             </select>
+        </div>
+        <div>
+            <input type="hidden" th:value="${shiftTypeList}" id="shiftTypeList"/>
         </div>
         <div>
             <input type="hidden" th:value="${officer.union.id}" id="currentUnionId"/>
         </div>
 
+
         <div>
             <input type="hidden" id="currentEditId"/>
+        </div>
+        <div>
+            <input type="hidden" id="previousShiftId" value="1"/>
         </div>
 
         <div th:replace="scheduleRequestList :: scheduleRequestList">

@@ -401,6 +401,22 @@ function cancelAddEvent() {
 function cancelAssignHoliday() {
     $('input:checkbox').prop( "checked", false );
 }
+function updateEventByShift(){
+    var shift = $("#shiftTypeMenu option:selected").text();
+    var shiftId = $("#shiftTypeMenu option:selected").attr('id');
+    // console.log(shiftId);
+    var previousShiftId = $('#previousShiftId').val();
+    var previousUrl = '/allShiftTypeEvent?shiftType=' + previousShiftId;
+    var eventsUrl = '/allShiftTypeEvent?shiftType=' + shiftId;
+    console.log(eventsUrl);
+    console.log(previousUrl);
+    $('#group_calendar').fullCalendar('removeEventSource',previousUrl);
+    $('#group_calendar').fullCalendar('addEventSource',eventsUrl);
+
+    $('#group_calendar').fullCalendar('refetchEvents');
+    var previousShiftId = $('#previousShiftId').val(shiftId);
+    var shiftType = $('#currentShiftType').val(shiftId);
+}
 $(document)
     .ready(function () {
 
@@ -413,10 +429,13 @@ $(document)
         $('#submit_holiday_assign').click(assignHoliday);
         $('#cancel_holiday_assign').click(cancelAssignHoliday);
         var union_ID = $('#currentUnionId').val();
-        var eventsUrl = '/allEvent?union_id=' + union_ID;
+
+        var eventsUrl = '/allShiftTypeEvent?shiftType=' + 1;
         var unionEventsUrl = '/allUnionEvent?union_id=' + union_ID;
         var holidaysUrl = '/allHoliday?union_id=' + union_ID;
         console.log(holidaysUrl);
+
+
         $('#group_calendar').fullCalendar({
             customButtons: {
                 invertButton: {
@@ -448,7 +467,8 @@ $(document)
                             y = date.getFullYear();
                         getOffNumbers(date, union_ID,shiftType);
                     }
-                }
+                },
+
             }, //invert button
 
             header: {
@@ -458,15 +478,13 @@ $(document)
             },
             eventSources: [
                 {
-                    url: unionEventsUrl, // use the `url` property
-                    color: 'orange',    // an option!
-                    textColor: 'black'  // an option!
-                },
-                {
                     url: holidaysUrl, // use the `url` property
-                    color: '#F0FFFF',    // an option!
+                    color: 'orange',    // an option!
                     textColor: 'black',  // an option!
                     allDayDefault: true
+                },
+                {
+                    url: eventsUrl, // use the `url` property
                 }
 
             ],
@@ -476,15 +494,21 @@ $(document)
             selectable: true,
             color: '#378006',
             defaultView: 'basicWeek',
-            fixedWeekCount:6
+            dayClick: function(date, jsEvent, view) {
+
+                alert('Clicked on: ' + date.format());
+
+                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+                alert('Current view: ' + view.name);
+
+                // change the day's background color just for fun
+                $(this).css('background-color', 'red');
+
+            }
 
         })
-        // var callendar = document.getElementById("calendar1");
-        // var node = document.createElement("DIV");
-        // var text = document.createTextNode("hahahaha");
-        // node.appendChild(text);
-        // callendar.appendChild(node);
-        // $('#group_calendar').fullCalendar('rerenderEvents');
+
         $('#calendar').fullCalendar({
 
             header: {

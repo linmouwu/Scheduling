@@ -186,7 +186,56 @@ public class CreateEventController {
 
         return ResponseEntity.ok(event);
     }
+    /**
+     * Get all events of one union.
+     *
+     * @param shiftType union to visit
+     * @param model    session model of the event
+     * @return corresponding http response
+     */
+    @RequestMapping(value = "/allShiftTypeEvent", method = RequestMethod.GET)
+    public ResponseEntity getAllShiftEvent(@RequestParam(value = "shiftType") int shiftType,
+                                      Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+
+        int union_id = officer.getUnion().getId();
+
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+
+        allEvent = eventRepository.findByAllUnionIDAndShift(union_id,shiftType);
+
+//        allEvent = eventRepository.findByAllUnionID(union_id);
+
+        List<Schedule_Officer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+
+        List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
+
+        if (allEvent != null) {
+            for (Event e : allEvent) {
+                String description = e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
+                allCurrentEvent.add(cur);
+            }
+            model.addAttribute("allShiftEvent", allCurrentEvent);
+        }
+        if (groupSchedule != null) {
+            for (Schedule_Officer s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(),s.getGroupSchedule().getDescription(),s.getGroupSchedule().getStartTime(),s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
+        return ResponseEntity.ok(allCurrentEvent);
+    }
     /**
      * Get all events of one union.
      *
