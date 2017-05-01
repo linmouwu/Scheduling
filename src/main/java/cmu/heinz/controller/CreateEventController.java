@@ -320,23 +320,22 @@ public class CreateEventController {
         return ResponseEntity.ok(allCurrentEvent);
     }
 @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
-    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") String shiftType, Model model) {
+    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") int shiftType, Model model) {
 
+        Calendar c = Calendar.getInstance();
+        c.setTime(start_date);
+        c.add(Calendar.DATE, 1);
+        Date dt = c.getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String sd = df.format(start_date);
+        String sd = df.format(dt);
         String rst = "ShiftType:" + shiftType + "\n";
-        for (int i = 0; i < 7; i++) {
-            Date curDate = addDays(start_date, i);
-            String cd = df.format(curDate);
-            System.out.println(cd);
-            Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
-            Integer groupNext = group_scheduleRepository.findByAllDate(union_id,cd,shiftType);
-            if (groupNext != null) {
-                next += groupNext;
-            }
-            System.out.println(next);
-            rst += cd + " " + next + "\n";
+
+        int off = eventRepository.findByAllDate(union_id, sd, shiftType);
+        Integer groupOff = group_scheduleRepository.findByAllDate(union_id,sd,shiftType);
+        if (groupOff != null) {
+            off += groupOff;
         }
+        rst += sd + " Leave Officer Number: " + off;
         return ResponseEntity.ok(rst);
     }
     public static Date addDays(Date date, int days)

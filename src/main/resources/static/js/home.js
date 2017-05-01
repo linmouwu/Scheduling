@@ -437,44 +437,11 @@ $(document)
 
 
         $('#group_calendar').fullCalendar({
-            customButtons: {
-                invertButton: {
-                    text: $('#currentShiftType').val(),
-                    id:"123",
-                    click: function() {
-                        var self = this.innerHTML;
-                        //
-                        // var shiftType = $('#currentShiftType').val();
-
-                        if (self ==="Day"){
-                            $('#currentShiftType').val("Night");
-                            this.innerHTML = "Night";
-                        } else {
-                            $('#currentShiftType').val("Day");
-                            this.innerHTML = "Day";
-                        }
-                        console.log($('#currentShiftType').val());
-                    }
-                },
-                getOffNumberButton:{
-                    text:"OffNumber",
-                    click:function () {
-                        var moment = $('#group_calendar').fullCalendar('getDate');
-                        var shiftType = $('#currentShiftType').val();
-                        var date = new Date(moment._d),
-                            d = date.getDate(),
-                            m = date.getMonth(),
-                            y = date.getFullYear();
-                        getOffNumbers(date, union_ID,shiftType);
-                    }
-                },
-
-            }, //invert button
 
             header: {
                 left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
-                right: 'basicWeek,basicDay'
+                right: 'month,basicDay'
             },
             eventSources: [
                 {
@@ -493,17 +460,12 @@ $(document)
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
             color: '#378006',
-            defaultView: 'basicWeek',
+            defaultView: 'month',
             dayClick: function(date, jsEvent, view) {
-
-                alert('Clicked on: ' + date.format());
-
-                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-                alert('Current view: ' + view.name);
-
-                // change the day's background color just for fun
-                $(this).css('background-color', 'red');
+                var shiftType = $('#currentShiftType').val();
+                var date1 = new Date(date);
+                console.log(date);
+                getOffNumbers(date1, union_ID,shiftType);
 
             }
 
