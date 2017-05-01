@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="panel-default col-lg-4" id="assign_holiday_union_div_id" style="display: none" th:fragment="assignHolidayToUnion">
+    <div id="assign_union_id_div">
+
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Holiday Name</th>
+            <th>Assign</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="holiday:${holidayList}" id="assign_holiday_list">
+            <td th:text="${holiday.name}"></td>
+            <td class="col-xs-2"><input type="checkbox" th:value="${holiday.id}"/></td>
+        </tr>
+        </tbody>
+
+    </table>
+        <button id="submit_holiday_assign" type="button" class="btn btn-success">Submit
+        </button>
+        <button id="cancel_holiday_assign" type="button" class="btn btn-cancel">Cancel
+        </button>
+</div>
+
+</html>

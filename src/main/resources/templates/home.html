@@ -177,6 +177,7 @@
 
         <div th:if="${officer.permissionGroup.id} == 1">
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
+            <div th:replace="holidaymanagement :: holidaymanagement"></div>
         </div>
 
         <div th:if="${officer.permissionGroup.id} == 2">
@@ -184,17 +185,32 @@
         </div>
 
         <!--Other components.-->
-        <div class="container-fluid" id="calendar" style="display: none">
+        <div class="container-fluid" id="calendar" style="display: none"><form action="" method="get">
+
+        </form>
+
         </div>
         <div class="container-fluid" id="group_calendar" style="display: none">
-            <input type="hidden" th:value="Day" id="currentShiftType"/>
+            <input type="hidden" th:value="1" id="currentShiftType"/>
+            <label>Shift_Type</label>
+            <select name="shiftTypeMenu" id="shiftTypeMenu"
+                    onchange="updateEventByShift()">
+                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}" th:id="${shiftType.id}"></option>
+            </select>
+        </div>
+        <div>
+            <input type="hidden" th:value="${shiftTypeList}" id="shiftTypeList"/>
         </div>
         <div>
             <input type="hidden" th:value="${officer.union.id}" id="currentUnionId"/>
         </div>
 
+
         <div>
             <input type="hidden" id="currentEditId"/>
+        </div>
+        <div>
+            <input type="hidden" id="previousShiftId" value="1"/>
         </div>
 
         <div th:replace="scheduleRequestList :: scheduleRequestList">
@@ -219,6 +235,11 @@
 
         <div th:replace="userProfile :: userProfile">
         </div>
+        <div th:replace="holidayManagement :: holidayManagement">
+        </div>
+        <div th:replace="assignHoliday :: assignHoliday">
+        </div>
+
 
     </div>
     <!-- /#page-wrapper -->

@@ -75,4 +75,17 @@ public class ShiftType {
     public void setUnion(Union union) {
         this.union = union;
     }
+
+    @Override
+    public String toString() {
+        return "ShiftType{" +
+                "id=" + id +
+                ", shiftName='" + shiftName + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", description='" + description + '\'' +
+                ", union=" + union +
+                '}';
+    }
+}
 }

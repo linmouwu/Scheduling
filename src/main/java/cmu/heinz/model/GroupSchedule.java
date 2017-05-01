@@ -23,7 +23,7 @@ public class GroupSchedule {
 
     private int recruitId;
     private String shiftType;
-    private String status;
+    private String schedule_status;
     private int selected_Officer;
     public GroupSchedule(){}
     public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected){
@@ -39,11 +39,11 @@ public class GroupSchedule {
     }
 
     public String getStatus() {
-        return status;
+        return schedule_status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.schedule_status = status;
     }
 
     public int getId() {

@@ -50,6 +50,16 @@ public class HomeController {
      */
     @Autowired
     private TimeCycleRepository timeCycleRepository;
+    /**
+     * Holiday Cycle interface.
+     */
+    @Autowired
+    private HolidayRepository holidayRepository;
+    /**
+     * Shift Type interface.
+     */
+    @Autowired
+    private ShiftTypeRepository  shiftTypeRepository;
 
 
     /**
@@ -94,6 +104,12 @@ public class HomeController {
         List<Event> previousEventList = new ArrayList<Event>();
 
         List<ShiftType> shiftTypeList = new ArrayList<ShiftType>();
+
+        //List all holidays
+        List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
+
+        //List all shift type
+        List<ShiftType> shiftTypeList = (List<ShiftType>) shiftTypeRepository.findAll();
 
         if (permissionGroup.getId() == 7) {
 
@@ -144,11 +160,17 @@ public class HomeController {
 
         model.addAttribute("unionList", unionList);
 
+        model.addAttribute("holidayList", holidayList);
+
         model.addAttribute("pendingEventList", pendingEventList);
 
         model.addAttribute("previousEventList", previousEventList);
 
         model.addAttribute("shiftTypeList", shiftTypeList);
+
+        model.addAttribute("shiftTypeList", shiftTypeList);
+
+        System.out.println(shiftTypeList);
 
         return "home";
     }
