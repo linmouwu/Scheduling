@@ -30,13 +30,14 @@
                         <tr th:each="union:${unionList}" id="unionListForHoliday">
                             <td th:text="${union.id}"></td>
                             <td th:text="${union.name}"></td>
-                            <td><a href="javascript:;" th:onclick="'javascript:newAssignHoliday('+${union.id}+');'" >Assign Holiday </a></td>
+                            <td><a href="javascript:;" th:onclick="'javascript:newAssignHoliday('+${union.id}+');'">Assign
+                                Holiday </a></td>
                         </tr>
                         </tbody>
 
                     </table>
                     <div class="col-lg-4"></div>
-                    <input type="hidden"  id="current_assign_union_id"/>
+                    <input type="hidden" id="current_assign_union_id"/>
 
 
                 </div>

@@ -185,9 +185,10 @@
         </div>
 
         <!--Other components.-->
-        <div class="container-fluid" id="calendar" style="display: none"><form action="" method="get">
+        <div class="container-fluid" id="calendar" style="display: none">
+            <form action="" method="get">
 
-        </form>
+            </form>
 
         </div>
         <div class="container-fluid" id="group_calendar" style="display: none">
@@ -195,7 +196,8 @@
             <label>Shift_Type</label>
             <select name="shiftTypeMenu" id="shiftTypeMenu"
                     onchange="updateEventByShift()">
-                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}" th:id="${shiftType.id}"></option>
+                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}"
+                        th:id="${shiftType.id}"></option>
             </select>
         </div>
         <div>

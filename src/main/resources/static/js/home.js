@@ -249,7 +249,7 @@ function changeToEditEvent(editRequest_id) {
 
     })
 }
-function updateGroupSchedule(){
+function updateGroupSchedule() {
     var editRequest_id = $('#edit_id').val();
     // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#edit_start_time_group').val();
@@ -258,13 +258,10 @@ function updateGroupSchedule(){
     var event_type = $('#edit_shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("#edit_group_officers input:checked").each(function() {
+    $("#edit_group_officers input:checked").each(function () {
         selected_officers.push($(this).val());
         console.log(selected_officers);
 
-function updateHolidayDate() {
-    var newHolidayDate = [];
-    var holidayTable = document.getElementById("holiday_list_table");
     });
     $.post("update_group_schedule", {
         'scheduleId': editRequest_id,
@@ -323,6 +320,11 @@ function getFormattedDate(date) {
     return month + '/' + day + '/' + year;
 }
 
+
+function updateHolidayDate() {
+    var newHolidayDate = [];
+    var holidayTable = document.getElementById("holiday_list_table");
+
     for (var i = 1; i < holidayTable.rows.length; i++) {
         var newDate = holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value;
         if (newDate !== null && newDate !== undefined && newDate !== "") {
@@ -337,13 +339,13 @@ function getFormattedDate(date) {
         // console.log(holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value);
     }
     $.post("updateHolidayDate", {
-        'dateList[]' :newHolidayDate,
+        'dateList[]': newHolidayDate,
     }).done(function (data) {
         var newTable = document.getElementById("holiday_list_table");
         console.log(data);
         for (var i = 1; i < holidayTable.rows.length; i++) {
-            var date = new Date(data[i-1].date);
-            console.log(data[i-1].date);
+            var date = new Date(data[i - 1].date);
+            console.log(data[i - 1].date);
             var format = moment(date).format('MM/DD/YYYY');
             newTable.rows[i].cells[1].innerHTML = format;
         }
@@ -458,7 +460,7 @@ function addGroupEvent() {
     var shift_type = $('#shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("#group_officers input:checked").each(function() {
+    $("#group_officers input:checked").each(function () {
         selected_officers.push($(this).val());
         console.log(selected_officers)
 
@@ -488,7 +490,7 @@ function addGroupEvent() {
                 "</td><td>" + selected_officers.length +
                 "</td><td>" + description +
                 "</td><td>" + data.status +
-                "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule("+ data.id +")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
+                "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data.id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
             $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
         }
         //location.reload();
@@ -545,9 +547,9 @@ function assignHoliday() {
     });
     console.log(selectedHoliday);
     $.post("assignHoliday", {
-        'unionId' : unionid,
-         'selectedHoliday[]' : selectedHoliday
-    }).done(function(data) {
+        'unionId': unionid,
+        'selectedHoliday[]': selectedHoliday
+    }).done(function (data) {
         $('#assign_holiday_union_div_id').slideToggle;
         cancelAssignHoliday();
         document.getElementById("assign_union_id_div").innerHTML = "";
@@ -632,20 +634,8 @@ function cancelAddEvent() {
     $('#individualRequestType').val("");
 }
 function cancelAssignHoliday() {
-    $('input:checkbox').prop( "checked", false );
+    $('input:checkbox').prop("checked", false);
 }
-function updateEventByShift(){
-    var shift = $("#shiftTypeMenu option:selected").text();
-    var shiftId = $("#shiftTypeMenu option:selected").attr('id');
-    // console.log(shiftId);
-    var previousShiftId = $('#previousShiftId').val();
-    var previousUrl = '/allShiftTypeEvent?shiftType=' + previousShiftId;
-    var eventsUrl = '/allShiftTypeEvent?shiftType=' + shiftId;
-    console.log(eventsUrl);
-    console.log(previousUrl);
-    $('#group_calendar').fullCalendar('removeEventSource',previousUrl);
-    $('#group_calendar').fullCalendar('addEventSource',eventsUrl);
-
 
 function deactivate_time_cycle(timeCycleId) {
 
@@ -694,33 +684,23 @@ function add_time_cycle() {
 
 }
 
-// function createGroupSchedule(adminId) {
-//
-//     var startDate = $('#startTime').val();
-//     var endDate = $('#endTime').val();
-//     var shiftType = $('#shiftType').val();
-//
-//     var userList = [];
-//
-//     $('input[name="users"]:checked').each(function () {
-//         userList.push($(this).value());
-//     });
-//
-//     $.post("/add_group_schedule", {
-//         "startDate": startDate,
-//         "endDate": endDate,
-//         "shiftType": shiftType,
-//         "userList": userList
-//     }).done(function () {
-//
-//     });
-//
-// }
+function updateEventByShift() {
+    var shift = $("#shiftTypeMenu option:selected").text();
+    var shiftId = $("#shiftTypeMenu option:selected").attr('id');
+    // console.log(shiftId);
+    var previousShiftId = $('#previousShiftId').val();
+    var previousUrl = '/allShiftTypeEvent?shiftType=' + previousShiftId;
+    var eventsUrl = '/allShiftTypeEvent?shiftType=' + shiftId;
+    console.log(eventsUrl);
+    console.log(previousUrl);
+    $('#group_calendar').fullCalendar('removeEventSource', previousUrl);
+    $('#group_calendar').fullCalendar('addEventSource', eventsUrl);
 
     $('#group_calendar').fullCalendar('refetchEvents');
     var previousShiftId = $('#previousShiftId').val(shiftId);
     var shiftType = $('#currentShiftType').val(shiftId);
 }
+
 $(document)
     .ready(function () {
         $('#re_submit_group_event').click(updateGroupSchedule);
@@ -737,7 +717,6 @@ $(document)
         $('#cancel_holiday_assign').click(cancelAssignHoliday);
         $('#submit_shift_type').click(addShiftType);
         $('#cancel_shift_type').click(cancelShiftType);
-        $('#submit_Edit_Event').click(updateEvent);
         var union_ID = $('#currentUnionId').val();
 
         var eventsUrl = '/allShiftTypeEvent?shiftType=' + 1;
@@ -746,42 +725,8 @@ $(document)
         console.log(holidaysUrl);
 
 
-        var groupEventsUrl = '/allGroupSchedule';
-        var eventsUrl = '/allEvent?union_id=' + union_ID;
         $('#group_calendar').fullCalendar({
-            customButtons: {
-                invertButton: {
-                    text: $('#currentShiftType').val(),
-                    id: "123",
-                    click: function () {
-                        var self = this.innerHTML;
-                        //
-                        // var shiftType = $('#currentShiftType').val();
 
-                        if (self === "Day") {
-                            $('#currentShiftType').val("Night");
-                            this.innerHTML = "Night";
-                        } else {
-                            $('#currentShiftType').val("Day");
-                            this.innerHTML = "Day";
-                        }
-                        console.log($('#currentShiftType').val());
-                    }
-                },
-                getOffNumberButton: {
-                    text: "OffNumber",
-                    click: function () {
-                        3
-                        var moment = $('#group_calendar').fullCalendar('getDate');
-                        var shiftType = $('#currentShiftType').val();
-                        var date = new Date(moment._d),
-                            d = date.getDate(),
-                            m = date.getMonth(),
-                            y = date.getFullYear();
-                        getOffNumbers(date, union_ID, shiftType);
-                    }
-                }
-            }, //invert button
             header: {
                 left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
@@ -805,53 +750,12 @@ $(document)
             selectable: true,
             color: '#378006',
             defaultView: 'month',
-            dayClick: function(date, jsEvent, view) {
+            dayClick: function (date, jsEvent, view) {
                 var shiftType = $('#currentShiftType').val();
                 var date1 = new Date(date);
                 console.log(date);
-                getOffNumbers(date1, union_ID,shiftType);
+                getOffNumbers(date1, union_ID, shiftType);
 
-            events: [
-                {
-                    title: 'New Years Day',
-                    start: '2017-01-01',
-                },
-                {
-                    title: 'Martin Luther King Jr.Day',
-                    start: '2017-02-15',
-                },
-                {
-                    title: 'Presidents Day',
-                    start: '2017-02-20',
-                },
-                {
-                    title: 'Good Friday',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Memorial Day',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Labor Day',
-                    start: '2017-09-04',
-                },
-                {
-                    title: 'Independence Day',
-                    start: '2017-07-04',
-                },
-
-                {
-                    title: 'Veterans Day',
-                    start: '2017-11-11',
-                },
-                {
-                    title: 'Christmas Day',
-                    start: '2017-12-25',
-                }
-            ],
-            defaultView: 'basicWeek',
-            duration: {days: 5}
             }
 
         })
@@ -883,8 +787,6 @@ $(document)
             ],
             defaultView: 'month',
             fixedWeekCount: 6
-            defaultView: 'basicWeek',
-            duration: {days: 5}
 
         })
 
@@ -897,6 +799,7 @@ $(document)
                 alert(data);
             })
         }
+
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {

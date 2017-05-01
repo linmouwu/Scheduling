@@ -3,8 +3,10 @@ package cmu.heinz.model;
 /**
  * Created by hhahann on 4/12/17.
  */
+
 import javax.persistence.*;
-import java.util.*;
+import java.util.Date;
+
 @Entity
 @Table(name = "Group_Schedule")
 public class GroupSchedule {
@@ -25,8 +27,11 @@ public class GroupSchedule {
     private String shiftType;
     private String schedule_status;
     private int selected_Officer;
-    public GroupSchedule(){}
-    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected){
+
+    public GroupSchedule() {
+    }
+
+    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected) {
         this.setDescription(d);
         this.setRecruitId(recruit);
         this.setSelected_Officer(selected);

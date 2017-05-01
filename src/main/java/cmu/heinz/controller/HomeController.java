@@ -55,12 +55,6 @@ public class HomeController {
      */
     @Autowired
     private HolidayRepository holidayRepository;
-    /**
-     * Shift Type interface.
-     */
-    @Autowired
-    private ShiftTypeRepository  shiftTypeRepository;
-
 
     /**
      * Shift type repository interface.
@@ -102,8 +96,6 @@ public class HomeController {
         // List all pending and previous events.
         List<Event> pendingEventList = new ArrayList<Event>();
         List<Event> previousEventList = new ArrayList<Event>();
-
-        List<ShiftType> shiftTypeList = new ArrayList<ShiftType>();
 
         //List all holidays
         List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
