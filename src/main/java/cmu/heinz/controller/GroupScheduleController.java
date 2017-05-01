@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class GroupScheduleController {
     @Autowired
     private Group_ScheduleRepository group_scheduleRepository;
     @Autowired
-    private Schedule_OfficerRepository schedule_officerRepository;
+    private ScheduleOfficerRepository schedule_officerRepository;
 
 
 
@@ -44,8 +41,8 @@ public class GroupScheduleController {
             @RequestParam(value = "shift_type") String type,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // Retrieve the current log-in user.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -81,7 +78,7 @@ public class GroupScheduleController {
         Group_Schedule schedule = new Group_Schedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
         schedule = group_scheduleRepository.save(schedule);
         for(String selectedOfficer : selectedOfficers) {
-            Schedule_Officer record = new Schedule_Officer();
+            ScheduleOfficer record = new ScheduleOfficer();
             record.setGroupSchedule(schedule);
             record.setOfficer(officerRepository.findByUID(selectedOfficer));
             schedule_officerRepository.save(record);
@@ -129,8 +126,8 @@ public class GroupScheduleController {
 
         //change schedule_officer records
         boolean[] visited = new boolean[selectedOfficers.size()];
-        List<Schedule_Officer> officers = schedule_officerRepository.findByScheduleId(myId);
-        for(Schedule_Officer each : officers) {
+        List<ScheduleOfficer> officers = schedule_officerRepository.findByScheduleId(myId);
+        for(ScheduleOfficer each : officers) {
             int thisId = each.getOfficer().getId();
             String thisUid = each.getOfficer().getUid();
 
@@ -144,7 +141,7 @@ public class GroupScheduleController {
         System.out.println("delete extra officers");
         for(int i = 0; i < visited.length; i++) {
             if(!visited[i]) {
-                Schedule_Officer record = new Schedule_Officer();
+                ScheduleOfficer record = new ScheduleOfficer();
                 record.setOfficer(officerRepository.findByUID(selectedOfficers.get(i)));
                 record.setGroupSchedule(schedule);
                 schedule_officerRepository.save(record);

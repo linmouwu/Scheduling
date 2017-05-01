@@ -376,7 +376,6 @@ function addGroupEvent() {
     var shift_type = $('#shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("input:checked").each(function () {
     $("#group_officers input:checked").each(function() {
         selected_officers.push($(this).val());
         console.log(selected_officers)
@@ -778,7 +777,6 @@ $(document)
                 alert(data);
             })
         }
-
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {

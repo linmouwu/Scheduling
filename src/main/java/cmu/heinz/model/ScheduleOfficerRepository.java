@@ -10,11 +10,11 @@ import java.util.*;
  * Created by hhahann on 4/12/17.
  */
 @Transactional
-public interface Schedule_OfficerRepository extends CrudRepository<Schedule_Officer,String> {
+public interface ScheduleOfficerRepository extends CrudRepository<ScheduleOfficer,String> {
     @Query(value = "select * from SCHEDULE_OFFICER where officer_id = (:param1)", nativeQuery = true)
-    List<Schedule_Officer> findByOfficer(@Param("param1") int officer_id);
+    List<ScheduleOfficer> findByOfficer(@Param("param1") int officer_id);
     @Query(value = "select * from SCHEDULE_OFFICER where schedule_id = (:param1)", nativeQuery = true)
-    List<Schedule_Officer> findByScheduleId(@Param("param1") int schedule_id);
+    List<ScheduleOfficer> findByScheduleId(@Param("param1") int schedule_id);
     @Query(value = "delete from SCHEDULE_OFFICER where officer_id = (:param1) AND schedule_id = (:param2)", nativeQuery = true)
     void deleteScheduleOfficer(@Param("param2") int schedule_id, @Param("param1") int officer_id);
 }

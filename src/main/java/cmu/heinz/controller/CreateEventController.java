@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +40,8 @@ public class CreateEventController {
     @Autowired
     private Group_ScheduleRepository group_scheduleRepository;
     @Autowired
-    private Schedule_OfficerRepository schedule_officerRepository;
+    private ScheduleOfficerRepository schedule_officerRepository;
+
     /**
      * Create event methods.
      *
@@ -56,8 +57,8 @@ public class CreateEventController {
             @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // Retrieve the current log-in user.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -132,8 +133,8 @@ public class CreateEventController {
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "event_status") String status,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // User evidence.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -209,7 +210,7 @@ public class CreateEventController {
         int officerid = officer.getId();
         List<Event> allEvent = eventRepository.findByOfficerID(officerid);
 
-        List<Schedule_Officer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+        List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
 
@@ -221,16 +222,16 @@ public class CreateEventController {
             model.addAttribute("allEvent", allCurrentEvent);
         }
         if (groupSchedule != null) {
-            for (Schedule_Officer s : groupSchedule) {
-                CurrentEvent cur = new CurrentEvent(s.getId(),s.getGroupSchedule().getDescription(),s.getGroupSchedule().getStartTime(),s.getGroupSchedule().getEndTime());
+            for (ScheduleOfficer s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(), s.getGroupSchedule().getDescription(), s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
                 allCurrentEvent.add(cur);
             }
         }
         return ResponseEntity.ok(allCurrentEvent);
     }
 
-@RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
-    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") String shiftType, Model model) {
+    @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
+    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value = "shiftType") String shiftType, Model model) {
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String sd = df.format(start_date);
@@ -240,7 +241,7 @@ public class CreateEventController {
             String cd = df.format(curDate);
             System.out.println(cd);
             Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
-            Integer groupNext = group_scheduleRepository.findByAllDate(union_id,cd,shiftType);
+            Integer groupNext = group_scheduleRepository.findByAllDate(union_id, cd, shiftType);
             if (groupNext != null) {
                 next += groupNext;
             }
@@ -249,8 +250,8 @@ public class CreateEventController {
         }
         return ResponseEntity.ok(rst);
     }
-    public static Date addDays(Date date, int days)
-    {
+
+    public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
