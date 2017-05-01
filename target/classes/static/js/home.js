@@ -8,6 +8,8 @@ function changeToUserProfile() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 }
 function changeToRequest() {
     $('#pending_request').delay(350).fadeIn();
@@ -19,6 +21,8 @@ function changeToRequest() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 
 }
 function changeToCalendar() {
@@ -31,6 +35,8 @@ function changeToCalendar() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 }
 function changeToGroupCalendar() {
     $('#pending_request').fadeOut();
@@ -42,6 +48,8 @@ function changeToGroupCalendar() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 }
 function changeToStaff() {
     $('#pending_request').fadeOut();
@@ -53,11 +61,31 @@ function changeToStaff() {
     $('#user_profile').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
+}
+function changeToAssignHoliday() {
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#schedule').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').delay(350).fadeIn();
+
 }
 function newUserForm() {
     $('#add_user_div_id').slideToggle();
 }
-
+function newAssignHoliday(id) {
+    $('#assign_holiday_union_div_id').slideToggle();
+    $('#current_assign_union_id').val(id);
+    document.getElementById("assign_union_id_div").innerHTML = "Edit Union: " + id;
+}
 function changeToCreateRequest() {
     $('#pending_request').fadeOut();
     $('#calendar').fadeOut();
@@ -68,7 +96,10 @@ function changeToCreateRequest() {
     $('#editEvent').fadeOut();
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 }
+
 //
 // function changeToSchedule() {
 //     $('#schedule').delay(350).fadeIn();
@@ -92,6 +123,21 @@ function changeToTCC() {
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
+}
+function changeToHolidayManagement() {
+    $('#holiday_management').delay(350).fadeIn();
+    $('#time_cycle_div').fadeOut();
+    $('#permission_group').fadeOut();
+    $('#user_profile').fadeOut();
+    $('#schedule').fadeOut();
+    $('#pending_request').fadeOut();
+    $('#calendar').fadeOut();
+    $('#group_calendar').fadeOut();
+    $('#staff_management').fadeOut();
+    $('#editEvent').fadeOut();
+    $('#assign_holiday').fadeOut();
 
 }
 
@@ -105,6 +151,8 @@ function changeToPGM() {
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
     $('#editEvent').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 }
 
 function changeToEditEvent(editRequest_id) {
@@ -117,6 +165,8 @@ function changeToEditEvent(editRequest_id) {
     $('#calendar').fadeOut();
     $('#group_calendar').fadeOut();
     $('#staff_management').fadeOut();
+    $('#holiday_management').fadeOut();
+    $('#assign_holiday').fadeOut();
 
     $.get("getEditEvent", {
         'id': editRequest_id,
@@ -134,7 +184,38 @@ function changeToEditEvent(editRequest_id) {
     })
 }
 
+function updateHolidayDate() {
+    var newHolidayDate = [];
+    var holidayTable = document.getElementById("holiday_list_table");
 
+    for (var i = 1; i < holidayTable.rows.length; i++) {
+        var newDate = holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value;
+        if (newDate !== null && newDate !== undefined && newDate !== "") {
+            console.log(newDate);
+            newHolidayDate.push(newDate);
+        } else {
+            var tempDate = new Date(holidayTable.rows[i].cells[1].innerHTML);
+            var format = moment(tempDate).format('YYYY-MM-DD');
+            newHolidayDate.push(format);
+            console.log(format);
+        }
+        // console.log(holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value);
+    }
+    $.post("updateHolidayDate", {
+        'dateList[]' :newHolidayDate,
+    }).done(function (data) {
+        var newTable = document.getElementById("holiday_list_table");
+        console.log(data);
+        for (var i = 1; i < holidayTable.rows.length; i++) {
+            var date = new Date(data[i-1].date);
+            console.log(data[i-1].date);
+            var format = moment(date).format('MM/DD/YYYY');
+            newTable.rows[i].cells[1].innerHTML = format;
+        }
+    });
+
+
+}
 function addUser() {
 
     var uid_ID = $('#uid_ID').val();
@@ -237,6 +318,22 @@ function addEvent() {
     })
 
 }
+function assignHoliday() {
+    var unionid = $('#current_assign_union_id').val();
+    var selectedHoliday = [];
+    $("#assign_holiday_list input:checked").each(function () {
+        selectedHoliday.push($(this).val());
+    });
+    console.log(selectedHoliday);
+    $.post("assignHoliday", {
+        'unionId' : unionid,
+         'selectedHoliday[]' : selectedHoliday
+    }).done(function(data) {
+        $('#assign_holiday_union_div_id').slideToggle;
+        cancelAssignHoliday();
+        document.getElementById("assign_union_id_div").innerHTML = "";
+    });
+}
 function updateEvent() {
 
     var editRequest_id = $('#currentEditId').val();
@@ -301,7 +398,9 @@ function cancelAddEvent() {
     $('#event_description').val("");
     $('#individualRequestType').val("");
 }
-
+function cancelAssignHoliday() {
+    $('input:checkbox').prop( "checked", false );
+}
 $(document)
     .ready(function () {
 
@@ -309,9 +408,15 @@ $(document)
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
-        $('#submit_Edit_Event').click(updateEvent)
+        $('#submit_Edit_Event').click(updateEvent);
+        $('#update_holiday_button').click(updateHolidayDate);
+        $('#submit_holiday_assign').click(assignHoliday);
+        $('#cancel_holiday_assign').click(cancelAssignHoliday);
         var union_ID = $('#currentUnionId').val();
         var eventsUrl = '/allEvent?union_id=' + union_ID;
+        var unionEventsUrl = '/allUnionEvent?union_id=' + union_ID;
+        var holidaysUrl = '/allHoliday?union_id=' + union_ID;
+        console.log(holidaysUrl);
         $('#group_calendar').fullCalendar({
             customButtons: {
                 invertButton: {
@@ -345,67 +450,47 @@ $(document)
                     }
                 }
             }, //invert button
+
             header: {
                 left: 'prev,next today invertButton getOffNumberButton',
                 center: 'title',
                 right: 'basicWeek,basicDay'
             },
+            eventSources: [
+                {
+                    url: unionEventsUrl, // use the `url` property
+                    color: 'orange',    // an option!
+                    textColor: 'black'  // an option!
+                },
+                {
+                    url: holidaysUrl, // use the `url` property
+                    color: '#F0FFFF',    // an option!
+                    textColor: 'black',  // an option!
+                    allDayDefault: true
+                }
+
+            ],
             navLinks: true, // can click day/week names to navigate views
             editable: true,
             eventLimit: true, // allow "more" link when too many events
             selectable: true,
-
-            events: [
-                {
-                    title: 'New Years Day',
-                    start: '2017-01-01',
-                },
-                {
-                    title: 'Martin Luther King Jr.Day',
-                    start: '2017-02-15',
-                },
-                {
-                    title: 'Presidents Day',
-                    start: '2017-02-20',
-                },
-                {
-                    title: 'Good Friday',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Memorial Day',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Labor Day',
-                    start: '2017-09-04',
-                },
-                {
-                    title: 'Independence Day',
-                    start: '2017-07-04',
-                },
-
-                {
-                    title: 'Veterans Day',
-                    start: '2017-11-11',
-                },
-                {
-                    title: 'Christmas Day',
-                    start: '2017-12-25',
-                }
-            ],
             color: '#378006',
             defaultView: 'basicWeek',
-            duration: { days: 5 }
+            fixedWeekCount:6
 
         })
-
+        // var callendar = document.getElementById("calendar1");
+        // var node = document.createElement("DIV");
+        // var text = document.createTextNode("hahahaha");
+        // node.appendChild(text);
+        // callendar.appendChild(node);
+        // $('#group_calendar').fullCalendar('rerenderEvents');
         $('#calendar').fullCalendar({
 
             header: {
                 left: 'prev,next today ',
                 center: 'title',
-                right: 'basicWeek,basicDay'
+                right: 'month,basicDay'
             },
             navLinks: true, // can click day/week names to navigate views
             editable: true,
@@ -416,51 +501,17 @@ $(document)
                     url: eventsUrl, // use the `url` property
                     color: 'orange',    // an option!
                     textColor: 'black'  // an option!
+                },
+                {
+                    url: holidaysUrl, // use the `url` property
+                    color: '#F0FFFF',    // an option!
+                    textColor: 'black',  // an option!
+                    allDayDefault: true
                 }
 
             ],
-
-            events: [
-                {
-                    title: 'New Years Day',
-                    start: '2017-01-01',
-                },
-                {
-                    title: 'Martin Luther King Jr.Day',
-                    start: '2017-02-15',
-                },
-                {
-                    title: 'Presidents Day',
-                    start: '2017-02-20',
-                },
-                {
-                    title: 'Good Friday',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Memorial Day',
-                    start: '2017-04-14',
-                },
-                {
-                    title: 'Labor Day',
-                    start: '2017-09-04',
-                },
-                {
-                    title: 'Independence Day',
-                    start: '2017-07-04',
-                },
-
-                {
-                    title: 'Veterans Day',
-                    start: '2017-11-11',
-                },
-                {
-                    title: 'Christmas Day',
-                    start: '2017-12-25',
-                }
-            ],
-            defaultView: 'basicWeek',
-            duration: { days: 5 }
+            defaultView: 'month',
+            fixedWeekCount: 6
 
         })
 

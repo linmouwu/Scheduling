@@ -47,6 +47,11 @@ public class HomeController {
      */
     @Autowired
     private TimeCycleRepository timeCycleRepository;
+    /**
+     * Holiday Cycle interface.
+     */
+    @Autowired
+    private HolidayRepository holidayRepository;
 
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
@@ -82,6 +87,9 @@ public class HomeController {
         // List all pending and previous events.
         List<Event> pendingEventList = new ArrayList<Event>();
         List<Event> previousEventList = new ArrayList<Event>();
+
+        //List all holidays
+        List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
 
         if (permissionGroup.getId() == 7) {
 
@@ -125,6 +133,8 @@ public class HomeController {
         model.addAttribute("officerList", officerList);
 
         model.addAttribute("unionList", unionList);
+
+        model.addAttribute("holidayList", holidayList);
 
         model.addAttribute("pendingEventList", pendingEventList);
 

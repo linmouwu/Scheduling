@@ -207,7 +207,10 @@ public class CreateEventController {
         Officer officer = officerRepository.findByUID(username);
         // Find special events by officer id.
         int officerid = officer.getId();
-        List<Event> allEvent = eventRepository.findByOfficerID(officerid);
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+
+        allEvent = eventRepository.findByAllUnionID(union_id);
 
         List<Schedule_Officer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
@@ -215,7 +218,8 @@ public class CreateEventController {
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                CurrentEvent cur = new CurrentEvent(e.getId(), e.getDescription(), e.getStartTime(), e.getEndTime());
+                String description = e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }
             model.addAttribute("allEvent", allCurrentEvent);
@@ -228,7 +232,44 @@ public class CreateEventController {
         }
         return ResponseEntity.ok(allCurrentEvent);
     }
+    @RequestMapping(value = "/allUnionEvent", method = RequestMethod.GET)
+    public ResponseEntity getAllUnionEvent(@RequestParam(value = "union_id") int union_id,
+                                      Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+        allEvent = eventRepository.findByAllUnionID(union_id);
+        List<Schedule_Officer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+
+        List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
+
+
+        if (allEvent != null) {
+            for (Event e : allEvent) {
+                String description = e.getUid() + " : " + e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
+                allCurrentEvent.add(cur);
+            }
+            model.addAttribute("allIndividualEvent", allCurrentEvent);
+        }
+        if (groupSchedule != null) {
+            for (Schedule_Officer s : groupSchedule) {
+                String description = s.getGroupSchedule().getSelected_Officer() + " Officers : " + s.getGroupSchedule().getDescription();
+                CurrentEvent cur = new CurrentEvent(s.getId(),description,s.getGroupSchedule().getStartTime(),s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
+        return ResponseEntity.ok(allCurrentEvent);
+    }
 @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
     public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") String shiftType, Model model) {
 
