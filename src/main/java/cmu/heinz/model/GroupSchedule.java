@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.*;
 @Entity
 @Table(name = "Group_Schedule")
-public class Group_Schedule {
+public class GroupSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -25,8 +25,8 @@ public class Group_Schedule {
     private String shiftType;
     private String status;
     private int selected_Officer;
-    public Group_Schedule(){}
-    public Group_Schedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected){
+    public GroupSchedule(){}
+    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected){
         this.setDescription(d);
         this.setRecruitId(recruit);
         this.setSelected_Officer(selected);

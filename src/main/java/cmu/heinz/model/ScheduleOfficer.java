@@ -16,7 +16,7 @@ public class ScheduleOfficer {
     private Officer officer;
     @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "schedule_ID")
-    private Group_Schedule groupSchedule;
+    private GroupSchedule groupSchedule;
 
     public int getId() {
         return id;
@@ -34,11 +34,11 @@ public class ScheduleOfficer {
         this.officer = officer;
     }
 
-    public Group_Schedule getGroupSchedule() {
+    public GroupSchedule getGroupSchedule() {
         return groupSchedule;
     }
 
-    public void setGroupSchedule(Group_Schedule groupSchedule) {
+    public void setGroupSchedule(GroupSchedule groupSchedule) {
         this.groupSchedule = groupSchedule;
     }
 }

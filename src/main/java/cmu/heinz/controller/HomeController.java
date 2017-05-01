@@ -31,7 +31,7 @@ public class HomeController {
     private OfficerRepository officerRepository;
 
     @Autowired
-    private Group_ScheduleRepository groupScheduleRepository;
+    private GroupScheduleRepository groupScheduleRepository;
 
     /**
      * Union repository interface.
@@ -105,7 +105,7 @@ public class HomeController {
 
             // If the current user  is a administrator.
             int unionId = officer.getUnion().getId();
-            List<Group_Schedule> schedules = groupScheduleRepository.findByUnion(unionId);
+            List<GroupSchedule> schedules = groupScheduleRepository.findByUnion(unionId);
             officerList = (List<Officer>) officerRepository.findByUnion(unionId);
 
             model.addAttribute("groupScheduleList", schedules);

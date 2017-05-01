@@ -553,7 +553,10 @@ function remove_shift_type(shiftTypeId) {
 
             alert("Shift Type Removed");
 
-            location.reload();
+            var shiftType = "shiftType" + shiftTypeId;
+            document.getElementById(shiftType).classList.toggle("hide");
+            // window.location.reload();
+
         });
 }
 

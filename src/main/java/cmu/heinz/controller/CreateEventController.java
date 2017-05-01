@@ -38,7 +38,7 @@ public class CreateEventController {
     @Autowired
     private OfficerRepository officerRepository;
     @Autowired
-    private Group_ScheduleRepository group_scheduleRepository;
+    private GroupScheduleRepository group_scheduleRepository;
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
 

@@ -28,14 +28,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="shiftType:${shiftTypeList}">
+                        <tr th:each="shiftType:${shiftTypeList}" th:id="shiftType+${shiftType.id}">
                             <td th:text="${shiftType.shiftName}"></td>
                             <td th:text="${shiftType.startTime}"></td>
                             <td th:text="${shiftType.endTime}"></td>
                             <td th:text="${shiftType.description}"></td>
                             <td>
                                 <button id="remove_shift_type" type="button"
-                                        th:onclick="'javascript:remove_shift_type('+${shiftType.id}+');'"
+                                        th:onclick="'remove_shift_type('+${shiftType.id}+');'"
                                         class="btn btn-danger">Remove
                                 </button>
                             </td>
