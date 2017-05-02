@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @Transactional
-public interface UnionRepository extends CrudRepository<Union, String> {
+public interface UnionRepository extends CrudRepository<Union, Integer> {
     @Query(value = "select * from UNIONS where Name = (:param1) limit 1", nativeQuery = true)
     Union findByName(@Param("param1") String name);
 }

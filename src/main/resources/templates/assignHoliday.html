@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid" id="assign_holiday" style="display: none" th:fragment="assignHoliday">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Holiday Assign
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Union List</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="union_holiday_management_list_table">
+                        <thead>
+                        <tr>
+                            <th>Union ID</th>
+                            <th>Union Name</th>
+                            <th>Assign</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="union:${unionList}" id="unionListForHoliday">
+                            <td th:text="${union.id}"></td>
+                            <td th:text="${union.name}"></td>
+                            <td><a href="javascript:;" th:onclick="'javascript:newAssignHoliday('+${union.id}+');'">Assign
+                                Holiday </a></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="col-lg-4"></div>
+                    <input type="hidden" id="current_assign_union_id"/>
+
+
+                </div>
+                <div th:replace="assignHolidayToUnion:: assignHolidayToUnion"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+
+</html>

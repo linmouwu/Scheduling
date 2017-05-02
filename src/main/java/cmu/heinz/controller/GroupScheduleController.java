@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +30,9 @@ public class GroupScheduleController {
     @Autowired
     private OfficerRepository officerRepository;
     @Autowired
-    private Group_ScheduleRepository group_scheduleRepository;
+    private GroupScheduleRepository group_scheduleRepository;
     @Autowired
-    private Schedule_OfficerRepository schedule_officerRepository;
+    private ScheduleOfficerRepository schedule_officerRepository;
 
 
 
@@ -44,8 +41,8 @@ public class GroupScheduleController {
             @RequestParam(value = "shift_type") String type,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // Retrieve the current log-in user.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -78,10 +75,10 @@ public class GroupScheduleController {
 //        }
 
         // New event instance.
-        Group_Schedule schedule = new Group_Schedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
+        GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
         schedule = group_scheduleRepository.save(schedule);
         for(String selectedOfficer : selectedOfficers) {
-            Schedule_Officer record = new Schedule_Officer();
+            ScheduleOfficer record = new ScheduleOfficer();
             record.setGroupSchedule(schedule);
             record.setOfficer(officerRepository.findByUID(selectedOfficer));
             schedule_officerRepository.save(record);
@@ -124,13 +121,13 @@ public class GroupScheduleController {
 
         //save new schedule
         int myId = Integer.valueOf(id);
-        Group_Schedule schedule = group_scheduleRepository.findById(myId);
+        GroupSchedule schedule = group_scheduleRepository.findById(myId);
 
 
         //change schedule_officer records
         boolean[] visited = new boolean[selectedOfficers.size()];
-        List<Schedule_Officer> officers = schedule_officerRepository.findByScheduleId(myId);
-        for(Schedule_Officer each : officers) {
+        List<ScheduleOfficer> officers = schedule_officerRepository.findByScheduleId(myId);
+        for(ScheduleOfficer each : officers) {
             int thisId = each.getOfficer().getId();
             String thisUid = each.getOfficer().getUid();
 
@@ -144,7 +141,7 @@ public class GroupScheduleController {
         System.out.println("delete extra officers");
         for(int i = 0; i < visited.length; i++) {
             if(!visited[i]) {
-                Schedule_Officer record = new Schedule_Officer();
+                ScheduleOfficer record = new ScheduleOfficer();
                 record.setOfficer(officerRepository.findByUID(selectedOfficers.get(i)));
                 record.setGroupSchedule(schedule);
                 schedule_officerRepository.save(record);
@@ -169,7 +166,7 @@ public class GroupScheduleController {
         schedule.setSelected_Officer(selectedOfficers.size());
         schedule.setDescription(description);
         System.out.println("update schedule");
-        Group_Schedule updated_schedule = group_scheduleRepository.save(schedule);
+        GroupSchedule updated_schedule = group_scheduleRepository.save(schedule);
 
         return ResponseEntity.ok(updated_schedule);
     }
@@ -187,7 +184,7 @@ public class GroupScheduleController {
 
         // Find event by given id.
         int thisId = id;
-        Group_Schedule schedule = group_scheduleRepository.findById(thisId);
+        GroupSchedule schedule = group_scheduleRepository.findById(thisId);
 
         // Set session value.
 //        if (schedule != null) {
@@ -215,7 +212,7 @@ public class GroupScheduleController {
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
         int unionId = officer.getUnion().getId();
-        List<Group_Schedule> schedules = group_scheduleRepository.findByUnion(unionId);
+        List<GroupSchedule> schedules = group_scheduleRepository.findByUnion(unionId);
         System.out.println("group schedules");
         System.out.println(schedules.toString());
 
