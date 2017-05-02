@@ -436,7 +436,7 @@ function addShiftType() {
         }
         else {
             var markup =
-                "<tr><td>" + data.shiftName +
+                "<tr id=\"shiftType" + data.id + "\"><td>" + data.shiftName +
                 "</td><td>" + data.startTime +
                 "</td><td>" + data.endTime +
                 "</td><td>" + data.description +
@@ -615,8 +615,8 @@ function cancelAddUser() {
 
 function cancelShiftType() {
     $('#shiftTypeName_ID').val("");
-    $('#startTime_ID').val("");
-    $('#endTime_ID').val("");
+    $('#startTimeShift_ID').val("");
+    $('#endTimeShift_ID').val("");
     $('#notes_ID').val("");
 }
 function clearGroupSchedule() {
