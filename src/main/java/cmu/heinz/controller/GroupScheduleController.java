@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class GroupScheduleController {
         String uid = officer.getUid();
         ShiftType shiftType = shiftTypeRepository.findByName(type);
         int recruitId = Integer.valueOf(officer.getRecruitId());
-        GroupSchedule[] results = new GroupSchedule[startTime.size()];
+        List<GroupSchedule> results = new ArrayList<GroupSchedule>();
         for(int i = 0; i < startTime.size(); i++) {
             GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, shiftType, "pending", selectedOfficers.size());
             schedule = group_scheduleRepository.save(schedule);
@@ -75,6 +76,7 @@ public class GroupScheduleController {
                 record.setOfficer(officerRepository.findByUID(selectedOfficer));
                 schedule_officerRepository.save(record);
             }
+            results.add(schedule);
         }
 
 

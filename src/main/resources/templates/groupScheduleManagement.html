@@ -78,35 +78,40 @@
             <table class="table table-hover table-fixed" id="user_list_table">
                 <thead>
                 <tr>
-
                     <th class="col-xs-1">Selected</th>
-                    <th class="col-xs-2">UID</th>
-                    <th class="col-xs-3">Last Name</th>
-                    <th class="col-xs-3">First Name</th>
-                    <th class="col-xs-3">Title</th>
+                    <th class="col-xs-2 text-center">UID</th>
+                    <th class="col-xs-3 text-right">Last Name</th>
+                    <th class="col-xs-3 text-center">First Name</th>
+                    <th class="col-xs-3 text-center">Title</th>
                     <th class="col-xs-3">Gender</th>
-                    <th class="col-xs-1">Seniority</th>
+                    <th class="col-xs-1 text-right">Seniority</th>
 
 
                 </tr>
+
                 </thead>
                 <tbody>
                 <tr th:each="officer:${officerList}" id="group_officers">
 
-                    <td class="col-xs-2 text-center"><input type="checkbox" th:value="${officer.uid}"/></td>
+                    <td class="col-xs-2 text-center"><input class="checkbox" type="checkbox" th:value="${officer.uid}"/></td>
                     <td class="col-xs-2" th:text="${officer.uid}"></td>
                     <td class="col-xs-2" th:text="${officer.lastName}"></td>
                     <td class="col-xs-2" th:text="${officer.firstName}"></td>
                     <td class="col-xs-2" th:text="${officer.title}"></td>
                     <td class="col-xs-2" th:text="${officer.gender}"></td>
-                    <td class="col-xs-2" th:text="${officer.seniority}"></td>
+                    <td class="col-xs-1" th:text="${officer.seniority}"></td>
 
                 </tr>
-                <tr id="select_all"><td class="col-xs-2"><input type="checkbox" /> Select All</td></tr>
 
                 </tbody>
+                <tfoot>
+                <tr id="select_all">
+                    <td class="col-xs-3"><input type="checkbox" />  Select All</td>
 
+                </tr>
+                </tfoot>
             </table>
+
         </div></div>
                         <div id="group-time-range">
 
@@ -118,7 +123,7 @@
                                 <div class="col-sm-2"><h4>End Time</h4></div>
                                 <div class="col-sm-7"><input name="endTime" id="end_time_group" type="text" placeholder="MM/DD/YYYY"/>
                                 <button id="add_group_time" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button></div>
+                                </button><small class="form-text text-muted"> You may add multiple time ranges</small></div>
                             </div>
                             <div id="selected-time-ranges" class="row myborder">
                             </div>

@@ -336,7 +336,7 @@ public class CreateEventController {
         String rst = "ShiftType:" + shiftType + "\n";
 
         int off = eventRepository.findByAllDate(union_id, sd, shiftType);
-        Integer groupOff = group_scheduleRepository.findByAllDate(union_id, sd, "1");
+        Integer groupOff = group_scheduleRepository.findByAllDate(union_id, sd, shiftType);
         if (groupOff != null) {
             off += groupOff;
         }

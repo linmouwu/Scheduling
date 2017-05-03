@@ -258,7 +258,7 @@ function updateGroupSchedule() {
     var event_type = $('#edit_shift_type').val();
     var selected_officers = []
     console.log(1);
-    if($("#edit_select_all").is(':checked')) {
+    if($("#edit_select_all input").is(':checked')) {
         $("#edit_group_officers input").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
@@ -472,20 +472,22 @@ function addGroupEvent(start_times, end_times) {
     var description = $('#group_schedule_description').val();
     var shift_type = $('#shift_type').val();
     var selected_officers = [];
-    if($("#select_all").is(':checked')) {
+    if($("#select_all input").is(':checked')) {
+
         $("#group_officers input").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
 
         });
     } else{
+
         $("#group_officers input:checked").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
 
         });
-
     }
+    console.log(selected_officers);
 
     // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
     //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
@@ -496,7 +498,6 @@ function addGroupEvent(start_times, end_times) {
         'description': description,
         'shift_type': shift_type,
     }).done(function (data) {
-
         console.log(data);
         console.log("guess what happened");
         if (data == "Remain Day is not enough") {
@@ -504,10 +505,11 @@ function addGroupEvent(start_times, end_times) {
         }
         else {
             for(var i = 0; i < data.length; i++) {
+
                 var markup =
                     "<tr><td>" + data[i].id +
-                    "</td><td>" + data[i].startTime +
-                    "</td><td>" + data[i].endTime +
+                    "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
+                    "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
                     "</td><td>" + shift_type +
                     "</td><td>" + selected_officers.length +
                     "</td><td>" + description +
@@ -728,6 +730,36 @@ $(document)
     .ready(function () {
         var start_times = [];
         var end_times = [];
+        $("#select_all input").change(function(){  //"select all" change
+            $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        });
+
+//".checkbox" change
+        $('#group_officers .checkbox').change(function(){
+            //uncheck "select all", if one of the listed checkbox item is unchecked
+            if(false == $(this).prop("checked")){ //if this item is unchecked
+                $("#select_all input").prop('checked', false); //change "select all" checked status to false
+            }
+            //check "select all" if all checkbox items are checked
+            if ($('#group_officers  .checkbox:checked').length == $('.checkbox').length ){
+                $("#select_all input").prop('checked', true);
+            }
+        });
+        $("#edit_select_all input").change(function(){  //"select all" change
+            $("#edit_group_officers .checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        });
+
+//".checkbox" change
+        $('#edit_group_officers .checkbox').change(function(){
+            //uncheck "select all", if one of the listed checkbox item is unchecked
+            if(false == $(this).prop("checked")){ //if this item is unchecked
+                $("#edit_select_all input").prop('checked', false); //change "select all" checked status to false
+            }
+            //check "select all" if all checkbox items are checked
+            if ($('#edit_group_officers .checkbox:checked').length == $('.checkbox').length ){
+                $("#edit_select_all input").prop('checked', true);
+            }
+        });
         $('#add_group_time').click(function(){
             var start = $('#start_time_group').val();
             var end = $('#end_time_group').val();
