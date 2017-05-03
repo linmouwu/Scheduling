@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="container-fluid" id="holiday_management" style="display: none" th:fragment="holidayManagement">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Holiday Management
+            </h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Holiday List</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover" id="holiday_list_table">
+                        <thead>
+                        <tr>
+                            <th>Holiday Name</th>
+                            <th>Date</th>
+                            <th>New Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="holiday:${holidayList}" id="holidayList">
+                            <td th:text="${holiday.name}"></td>
+                            <td th:text="${#calendars.format(holiday.date,'MM/dd/yyyy')}"></td>
+                            <td><input name="holidayDate" id="holidayDate_ID" type="date"
+                                       placeholder="MM/DD/YYYY"/></td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <button id="update_holiday_button" type="button" class="btn btn-success">Update Date
+                    </button>
+                    <div class="col-lg-4"></div>
+
+                    <!--<div th:replace="chooseHoliday :: chooseHoliday"></div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+</div>
+
+</html>
