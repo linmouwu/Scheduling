@@ -33,7 +33,10 @@
             </div>
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Shift Type</h4></div>
-                <div class="col-sm-7"><input name="shifttype" id="edit_shift_type" type="text" size="40"/></div>
+                <div class="col-sm-7"><select class="form-control" name="type" id="edit_shift_type">
+                    <option value=" " selected="selected" disabled="disabled"></option>
+                    <option th:each="shift:${shiftTypeList}" th:value="${shift.shiftName}" th:text="${shift.shiftName}"></option>
+                </select></div>
             </div>
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Select Staff</h4></div>
@@ -43,29 +46,37 @@
                         <tr>
 
                             <th class="col-xs-1">Selected</th>
-                            <th class="col-xs-2">UID</th>
-                            <th class="col-xs-3">Last Name</th>
-                            <th class="col-xs-3">First Name</th>
-                            <th class="col-xs-3">Title</th>
+                            <th class="col-xs-2 text-center">UID</th>
+                            <th class="col-xs-3 text-right">Last Name</th>
+                            <th class="col-xs-3 text-center">First Name</th>
+                            <th class="col-xs-3 text-center">Title</th>
                             <th class="col-xs-3">Gender</th>
-                            <th class="col-xs-1">Seniority</th>
+                            <th class="col-xs-1 text-right">Seniority</th>
 
 
                         </tr>
+
                         </thead>
                         <tbody>
                         <tr th:each="officer:${officerList}" id="edit_group_officers">
 
-                            <td class="col-xs-2"><input type="checkbox" th:value="${officer.uid}"/></td>
+                            <td class="col-xs-2 text-center"><input class="checkbox" type="checkbox" th:value="${officer.uid}"/></td>
                             <td class="col-xs-2" th:text="${officer.uid}"></td>
                             <td class="col-xs-2" th:text="${officer.lastName}"></td>
                             <td class="col-xs-2" th:text="${officer.firstName}"></td>
                             <td class="col-xs-2" th:text="${officer.title}"></td>
                             <td class="col-xs-2" th:text="${officer.gender}"></td>
-                            <td class="col-xs-2" th:text="${officer.seniority}"></td>
+                            <td class="col-xs-1" th:text="${officer.seniority}"></td>
+
 
                         </tr>
-                        </tbody>
+                                                </tbody>
+                        <tfoot>
+                        <tr id="edit_select_all">
+                            <td class="col-xs-3"><input type="checkbox" />  Select All</td>
+
+                        </tr>
+                        </tfoot>
 
                     </table>
                 </div>

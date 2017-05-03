@@ -259,11 +259,20 @@ function updateGroupSchedule() {
     var event_type = $('#edit_shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("#edit_group_officers input:checked").each(function () {
-        selected_officers.push($(this).val());
-        console.log(selected_officers);
+    if($("#edit_select_all input").is(':checked')) {
+        $("#edit_group_officers input").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
 
-    });
+        });
+    } else{
+        $("#edit_group_officers input:checked").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
+
+        });
+
+    }
     $.post("update_group_schedule", {
         'scheduleId': editRequest_id,
         'startTime': startTime_id,
@@ -303,7 +312,7 @@ function changeToEditGroupSchedule(schedule_id) {
         console.log(formattedStart);
         var formattedEnd = getFormattedDate(new Date(data.endTime));
         $('#edit_id').val(schedule_id);
-        $('#edit_shift_type').val(data.shiftType);
+        $('#edit_shift_type').val(data.shiftType.shiftTypeName);
         $('#edit_start_time_group').val(formattedStart);
         $('#edit_end_time_group').val(formattedEnd);
         $('#edit_group_schedule_description').val(data.description);
@@ -467,48 +476,65 @@ function addShiftType() {
 
 }
 
-function addGroupEvent() {
+function addGroupEvent(start_times, end_times) {
 
-
+    console.log('add group event');
     // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#start_time_group').val();
     var endTime_id = $('#end_time_group').val();
+    if(startTime_id != '' && endTime_id != ''){
+        start_times.push(startTime_id);
+        end_times.push(endTime_id);
+    }
     var description = $('#group_schedule_description').val();
     var shift_type = $('#shift_type').val();
-    var selected_officers = []
-    console.log(1);
-    $("#group_officers input:checked").each(function () {
-        selected_officers.push($(this).val());
-        console.log(selected_officers)
+    var selected_officers = [];
+    if($("#select_all input").is(':checked')) {
 
-    });
+        $("#group_officers input").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
+
+        });
+    } else{
+
+        $("#group_officers input:checked").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
+
+        });
+    }
+    console.log(selected_officers);
 
     // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
     //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("createGroupEvent", {
         'selectedOfficers[]': selected_officers,
-        'startTime': startTime_id,
-        'endTime': endTime_id,
+        'startTime[]':start_times,
+        'endTime[]':end_times,
         'description': description,
         'shift_type': shift_type,
     }).done(function (data) {
-
         console.log(data);
         console.log("guess what happened");
         if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
         else {
-            var markup =
-                "<tr><td>" + data.id +
-                "</td><td>" + startTime_id +
-                "</td><td>" + endTime_id +
-                "</td><td>" + shift_type +
-                "</td><td>" + selected_officers.length +
-                "</td><td>" + description +
-                "</td><td>" + data.status +
-                "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data.id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
-            $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
+            for(var i = 0; i < data.length; i++) {
+
+                var markup =
+                    "<tr><td>" + data[i].id +
+                    "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
+                    "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
+                    "</td><td>" + shift_type +
+                    "</td><td>" + selected_officers.length +
+                    "</td><td>" + description +
+                    "</td><td>" + data[i].scheduleStatus +
+                    "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
+                $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
+            }
+
         }
         //location.reload();
         clearGroupSchedule();
@@ -666,7 +692,6 @@ function clearGroupSchedule() {
     $('#end_time_group').val("");
     $('#group_schedule_description').val("");
     $('#shift_type').val("");
-    $('#status').val("");
 }
 function cancelAddEvent() {
     $('#startTime_ID').val("");
@@ -744,10 +769,62 @@ function updateEventByShift() {
 
 $(document)
     .ready(function () {
+        var start_times = [];
+        var end_times = [];
+        $("#select_all input").change(function(){  //"select all" change
+            $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        });
+
+//".checkbox" change
+        $('#group_officers .checkbox').change(function(){
+            //uncheck "select all", if one of the listed checkbox item is unchecked
+            if(false == $(this).prop("checked")){ //if this item is unchecked
+                $("#select_all input").prop('checked', false); //change "select all" checked status to false
+            }
+            //check "select all" if all checkbox items are checked
+            if ($('#group_officers  .checkbox:checked').length == $('.checkbox').length ){
+                $("#select_all input").prop('checked', true);
+            }
+        });
+        $("#edit_select_all input").change(function(){  //"select all" change
+            $("#edit_group_officers .checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        });
+
+//".checkbox" change
+        $('#edit_group_officers .checkbox').change(function(){
+            //uncheck "select all", if one of the listed checkbox item is unchecked
+            if(false == $(this).prop("checked")){ //if this item is unchecked
+                $("#edit_select_all input").prop('checked', false); //change "select all" checked status to false
+            }
+            //check "select all" if all checkbox items are checked
+            if ($('#edit_group_officers .checkbox:checked').length == $('.checkbox').length ){
+                $("#edit_select_all input").prop('checked', true);
+            }
+        });
+        $('#add_group_time').click(function(){
+            var start = $('#start_time_group').val();
+            var end = $('#end_time_group').val();
+            if(start != '' && end != '') {
+                start_times.push($('#start_time_group').val());
+                end_times.push($('#end_time_group').val());
+                var markup = "<div class='col-sm-3'><mark>" + $('#start_time_group').val() + "-" + $('#end_time_group').val() + "</mark></div>";
+                $('#selected-time-ranges').append(markup).hide().slideDown();
+                $('#start_time_group').val('');
+                $('#end_time_group').val('');
+            }
+        });
         $('#re_submit_group_event').click(updateGroupSchedule);
         $('#re_cancel_group_event').click(changeToCreateGroupRequest);
-        $('#submit_group_event').click(addGroupEvent);
-        $('#cancel_group_event').click(clearGroupSchedule);
+        $('#submit_group_event').click(function(){
+            addGroupEvent(start_times, end_times);
+            start_times = [];
+            end_times = [];
+        });
+        $('#cancel_group_event').click(function(){
+            clearGroupSchedule();
+            start_times = [];
+            end_times = [];
+        });
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);

@@ -24,31 +24,33 @@ public class GroupSchedule {
     private Union union;
 
     private int recruitId;
-    private String shiftType;
-    private String schedule_status;
-    private int selected_Officer;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name="shift_id")
+    private ShiftType shiftType;
+    private String scheduleStatus;
+    private int selectedOfficer;
 
     public GroupSchedule() {
     }
 
-    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected) {
+    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, ShiftType shift, String status, int selected) {
         this.setDescription(d);
         this.setRecruitId(recruit);
-        this.setSelected_Officer(selected);
+        this.setSelectedOfficer(selected);
         this.setStartTime(s);
         this.setEndTime(e);
         this.setAdmin(admin);
         this.setUnion(uni);
         this.setShiftType(shift);
-        this.setStatus(status);
+        this.setScheduleStatus(status);
     }
 
-    public String getStatus() {
-        return schedule_status;
+    public String getScheduleStatus() {
+        return scheduleStatus;
     }
 
-    public void setStatus(String status) {
-        this.schedule_status = status;
+    public void setScheduleStatus(String status) {
+        this.scheduleStatus = status;
     }
 
     public int getId() {
@@ -83,20 +85,20 @@ public class GroupSchedule {
         this.endTime = endTime;
     }
 
-    public String getShiftType() {
+    public ShiftType getShiftType() {
         return shiftType;
     }
 
-    public void setShiftType(String shiftType) {
+    public void setShiftType(ShiftType shiftType) {
         this.shiftType = shiftType;
     }
 
-    public int getSelected_Officer() {
-        return selected_Officer;
+    public int getSelectedOfficer() {
+        return selectedOfficer;
     }
 
-    public void setSelected_Officer(int selected_Officer) {
-        this.selected_Officer = selected_Officer;
+    public void setSelectedOfficer(int selectedOfficer) {
+        this.selectedOfficer = selectedOfficer;
     }
 
     public Officer getAdmin() {

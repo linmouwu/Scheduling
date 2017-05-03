@@ -185,12 +185,7 @@
         </div>
 
         <!--Other components.-->
-        <div class="container-fluid" id="calendar" style="display: none">
-            <form action="" method="get">
 
-            </form>
-
-        </div>
         <div class="container-fluid" id="group_calendar" style="display: none">
             <input type="hidden" th:value="1" id="currentShiftType"/>
             <label>Shift_Type</label>
@@ -199,6 +194,12 @@
                 <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}"
                         th:id="${shiftType.id}"></option>
             </select>
+        </div>
+        <div class="container-fluid" id="calendar" style="display: none">
+            <form action="" method="get">
+
+            </form>
+
         </div>
         <div>
             <input type="hidden" th:value="${shiftTypeList}" id="shiftTypeList"/>
