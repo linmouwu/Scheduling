@@ -2,25 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/CreateEventController.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/CreateEventController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/HomeController.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/HomeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CityOfLansing.iml" afterPath="$PROJECT_DIR$/.idea/CityOfLansing.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/540b2353-94e8-4ce6-bfc7-f6e85b1bab14.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/540b2353-94e8-4ce6-bfc7-f6e85b1bab14.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupSchedule.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupSchedule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/ShiftTypeRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/ShiftTypeRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/home.js" afterPath="$PROJECT_DIR$/target/classes/static/js/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/home.html" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -490,20 +475,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CityOfLansing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CityOfLansing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1025,14 +996,7 @@
       <workItem from="1493818017403" duration="243000" />
       <workItem from="1493818595134" duration="350000" />
       <workItem from="1493819186288" duration="126000" />
-      <workItem from="1493819448658" duration="26000" />
-    </task>
-    <task id="LOCAL-00013" summary="04/07/2017 Permission Group update.">
-      <created>1491666793070</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1491666793070</updated>
+      <workItem from="1493819448658" duration="83000" />
     </task>
     <task id="LOCAL-00014" summary="04/07/2017 Permission Group update.">
       <created>1491669032278</created>
@@ -1370,11 +1334,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493818608426</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="05/03/2017 Merge">
+      <created>1493819495874</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1493819495874</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141988000" />
+    <option name="totallyTimeSpent" value="142045000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1436" height="823" extended-state="6" />
@@ -1421,7 +1392,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="03/28/2017 Separate html pages." />
     <MESSAGE value="04/07/2017 Time Cycle." />
     <MESSAGE value="04/07/2017 Time Cycle Deactivation." />
     <MESSAGE value="04/07/2017 Master admin." />
@@ -1446,7 +1416,8 @@
     <MESSAGE value="Merge branches 'Nan' and 'linmouwu' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;#&#9;.idea/dataSources/540b2353-94e8-4ce6-bfc7-f6e85b1bab14.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/cmu/heinz/controller/CreateEventController.java&#10;#&#9;src/main/java/cmu/heinz/controller/HomeController.java&#10;#&#9;src/main/java/cmu/heinz/model/GroupScheduleRepository.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftType.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftTypeRepository.java&#10;#&#9;src/main/resources/static/js/home.js&#10;#&#9;target/classes/cmu/heinz/controller/CreateEventController.class&#10;#&#9;target/classes/cmu/heinz/controller/HomeController.class&#10;#&#9;target/classes/static/js/home.js&#10;" />
     <MESSAGE value="05/02/2017 Update event." />
     <MESSAGE value="05/02/2017 Update master." />
-    <option name="LAST_COMMIT_MESSAGE" value="05/02/2017 Update master." />
+    <MESSAGE value="05/03/2017 Merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="05/03/2017 Merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
