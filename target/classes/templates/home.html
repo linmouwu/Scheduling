@@ -59,6 +59,63 @@
                 format: 'mm/dd/yyyy',
                 autoclose: true
             });
+
+            $('#startTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#endTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#edit_StartTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#edit_EndTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#hireDate_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#promoteDate_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#grou_schedule_StartTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#grou_schedule_EndTime_ID').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#start_time_group').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#end_time_group').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+            $('#edit_start_time_group').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+            $('#edit_end_time_group').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+
+
         });
     </script>
 
@@ -80,17 +137,17 @@
                         <a href="javascript:void(0);" onclick="changeToUserProfile()"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
-                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1" class="divider"></li>
                     <li th:if="${officer.permissionGroup.id} == 1">
                         <a href="javascript:void(0);" onclick="changeToTCC()"><i
                                 class="fa fa-fw fa-user"></i> Configure Time Cycle</a>
                     </li>
-                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1" class="divider"></li>
                     <li th:if="${officer.permissionGroup.id} == 1">
                         <a href="javascript:void(0);" onclick="changeToPGM()"><i
                                 class="fa fa-fw fa-user"></i> Manage Permission Group</a>
                     </li>
-                    <li class="divider"></li>
+                    <li th:if="${officer.permissionGroup.id} == 1" class="divider"></li>
                     <li>
                         <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
@@ -120,6 +177,7 @@
 
         <div th:if="${officer.permissionGroup.id} == 1">
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
+            <div th:replace="holidaymanagement :: holidaymanagement"></div>
         </div>
 
         <div th:if="${officer.permissionGroup.id} == 2">
@@ -128,15 +186,33 @@
 
         <!--Other components.-->
         <div class="container-fluid" id="calendar" style="display: none">
-            <input type="hidden" th:value="Day" id="currentShiftType"/>
-        </div>
+            <form action="" method="get">
 
+            </form>
+
+        </div>
+        <div class="container-fluid" id="group_calendar" style="display: none">
+            <input type="hidden" th:value="1" id="currentShiftType"/>
+            <label>Shift_Type</label>
+            <select name="shiftTypeMenu" id="shiftTypeMenu"
+                    onchange="updateEventByShift()">
+                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}"
+                        th:id="${shiftType.id}"></option>
+            </select>
+        </div>
+        <div>
+            <input type="hidden" th:value="${shiftTypeList}" id="shiftTypeList"/>
+        </div>
         <div>
             <input type="hidden" th:value="${officer.union.id}" id="currentUnionId"/>
         </div>
 
+
         <div>
             <input type="hidden" id="currentEditId"/>
+        </div>
+        <div>
+            <input type="hidden" id="previousShiftId" value="1"/>
         </div>
 
         <div th:replace="scheduleRequestList :: scheduleRequestList">
@@ -147,15 +223,25 @@
 
         <div th:replace="createEvent :: createEvent">
         </div>
-
+        <div th:replace="groupScheduleManagement :: groupScheduleManagement">
+        </div>
         <div th:replace="staffManagement :: staffManagement">
+        </div>
+        <div th:replace="shiftTypeManagement :: shiftTypeManagement">
         </div>
 
         <div th:replace="permissionGroupPage :: permissionGroupPage">
         </div>
+        <div th:replace="editGroupSchedule :: editGroupSchedule">
+        </div>
 
         <div th:replace="userProfile :: userProfile">
         </div>
+        <div th:replace="holidayManagement :: holidayManagement">
+        </div>
+        <div th:replace="assignHoliday :: assignHoliday">
+        </div>
+
 
     </div>
     <!-- /#page-wrapper -->

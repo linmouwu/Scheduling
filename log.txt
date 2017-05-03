@@ -1,0 +1,157 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for cmu.heinz:capstone:jar:1.0-SNAPSHOT
+[WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.springframework.boot:spring-boot-starter-security:jar -> duplicate declaration of version (?) @ line 57, column 17
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building capstone 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:1.5.1.RELEASE:run (default-cli) > test-compile @ capstone >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ capstone ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 102 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ capstone ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 28 source files to /Users/ruitian/Documents/cmu/capstone/CityOfLansing/target/classes
+[WARNING] /Users/ruitian/Documents/cmu/capstone/CityOfLansing/src/main/java/cmu/heinz/util/ActiveDirectory.java: Some input files use unchecked or unsafe operations.
+[WARNING] /Users/ruitian/Documents/cmu/capstone/CityOfLansing/src/main/java/cmu/heinz/util/ActiveDirectory.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ capstone ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/ruitian/Documents/cmu/capstone/CityOfLansing/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ capstone ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:1.5.1.RELEASE:run (default-cli) < test-compile @ capstone <<<
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:1.5.1.RELEASE:run (default-cli) @ capstone ---
+[INFO] Attaching agents: []
+02:47:14.314 [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Included patterns for restart : []
+02:47:14.319 [main] DEBUG org.springframework.boot.devtools.settings.DevToolsSettings - Excluded patterns for restart : [/spring-boot-starter/target/classes/, /spring-boot-autoconfigure/target/classes/, /spring-boot-starter-[\w-]+/, /spring-boot/target/classes/, /spring-boot-actuator/target/classes/, /spring-boot-devtools/target/classes/]
+02:47:14.320 [main] DEBUG org.springframework.boot.devtools.restart.ChangeableUrls - Matching URLs for reloading : [file:/Users/ruitian/Documents/cmu/capstone/CityOfLansing/target/classes/]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.1.RELEASE)
+
+2017-04-13 02:47:14.864  INFO 23250 --- [  restartedMain] cmu.heinz.Application                    : Starting Application on Ruis-MacBook-Pro.local with PID 23250 (/Users/ruitian/Documents/cmu/capstone/CityOfLansing/target/classes started by ruitian in /Users/ruitian/Documents/cmu/capstone/CityOfLansing)
+2017-04-13 02:47:14.865  INFO 23250 --- [  restartedMain] cmu.heinz.Application                    : No active profile set, falling back to default profiles: default
+2017-04-13 02:47:15.223  INFO 23250 --- [  restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6d95decc: startup date [Thu Apr 13 02:47:15 EDT 2017]; root of context hierarchy
+2017-04-13 02:47:16.987  INFO 23250 --- [  restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration' of type [class org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-04-13 02:47:17.092  INFO 23250 --- [  restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'validator' of type [class org.springframework.validation.beanvalidation.LocalValidatorFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-04-13 02:47:17.192  INFO 23250 --- [  restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5ec90a81] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2017-04-13 02:47:17.625  INFO 23250 --- [  restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2017-04-13 02:47:17.650  INFO 23250 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2017-04-13 02:47:17.651  INFO 23250 --- [  restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2017-04-13 02:47:17.793  INFO 23250 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2017-04-13 02:47:17.793  INFO 23250 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2573 ms
+2017-04-13 02:47:18.015  INFO 23250 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-04-13 02:47:18.016  INFO 23250 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-04-13 02:47:18.016  INFO 23250 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-04-13 02:47:18.016  INFO 23250 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-04-13 02:47:18.018  INFO 23250 --- [ost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2017-04-13 02:47:18.018  INFO 23250 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-04-13 02:47:18.411  INFO 23250 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2017-04-13 02:47:18.432  INFO 23250 --- [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2017-04-13 02:47:18.520  INFO 23250 --- [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.0.11.Final}
+2017-04-13 02:47:18.522  INFO 23250 --- [  restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2017-04-13 02:47:18.524  INFO 23250 --- [  restartedMain] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2017-04-13 02:47:18.559  INFO 23250 --- [  restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+Thu Apr 13 02:47:18 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+Thu Apr 13 02:47:19 EDT 2017 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+2017-04-13 02:47:19.399  INFO 23250 --- [  restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2017-04-13 02:47:19.895  INFO 23250 --- [  restartedMain] org.hibernate.tool.hbm2ddl.SchemaUpdate  : HHH000228: Running hbm2ddl schema update
+2017-04-13 02:47:20.179  INFO 23250 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2017-04-13 02:47:20.848  INFO 23250 --- [  restartedMain] s.s.l.DefaultSpringSecurityContextSource :  URL 'ldap://localhost:8389/dc=springframework,dc=org', root DN is 'dc=springframework,dc=org'
+2017-04-13 02:47:20.854  INFO 23250 --- [  restartedMain] o.s.l.c.support.AbstractContextSource    : Property 'userDn' not set - anonymous context will be used for read-write operations
+2017-04-13 02:47:21.080  INFO 23250 --- [  restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b690829, org.springframework.security.web.context.SecurityContextPersistenceFilter@adae508, org.springframework.security.web.header.HeaderWriterFilter@4783e668, org.springframework.security.web.authentication.logout.LogoutFilter@35bc6b16, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a962187, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6da8aee6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50a086d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e33c349, org.springframework.security.web.session.SessionManagementFilter@3e2f746b, org.springframework.security.web.access.ExceptionTranslationFilter@4d6c80dd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1bb8aaa2]
+2017-04-13 02:47:21.170  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6d95decc: startup date [Thu Apr 13 02:47:15 EDT 2017]; root of context hierarchy
+2017-04-13 02:47:21.253  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/create_Event],methods=[POST || GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.CreateEventController.createEvent(int,java.lang.String,java.lang.String,java.util.Date,java.util.Date)
+2017-04-13 02:47:21.254  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/update_Event],methods=[POST || GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.CreateEventController.updateEvent(java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.util.Date,java.util.Date)
+2017-04-13 02:47:21.254  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getEditEvent],methods=[GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.CreateEventController.getEvent(java.lang.String,org.springframework.ui.Model)
+2017-04-13 02:47:21.255  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/allEvent],methods=[GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.CreateEventController.getAllEvent(int,org.springframework.ui.Model)
+2017-04-13 02:47:21.255  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/getOfficerNumber],methods=[GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.CreateEventController.getOfficeNumber(java.util.Date,int,java.lang.String,org.springframework.ui.Model)
+2017-04-13 02:47:21.255  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/home],methods=[POST || GET]}" onto public java.lang.String cmu.heinz.controller.HomeController.home(org.springframework.ui.Model)
+2017-04-13 02:47:21.256  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login || /],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView cmu.heinz.controller.LoginController.getLoginPage(java.util.Optional<java.lang.String>)
+2017-04-13 02:47:21.256  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/calendar],methods=[POST || GET]}" onto public java.lang.String cmu.heinz.controller.ScheduleController.calendar(org.springframework.ui.Model)
+2017-04-13 02:47:21.256  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/schedule_request_list],methods=[GET]}" onto public java.lang.String cmu.heinz.controller.ScheduleRequestListController.scheduleRequestList()
+2017-04-13 02:47:21.257  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deactivate_event],methods=[PUT || GET]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.TimeCycleController.deactivateEvent(java.lang.Integer)
+2017-04-13 02:47:21.257  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/add_time_cycle],methods=[POST]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.TimeCycleController.addTimeCycle(java.util.Date,java.util.Date)
+2017-04-13 02:47:21.257  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/userinfo],methods=[GET]}" onto public java.lang.String cmu.heinz.controller.UserInfoController.getUserInfo(int,org.springframework.ui.Model)
+2017-04-13 02:47:21.257  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/add_user],methods=[POST]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.UserInfoController.addUserInfo(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,cmu.heinz.model.PermissionGroup,java.lang.String,java.lang.String,java.lang.String,java.util.Date,java.util.Date,java.lang.String)
+2017-04-13 02:47:21.258  INFO 23250 --- [  restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/update_permission_group],methods=[POST]}" onto public org.springframework.http.ResponseEntity cmu.heinz.controller.UserInfoController.updatePermissionGroup(java.lang.String,java.lang.String)
+2017-04-13 02:47:21.290  INFO 23250 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-04-13 02:47:21.290  INFO 23250 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-04-13 02:47:21.339  INFO 23250 --- [  restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-04-13 02:47:21.676  INFO 23250 --- [  restartedMain] oConfiguration$WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2017-04-13 02:47:22.086  INFO 23250 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2017-04-13 02:47:22.153  INFO 23250 --- [  restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-04-13 02:47:22.224  INFO 23250 --- [  restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-04-13 02:47:22.233  INFO 23250 --- [  restartedMain] cmu.heinz.Application                    : Started Application in 7.896 seconds (JVM running for 8.491)
+2017-04-13 02:47:51.483  INFO 23250 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-04-13 02:47:51.485  INFO 23250 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-04-13 02:47:51.504  INFO 23250 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 19 ms
+Hibernate: select * from OFFICER where uid = (?) limit 1
+Hibernate: select permission0_.id as id1_3_0_, permission0_.description as descript2_3_0_, permission0_.role as role3_3_0_ from permission_group permission0_ where permission0_.id=?
+Hibernate: select union0_.id as id1_5_0_, union0_.description as descript2_5_0_, union0_.name as name3_5_0_ from unions union0_ where union0_.id=?
+7
+the id is ben
+2017-04-13 02:47:51.983  INFO 23250 --- [nio-8080-exec-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+Hibernate: select officer0_.id as id1_2_, officer0_.badge_num as badge_nu2_2_, officer0_.contract_employee as contract3_2_, officer0_.first_name as first_na4_2_, officer0_.gender as gender5_2_, officer0_.hire_date as hire_dat6_2_, officer0_.last_name as last_nam7_2_, officer0_.permission_group as permiss13_2_, officer0_.promotion_date as promotio8_2_, officer0_.recruit_id as recruit_9_2_, officer0_.seniority as seniori10_2_, officer0_.title as title11_2_, officer0_.trainer_id as trainer14_2_, officer0_.uid as uid12_2_, officer0_.union_id as union_i15_2_ from officer officer0_
+Hibernate: select permission0_.id as id1_3_0_, permission0_.description as descript2_3_0_, permission0_.role as role3_3_0_ from permission_group permission0_ where permission0_.id=?
+Hibernate: select union0_.id as id1_5_0_, union0_.description as descript2_5_0_, union0_.name as name3_5_0_ from unions union0_ where union0_.id=?
+Hibernate: select permission0_.id as id1_3_0_, permission0_.description as descript2_3_0_, permission0_.role as role3_3_0_ from permission_group permission0_ where permission0_.id=?
+Hibernate: select union0_.id as id1_5_0_, union0_.description as descript2_5_0_, union0_.name as name3_5_0_ from unions union0_ where union0_.id=?
+Hibernate: select permission0_.id as id1_3_0_, permission0_.description as descript2_3_0_, permission0_.role as role3_3_0_ from permission_group permission0_ where permission0_.id=?
+Hibernate: select permission0_.id as id1_3_0_, permission0_.description as descript2_3_0_, permission0_.role as role3_3_0_ from permission_group permission0_ where permission0_.id=?
+Hibernate: select union0_.id as id1_5_, union0_.description as descript2_5_, union0_.name as name3_5_ from unions union0_
+Hibernate: select * from EVENT_REQUEST where union_id = (?) AND event_status = 'pending'
+Hibernate: select * from EVENT_REQUEST where union_id = (?) AND (event_status = 'approved' OR event_status = 'declined')
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+Hibernate: select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (?) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (?) AND end_time >= (?) AND shift_Type = (?)
+0
+2017-04-13 02:49:27.251  INFO 23250 --- [      Thread-11] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6d95decc: startup date [Thu Apr 13 02:47:15 EDT 2017]; root of context hierarchy
+2017-04-13 02:49:27.268  INFO 23250 --- [      Thread-11] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-04-13 02:49:27.270  INFO 23250 --- [      Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 02:17 min
+[INFO] Finished at: 2017-04-13T02:49:27-04:00
+[INFO] Final Memory: 33M/277M
+[INFO] ------------------------------------------------------------------------

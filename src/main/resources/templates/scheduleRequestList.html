@@ -33,8 +33,8 @@
                             <tbody>
                             <tr th:each="pendingRequest:${pendingEventList}">
                                 <td><a href="javascript:;" th:onclick="'javascript:changeToEditEvent('+${pendingRequest.id}+');'" th:text="${pendingRequest.id}"></a></td>
-                                <td th:text="${#calendars.format(pendingRequest.startTime,'yyyy-MM-dd')}"></td>
-                                <td th:text="${#calendars.format(pendingRequest.endTime,'yyyy-MM-dd')}"></td>
+                                <td th:text="${#calendars.format(pendingRequest.startTime,'MM/dd/yyyy')}"></td>
+                                <td th:text="${#calendars.format(pendingRequest.endTime,'MM/dd/yyyy')}"></td>
                                 <td th:text="${pendingRequest.eventType}"></td>
                             </tr>
                             </tbody>

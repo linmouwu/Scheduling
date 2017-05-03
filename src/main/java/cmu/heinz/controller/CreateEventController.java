@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +37,10 @@ public class CreateEventController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+    @Autowired
+    private GroupScheduleRepository group_scheduleRepository;
+    @Autowired
+    private ScheduleOfficerRepository schedule_officerRepository;
 
     /**
      * Create event methods.
@@ -53,8 +57,8 @@ public class CreateEventController {
             @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // Retrieve the current log-in user.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -129,8 +133,8 @@ public class CreateEventController {
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "event_status") String status,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // User evidence.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -187,6 +191,57 @@ public class CreateEventController {
     /**
      * Get all events of one union.
      *
+     * @param shiftType union to visit
+     * @param model     session model of the event
+     * @return corresponding http response
+     */
+    @RequestMapping(value = "/allShiftTypeEvent", method = RequestMethod.GET)
+    public ResponseEntity getAllShiftEvent(@RequestParam(value = "shiftType") int shiftType,
+                                           Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+
+        int union_id = officer.getUnion().getId();
+
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+
+        allEvent = eventRepository.findByAllUnionIDAndShift(union_id, shiftType);
+
+//        allEvent = eventRepository.findByAllUnionID(union_id);
+
+        List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+
+        List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
+
+        if (allEvent != null) {
+            for (Event e : allEvent) {
+                String description = e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
+                allCurrentEvent.add(cur);
+            }
+            model.addAttribute("allShiftEvent", allCurrentEvent);
+        }
+        if (groupSchedule != null) {
+            for (ScheduleOfficer s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(), s.getGroupSchedule().getDescription(), s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
+        return ResponseEntity.ok(allCurrentEvent);
+    }
+
+    /**
+     * Get all events of one union.
+     *
      * @param union_id union to visit
      * @param model    session model of the event
      * @return corresponding http response
@@ -194,42 +249,102 @@ public class CreateEventController {
     @RequestMapping(value = "/allEvent", method = RequestMethod.GET)
     public ResponseEntity getAllEvent(@RequestParam(value = "union_id") int union_id,
                                       Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // Find events by union id.
-        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+
+        allEvent = eventRepository.findByAllUnionID(union_id);
+
+        List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                CurrentEvent cur = new CurrentEvent(e.getId(), e.getDescription(), e.getStartTime(), e.getEndTime());
+                String description = e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }
             model.addAttribute("allEvent", allCurrentEvent);
         }
-
+        if (groupSchedule != null) {
+            for (ScheduleOfficer s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(), s.getGroupSchedule().getDescription(), s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
         return ResponseEntity.ok(allCurrentEvent);
     }
 
-@RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
-    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value="shiftType") String shiftType, Model model) {
+    @RequestMapping(value = "/allUnionEvent", method = RequestMethod.GET)
+    public ResponseEntity getAllUnionEvent(@RequestParam(value = "union_id") int union_id,
+                                           Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String sd = df.format(start_date);
-//        String ed = df.format(end_date);
-//        Integer num = eventRepository.findByAllDate(union_id, sd);
-        String rst = "ShiftType:" + shiftType + "\n";
-        for (int i = 0; i < 7; i++) {
-            Date curDate = addDays(start_date, i);
-            String cd = df.format(curDate);
-            Integer next = eventRepository.findByAllDate(union_id, cd, shiftType);
-            System.out.println(next);
-            rst += cd + " " + next + "\n";
+        UserDetails userDetails = (UserDetails) principal;
+
+        String username = userDetails.getUsername();
+
+        // Fetch user details by username(UID).
+        Officer officer = officerRepository.findByUID(username);
+        // Find special events by officer id.
+        int officerid = officer.getId();
+        String permissionGroup = officer.getPermissionGroup().getRole();
+        List<Event> allEvent = new ArrayList<Event>();
+        allEvent = eventRepository.findByAllUnionID(union_id);
+        List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+
+        List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
+
+
+        if (allEvent != null) {
+            for (Event e : allEvent) {
+                String description = e.getUid() + " : " + e.getDescription();
+                CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
+                allCurrentEvent.add(cur);
+            }
+            model.addAttribute("allIndividualEvent", allCurrentEvent);
         }
+        if (groupSchedule != null) {
+            for (ScheduleOfficer s : groupSchedule) {
+                String description = s.getGroupSchedule().getSelectedOfficer() + " Officers : " + s.getGroupSchedule().getDescription();
+                CurrentEvent cur = new CurrentEvent(s.getId(), description, s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
+                allCurrentEvent.add(cur);
+            }
+        }
+        return ResponseEntity.ok(allCurrentEvent);
+    }
+
+    @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
+    public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value = "shiftType") int shiftType, Model model) {
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(start_date);
+        c.add(Calendar.DATE, 1);
+        Date dt = c.getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String sd = df.format(dt);
+        String rst = "ShiftType:" + shiftType + "\n";
+
+        int off = eventRepository.findByAllDate(union_id, sd, shiftType);
+        Integer groupOff = group_scheduleRepository.findByAllDate(union_id, sd, shiftType);
+        if (groupOff != null) {
+            off += groupOff;
+        }
+        rst += sd + " Leave Officer Number: " + off;
         return ResponseEntity.ok(rst);
     }
-    public static Date addDays(Date date, int days)
-    {
+
+    public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days

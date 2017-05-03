@@ -28,11 +28,12 @@
 
         <tr>
             <td>Start Time</td>
-            <td><input name="startTime" id="startTime_ID" type="date"/></td>
+            <td><input class="form-control" name="startTime" id="startTime_ID" type="text" placeholder="MM/DD/YYYY"/>
+            </td>
         </tr>
         <tr>
             <td>End Time</td>
-            <td><input name="endTime" id="endTime_ID" type="date"/></td>
+            <td><input class="form-control" name="endTime" id="endTime_ID" type="text" placeholder="MM/DD/YYYY"/></td>
         </tr>
 
         <tr>
@@ -50,6 +51,8 @@
                 <option value=" " selected="selected" disabled="disabled"></option>
                 <option value="Vacation"> Vacation</option>
                 <option value="Leave"> Leave</option>
+                <option value="Pass Time"> Pass Time</option>
+                <option value="Holiday"> Holiday</option>
                 <option value="Decline to answer"> Decline to answer</option>
             </select>
                 <select class="form-control" name="type" id="individualRequestType"
@@ -58,7 +61,9 @@
                     <option value="Vacation"> Vacation</option>
                     <option value="Training"> Training</option>
                     <option value="Event"> Event</option>
-                    <option value="Comp"> Comp</option>
+                    <option value="Comp Time"> Comp Time</option>
+                    <option value="Pass Time"> Pass Time</option>
+                    <option value="Holiday"> Holiday</option>
                 </select></td>
 
         </tr>

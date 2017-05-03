@@ -1,1 +1,16 @@
 /target/
+*.log
+
+
+# Editor backup files
+*~
+*#
+*.swp
+
+# Mac OS data store file
+.DS_Store
+
+.idea/*
+
+# Secret config parameters
+*.ini
