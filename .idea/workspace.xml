@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="Merge branches 'Nan' and 'linmouwu' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;#&#9;.idea/dataSources/540b2353-94e8-4ce6-bfc7-f6e85b1bab14.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/cmu/heinz/controller/CreateEventController.java&#10;#&#9;src/main/java/cmu/heinz/controller/HomeController.java&#10;#&#9;src/main/java/cmu/heinz/model/GroupScheduleRepository.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftType.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftTypeRepository.java&#10;#&#9;src/main/resources/static/js/home.js&#10;#&#9;target/classes/cmu/heinz/controller/CreateEventController.class&#10;#&#9;target/classes/cmu/heinz/controller/HomeController.class&#10;#&#9;target/classes/static/js/home.js&#10;">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/CreateEventController.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,21 +74,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="759" column="41" selection-start-line="759" selection-start-column="41" selection-end-line="759" selection-end-column="41" />
+            <state relative-caret-position="270">
+              <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editGroupSchedule.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="editGroupSchedule.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="62" column="83" selection-start-line="62" selection-start-column="83" selection-end-line="62" selection-end-column="83" />
+            <state relative-caret-position="255">
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -100,8 +97,8 @@
       <file leaf-file-name="groupScheduleManagement.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="95" column="77" selection-start-line="95" selection-start-column="77" selection-end-line="95" selection-end-column="77" />
+            <state relative-caret-position="270">
+              <caret line="102" column="0" selection-start-line="95" selection-start-column="19" selection-end-line="102" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -150,8 +147,8 @@
       <file leaf-file-name="GroupScheduleController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
-              <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
+            <state relative-caret-position="195">
+              <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
               <folding>
                 <element signature="e#2561#2576#0" expanded="true" />
               </folding>
@@ -280,14 +277,14 @@
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/ShiftTypeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupSchedule.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/console_4.sql" />
         <option value="$PROJECT_DIR$/../group.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
+        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
       </list>
     </option>
   </component>
@@ -1243,7 +1240,7 @@
       <workItem from="1493652692000" duration="258000" />
       <workItem from="1493674513883" duration="457000" />
       <workItem from="1493675750137" duration="3154000" />
-      <workItem from="1493733918019" duration="21299000" />
+      <workItem from="1493733918019" duration="22002000" />
     </task>
     <task id="LOCAL-00005" summary="03/28/2017 Separate html pages.">
       <created>1490646954533</created>
@@ -1592,7 +1589,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154412000" />
+    <option name="totallyTimeSpent" value="155115000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2022,16 +2019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="49" column="44" selection-start-line="49" selection-start-column="44" selection-end-line="49" selection-end-column="44" />
-          <folding>
-            <element signature="e#2561#2576#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/EventRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -2093,26 +2080,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="102" column="45" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+          <folding>
+            <element signature="e#2561#2576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="312" column="30" selection-start-line="312" selection-start-column="30" selection-end-line="312" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="95" column="77" selection-start-line="95" selection-start-column="77" selection-end-line="95" selection-end-column="77" />
+        <state relative-caret-position="270">
+          <caret line="102" column="0" selection-start-line="95" selection-start-column="19" selection-end-line="102" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="62" column="83" selection-start-line="62" selection-start-column="83" selection-end-line="62" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="759" column="41" selection-start-line="759" selection-start-column="41" selection-end-line="759" selection-end-column="41" />
+        <state relative-caret-position="255">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding />
         </state>
       </provider>

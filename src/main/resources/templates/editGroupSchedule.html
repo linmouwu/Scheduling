@@ -60,13 +60,14 @@
                         <tbody>
                         <tr th:each="officer:${officerList}" id="edit_group_officers">
 
-                            <td class="col-xs-1 text-left"><input class="checkbox" type="checkbox" th:value="${officer.uid}"/></td>
+                            <td class="col-xs-2 text-center"><input class="checkbox" type="checkbox" th:value="${officer.uid}"/></td>
                             <td class="col-xs-2" th:text="${officer.uid}"></td>
                             <td class="col-xs-2" th:text="${officer.lastName}"></td>
                             <td class="col-xs-2" th:text="${officer.firstName}"></td>
                             <td class="col-xs-2" th:text="${officer.title}"></td>
                             <td class="col-xs-2" th:text="${officer.gender}"></td>
-                            <td class="col-xs-1 text-left" th:text="${officer.seniority}"></td>
+                            <td class="col-xs-1" th:text="${officer.seniority}"></td>
+
 
                         </tr>
                                                 </tbody>

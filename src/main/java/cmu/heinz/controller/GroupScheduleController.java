@@ -99,8 +99,8 @@ public class GroupScheduleController {
             @RequestParam(value = "shiftType") String type,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime) {
+            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
+            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
 
         // User evidence.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

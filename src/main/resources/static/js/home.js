@@ -311,7 +311,7 @@ function changeToEditGroupSchedule(schedule_id) {
         console.log(formattedStart);
         var formattedEnd = getFormattedDate(new Date(data.endTime));
         $('#edit_id').val(schedule_id);
-        $('#edit_shift_type').val(data.shiftType);
+        $('#edit_shift_type').val(data.shiftType.shiftTypeName);
         $('#edit_start_time_group').val(formattedStart);
         $('#edit_end_time_group').val(formattedEnd);
         $('#edit_group_schedule_description').val(data.description);
