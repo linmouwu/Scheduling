@@ -33,6 +33,8 @@ public class GroupScheduleController {
     private GroupScheduleRepository group_scheduleRepository;
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
+    @Autowired
+    private ShiftTypeRepository shiftTypeRepository;
 
 
 
@@ -61,11 +63,11 @@ public class GroupScheduleController {
         Union union = officer.getUnion();
 
         String uid = officer.getUid();
-
+        ShiftType shiftType = shiftTypeRepository.findByName(type);
         int recruitId = Integer.valueOf(officer.getRecruitId());
         GroupSchedule[] results = new GroupSchedule[startTime.size()];
         for(int i = 0; i < startTime.size(); i++) {
-            GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, type, "pending", selectedOfficers.size());
+            GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, shiftType, "pending", selectedOfficers.size());
             schedule = group_scheduleRepository.save(schedule);
             for(String selectedOfficer : selectedOfficers) {
                 ScheduleOfficer record = new ScheduleOfficer();
@@ -143,7 +145,8 @@ public class GroupScheduleController {
         System.out.println("create extra officers");
         schedule.setStartTime(startTime);
         schedule.setEndTime(endTime);
-        schedule.setShiftType(type);
+        ShiftType shiftType = shiftTypeRepository.findByName(type);
+        schedule.setShiftType(shiftType);
         System.out.println("what???");
         schedule.setSelectedOfficer(selectedOfficers.size());
         schedule.setDescription(description);

@@ -160,8 +160,6 @@ public class HomeController {
 
         model.addAttribute("shiftTypeList", shiftTypeList);
 
-        model.addAttribute("shiftTypeList", shiftTypeList);
-
         System.out.println(shiftTypeList);
 
         return "home";

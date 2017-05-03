@@ -258,11 +258,20 @@ function updateGroupSchedule() {
     var event_type = $('#edit_shift_type').val();
     var selected_officers = []
     console.log(1);
-    $("#edit_group_officers input:checked").each(function () {
-        selected_officers.push($(this).val());
-        console.log(selected_officers);
+    if($("#edit_select_all").is(':checked')) {
+        $("#edit_group_officers input").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
 
-    });
+        });
+    } else{
+        $("#edit_group_officers input:checked").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
+
+        });
+
+    }
     $.post("update_group_schedule", {
         'scheduleId': editRequest_id,
         'startTime': startTime_id,
@@ -456,16 +465,27 @@ function addGroupEvent(start_times, end_times) {
     // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#start_time_group').val();
     var endTime_id = $('#end_time_group').val();
-    start_times.push(startTime_id);
-    end_times.push(endTime_id);
+    if(startTime_id != '' && endTime_id != ''){
+        start_times.push(startTime_id);
+        end_times.push(endTime_id);
+    }
     var description = $('#group_schedule_description').val();
     var shift_type = $('#shift_type').val();
     var selected_officers = [];
-    $("#group_officers input:checked").each(function () {
-        selected_officers.push($(this).val());
-        console.log(selected_officers);
+    if($("#select_all").is(':checked')) {
+        $("#group_officers input").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
 
-    });
+        });
+    } else{
+        $("#group_officers input:checked").each(function () {
+            selected_officers.push($(this).val());
+            console.log(selected_officers);
+
+        });
+
+    }
 
     // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
     //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
@@ -483,7 +503,7 @@ function addGroupEvent(start_times, end_times) {
             // $('#staff_management').append(data);
         }
         else {
-            for(var i = 0; i < length(data); i++) {
+            for(var i = 0; i < data.length; i++) {
                 var markup =
                     "<tr><td>" + data[i].id +
                     "</td><td>" + data[i].startTime +
@@ -623,14 +643,12 @@ function cancelShiftType() {
     $('#endTimeShift_ID').val("");
     $('#notes_ID').val("");
 }
-function clearGroupSchedule(start_times, end_times) {
+function clearGroupSchedule() {
     $('input:checkbox').prop("checked", false);
     $('#start_time_group').val("");
     $('#end_time_group').val("");
     $('#group_schedule_description').val("");
     $('#shift_type').val("");
-    start_times = [];
-    end_times = [];
 }
 function cancelAddEvent() {
     $('#startTime_ID').val("");
@@ -724,8 +742,16 @@ $(document)
         });
         $('#re_submit_group_event').click(updateGroupSchedule);
         $('#re_cancel_group_event').click(changeToCreateGroupRequest);
-        $('#submit_group_event').click(addGroupEvent(start_times, end_times));
-        $('#cancel_group_event').click(clearGroupSchedule(start_times, end_times));
+        $('#submit_group_event').click(function(){
+            addGroupEvent(start_times, end_times);
+            start_times = [];
+            end_times = [];
+        });
+        $('#cancel_group_event').click(function(){
+            clearGroupSchedule();
+            start_times = [];
+            end_times = [];
+        });
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);

@@ -24,14 +24,16 @@ public class GroupSchedule {
     private Union union;
 
     private int recruitId;
-    private String shiftType;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name="shift_id")
+    private ShiftType shiftType;
     private String scheduleStatus;
     private int selectedOfficer;
 
     public GroupSchedule() {
     }
 
-    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, String shift, String status, int selected) {
+    public GroupSchedule(int recruit, String d, Date s, Date e, Officer admin, Union uni, ShiftType shift, String status, int selected) {
         this.setDescription(d);
         this.setRecruitId(recruit);
         this.setSelectedOfficer(selected);
@@ -83,11 +85,11 @@ public class GroupSchedule {
         this.endTime = endTime;
     }
 
-    public String getShiftType() {
+    public ShiftType getShiftType() {
         return shiftType;
     }
 
-    public void setShiftType(String shiftType) {
+    public void setShiftType(ShiftType shiftType) {
         this.shiftType = shiftType;
     }
 
