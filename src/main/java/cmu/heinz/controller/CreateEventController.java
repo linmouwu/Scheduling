@@ -118,7 +118,6 @@ public class CreateEventController {
      * Update the existing event.
      *
      * @param id          event id to be updated
-     * @param totalDays   totaldays to be updated
      * @param type        new event type
      * @param status      new event status
      * @param description new description
@@ -223,7 +222,7 @@ public class CreateEventController {
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                String description = e.getDescription();
+                String description = e.getOfficerId() + " : " + e.getDescription();
                 CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }

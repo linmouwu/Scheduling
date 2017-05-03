@@ -77,6 +77,7 @@ function changeToStaff() {
     $('#permission_group').fadeOut();
     $('#holiday_management').fadeOut();
     $('#assign_holiday').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 function changeToAssignHoliday() {
     $('#pending_request').fadeOut();
@@ -90,7 +91,6 @@ function changeToAssignHoliday() {
     $('#permission_group').fadeOut();
     $('#holiday_management').fadeOut();
     $('#assign_holiday').delay(350).fadeIn();
-
     $('#shift_type_management').fadeOut();
 }
 
