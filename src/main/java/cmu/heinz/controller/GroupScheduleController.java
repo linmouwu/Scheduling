@@ -41,8 +41,8 @@ public class GroupScheduleController {
             @RequestParam(value = "shift_type") String type,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "selectedOfficers[]") List<String> selectedOfficers,
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
-            @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
+            @RequestParam(value = "startTime[]") @DateTimeFormat(pattern = "MM/dd/yyyy") List<Date> startTime,
+            @RequestParam(value = "endTime[]") @DateTimeFormat(pattern = "MM/dd/yyyy") List<Date> endTime) {
 
         // Retrieve the current log-in user.
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -63,28 +63,20 @@ public class GroupScheduleController {
         String uid = officer.getUid();
 
         int recruitId = Integer.valueOf(officer.getRecruitId());
-
-//
-//
-//        // Verify user permission group.
-//        if (permissionGroup.getId() == 7) {
-//            range = "Single";
-//        } else if (permissionGroup.getId() == 6) {
-//            range = "Union";
-//            status = "unionevent";
-//        }
-
-        // New event instance.
-        GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime, endTime, officer, union, type, "pending", selectedOfficers.size());
-        schedule = group_scheduleRepository.save(schedule);
-        for(String selectedOfficer : selectedOfficers) {
-            ScheduleOfficer record = new ScheduleOfficer();
-            record.setGroupSchedule(schedule);
-            record.setOfficer(officerRepository.findByUID(selectedOfficer));
-            schedule_officerRepository.save(record);
+        GroupSchedule[] results = new GroupSchedule[startTime.size()];
+        for(int i = 0; i < startTime.size(); i++) {
+            GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, type, "pending", selectedOfficers.size());
+            schedule = group_scheduleRepository.save(schedule);
+            for(String selectedOfficer : selectedOfficers) {
+                ScheduleOfficer record = new ScheduleOfficer();
+                record.setGroupSchedule(schedule);
+                record.setOfficer(officerRepository.findByUID(selectedOfficer));
+                schedule_officerRepository.save(record);
+            }
         }
 
-        return ResponseEntity.ok(schedule);
+
+        return ResponseEntity.ok(results);
     }
 
     /**
@@ -149,21 +141,11 @@ public class GroupScheduleController {
             }
         }
         System.out.println("create extra officers");
-//        if (admin.getPermissionGroup().getId() == 6) {
-//            //schedule.setStatus(status);
-//        } else if (admin.getPermissionGroup().getId() == 7) {
-//            schedule.setStartTime(startTime);
-//            schedule.setEndTime(endTime);
-//            schedule.setShiftType(type);
-//            System.out.println("what???");
-//            schedule.setSelected_Officer(selectedOfficers.size());
-//            schedule.setDescription(description);
-//        }
         schedule.setStartTime(startTime);
         schedule.setEndTime(endTime);
         schedule.setShiftType(type);
         System.out.println("what???");
-        schedule.setSelected_Officer(selectedOfficers.size());
+        schedule.setSelectedOfficer(selectedOfficers.size());
         schedule.setDescription(description);
         System.out.println("update schedule");
         GroupSchedule updated_schedule = group_scheduleRepository.save(schedule);

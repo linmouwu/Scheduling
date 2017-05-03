@@ -36,14 +36,14 @@
 
                         <tr th:each="schedule:${groupScheduleList}">
                             <td th:text="${schedule.id}"></td>
-                            <td th:text="${schedule.startTime}"></td>
-                            <td th:text="${schedule.endTime}"></td>
+                            <td th:text="${#calendars.format(schedule.startTime,'MM/dd/yyyy')}"></td>
+                            <td th:text="${#calendars.format(schedule.endTime,'MM/dd/yyyy')}"></td>
                             <td th:text="${schedule.shiftType}"></td>
-                            <td th:text="${schedule.selected_Officer}"></td>
+                            <td th:text="${schedule.selectedOfficer}"></td>
                             <td th:text="${schedule.description}"></td>
-                            <td th:text="${schedule.status}"></td>
+                            <td th:text="${schedule.scheduleStatus}"></td>
 
-                            <td><a href="javascript:void(0);" th:if="${schedule.status == 'pending'}" th:onclick="'javascript:changeToEditGroupSchedule('+${schedule.id}+');'" class="btn btn-xs btn-default">Edit</a></td>
+                            <td><a href="javascript:void(0);" th:if="${schedule.scheduleStatus == 'pending'}" th:onclick="'javascript:changeToEditGroupSchedule('+${schedule.id}+');'" class="btn btn-xs btn-default">Edit</a></td>
                         </tr>
                         </tbody>
 
@@ -53,32 +53,23 @@
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-lg-12">
     <div class="panel panel-default myborder">
                     <div class="panel-heading">
                         <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Create Group Schedule</h4>
                     </div>
                     <div class="panel-body">
 
-
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>Start Time</h4></div>
-        <div class="col-sm-7"><input name="startTime" id="start_time_group" type="text" placeholder="MM/DD/YYYY"/></div>
-    </div>
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>End Time</h4></div>
-        <div class="col-sm-7"><input name="endTime" id="end_time_group" type="text" placeholder="MM/DD/YYYY"/></div>
-    </div>
-    <div class="row myborder">
-        <div class="col-sm-2"><h4>Description</h4></div>
-        <div class="col-sm-7"><input name="description" id="group_schedule_description" type="text" size="40"/></div>
-    </div>
+        <div class="row myborder">
+            <div class="col-sm-2"><h4>Description</h4></div>
+            <div class="col-sm-7"><input name="description" id="group_schedule_description" type="text" size="40"/></div>
+        </div>
+        <div class="row myborder">
+            <div class="col-sm-2"><h4>Shift Type</h4></div>
+            <div class="col-sm-7"><input name="shifttype" id="shift_type" type="text" size="40"/></div>
+        </div>
                         <div class="row myborder">
-                            <div class="col-sm-2"><h4>Shift Type</h4></div>
-                            <div class="col-sm-7"><input name="shifttype" id="shift_type" type="text" size="40"/></div>
-                        </div>
-
-    <div class="row myborder">
         <div class="col-sm-2"><h4>Select Staff</h4></div>
         <div class="col-sm-9">
             <table class="table table-hover table-fixed" id="user_list_table">
@@ -99,8 +90,8 @@
                 <tbody>
                 <tr th:each="officer:${officerList}" id="group_officers">
 
-                    <td class="col-xs-2"><input type="checkbox" th:value="${officer.uid}"/></td>
-                    <td class="col-xs-2" th:text="${officer.uid}"></td>
+                    <td class="col-xs-1"><input type="checkbox" th:value="${officer.uid}"/></td>
+                    <td class="col-xs-2 text-right" th:text="${officer.uid}"></td>
                     <td class="col-xs-2" th:text="${officer.lastName}"></td>
                     <td class="col-xs-2" th:text="${officer.firstName}"></td>
                     <td class="col-xs-2" th:text="${officer.title}"></td>
@@ -111,9 +102,24 @@
                 </tbody>
 
             </table>
-        </div>
-    </div>
-    <div class="row myborder">
+        </div></div>
+                        <div id="group-time-range">
+
+                            <div class="row myborder">
+                                <div class="col-sm-2"><h4>Start Time</h4></div>
+                                <div class="col-sm-7"><input name="startTime" id="start_time_group" type="text" placeholder="MM/DD/YYYY"/></div>
+                            </div>
+                            <div class="row myborder">
+                                <div class="col-sm-2"><h4>End Time</h4></div>
+                                <div class="col-sm-7"><input name="endTime" id="end_time_group" type="text" placeholder="MM/DD/YYYY"/>
+                                <button id="add_group_time" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                </button></div>
+                            </div>
+                            <div id="selected-time-ranges" class="row myborder">
+                            </div>
+
+                        </div>
+    <div id="group-submit-buttons" class="row myborder">
         <div class="col-sm-2">
             <button id="submit_group_event" type="button" class="btn btn-success">Submit
             </button>
@@ -125,7 +131,7 @@
     </div>
                     </div>
     </div></div>
-
+</div></div>
     <!-- /.row -->
 
 

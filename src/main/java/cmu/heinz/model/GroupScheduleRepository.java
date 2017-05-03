@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Transactional
 public interface GroupScheduleRepository extends CrudRepository<GroupSchedule, String> {
-    @Query(value = "select SUM(selected_officer) from GROUP_SCHEDULE where union_id = (:param1) AND status != 'pending' AND status != 'declined' AND start_time <= (:param2) AND end_time >= (:param2) AND shift_Type = (:param3)", nativeQuery = true)
+    @Query(value = "select SUM(selected_officer) from GROUP_SCHEDULE where union_id = (:param1) AND schedule_status != 'pending' AND schedule_status != 'declined' AND start_time <= (:param2) AND end_time >= (:param2) AND shift_Type = (:param3)", nativeQuery = true)
     Integer findByAllDate(@Param("param1") int unionid, @Param("param2") String date, @Param("param3") String shiftType);
 //@Query(value = "select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (:param1) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (:param2) AND end_time >= (:param3)", nativeQuery = true)
 //Integer findByAllDate(@Param("param1") int unionid,@Param("param2") String sd, @Param("param3") String ed);

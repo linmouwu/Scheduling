@@ -316,7 +316,7 @@ public class CreateEventController {
         }
         if (groupSchedule != null) {
             for (ScheduleOfficer s : groupSchedule) {
-                String description = s.getGroupSchedule().getSelected_Officer() + " Officers : " + s.getGroupSchedule().getDescription();
+                String description = s.getGroupSchedule().getSelectedOfficer() + " Officers : " + s.getGroupSchedule().getDescription();
                 CurrentEvent cur = new CurrentEvent(s.getId(), description, s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
                 allCurrentEvent.add(cur);
             }
