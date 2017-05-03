@@ -129,7 +129,6 @@ public class CreateEventController {
     @RequestMapping(value = "/update_Event", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity updateEvent(
             @RequestParam(value = "edit_id") String id,
-            @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "event_status") String status,
             @RequestParam(value = "description") String description,
@@ -146,9 +145,6 @@ public class CreateEventController {
         // Find user.
         Officer officer = officerRepository.findByUID(username);
 
-        // User infos.
-        PermissionGroup permissionGroup = officer.getPermissionGroup();
-
         // Get event infos.
         Event event = eventRepository.findByID(Integer.valueOf(id));
 
@@ -156,10 +152,12 @@ public class CreateEventController {
         if (officer.getPermissionGroup().getId() <= 6) {
             event.setEventStatus(status);
         } else if (officer.getPermissionGroup().getId() >= 7) {
+            System.out.println(status);
+            System.out.println(event.getEventStatus());
             event.setStartTime(startTime);
             event.setEndTime(endTime);
             event.setEventType(type);
-            event.setEventStatus("pending");
+            event.setEventStatus(status);
             event.setDescription(description);
         }
         Event newEvent = eventRepository.save(event);

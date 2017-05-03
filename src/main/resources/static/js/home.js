@@ -244,7 +244,7 @@ function changeToEditEvent(editRequest_id) {
 
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
-        $('#default_selected').val(data.eventType);
+        $('#default_event_type').val(data.eventType);
         $('#edit_event_description').val(data.description);
         $('#currentEditId').val(data.id);
 
@@ -529,8 +529,6 @@ function addEvent() {
 
             var pGId = $('#create_event_permission_group').val();
 
-            console.log(pGId);
-
             if (pGId == 7 || pGId == 8) {
                 var markup =
                     "<tr><td><a href=\"javascript:void(0);\" onclick=\"changeToEditEvent(" + data.id + ");\"></a>" + data.id +
@@ -582,9 +580,7 @@ function updateEvent() {
     var endTime_id = $('#edit_EndTime_ID').val();
     var description = $('#edit_event_description').val();
     var event_type = $('#edit_individualRequestType').val();
-    var event_status = $('#editEventStatus').val();
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
-    console.log("the id is " + editRequest_id);
+    var event_status = $('#editEventStatus').val() === undefined ? 'pending' : $('#editEventStatus').val();
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("update_Event", {
         'edit_id': editRequest_id,
@@ -596,19 +592,29 @@ function updateEvent() {
         'total': totalDays
     }).done(function (data) {
 
-        console.log(data);
+        var pGId = $('#create_event_permission_group').val();
 
         if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
         else {
-            var markup =
-                "<tr><td>" + data.id +
-                "</td><td>" + startTime_id +
-                "</td><td>" + endTime_id +
-                "</td><td>" + event_type +
-                "</td></tr>";
-            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            if (pGId <= 6) {
+
+                alert("Request processed.");
+                var markup =
+                    "<tr><td>" + data.id +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td></tr>";
+                $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            } else {
+
+                alert("Request updated.");
+
+            }
         }
         location.reload();
         cancelAddEvent();
