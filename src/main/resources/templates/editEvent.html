@@ -10,6 +10,7 @@
     </div>
 
     <table class="table table-bordered table-hover">
+        <input id="currentEditId" hidden="hidden" />
         <thead>
         <tr>
             <th>Attributes</th>
@@ -23,26 +24,17 @@
             <td th:text="${officer.uid}"></td>
 
         </tr>
-
         <tr>
             <td>Start Time</td>
             <td>
-                <input th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8"
-                       class="form-control" name="startTime" id="edit_StartTime_ID" type="text"
-                       placeholder="MM/DD/YYYY" disabled="disabled"/>
-                <input th:if="${officer.permissionGroup.id} == 7 AND ${officer.permissionGroup.id} == 8"
-                       class="form-control" name="startTime" id="edit_StartTime_ID" type="text"
+                <input class="form-control" name="startTime" id="edit_StartTime_ID" type="text"
                        placeholder="MM/DD/YYYY"/>
             </td>
         </tr>
         <tr>
             <td>End Time</td>
             <td>
-                <input th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8"
-                       class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"
-                       disabled="disabled"/>
-                <input th:if="${officer.permissionGroup.id} == 7 AND ${officer.permissionGroup.id} == 8"
-                       class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"/>
+                <input class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"/>
             </td>
         </tr>
 
@@ -55,7 +47,16 @@
         <tr>
             <td>Type</td>
             <td>
-                <input id="default_event_type" readonly="readonly" disabled="disabled" />
+                <select class="form-control" name="type" id="edit_individualRequestType">
+                    <option id="selected_request_type" value=" " selected="selected" disabled="disabled"></option>
+                    <option value="Vacation"> Vacation</option>
+                    <option value="Training"> Training</option>
+                    <option value="Leave"> Leave</option>
+                    <option value="Comp Time"> Comp Time</option>
+                    <option value="Pass Time"> Pass Time</option>
+                    <option value="Holiday"> Holiday</option>
+                    <option value="Other"> Other</option>
+                </select>
             </td>
         </tr>
         <tr th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8">
@@ -71,10 +72,7 @@
         <tr>
             <td>Description</td>
             <td>
-                <input th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8"
-                       id="edit_event_description" type="text" size="100" disabled="disabled"/>
-                <input th:if="${officer.permissionGroup.id} == 7 AND ${officer.permissionGroup.id} == 8"
-                       id="edit_event_description" type="text" size="100"/>
+                <input id="edit_event_description" type="text" size="100"/>
             </td>
         </tr>
 
