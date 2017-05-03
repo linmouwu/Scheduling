@@ -249,10 +249,13 @@ function changeToEditEvent(editRequest_id) {
         $('#edit_event_description').val(data.description);
 
         if(pGId <= 6){
-            $('#edit_StartTime_ID').disable(true);
-            $('#edit_EndTime_ID').disable(true);
-            $('#selected_request_type').disable(true);
-            $('#edit_event_description').disable(true);
+
+            console.log(pGId);
+
+            $('#edit_StartTime_ID').disable = true;
+            $('#edit_EndTime_ID').disable = true;
+            $('#selected_request_type').disable = true;
+            $('#edit_event_description').disable = true;
         }
 
 
@@ -631,9 +634,10 @@ function updateEvent() {
     var description = $('#edit_event_description').val();
     var event_type = $('#edit_individualRequestType').val();
     var event_status = $('#editEventStatus').val() === undefined ? 'pending' : $('#editEventStatus').val();
-    console.log(event_status);
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+
     console.log(editRequest_id);
+
     $.post("update_Event", {
         'edit_id': editRequest_id,
         'startTime': startTime_id,
