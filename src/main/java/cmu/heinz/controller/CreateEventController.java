@@ -91,8 +91,8 @@ public class CreateEventController {
         if (permissionGroup.getId() == 7) {
             range = "Single";
         } else if (permissionGroup.getId() == 6) {
-            range = "Union";
-            status = "unionevent";
+            range = "Single";
+            status = "approved";
         }
 
         // New event instance.
@@ -153,12 +153,13 @@ public class CreateEventController {
         Event event = eventRepository.findByID(Integer.valueOf(id));
 
         // Update event based on user permission group.
-        if (officer.getPermissionGroup().getId() == 6) {
+        if (officer.getPermissionGroup().getId() <= 6) {
             event.setEventStatus(status);
-        } else if (officer.getPermissionGroup().getId() == 7) {
+        } else if (officer.getPermissionGroup().getId() >= 7) {
             event.setStartTime(startTime);
             event.setEndTime(endTime);
             event.setEventType(type);
+            event.setEventStatus("pending");
             event.setDescription(description);
         }
         Event newEvent = eventRepository.save(event);

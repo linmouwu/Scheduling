@@ -37,31 +37,26 @@
 
         <tr>
             <td>Union</td>
-
             <td th:text="${officer.union.name}"></td>
 
         </tr>
 
         <tr>
             <td>Type</td>
-            <td><select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup.id} == 7">
-                <option value=" " selected="selected" disabled="disabled"></option>
-                <option value="Vacation"> Vacation</option>
-                <option value="Leave"> Leave</option>
-                <option value="Decline to answer"> Decline to answer</option>
-            </select>
-                <select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup.id} == 6">
-                    <option value=" " selected="selected" disabled="disabled"></option>
+            <td>
+                <select class="form-control" name="type" id="edit_individualRequestType">
+                    <option id="default_selected" value=" " selected="selected" disabled="disabled"></option>
                     <option value="Vacation"> Vacation</option>
                     <option value="Training"> Training</option>
-                    <option value="Event"> Event</option>
-                    <option value="Comp"> Comp</option>
+                    <option value="Leave"> Leave</option>
+                    <option value="Comp Time"> Comp Time</option>
+                    <option value="Pass Time"> Pass Time</option>
+                    <option value="Holiday"> Holiday</option>
+                    <option value="Other"> Other</option>
                 </select></td>
 
         </tr>
-        <tr th:if="${officer.permissionGroup.id} == 6">
+        <tr th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8">
             <td>Status</td>
             <td><select class="form-control" name="status" id="editEventStatus">
                 <option value="declined">Decline</option>
@@ -74,9 +69,7 @@
         <tr>
             <td>Description</td>
             <td th:switch="${officer.permissionGroup.id}">
-                <input th:case="7" id="edit_event_description" type="text" size="100"/>
-                <input th:case="6" id="edit_event_description" type="text" size="100"
-                       readonly="readonly"/>
+                <input id="edit_event_description" type="text" size="100"/>
             </td>
         </tr>
 

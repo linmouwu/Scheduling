@@ -244,6 +244,7 @@ function changeToEditEvent(editRequest_id) {
 
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
+        $('#default_selected').val(data.eventType);
         $('#edit_event_description').val(data.description);
         $('#currentEditId').val(data.id);
 
@@ -521,18 +522,36 @@ function addEvent() {
     }).done(function (data) {
 
         console.log(data);
-        console.log("guess what happened");
         if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
         else {
-            var markup =
-                "<tr><td>" + data.id +
-                "</td><td>" + startTime_id +
-                "</td><td>" + endTime_id +
-                "</td><td>" + event_type +
-                "</td></tr>";
-            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            var pGId = $('#create_event_permission_group').val();
+
+            console.log(pGId);
+
+            if (pGId == 7 || pGId == 8) {
+                var markup =
+                    "<tr><td><a href=\"javascript:void(0);\" onclick=\"changeToEditEvent('" + data.id + "');\"></a>" + data.id +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td></tr>";
+                $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            } else {
+                var markup =
+                    "<tr><td>" + data.id +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td><td>approved" +
+                    "</td></tr>";
+                $('#previouslisttable > tbody').append(markup).hide().slideDown();
+
+            }
+            alert("Special event created.");
         }
         //location.reload();
         cancelAddEvent();
@@ -615,8 +634,8 @@ function cancelAddUser() {
 
 function cancelShiftType() {
     $('#shiftTypeName_ID').val("");
-    $('#startTime_ID').val("");
-    $('#endTime_ID').val("");
+    $('#startTimeShift_ID').val("");
+    $('#endTimeShift_ID').val("");
     $('#notes_ID').val("");
 }
 function clearGroupSchedule() {

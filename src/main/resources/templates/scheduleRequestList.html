@@ -32,9 +32,9 @@
                             </thead>
                             <tbody>
                             <tr th:each="pendingRequest:${pendingEventList}">
-                                <td><a href="javascript:;" th:onclick="'javascript:changeToEditEvent('+${pendingRequest.id}+');'" th:text="${pendingRequest.id}"></a></td>
-                                <td th:text="${#calendars.format(pendingRequest.startTime,'yyyy-MM-dd')}"></td>
-                                <td th:text="${#calendars.format(pendingRequest.endTime,'yyyy-MM-dd')}"></td>
+                                <td><a href="javascript:void(0);" th:onclick="'javascript:changeToEditEvent('+${pendingRequest.id}+');'" th:text="${pendingRequest.id}"></a></td>
+                                <td th:text="${#calendars.format(pendingRequest.startTime,'MM/dd/yyyy')}"></td>
+                                <td th:text="${#calendars.format(pendingRequest.endTime,'MM/dd/yyyy')}"></td>
                                 <td th:text="${pendingRequest.eventType}"></td>
                             </tr>
                             </tbody>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped">
+                        <table class="table table-bordered table-hover table-striped" id="previouslisttable">
                             <thead>
                             <tr>
                                 <th>Request #</th>
@@ -65,8 +65,8 @@
                             <tbody>
                             <tr th:each="previousRequest:${previousEventList}">
                                 <td th:text="${previousRequest.id}"></td>
-                                <td th:text="${#calendars.format(previousRequest.startTime,'yyyy-MM-dd')}"></td>
-                                <td th:text="${#calendars.format(previousRequest.endTime,'yyyy-MM-dd')}"></td>
+                                <td th:text="${#calendars.format(previousRequest.startTime,'MM/dd/yyyy')}"></td>
+                                <td th:text="${#calendars.format(previousRequest.endTime,'MM/dd/yyyy')}"></td>
                                 <td th:text="${previousRequest.eventType}"></td>
                                 <td th:text="${previousRequest.eventStatus}"></td>
 
@@ -74,9 +74,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-right">
-                        <a href="#">View All Previous Request <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                    <!--<div class="text-right">-->
+                        <!--<a href="#">View All Previous Request <i class="fa fa-arrow-circle-right"></i></a>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
