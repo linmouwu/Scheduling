@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/HomeController.class" afterPath="$PROJECT_DIR$/target/classes/cmu/heinz/controller/HomeController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/scheduleRequestList.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/scheduleRequestList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="217" column="44" lean-forward="false" selection-start-line="217" selection-start-column="25" selection-end-line="217" selection-end-column="44" />
+            <state relative-caret-position="38">
+              <caret line="133" column="22" lean-forward="false" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
               <folding>
                 <element signature="e#2212#4099#0" expanded="false" />
                 <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -71,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="705" column="29" lean-forward="false" selection-start-line="705" selection-start-column="9" selection-end-line="705" selection-end-column="29" />
+              <caret line="705" column="33" lean-forward="true" selection-start-line="704" selection-start-column="0" selection-end-line="705" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -173,7 +170,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mysql</find>
       <find>creategroupevent</find>
       <find>crea</find>
       <find>location</find>
@@ -203,6 +199,7 @@
       <find>updatePG</find>
       <find>function updatePG(uid) {      var selectId = '#pageSelect' + uid;      var updatePG = $(selectId).val();      $.post('/update_permission_group', {         'uid': uid,         'permissionGroup': updatePG     }).done(function () {          alert(&quot;Permission Group Updated: &quot; + uid);      });  }</find>
       <find>add_time_cycle</find>
+      <find>configure_time_cycle</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -265,11 +262,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/techAdminSideBar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/scheduleRequestList.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
       </list>
     </option>
   </component>
@@ -1159,14 +1156,7 @@
       <workItem from="1493652692000" duration="258000" />
       <workItem from="1493674513883" duration="457000" />
       <workItem from="1493675750137" duration="3569000" />
-      <workItem from="1493773288086" duration="7375000" />
-    </task>
-    <task id="LOCAL-00009" summary="04/07/2017 Time Cycle Deactivation.">
-      <created>1491615100078</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1491615100078</updated>
+      <workItem from="1493773288086" duration="7511000" />
     </task>
     <task id="LOCAL-00010" summary="04/07/2017 Master admin.">
       <created>1491660845155</created>
@@ -1504,11 +1494,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493779733379</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="05/02/2017 Update master.">
+      <created>1493780774106</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1493780774106</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140903000" />
+    <option name="totallyTimeSpent" value="141039000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1572,7 +1569,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="03/28/2017 Comments added." />
     <MESSAGE value="03/28/2017 Separate html pages." />
     <MESSAGE value="04/07/2017 Time Cycle." />
     <MESSAGE value="04/07/2017 Time Cycle Deactivation." />
@@ -1597,7 +1593,8 @@
     <MESSAGE value="05/01/2017 Update." />
     <MESSAGE value="Merge branches 'Nan' and 'linmouwu' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.gitignore&#10;#&#9;.idea/dataSources/540b2353-94e8-4ce6-bfc7-f6e85b1bab14.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/cmu/heinz/controller/CreateEventController.java&#10;#&#9;src/main/java/cmu/heinz/controller/HomeController.java&#10;#&#9;src/main/java/cmu/heinz/model/GroupScheduleRepository.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftType.java&#10;#&#9;src/main/java/cmu/heinz/model/ShiftTypeRepository.java&#10;#&#9;src/main/resources/static/js/home.js&#10;#&#9;target/classes/cmu/heinz/controller/CreateEventController.class&#10;#&#9;target/classes/cmu/heinz/controller/HomeController.class&#10;#&#9;target/classes/static/js/home.js&#10;" />
     <MESSAGE value="05/02/2017 Update event." />
-    <option name="LAST_COMMIT_MESSAGE" value="05/02/2017 Update event." />
+    <MESSAGE value="05/02/2017 Update master." />
+    <option name="LAST_COMMIT_MESSAGE" value="05/02/2017 Update master." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2009,17 +2006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="217" column="44" lean-forward="false" selection-start-line="217" selection-start-column="25" selection-end-line="217" selection-end-column="44" />
-          <folding>
-            <element signature="e#2212#4099#0" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -2060,8 +2046,19 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="705" column="29" lean-forward="false" selection-start-line="705" selection-start-column="9" selection-end-line="705" selection-end-column="29" />
+          <caret line="705" column="33" lean-forward="true" selection-start-line="704" selection-start-column="0" selection-end-line="705" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="133" column="22" lean-forward="false" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
+          <folding>
+            <element signature="e#2212#4099#0" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
