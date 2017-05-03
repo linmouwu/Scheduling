@@ -62,6 +62,9 @@ public class HomeController {
     @Autowired
     private ShiftTypeRepository shiftTypeRepository;
 
+    @Autowired
+    private PermissionGroupRepository permissionGroupRepository;
+
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
 
@@ -102,6 +105,9 @@ public class HomeController {
 
         //List all shift type
         List<ShiftType> shiftTypeList = (List<ShiftType>) shiftTypeRepository.findAll();
+
+        //List all permission groups.
+        List<PermissionGroup> permissionGroupList = (List<PermissionGroup>) permissionGroupRepository.findAll();
 
         if (permissionGroup.getId() == 7) {
 
@@ -161,6 +167,8 @@ public class HomeController {
         model.addAttribute("shiftTypeList", shiftTypeList);
 
         model.addAttribute("shiftTypeList", shiftTypeList);
+
+        model.addAttribute("permissionGroupList", permissionGroupList);
 
         System.out.println(shiftTypeList);
 

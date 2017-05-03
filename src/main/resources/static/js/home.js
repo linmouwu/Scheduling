@@ -321,6 +321,22 @@ function getFormattedDate(date) {
     return month + '/' + day + '/' + year;
 }
 
+function updatePG(uid) {
+
+    var selectId = '#pageSelect' + uid;
+
+    var updatePG = $(selectId).val();
+
+    $.post('/update_permission_group', {
+        'uid': uid,
+        'permissionGroup': updatePG
+    }).done(function () {
+
+        alert("Permission Group Updated: " + uid);
+
+    });
+
+}
 
 function updateHolidayDate() {
     var newHolidayDate = [];
