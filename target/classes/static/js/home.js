@@ -423,7 +423,7 @@ function addUser() {
                 "</td><td>" + data.title +
                 "</td><td>" + data.gender +
                 "</td><td>" + data.seniority +
-                "</td><td>" + data.permissionGroup +
+                "</td><td>" + data.permissionGroup.role +
                 "</td><td>" + data.union.name +
                 "</td><td>" + hireDate_ID +
                 "</td><td>" + promoteDate_ID +
