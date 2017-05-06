@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -165,6 +166,8 @@ public class HomeController {
         model.addAttribute("shiftTypeList", shiftTypeList);
 
         model.addAttribute("permissionGroupList", permissionGroupList);
+
+        model.addAttribute("currentTime", new Date());
 
         return "home";
     }
