@@ -307,8 +307,6 @@ function updateGroupSchedule() {
             'selectedOfficers[]': selected_officers
         }).done(function (data) {
 
-            console.log(data);
-            console.log("guess what happened");
             location.reload();
             changeToCreateGroupRequest();
 
@@ -572,7 +570,7 @@ function addGroupEvent(start_times, end_times) {
                     "</td><td>" + selected_officers.length +
                     "</td><td>" + description;
                 mark += "</td><td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule("+ data[i].id +")' class='btn btn-xs btn-default'>Edit</a><a href='javascript:void(0);' onclick='deleteGroupSchedule(" +data[i].id+ ");$(this).closest(\'tr\').remove();' class='btn btn-xs btn-default'>Delete</a></td></tr>";
-                $('#group_schedule_list_table > tbody').append(mark).hide().slideDown();
+                $('#group_schedule_list_table > tbody').prepend(mark).hide().slideDown();
                }
 
         }
