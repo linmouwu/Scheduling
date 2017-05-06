@@ -18,7 +18,7 @@
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Schedule List</h3>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-bordered table-hover" id="group_schedule_list_table">
+                    <table class="table table-hover table-bordered" id="group_schedule_list_table">
                         <thead>
                         <tr>
                             <th>Id</th>
@@ -27,7 +27,7 @@
                             <th>Shift Type</th>
                             <th>Number of Officer</th>
                             <th>Description</th>
-                            <th>Status</th>
+                            <!--<th>Status</th>-->
                             <th>Operation</th>
 
                         </tr>
@@ -41,9 +41,11 @@
                             <td th:text="${schedule.shiftType.shiftName}"></td>
                             <td th:text="${schedule.selectedOfficer}"></td>
                             <td th:text="${schedule.description}"></td>
-                            <td th:text="${schedule.scheduleStatus}"></td>
+                            <!--<td th:text="${schedule.scheduleStatus}"></td>-->
 
-                            <td><a href="javascript:void(0);" th:if="${schedule.scheduleStatus == 'pending'}" th:onclick="'javascript:changeToEditGroupSchedule('+${schedule.id}+');'" class="btn btn-xs btn-default">Edit</a></td>
+                            <td><a href="javascript:void(0);" th:if="${schedule.endTime gt currentTime}" th:onclick="'javascript:changeToEditGroupSchedule('+${schedule.id}+');'" class="btn btn-xs btn-default">Edit</a>
+                                <a href="javascript:void(0);" th:if="${schedule.startTime gt currentTime}" th:onclick="'javascript:deleteGroupSchedule('+${schedule.id}+');$(this).closest(\'tr\').remove();'" class="btn btn-xs btn-default">Delete</a>
+                            </td>
                         </tr>
                                             </tbody>
 
@@ -60,7 +62,7 @@
                         <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Create Group Schedule</h4>
                     </div>
                     <div class="panel-body">
-
+                        <div id="group_message"><p style="color:red"></p></div>
         <div class="row myborder">
             <div class="col-sm-2"><h4>Description</h4></div>
             <div class="col-sm-7"><input name="description" id="group_schedule_description" type="text" size="40"/></div>
