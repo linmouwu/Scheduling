@@ -12,7 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 
-
 import java.util.Arrays;
 
 
@@ -39,10 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
         http
                 .authorizeRequests()
                 .antMatchers("/", "/login").permitAll()
-//				.anyRequest().fullyAuthenticated()
+                //.anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .permitAll()
                 .successForwardUrl("/home")
         ;
         http.csrf().disable();

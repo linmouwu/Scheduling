@@ -41,7 +41,18 @@
         </tr>
 
         <tr>
-            <td>Type</td>
+            <td>Shift Type</td>
+            <td>
+            <select class="form-control" name="union" id="shift_off_ID">
+                <option value=" " selected="selected" disabled="disabled"></option>
+                <option th:each="shiftType:${shiftTypeList}" th:text="${shiftType.shiftName}"
+                        th:value="${shiftType.id}"></option>
+            </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Event Type</td>
             <td>
                 <select class="form-control" name="type" id="individualRequestType">
                     <option value=" " selected="selected" disabled="disabled"></option>

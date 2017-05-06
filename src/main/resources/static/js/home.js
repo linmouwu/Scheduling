@@ -556,7 +556,7 @@ function addEvent() {
     $.post("create_Event", {
         'startTime': startTime_id,
         'endTime': endTime_id,
-        'shift_type':shift_type,
+        'shift_type': shift_type,
         'description': description,
         'event_type': event_type,
         'total': totalDays
@@ -618,7 +618,7 @@ function updateEvent() {
     var startTime_id = $('#edit_StartTime_ID').val();
     var endTime_id = $('#edit_EndTime_ID').val();
     var description = $('#edit_event_description').val();
-    var event_type = $('#edit_individualRequestType').val();
+    var event_type = $('#selected_request_type').val();
     var event_status = $('#editEventStatus').val() === undefined ? 'pending' : $('#editEventStatus').val();
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
 
@@ -657,9 +657,9 @@ function updateEvent() {
 
             }
         }
-        // location.reload();
-        cancelAddEvent();
-    })
+        location.reload();
+        // changeToRequest();
+    });
 
 }
 
@@ -829,6 +829,7 @@ $(document)
         $('#submit_Event').click(addEvent);
         $('#cancel_Event').click(cancelAddUser);
         $('#submit_Edit_Event').click(updateEvent);
+        $('#cancel_Edit_Event').click(changeToRequest);
         $('#update_holiday_button').click(updateHolidayDate);
         $('#submit_holiday_assign').click(assignHoliday);
         $('#cancel_holiday_assign').click(cancelAssignHoliday);
