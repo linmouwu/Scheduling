@@ -10,6 +10,7 @@
     </div>
 
     <table class="table table-bordered table-hover">
+        <input id="currentEditId" hidden="hidden" />
         <thead>
         <tr>
             <th>Attributes</th>
@@ -23,45 +24,39 @@
             <td th:text="${officer.uid}"></td>
 
         </tr>
-
         <tr>
             <td>Start Time</td>
-            <td><input class="form-control" name="startTime" id="edit_StartTime_ID" type="text"
-                       placeholder="MM/DD/YYYY"/></td>
+            <td>
+                <input class="form-control" name="startTime" id="edit_StartTime_ID" type="text"
+                       placeholder="MM/DD/YYYY"/>
+            </td>
         </tr>
         <tr>
             <td>End Time</td>
-            <td><input class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"/>
+            <td>
+                <input class="form-control" name="endTime" id="edit_EndTime_ID" type="text" placeholder="MM/DD/YYYY"/>
             </td>
         </tr>
 
         <tr>
             <td>Union</td>
-
             <td th:text="${officer.union.name}"></td>
 
         </tr>
 
         <tr>
-            <td>Type</td>
-            <td><select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup.id} == 7">
-                <option value=" " selected="selected" disabled="disabled"></option>
-                <option value="Vacation"> Vacation</option>
-                <option value="Leave"> Leave</option>
-                <option value="Decline to answer"> Decline to answer</option>
-            </select>
-                <select class="form-control" name="type" id="edit_individualRequestType"
-                        th:if="${officer.permissionGroup.id} == 6">
-                    <option value=" " selected="selected" disabled="disabled"></option>
-                    <option value="Vacation"> Vacation</option>
-                    <option value="Training"> Training</option>
-                    <option value="Event"> Event</option>
-                    <option value="Comp"> Comp</option>
-                </select></td>
-
+            <td>Shift Off</td>
+            <td id="edit_shift_off_ID">
+            </td>
         </tr>
-        <tr th:if="${officer.permissionGroup.id} == 6">
+
+        <tr>
+            <td>Event Type</td>
+            <td id="selected_request_type">
+            </td>
+        </tr>
+
+        <tr th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8">
             <td>Status</td>
             <td><select class="form-control" name="status" id="editEventStatus">
                 <option value="declined">Decline</option>
@@ -73,10 +68,8 @@
         </tr>
         <tr>
             <td>Description</td>
-            <td th:switch="${officer.permissionGroup.id}">
-                <input th:case="7" id="edit_event_description" type="text" size="100"/>
-                <input th:case="6" id="edit_event_description" type="text" size="100"
-                       readonly="readonly"/>
+            <td>
+                <input id="edit_event_description" type="text" size="100"/>
             </td>
         </tr>
 

@@ -37,10 +37,24 @@ public class CreateEventController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+
+    /**
+     * Group schedule repository.
+     */
     @Autowired
     private GroupScheduleRepository group_scheduleRepository;
+
+    /**
+     * Schedule officer repository.
+     */
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
+
+    /**
+     * Shift type repository.
+     */
+    @Autowired
+    private ShiftTypeRepository shiftTypeRepository;
 
     /**
      * Create event methods.
@@ -56,6 +70,7 @@ public class CreateEventController {
     public ResponseEntity createEvent(
             @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
+            @RequestParam(value = "shift_type") int shiftTypeId,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
             @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
@@ -91,8 +106,8 @@ public class CreateEventController {
         if (permissionGroup.getId() == 7) {
             range = "Single";
         } else if (permissionGroup.getId() == 6) {
-            range = "Union";
-            status = "unionevent";
+            range = "Single";
+            status = "approved";
         }
 
         // New event instance.
@@ -108,8 +123,8 @@ public class CreateEventController {
         event.setEventStatus(status);
         event.setEventType(type);
         event.setDescription(description);
+        event.setShiftType(shiftTypeRepository.findOne(shiftTypeId));
         Event newEvent = eventRepository.save(event);
-
 
         return ResponseEntity.ok(newEvent);
     }
@@ -118,7 +133,6 @@ public class CreateEventController {
      * Update the existing event.
      *
      * @param id          event id to be updated
-     * @param totalDays   totaldays to be updated
      * @param type        new event type
      * @param status      new event status
      * @param description new description
@@ -129,7 +143,6 @@ public class CreateEventController {
     @RequestMapping(value = "/update_Event", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity updateEvent(
             @RequestParam(value = "edit_id") String id,
-            @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
             @RequestParam(value = "event_status") String status,
             @RequestParam(value = "description") String description,
@@ -146,19 +159,19 @@ public class CreateEventController {
         // Find user.
         Officer officer = officerRepository.findByUID(username);
 
-        // User infos.
-        PermissionGroup permissionGroup = officer.getPermissionGroup();
-
         // Get event infos.
         Event event = eventRepository.findByID(Integer.valueOf(id));
 
         // Update event based on user permission group.
-        if (officer.getPermissionGroup().getId() == 6) {
+        if (officer.getPermissionGroup().getId() <= 6) {
             event.setEventStatus(status);
-        } else if (officer.getPermissionGroup().getId() == 7) {
+        } else if (officer.getPermissionGroup().getId() >= 7) {
+            System.out.println(status);
+            System.out.println(event.getEventStatus());
             event.setStartTime(startTime);
             event.setEndTime(endTime);
             event.setEventType(type);
+            event.setEventStatus(status);
             event.setDescription(description);
         }
         Event newEvent = eventRepository.save(event);
@@ -212,11 +225,10 @@ public class CreateEventController {
         int union_id = officer.getUnion().getId();
 
         String permissionGroup = officer.getPermissionGroup().getRole();
+
         List<Event> allEvent = new ArrayList<Event>();
 
         allEvent = eventRepository.findByAllUnionIDAndShift(union_id, shiftType);
-
-//        allEvent = eventRepository.findByAllUnionID(union_id);
 
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
@@ -224,7 +236,7 @@ public class CreateEventController {
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                String description = e.getDescription();
+                String description = e.getOfficerId() + " : " + e.getDescription();
                 CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }
@@ -257,9 +269,12 @@ public class CreateEventController {
 
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
+
         // Find special events by officer id.
         int officerid = officer.getId();
+
         String permissionGroup = officer.getPermissionGroup().getRole();
+
         List<Event> allEvent = new ArrayList<Event>();
 
         allEvent = eventRepository.findByAllUnionID(union_id);
@@ -285,6 +300,13 @@ public class CreateEventController {
         return ResponseEntity.ok(allCurrentEvent);
     }
 
+    /**
+     * Get all events for current union.
+     *
+     * @param union_id the union id
+     * @param model    the data model
+     * @return 200 success
+     */
     @RequestMapping(value = "/allUnionEvent", method = RequestMethod.GET)
     public ResponseEntity getAllUnionEvent(@RequestParam(value = "union_id") int union_id,
                                            Model model) {
@@ -298,9 +320,11 @@ public class CreateEventController {
         Officer officer = officerRepository.findByUID(username);
         // Find special events by officer id.
         int officerid = officer.getId();
+
         String permissionGroup = officer.getPermissionGroup().getRole();
-        List<Event> allEvent = new ArrayList<Event>();
-        allEvent = eventRepository.findByAllUnionID(union_id);
+
+        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
@@ -324,6 +348,15 @@ public class CreateEventController {
         return ResponseEntity.ok(allCurrentEvent);
     }
 
+    /**
+     * Get the number of officer for current shift in this union
+     *
+     * @param start_date start date
+     * @param union_id   union id
+     * @param shiftType  shift type
+     * @param model      data model
+     * @return 200 success
+     */
     @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
     public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value = "shiftType") int shiftType, Model model) {
 
@@ -344,6 +377,11 @@ public class CreateEventController {
         return ResponseEntity.ok(rst);
     }
 
+    /**
+     * @param date
+     * @param days
+     * @return
+     */
     public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);

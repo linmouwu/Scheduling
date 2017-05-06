@@ -77,6 +77,7 @@ function changeToStaff() {
     $('#permission_group').fadeOut();
     $('#holiday_management').fadeOut();
     $('#assign_holiday').fadeOut();
+    $('#shift_type_management').fadeOut();
 }
 function changeToAssignHoliday() {
     $('#pending_request').fadeOut();
@@ -90,7 +91,6 @@ function changeToAssignHoliday() {
     $('#permission_group').fadeOut();
     $('#holiday_management').fadeOut();
     $('#assign_holiday').delay(350).fadeIn();
-
     $('#shift_type_management').fadeOut();
 }
 
@@ -240,14 +240,20 @@ function changeToEditEvent(editRequest_id) {
         'id': editRequest_id
     }).done(function (data) {
 
-        var formattedStart = getFormattedDate(new Date(data.startTime));
+        var pGId = $('#create_event_permission_group').val();
 
+        var formattedStart = getFormattedDate(new Date(data.startTime));
         var formattedEnd = getFormattedDate(new Date(data.endTime));
 
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
+        $('#selected_request_type').val(data.eventType);
+        $('#selected_request_type').text(data.eventType);
+        $('#edit_shift_off_ID').val(data.shiftType.shiftName);
+        $('#edit_shift_off_ID').text(data.shiftType.shiftName);
         $('#edit_event_description').val(data.description);
         $('#currentEditId').val(data.id);
+        $('#currentEditId').text(data.id);
 
     })
 }
@@ -259,13 +265,15 @@ function updateGroupSchedule() {
     var description = $('#edit_group_schedule_description').val();
     var event_type = $('#edit_shift_type').val();
     var selected_officers = [];
-    if($("#edit_select_all input").is(':checked')) {
+
+    if ($("#edit_select_all input").is(':checked')) {
+
         $("#edit_group_officers input").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
 
         });
-    } else{
+    } else {
         $("#edit_group_officers input:checked").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
@@ -276,19 +284,19 @@ function updateGroupSchedule() {
     //if the input is not valid.
     var markup = "";
 
-    if(!event_type) {
+    if (!event_type) {
         markup += "You didn't select your shift type.";
     }
-    if(startTime_id == "") {
+    if (startTime_id == "") {
         markup += "You didn't select any start time.";
     }
-    if(endTime_id == ""){
+    if (endTime_id == "") {
         markup += "You didn't select any end time.";
     }
-    if(selected_officers.length == 0) {
+    if (selected_officers.length == 0) {
         markup += "You didn't select any officers.";
     }
-    if(markup.length == 0) {
+    if (markup.length == 0) {
 
         $.post("update_group_schedule", {
             'scheduleId': editRequest_id,
@@ -346,6 +354,7 @@ function changeToEditGroupSchedule(schedule_id) {
     });
 }
 
+
 function getFormattedDate(date) {
     var year = date.getFullYear();
     var month = (1 + date.getMonth()).toString();
@@ -355,6 +364,22 @@ function getFormattedDate(date) {
     return month + '/' + day + '/' + year;
 }
 
+function updatePG(uid) {
+
+    var selectId = '#pageSelect' + uid;
+
+    var updatePG = $(selectId).val();
+
+    $.post('/update_permission_group', {
+        'uid': uid,
+        'permissionGroup': updatePG
+    }).done(function () {
+
+        alert("Permission Group Updated: " + uid);
+
+    });
+
+}
 
 function updateHolidayDate() {
     var newHolidayDate = [];
@@ -363,24 +388,19 @@ function updateHolidayDate() {
     for (var i = 1; i < holidayTable.rows.length; i++) {
         var newDate = holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value;
         if (newDate !== null && newDate !== undefined && newDate !== "") {
-            console.log(newDate);
             newHolidayDate.push(newDate);
         } else {
             var tempDate = new Date(holidayTable.rows[i].cells[1].innerHTML);
             var format = moment(tempDate).format('YYYY-MM-DD');
             newHolidayDate.push(format);
-            console.log(format);
         }
-        // console.log(holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value);
     }
     $.post("updateHolidayDate", {
         'dateList[]': newHolidayDate,
     }).done(function (data) {
         var newTable = document.getElementById("holiday_list_table");
-        console.log(data);
         for (var i = 1; i < holidayTable.rows.length; i++) {
             var date = new Date(data[i - 1].date);
-            console.log(data[i - 1].date);
             var format = moment(date).format('MM/DD/YYYY');
             newTable.rows[i].cells[1].innerHTML = format;
         }
@@ -398,12 +418,10 @@ function addUser() {
     var gender_ID = $('#gender_ID').val();
     var permissionGroup_ID = $('#permissionGroup_ID').val();
     var union_ID = $('#unio_ID').val();
-    var recruit_ID = $('#recrui_ID').val();
     var contractEmployee_id = $('#contractEmployee_id').val();
     var hireDate_ID = $('#hireDate_ID').val();
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
-    console.log(recruit_ID);
     var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
         : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     console.log(promoteDate_ID);
@@ -417,7 +435,6 @@ function addUser() {
         'seniority': seniority,
         'permissionGroup': permissionGroup_ID,
         'union': union_ID,
-        'recruit': recruit_ID,
         'contractEmployee': contractEmployee_id,
         'hireDate': hireDate_ID,
         'promoteDate': promoteDate_ID,
@@ -431,14 +448,13 @@ function addUser() {
         }
         else {
             var markup =
-                "<tr><td>" + data.uid +
-                "</td><td>" + data.badgeNum +
+                "<tr><td>" + data.badgeNum +
                 "</td><td>" + data.lastName +
                 "</td><td>" + data.firstName +
                 "</td><td>" + data.title +
                 "</td><td>" + data.gender +
                 "</td><td>" + data.seniority +
-                "</td><td>" + data.permissionGroup +
+                "</td><td>" + data.permissionGroup.role +
                 "</td><td>" + data.union.name +
                 "</td><td>" + hireDate_ID +
                 "</td><td>" + promoteDate_ID +
@@ -491,21 +507,21 @@ function addGroupEvent(start_times, end_times) {
     // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#start_time_group').val();
     var endTime_id = $('#end_time_group').val();
-    if(startTime_id != '' && endTime_id != ''){
+    if (startTime_id != '' && endTime_id != '') {
         start_times.push(startTime_id);
         end_times.push(endTime_id);
     }
     var description = $('#group_schedule_description').val();
     var shift_type = $('#shift_type').val();
     var selected_officers = [];
-    if($("#select_all input").is(':checked')) {
+    if ($("#select_all input").is(':checked')) {
 
         $("#group_officers input").each(function () {
             selected_officers.push($(this).val());
             console.log(selected_officers);
 
         });
-    } else{
+    } else {
 
         $("#group_officers input:checked").each(function () {
             selected_officers.push($(this).val());
@@ -557,7 +573,7 @@ function addGroupEvent(start_times, end_times) {
                     "</td><td>" + description;
                 mark += "</td><td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule("+ data[i].id +")' class='btn btn-xs btn-default'>Edit</a><a href='javascript:void(0);' onclick='deleteGroupSchedule(" +data[i].id+ ");$(this).closest(\'tr\').remove();' class='btn btn-xs btn-default'>Delete</a></td></tr>";
                 $('#group_schedule_list_table > tbody').append(mark).hide().slideDown();
-            }
+               }
 
         }
         //location.reload();
@@ -566,11 +582,12 @@ function addGroupEvent(start_times, end_times) {
         changeToCreateGroupRequest();
 
     });} else {
+
         $("#group_message p").text(markup);
     }
 
-
 }
+
 function deleteGroupSchedule(id){
     $.post("deleteGroupSchedule", {
         'id':id,
@@ -580,6 +597,7 @@ function deleteGroupSchedule(id){
     });
 
 }
+
 function addEvent() {
 
 
@@ -588,31 +606,47 @@ function addEvent() {
     var endTime_id = $('#endTime_ID').val();
     var description = $('#event_description').val();
     var event_type = $('#individualRequestType').val();
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    var shift_type = $('#shift_off_ID').val();
     // console.log(promoteDate_ID);
     var totalDays = (startTime_id == '' || endTime_id == '') ? 0
         : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("create_Event", {
         'startTime': startTime_id,
         'endTime': endTime_id,
+        'shift_type': shift_type,
         'description': description,
         'event_type': event_type,
         'total': totalDays
     }).done(function (data) {
 
-        console.log(data);
-        console.log("guess what happened");
         if (data == "Remain Day is not enough") {
             // $('#staff_management').append(data);
         }
         else {
-            var markup =
-                "<tr><td>" + data.id +
-                "</td><td>" + startTime_id +
-                "</td><td>" + endTime_id +
-                "</td><td>" + event_type +
-                "</td></tr>";
-            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            var pGId = $('#create_event_permission_group').val();
+
+            if (pGId == 7 || pGId == 8) {
+                var markup =
+                    "<tr><td><a href=\"javascript:void(0);\" onclick=\"changeToEditEvent(" + data.id + ");\">" + data.id + "</a>" +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td></tr>";
+                $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            } else {
+                var markup =
+                    "<tr><td>" + data.id +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td><td>approved" +
+                    "</td></tr>";
+                $('#previouslisttable > tbody').append(markup).hide().slideDown();
+
+            }
+            alert("Special event created.");
         }
         //location.reload();
         cancelAddEvent();
@@ -638,15 +672,15 @@ function assignHoliday() {
 function updateEvent() {
 
     var editRequest_id = $('#currentEditId').val();
-    // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#edit_StartTime_ID').val();
     var endTime_id = $('#edit_EndTime_ID').val();
     var description = $('#edit_event_description').val();
-    var event_type = $('#edit_individualRequestType').val();
-    var event_status = $('#editEventStatus').val();
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
-    console.log("the id is " + editRequest_id);
+    var event_type = $('#selected_request_type').val();
+    var event_status = $('#editEventStatus').val() === undefined ? 'pending' : $('#editEventStatus').val();
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+
+    console.log(editRequest_id);
+
     $.post("update_Event", {
         'edit_id': editRequest_id,
         'startTime': startTime_id,
@@ -657,23 +691,32 @@ function updateEvent() {
         'total': totalDays
     }).done(function (data) {
 
-        console.log(data);
-        console.log("guess what happened");
+        var pGId = $('#create_event_permission_group').val();
+
         if (data == "Remain Day is not enough") {
-            // $('#staff_management').append(data);
         }
         else {
-            var markup =
-                "<tr><td>" + data.id +
-                "</td><td>" + startTime_id +
-                "</td><td>" + endTime_id +
-                "</td><td>" + event_type +
-                "</td></tr>";
-            $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            if (pGId <= 6) {
+
+                alert("Request processed.");
+                var markup =
+                    "<tr><td>" + data.id +
+                    "</td><td>" + startTime_id +
+                    "</td><td>" + endTime_id +
+                    "</td><td>" + event_type +
+                    "</td></tr>";
+                $('#pendinglisttable > tbody').append(markup).hide().slideDown();
+
+            } else {
+
+                alert("Request updated.");
+
+            }
         }
         location.reload();
-        cancelAddEvent();
-    })
+        changeToRequest();
+    });
 
 }
 
@@ -686,7 +729,6 @@ function cancelAddUser() {
     $('#gender_ID').val("");
     $('#permissionGroup_ID').val("");
     $('#union_ID').val("");
-    $('#recruit_ID').val("1");
     $('#contractEmployee_id').val("");
     $('#hireDate_ID').val("");
     $('#promoteDate_ID').val("");
@@ -713,6 +755,7 @@ function cancelAddEvent() {
     $('#endTime_ID').val("");
     $('#event_description').val("");
     $('#individualRequestType').val("");
+    changeToRequest();
 }
 function cancelAssignHoliday() {
     $('input:checkbox').prop("checked", false);
@@ -786,40 +829,40 @@ $(document)
     .ready(function () {
         var start_times = [];
         var end_times = [];
-        $("#select_all input").change(function(){  //"select all" change
+        $("#select_all input").change(function () {  //"select all" change
             $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
         });
 
 //".checkbox" change
-        $('#group_officers .checkbox').change(function(){
+        $('#group_officers .checkbox').change(function () {
             //uncheck "select all", if one of the listed checkbox item is unchecked
-            if(false == $(this).prop("checked")){ //if this item is unchecked
+            if (false == $(this).prop("checked")) { //if this item is unchecked
                 $("#select_all input").prop('checked', false); //change "select all" checked status to false
             }
             //check "select all" if all checkbox items are checked
-            if ($('#group_officers  .checkbox:checked').length == $('.checkbox').length ){
+            if ($('#group_officers  .checkbox:checked').length == $('.checkbox').length) {
                 $("#select_all input").prop('checked', true);
             }
         });
-        $("#edit_select_all input").change(function(){  //"select all" change
+        $("#edit_select_all input").change(function () {  //"select all" change
             $("#edit_group_officers .checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
         });
 
 //".checkbox" change
-        $('#edit_group_officers .checkbox').change(function(){
+        $('#edit_group_officers .checkbox').change(function () {
             //uncheck "select all", if one of the listed checkbox item is unchecked
-            if(false == $(this).prop("checked")){ //if this item is unchecked
+            if (false == $(this).prop("checked")) { //if this item is unchecked
                 $("#edit_select_all input").prop('checked', false); //change "select all" checked status to false
             }
             //check "select all" if all checkbox items are checked
-            if ($('#edit_group_officers .checkbox:checked').length == $('.checkbox').length ){
+            if ($('#edit_group_officers .checkbox:checked').length == $('.checkbox').length) {
                 $("#edit_select_all input").prop('checked', true);
             }
         });
-        $('#add_group_time').click(function(){
+        $('#add_group_time').click(function () {
             var start = $('#start_time_group').val();
             var end = $('#end_time_group').val();
-            if(start != '' && end != '') {
+            if (start != '' && end != '') {
                 start_times.push($('#start_time_group').val());
                 end_times.push($('#end_time_group').val());
                 var markup = "<div class='col-sm-3'><mark>" + $('#start_time_group').val() + "-" + $('#end_time_group').val() + "</mark></div>";
@@ -830,7 +873,7 @@ $(document)
         });
         $('#re_submit_group_event').click(updateGroupSchedule);
         $('#re_cancel_group_event').click(changeToCreateGroupRequest);
-        $('#submit_group_event').click(function(){
+        $('#submit_group_event').click(function () {
             addGroupEvent(start_times, end_times);
             var error = $('#group_message').text();
             if(!error){
@@ -838,7 +881,7 @@ $(document)
                 end_times = [];
             }
         });
-        $('#cancel_group_event').click(function(){
+        $('#cancel_group_event').click(function () {
             clearGroupSchedule();
             start_times = [];
             end_times = [];
@@ -846,8 +889,9 @@ $(document)
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
-        $('#cancel_Event').click(cancelAddUser);
+        $('#cancel_Event').click(cancelAddEvent);
         $('#submit_Edit_Event').click(updateEvent);
+        $('#cancel_Edit_Event').click(changeToRequest);
         $('#update_holiday_button').click(updateHolidayDate);
         $('#submit_holiday_assign').click(assignHoliday);
         $('#cancel_holiday_assign').click(cancelAssignHoliday);

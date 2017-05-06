@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div class="container-fluid" id="permission_group" style="display: none" th:fragment="permissionGroupPage">
+<div class="container-fluid" id="permission_group"
+     th:if="${officer.permissionGroup.id} == 1"
+     th:fragment="permissionGroupPage">
 
     <div class="row">
         <div class="col-lg-12">
@@ -46,15 +48,10 @@
                                 <select name="pgSelect" th:id="'pageSelect'+${officer.uid}" class="form-control">
                                     <option th:text="${officer.permissionGroup.role}" selected="selected"
                                             disabled="disabled"></option>
-                                    <option>Master Administrator</option>
-                                    <option>Master Technician</option>
-                                    <option>Cross Administrator</option>
-                                    <option>Training Administrator</option>
-                                    <option>Technical Administrator</option>
-                                    <option>Staffing Administrator</option>
-                                    <option>Leadership</option>
-                                    <option>Staff Member I</option>
-                                    <option>Staff Member II</option>
+                                    <option th:each="permissionGroup:${permissionGroupList}"
+                                            th:text="${permissionGroup.role}"
+                                            th:value="${permissionGroup.role}">
+                                    </option>
                                 </select>
                             </td>
                             <td>

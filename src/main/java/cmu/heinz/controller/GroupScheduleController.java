@@ -38,7 +38,6 @@ public class GroupScheduleController {
     private ShiftTypeRepository shiftTypeRepository;
 
 
-
     @RequestMapping(value = "/createGroupEvent", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity createGroupEvent(
             @RequestParam(value = "shift_type") String type,
@@ -69,8 +68,9 @@ public class GroupScheduleController {
         List<GroupSchedule> results = new ArrayList<GroupSchedule>();
         for(int i = 0; i < startTime.size(); i++) {
             GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, shiftType, "appoved", selectedOfficers.size());
+
             schedule = group_scheduleRepository.save(schedule);
-            for(String selectedOfficer : selectedOfficers) {
+            for (String selectedOfficer : selectedOfficers) {
                 ScheduleOfficer record = new ScheduleOfficer();
                 record.setGroupSchedule(schedule);
                 record.setOfficer(officerRepository.findByUID(selectedOfficer));
@@ -123,11 +123,11 @@ public class GroupScheduleController {
         //change schedule_officer records
         boolean[] visited = new boolean[selectedOfficers.size()];
         List<ScheduleOfficer> officers = schedule_officerRepository.findByScheduleId(myId);
-        for(ScheduleOfficer each : officers) {
+        for (ScheduleOfficer each : officers) {
             int thisId = each.getOfficer().getId();
             String thisUid = each.getOfficer().getUid();
 
-            if(!selectedOfficers.contains(thisUid)) {
+            if (!selectedOfficers.contains(thisUid)) {
                 System.out.println("delete officer" + thisUid);
                 schedule_officerRepository.delete(each);
             } else {
@@ -135,8 +135,8 @@ public class GroupScheduleController {
             }
         }
         System.out.println("delete extra officers");
-        for(int i = 0; i < visited.length; i++) {
-            if(!visited[i]) {
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
                 ScheduleOfficer record = new ScheduleOfficer();
                 record.setOfficer(officerRepository.findByUID(selectedOfficers.get(i)));
                 record.setGroupSchedule(schedule);
@@ -167,7 +167,7 @@ public class GroupScheduleController {
      */
     @RequestMapping(value = "/getEditSchedule", method = RequestMethod.GET)
     public ResponseEntity getSchedule(@RequestParam(value = "id") Integer id,
-                                   Model model) {
+                                      Model model) {
 
         // Find event by given id.
         int thisId = id;
@@ -185,7 +185,7 @@ public class GroupScheduleController {
     /**
      * Get all events of one union.
      *
-     * @param model    session model of the event
+     * @param model session model of the event
      * @return corresponding http response
      */
     @RequestMapping(value = "/allGroupSchedule", method = RequestMethod.GET)
@@ -203,9 +203,9 @@ public class GroupScheduleController {
         System.out.println("group schedules");
         System.out.println(schedules.toString());
 
-        model.addAttribute("groupScheduleList",schedules);
+        model.addAttribute("groupScheduleList", schedules);
 
-        return ResponseEntity.ok("ok" );
+        return ResponseEntity.ok("ok");
     }
 
     /**

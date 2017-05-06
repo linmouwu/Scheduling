@@ -65,20 +65,19 @@ public class UserInfoController {
     /**
      * Add new user.
      *
-     * @param uid              username/UID
-     * @param lastName         last name
-     * @param firstName        first name
-     * @param badgeNum         badge number
-     * @param title            title
-     * @param gender           gender
-     * @param seniority        seniority
-     * @param permissionGroup  permission group
-     * @param union            union
-     * @param recruit          recruit
-     * @param contractEmployee contract indicator
-     * @param hireDate         hire date
-     * @param promoteDate      promote date
-     * @param trainer          trainer if existed
+     * @param uid                   username/UID
+     * @param lastName              last name
+     * @param firstName             first name
+     * @param badgeNum              badge number
+     * @param title                 title
+     * @param gender                gender
+     * @param seniority             seniority
+     * @param permissionGroupString permission group role
+     * @param union                 union
+     * @param contractEmployee      contract indicator
+     * @param hireDate              hire date
+     * @param promoteDate           promote date
+     * @param trainer               trainer if existed
      * @return new user object
      */
     @RequestMapping(value = "/add_user", method = RequestMethod.POST)
@@ -89,16 +88,18 @@ public class UserInfoController {
                                       @RequestParam(value = "title") String title,
                                       @RequestParam(value = "gender") String gender,
                                       @RequestParam(value = "seniority") int seniority,
-                                      @RequestParam(value = "permissionGroup") PermissionGroup permissionGroup,
+                                      @RequestParam(value = "permissionGroup") String permissionGroupString,
                                       @RequestParam(value = "union") String union,
-                                      @RequestParam(value = "recruit") String recruit,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
-                                      @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date hireDate,
-                                      @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date promoteDate,
+                                      @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date hireDate,
+                                      @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date promoteDate,
                                       @RequestParam(value = "trainer") String trainer) {
 
         // Create a new officer object.
         Officer officer = new Officer();
+
+        // Get permission group by name.
+        PermissionGroup permissionGroup = permissionGroupRepository.findByRole(permissionGroupString);
 
         // Update corresponding properties.
         officer.setUid(uid);
@@ -109,14 +110,11 @@ public class UserInfoController {
         officer.setGender(gender);
         officer.setPermissionGroup(permissionGroup);
         officer.setUnion(unionRepository.findByName(union));
-        officer.setRecruitId(recruit);
+        officer.setRecruitId("1");
         officer.setSeniority(seniority);
         officer.setContractEmployee(contractEmployee);
         officer.setHireDate(hireDate);
         officer.setPromotionDate(promoteDate);
-
-//        System.out.println("uid: " + uid + " union " + union + " recruit " + officer.getRecruitId());
-//        System.out.println(officerRepository.findByUID(uid));
 
         if (officerRepository.findByUID(uid) != null) {
 

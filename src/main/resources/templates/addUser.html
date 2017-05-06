@@ -35,20 +35,21 @@
                 <option value=" " selected="selected" disabled="disabled"></option>
                 <option value="Male"> Male</option>
                 <option value="Female"> Female</option>
-                <option value="Decline to answer"> Decline to answer</option>
+                <option value="Other"> Other</option>
             </select></td>
         </tr>
         <tr>
             <td>Permission Group</td>
             <td><select class="form-control" name="permissionGroup" id="permissionGroup_ID">
                 <option value=" " selected="selected" disabled="disabled"></option>
-                <option value="Staffing Administrator"> Staffing Administrator</option>
-                <option value="Staff Member I"> Staff Member I</option>
+                <option th:each="permissionGroup:${permissionGroupList}"
+                        th:text="${permissionGroup.role}"
+                        th:value="${permissionGroup.role}">
+                </option>
             </select></td>
         </tr>
         <tr>
             <td>Union</td>
-            <!--<td><input name="union" id="union_ID" type="text"/></td>-->
             <td>
                 <select class="form-control" name="union" id="unio_ID">
                     <option value=" " selected="selected" disabled="disabled"></option>
@@ -56,10 +57,6 @@
                             th:value="${union.name}"></option>
                 </select>
             </td>
-        </tr>
-        <tr>
-            <td>Recruit</td>
-            <td><input name="recruit" id="recrui_ID" type="text"/></td>
         </tr>
         <tr>
             <td>Contract Employee</td>

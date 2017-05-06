@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,6 +63,9 @@ public class HomeController {
     @Autowired
     private ShiftTypeRepository shiftTypeRepository;
 
+    @Autowired
+    private PermissionGroupRepository permissionGroupRepository;
+
     @RequestMapping(value = "/home", method = {RequestMethod.POST, RequestMethod.GET})
     public String home(Model model) {
 
@@ -101,7 +105,10 @@ public class HomeController {
         List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
 
         //List all shift type
-        List<ShiftType> shiftTypeList = (List<ShiftType>) shiftTypeRepository.findAll();
+        List<ShiftType> shiftTypeList = shiftTypeRepository.getShiftTypeByUnionId(officer.getUnion().getId());
+
+        //List all permission groups.
+        List<PermissionGroup> permissionGroupList = (List<PermissionGroup>) permissionGroupRepository.findAll();
 
         if (permissionGroup.getId() == 7) {
 
@@ -120,7 +127,6 @@ public class HomeController {
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
-            shiftTypeList = shiftTypeRepository.getShiftTypeByUnionId(unionId);
         } else if (permissionGroup.getId() == 1) {
 
             // If the current user is a master administrator.
@@ -136,7 +142,6 @@ public class HomeController {
 
         } else if (permissionGroup.getId() == 2) {
 
-            // TODO: if a current user is a master technician
             officerList = (List<Officer>) officerRepository.findAll();
 
         } else {
@@ -161,7 +166,9 @@ public class HomeController {
         model.addAttribute("shiftTypeList", shiftTypeList);
         model.addAttribute("currentTime", new Date());
 
-        System.out.println(shiftTypeList);
+        model.addAttribute("permissionGroupList", permissionGroupList);
+
+        model.addAttribute("currentTime", new Date());
 
         return "home";
     }

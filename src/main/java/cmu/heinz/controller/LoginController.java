@@ -22,7 +22,7 @@ public class LoginController {
      * @param error
      * @return
      */
-    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login", "/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
         return new ModelAndView("login", "error", error);
     }
