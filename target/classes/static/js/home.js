@@ -262,8 +262,7 @@ function updateGroupSchedule() {
     var endTime_id = $('#edit_end_time_group').val();
     var description = $('#edit_group_schedule_description').val();
     var event_type = $('#edit_shift_type').val();
-    var selected_officers = []
-    console.log(1);
+    var selected_officers = [];
     if ($("#edit_select_all input").is(':checked')) {
         $("#edit_group_officers input").each(function () {
             selected_officers.push($(this).val());
@@ -278,21 +277,47 @@ function updateGroupSchedule() {
         });
 
     }
-    $.post("update_group_schedule", {
-        'scheduleId': editRequest_id,
-        'startTime': startTime_id,
-        'endTime': endTime_id,
-        'description': description,
-        'shiftType': event_type,
-        'selectedOfficers[]': selected_officers
-    }).done(function (data) {
+    //if the input is not valid.
+    var markup = "";
 
-        // location.reload();
-        changeToCreateGroupRequest();
+    if (!event_type) {
+        markup += "You didn't select your shift type.";
+    }
+    if (startTime_id == "") {
+        markup += "You didn't select any start time.";
+    }
+    if (endTime_id == "") {
+        markup += "You didn't select any end time.";
+    }
+    if (selected_officers.length == 0) {
+        markup += "You didn't select any officers.";
+    }
+    if (markup.length == 0) {
 
-    });
+        $.post("update_group_schedule", {
+            'scheduleId': editRequest_id,
+            'startTime': startTime_id,
+            'endTime': endTime_id,
+            'description': description,
+            'shiftType': event_type,
+            'selectedOfficers[]': selected_officers
+        }).done(function (data) {
+
+            console.log(data);
+            console.log("guess what happened");
+            location.reload();
+            changeToCreateGroupRequest();
+
+        });
+    }
+    else {
+        $("#edit_group_message p").text(markup);
+    }
+
 }
 function changeToEditGroupSchedule(schedule_id) {
+    $("#group_message p").text("");
+    $("#edit_group_message p").text("");
     $('#group_schedule').fadeOut();
     $('#edit_group_schedule').delay(350).fadeIn();
     $('#time_cycle_div').fadeOut();
@@ -315,7 +340,8 @@ function changeToEditGroupSchedule(schedule_id) {
         console.log(formattedStart);
         var formattedEnd = getFormattedDate(new Date(data.endTime));
         $('#edit_id').val(schedule_id);
-        $('#edit_shift_type').val(data.shiftType.shiftTypeName);
+        console.log(data.shiftType.shiftName);
+        $('#edit_shift_type').val(data.shiftType.shiftName).prop('selected', true);
         $('#edit_start_time_group').val(formattedStart);
         $('#edit_end_time_group').val(formattedEnd);
         $('#edit_group_schedule_description').val(data.description);
@@ -323,6 +349,7 @@ function changeToEditGroupSchedule(schedule_id) {
 
     });
 }
+
 
 function getFormattedDate(date) {
     var year = date.getFullYear();
@@ -498,45 +525,66 @@ function addGroupEvent(start_times, end_times) {
 
         });
     }
-    console.log(selected_officers);
 
-    // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
-    //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
-    $.post("createGroupEvent", {
-        'selectedOfficers[]': selected_officers,
-        'startTime[]': start_times,
-        'endTime[]': end_times,
-        'description': description,
-        'shift_type': shift_type,
-    }).done(function (data) {
-        console.log(data);
-        console.log("guess what happened");
-        if (data == "Remain Day is not enough") {
-            // $('#staff_management').append(data);
-        }
-        else {
-            for (var i = 0; i < data.length; i++) {
+    var markup = "";
+    console.log(shift_type);
 
-                var markup =
-                    "<tr><td>" + data[i].id +
-                    "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
-                    "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
-                    "</td><td>" + shift_type +
-                    "</td><td>" + selected_officers.length +
-                    "</td><td>" + description +
-                    "</td><td>" + data[i].scheduleStatus +
-                    "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
-                $('#group_schedule_list_table > tbody').append(markup).hide().slideDown();
+    if (!shift_type) {
+        markup += "You didn't select your shift type.";
+    }
+    if (start_times.length == 0) {
+        markup += "You didn't select any start time.";
+    }
+    if (end_times.length == 0) {
+        markup += "You didn't select any end time.";
+    }
+    if (selected_officers.length == 0) {
+        markup += "You didn't select any officers.";
+    }
+    if (markup.length == 0) {
+
+        // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
+        //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+        $.post("createGroupEvent", {
+            'selectedOfficers[]': selected_officers,
+            'startTime[]': start_times,
+            'endTime[]': end_times,
+            'description': description,
+            'shift_type': shift_type,
+        }).done(function (data) {
+            console.log(data);
+            console.log("guess what happened");
+            if (data == "Remain Day is not enough") {
+                // $('#staff_management').append(data);
             }
+            else {
+                for (var i = 0; i < data.length; i++) {
 
-        }
-        //location.reload();
-        clearGroupSchedule();
-    })
+                    var mark =
+                        "<tr><td>" + data[i].id +
+                        "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
+                        "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
+                        "</td><td>" + shift_type +
+                        "</td><td>" + selected_officers.length +
+                        "</td><td>" + description +
+                        "</td><td>" + data[i].scheduleStatus +
+                        "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
+                    $('#group_schedule_list_table > tbody').append(mark).hide().slideDown();
+                }
+
+            }
+            //location.reload();
+            clearGroupSchedule();
+            start_times = [];
+            end_times = [];
+            $('#selected-time-ranges').empty();
+        });
+    } else {
+        $("#group_message p").text(markup);
+    }
 
 
 }
-
 function addEvent() {
 
 
@@ -686,6 +734,8 @@ function clearGroupSchedule() {
     $('#end_time_group').val("");
     $('#group_schedule_description').val("");
     $('#shift_type').val("");
+    $('#edit_group_message p').text("");
+    $('#group_message p').text("");
 }
 function cancelAddEvent() {
     $('#startTime_ID').val("");
@@ -812,8 +862,7 @@ $(document)
         $('#re_cancel_group_event').click(changeToCreateGroupRequest);
         $('#submit_group_event').click(function () {
             addGroupEvent(start_times, end_times);
-            start_times = [];
-            end_times = [];
+
         });
         $('#cancel_group_event').click(function () {
             clearGroupSchedule();

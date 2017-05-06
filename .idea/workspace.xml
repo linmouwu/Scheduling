@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/home.js" afterPath="$PROJECT_DIR$/target/classes/static/js/home.js" />
     </list>
     <ignored path="CityOfLansing.iws" />
@@ -48,68 +50,30 @@
       <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="207" column="24" lean-forward="false" selection-start-line="207" selection-start-column="8" selection-end-line="207" selection-end-column="24" />
+            <state relative-caret-position="320">
+              <caret line="861" column="33" lean-forward="false" selection-start-line="861" selection-start-column="12" selection-end-line="861" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserInfoController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java">
+      <file leaf-file-name="groupScheduleManagement.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="240">
+              <caret line="65" column="102" lean-forward="false" selection-start-line="65" selection-start-column="102" selection-end-line="65" selection-end-column="102" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="administratorSideBar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/administratorSideBar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="masterAdminSideBar.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="46" column="44" lean-forward="false" selection-start-line="46" selection-start-column="44" selection-end-line="46" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="holidaymanagement.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="holidaymanagement.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/holidaymanagement.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
               <caret line="33" column="70" lean-forward="true" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeCycleController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/TimeCycleController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="65" column="84" lean-forward="false" selection-start-line="65" selection-start-column="74" selection-end-line="65" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="permissionGroupPage.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="54" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -127,30 +91,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Officer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java">
+      <file leaf-file-name="editGroupSchedule.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="123" column="16" lean-forward="false" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+            <state relative-caret-position="132">
+              <caret line="92" column="53" lean-forward="false" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="53" />
               <folding>
-                <element signature="e#2226#2227#0" expanded="true" />
-                <element signature="e#2266#2267#0" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scheduleappdb.group_schedule" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/d1b41cf2/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.group_schedule">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -159,14 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>changeToEditEvent</find>
-      <find>changeToE</find>
-      <find>update</find>
-      <find>editEv</find>
-      <find>currentEditId</find>
-      <find>loca</find>
-      <find>changetoed</find>
-      <find>changetoshift</find>
       <find>shift_type</find>
       <find>i</find>
       <find>updateEvent</find>
@@ -189,6 +129,14 @@
       <find>addUser</find>
       <find>adduser</find>
       <find>add</find>
+      <find>changeto</find>
+      <find>cleargroup</find>
+      <find>addgroup</find>
+      <find>group-time-range</find>
+      <find>re_submit_group_event</find>
+      <find>selected-time-ranges</find>
+      <find>re_cancel_group_event</find>
+      <find>edit_group_message</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -239,8 +187,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/Event.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/techAdminSideBar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/staffManagement.html" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/util/WebSecurityConfig.java" />
@@ -248,11 +194,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/login.html" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/addUser.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/administratorSideBar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/holidaymanagement.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html" />
       </list>
     </option>
   </component>
@@ -1033,14 +981,7 @@
       <workItem from="1493827078007" duration="2994000" />
       <workItem from="1493838890784" duration="113000" />
       <workItem from="1493950621394" duration="44000" />
-      <workItem from="1494077487992" duration="7648000" />
-    </task>
-    <task id="LOCAL-00025" summary="Merge branch 'Nan' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/resources/templates/userSideBar.html&#10;">
-      <created>1492036463332</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1492036463332</updated>
+      <workItem from="1494077487992" duration="9334000" />
     </task>
     <task id="LOCAL-00026" summary="Merge branch 'Nan' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/resources/templates/userSideBar.html&#10;">
       <created>1492036858974</created>
@@ -1378,11 +1319,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494084886439</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="05/03/2017 Debugging.">
+      <created>1494085531619</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1494085531619</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158769000" />
+    <option name="totallyTimeSpent" value="160455000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1436" height="821" extended-state="6" />
@@ -1429,7 +1377,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="04/07/2017 Time Cycle." />
     <MESSAGE value="04/07/2017 Time Cycle Deactivation." />
     <MESSAGE value="04/07/2017 Master admin." />
     <MESSAGE value="04/07/2017 Date Picker." />
@@ -1454,7 +1401,8 @@
     <MESSAGE value="05/02/2017 Update event." />
     <MESSAGE value="05/02/2017 Update master." />
     <MESSAGE value="05/03/2017 Merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="05/03/2017 Merge" />
+    <MESSAGE value="05/03/2017 Debugging." />
+    <option name="LAST_COMMIT_MESSAGE" value="05/03/2017 Debugging." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1711,22 +1659,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/d1b41cf2/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.holiday">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1826,7 +1758,7 @@
         <state relative-caret-position="30">
           <caret line="2" column="63" lean-forward="true" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1871,30 +1803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/d1b41cf2/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.group_schedule">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="123" column="16" lean-forward="false" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
-          <folding>
-            <element signature="e#2226#2227#0" expanded="true" />
-            <element signature="e#2266#2267#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/TimeCycleController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -1907,14 +1815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="54" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1950,14 +1850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="207" column="24" lean-forward="false" selection-start-line="207" selection-start-column="8" selection-end-line="207" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/masterAdminSideBar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="334">
@@ -1971,6 +1863,66 @@
         <state relative-caret-position="184">
           <caret line="33" column="70" lean-forward="true" selection-start-line="33" selection-start-column="70" selection-end-line="33" selection-end-column="70" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/d1b41cf2/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.group_schedule">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#2226#2227#0" expanded="true" />
+            <element signature="e#2266#2267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="861" column="33" lean-forward="false" selection-start-line="861" selection-start-column="12" selection-end-line="861" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editGroupSchedule.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="92" column="53" lean-forward="false" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/groupScheduleManagement.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="65" column="102" lean-forward="false" selection-start-line="65" selection-start-column="102" selection-end-line="65" selection-end-column="102" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
