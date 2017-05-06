@@ -387,12 +387,10 @@ function addUser() {
     var gender_ID = $('#gender_ID').val();
     var permissionGroup_ID = $('#permissionGroup_ID').val();
     var union_ID = $('#unio_ID').val();
-    var recruit_ID = $('#recrui_ID').val();
     var contractEmployee_id = $('#contractEmployee_id').val();
     var hireDate_ID = $('#hireDate_ID').val();
     var promoteDate_ID = $('#promoteDate_ID').val();
     var trainerID_ID = $('#trainerID_ID').val();
-    console.log(recruit_ID);
     var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
         : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
     console.log(promoteDate_ID);
@@ -406,7 +404,6 @@ function addUser() {
         'seniority': seniority,
         'permissionGroup': permissionGroup_ID,
         'union': union_ID,
-        'recruit': recruit_ID,
         'contractEmployee': contractEmployee_id,
         'hireDate': hireDate_ID,
         'promoteDate': promoteDate_ID,
@@ -420,14 +417,13 @@ function addUser() {
         }
         else {
             var markup =
-                "<tr><td>" + data.uid +
-                "</td><td>" + data.badgeNum +
+                "<tr><td>" + data.badgeNum +
                 "</td><td>" + data.lastName +
                 "</td><td>" + data.firstName +
                 "</td><td>" + data.title +
                 "</td><td>" + data.gender +
                 "</td><td>" + data.seniority +
-                "</td><td>" + data.permissionGroup +
+                "</td><td>" + data.permissionGroup.role +
                 "</td><td>" + data.union.name +
                 "</td><td>" + hireDate_ID +
                 "</td><td>" + promoteDate_ID +
@@ -672,7 +668,6 @@ function cancelAddUser() {
     $('#gender_ID').val("");
     $('#permissionGroup_ID').val("");
     $('#union_ID').val("");
-    $('#recruit_ID').val("1");
     $('#contractEmployee_id').val("");
     $('#hireDate_ID').val("");
     $('#promoteDate_ID').val("");
