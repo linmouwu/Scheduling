@@ -246,19 +246,10 @@ function changeToEditEvent(editRequest_id) {
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
         $('#selected_request_type').val(data.eventType);
+        $('#selected_request_type').text(data.eventType);
+        $('#edit_shift_off_ID').val(data.shiftType.shiftName);
+        $('#edit_shift_off_ID').text(data.shiftType.shiftName);
         $('#edit_event_description').val(data.description);
-
-        if(pGId <= 6){
-
-            console.log(pGId);
-
-            $('#edit_StartTime_ID').disable = true;
-            $('#edit_EndTime_ID').disable = true;
-            $('#selected_request_type').disable = true;
-            $('#edit_event_description').disable = true;
-        }
-
-
         $('#currentEditId').val(data.id);
         $('#currentEditId').text(data.id);
 
@@ -366,24 +357,19 @@ function updateHolidayDate() {
     for (var i = 1; i < holidayTable.rows.length; i++) {
         var newDate = holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value;
         if (newDate !== null && newDate !== undefined && newDate !== "") {
-            console.log(newDate);
             newHolidayDate.push(newDate);
         } else {
             var tempDate = new Date(holidayTable.rows[i].cells[1].innerHTML);
             var format = moment(tempDate).format('YYYY-MM-DD');
             newHolidayDate.push(format);
-            console.log(format);
         }
-        // console.log(holidayTable.rows[i].cells[2].getElementsByTagName('input')[0].value);
     }
     $.post("updateHolidayDate", {
         'dateList[]': newHolidayDate,
     }).done(function (data) {
         var newTable = document.getElementById("holiday_list_table");
-        console.log(data);
         for (var i = 1; i < holidayTable.rows.length; i++) {
             var date = new Date(data[i - 1].date);
-            console.log(data[i - 1].date);
             var format = moment(date).format('MM/DD/YYYY');
             newTable.rows[i].cells[1].innerHTML = format;
         }
@@ -563,13 +549,14 @@ function addEvent() {
     var endTime_id = $('#endTime_ID').val();
     var description = $('#event_description').val();
     var event_type = $('#individualRequestType').val();
-    var seniority = new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    var shift_type = $('#shift_off_ID').val();
     // console.log(promoteDate_ID);
     var totalDays = (startTime_id == '' || endTime_id == '') ? 0
         : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("create_Event", {
         'startTime': startTime_id,
         'endTime': endTime_id,
+        'shift_type':shift_type,
         'description': description,
         'event_type': event_type,
         'total': totalDays
@@ -628,7 +615,6 @@ function assignHoliday() {
 function updateEvent() {
 
     var editRequest_id = $('#currentEditId').val();
-    // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#edit_StartTime_ID').val();
     var endTime_id = $('#edit_EndTime_ID').val();
     var description = $('#edit_event_description').val();
@@ -651,7 +637,6 @@ function updateEvent() {
         var pGId = $('#create_event_permission_group').val();
 
         if (data == "Remain Day is not enough") {
-            // $('#staff_management').append(data);
         }
         else {
 

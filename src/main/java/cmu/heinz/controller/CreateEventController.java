@@ -37,11 +37,15 @@ public class CreateEventController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+
     @Autowired
     private GroupScheduleRepository group_scheduleRepository;
+
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
 
+    @Autowired
+    private ShiftTypeRepository shiftTypeRepository;
     /**
      * Create event methods.
      *
@@ -56,6 +60,7 @@ public class CreateEventController {
     public ResponseEntity createEvent(
             @RequestParam(value = "total") int totalDays,
             @RequestParam(value = "event_type") String type,
+            @RequestParam(value = "shift_type") int shiftTypeId,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "startTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date startTime,
             @RequestParam(value = "endTime") @DateTimeFormat(pattern = "MM/dd/yyyy") Date endTime) {
@@ -108,8 +113,8 @@ public class CreateEventController {
         event.setEventStatus(status);
         event.setEventType(type);
         event.setDescription(description);
+        event.setShiftType(shiftTypeRepository.findOne(shiftTypeId));
         Event newEvent = eventRepository.save(event);
-
 
         return ResponseEntity.ok(newEvent);
     }

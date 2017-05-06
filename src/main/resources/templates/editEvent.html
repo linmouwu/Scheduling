@@ -45,20 +45,17 @@
         </tr>
 
         <tr>
-            <td>Type</td>
-            <td>
-                <select class="form-control" name="type" id="edit_individualRequestType">
-                    <option id="selected_request_type" value=" " selected="selected" disabled="disabled"></option>
-                    <option value="Vacation"> Vacation</option>
-                    <option value="Training"> Training</option>
-                    <option value="Leave"> Leave</option>
-                    <option value="Comp Time"> Comp Time</option>
-                    <option value="Pass Time"> Pass Time</option>
-                    <option value="Holiday"> Holiday</option>
-                    <option value="Other"> Other</option>
-                </select>
+            <td>Shift Off</td>
+            <td id="edit_shift_off_ID">
             </td>
         </tr>
+
+        <tr>
+            <td>Event Type</td>
+            <td id="selected_request_type">
+            </td>
+        </tr>
+
         <tr th:if="${officer.permissionGroup.id} != 7 AND ${officer.permissionGroup.id} != 8">
             <td>Status</td>
             <td><select class="form-control" name="status" id="editEventStatus">

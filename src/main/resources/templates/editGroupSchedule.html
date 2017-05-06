@@ -10,32 +10,34 @@
         </div>
     </div>
 
-
-
-    <div class="panel panel-default myborder">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Edit Group Schedule</h4>
         </div>
         <div class="panel-body">
-            <input type="hidden" id="edit_id" />
+            <input type="hidden" id="edit_id"/>
 
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Start Time</h4></div>
-                <div class="col-sm-7"><input name="startTime" id="edit_start_time_group" type="text" placeholder="MM/DD/YYYY"/></div>
+                <div class="col-sm-7"><input name="startTime" id="edit_start_time_group" type="text"
+                                             placeholder="MM/DD/YYYY"/></div>
             </div>
             <div class="row myborder">
                 <div class="col-sm-2"><h4>End Time</h4></div>
-                <div class="col-sm-7"><input name="endTime" id="edit_end_time_group" type="text" placeholder="MM/DD/YYYY"/></div>
+                <div class="col-sm-7"><input name="endTime" id="edit_end_time_group" type="text"
+                                             placeholder="MM/DD/YYYY"/></div>
             </div>
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Description</h4></div>
-                <div class="col-sm-7"><input name="description" id="edit_group_schedule_description" type="text" size="40"/></div>
+                <div class="col-sm-7"><input name="description" id="edit_group_schedule_description" type="text"
+                                             size="40"/></div>
             </div>
             <div class="row myborder">
                 <div class="col-sm-2"><h4>Shift Type</h4></div>
                 <div class="col-sm-7"><select class="form-control" name="type" id="edit_shift_type">
                     <option value=" " selected="selected" disabled="disabled"></option>
-                    <option th:each="shift:${shiftTypeList}" th:value="${shift.shiftName}" th:text="${shift.shiftName}"></option>
+                    <option th:each="shift:${shiftTypeList}" th:value="${shift.shiftName}"
+                            th:text="${shift.shiftName}"></option>
                 </select></div>
             </div>
             <div class="row myborder">
@@ -60,7 +62,8 @@
                         <tbody>
                         <tr th:each="officer:${officerList}" id="edit_group_officers">
 
-                            <td class="col-xs-2 text-center"><input class="checkbox" type="checkbox" th:value="${officer.uid}"/></td>
+                            <td class="col-xs-2 text-center"><input class="checkbox" type="checkbox"
+                                                                    th:value="${officer.uid}"/></td>
                             <td class="col-xs-2" th:text="${officer.uid}"></td>
                             <td class="col-xs-2" th:text="${officer.lastName}"></td>
                             <td class="col-xs-2" th:text="${officer.firstName}"></td>
@@ -70,10 +73,10 @@
 
 
                         </tr>
-                                                </tbody>
+                        </tbody>
                         <tfoot>
                         <tr id="edit_select_all">
-                            <td class="col-xs-3"><input type="checkbox" />  Select All</td>
+                            <td class="col-xs-3"><input type="checkbox"/> Select All</td>
 
                         </tr>
                         </tfoot>
@@ -92,7 +95,8 @@
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>
+</div>
 
 <!-- /.row -->
 

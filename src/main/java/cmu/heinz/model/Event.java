@@ -30,6 +30,10 @@ public class Event {
     private String eventRange;
     private String uid;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shift_id")
+    private ShiftType shiftType;
+
     public Event() {
 
     }
@@ -122,6 +126,13 @@ public class Event {
         this.eventRange = eventRange;
     }
 
+    public ShiftType getShiftType() {
+        return shiftType;
+    }
+
+    public void setShiftType(ShiftType shiftType) {
+        this.shiftType = shiftType;
+    }
 
 }
 

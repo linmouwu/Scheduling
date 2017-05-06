@@ -104,7 +104,7 @@ public class HomeController {
         List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
 
         //List all shift type
-        List<ShiftType> shiftTypeList = (List<ShiftType>) shiftTypeRepository.findAll();
+        List<ShiftType> shiftTypeList = shiftTypeRepository.getShiftTypeByUnionId(officer.getUnion().getId());
 
         //List all permission groups.
         List<PermissionGroup> permissionGroupList = (List<PermissionGroup>) permissionGroupRepository.findAll();
@@ -126,7 +126,6 @@ public class HomeController {
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
-            shiftTypeList = shiftTypeRepository.getShiftTypeByUnionId(unionId);
         } else if (permissionGroup.getId() == 1) {
 
             // If the current user is a master administrator.
@@ -142,7 +141,6 @@ public class HomeController {
 
         } else if (permissionGroup.getId() == 2) {
 
-            // TODO: if a current user is a master technician
             officerList = (List<Officer>) officerRepository.findAll();
 
         } else {
@@ -166,11 +164,7 @@ public class HomeController {
 
         model.addAttribute("shiftTypeList", shiftTypeList);
 
-        model.addAttribute("shiftTypeList", shiftTypeList);
-
         model.addAttribute("permissionGroupList", permissionGroupList);
-
-        System.out.println(shiftTypeList);
 
         return "home";
     }

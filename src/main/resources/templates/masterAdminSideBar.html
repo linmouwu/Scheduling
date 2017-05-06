@@ -1,6 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="masterAdminSideBar">
 <li>
+    <a href="javascript:void(0)" onclick="changeToRequest()"><i class="fa fa-fw fa-bar-chart-o"></i>
+        Pending Requests</a>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToCalendar()"><i class="fa fa-fw fa-table"></i> Current
+        Schedule </a>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToCreateRequest()"><i class="fa fa-fw fa-file-o"></i>
+        Create Special Request </a>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToCreateGroupRequest()"><i
+            class="fa fa-fw fa-list-alt"></i> Create Group Request</a>
+</li>
+<li>
+    <a href="javascript:void(0)" onclick="changeToGroupCalendar()"><i class="fa fa-fw fa-clock-o"></i>
+        Group Schedule</a>
+</li>
+<!--<li>-->
+    <!--<a href="javascript:void(0)"><i class="fa fa-fw fa-flag"></i> OT by Officer</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Leave</a>-->
+<!--</li>-->
+<li>
+    <a href="javascript:void(0)" data-toggle="collapse"
+       data-target="#staffing"><i
+            class="fa fa-fw fa-user"></i> Staffing Management<i class="fa fa-fw fa-caret-down"></i></a>
+    <ul id="staffing" class="collapse">
+        <li>
+            <a href="javascript:void(0)" onclick="changeToStaff()"><i
+                    class="fa fa-fw fa-info"></i> Staffing</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" onclick="changeToShiftType()"><i
+                    class="fa fa-fw fa-info"></i> Shift Type</a>
+        </li>
+        <!--<li>-->
+        <!--<a href="javascript:void(0)"> <i-->
+        <!--class="fa fa-fw fa-info"></i> Staffing for day</a>-->
+        <!--</li>-->
+        <!--<li>-->
+        <!--<a href="javascript:void(0)" data-toggle="collapse" data-target="#gender"><i-->
+        <!--class="fa fa-fw fa-info"></i> Male/Female needed</a>-->
+        <!--</li>-->
+    </ul>
+</li>
+<li>
 <a href="javascript:void(0)"><i class="fa fa-fw fa-desktop"></i> Permission Group Management</a>
 </li>
 </html>
