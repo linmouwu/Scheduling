@@ -38,14 +38,24 @@ public class CreateEventController {
     @Autowired
     private OfficerRepository officerRepository;
 
+    /**
+     * Group schedule repository.
+     */
     @Autowired
     private GroupScheduleRepository group_scheduleRepository;
 
+    /**
+     * Schedule officer repository.
+     */
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
 
+    /**
+     * Shift type repository.
+     */
     @Autowired
     private ShiftTypeRepository shiftTypeRepository;
+
     /**
      * Create event methods.
      *
@@ -215,11 +225,10 @@ public class CreateEventController {
         int union_id = officer.getUnion().getId();
 
         String permissionGroup = officer.getPermissionGroup().getRole();
+
         List<Event> allEvent = new ArrayList<Event>();
 
         allEvent = eventRepository.findByAllUnionIDAndShift(union_id, shiftType);
-
-//        allEvent = eventRepository.findByAllUnionID(union_id);
 
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
@@ -260,9 +269,12 @@ public class CreateEventController {
 
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
+
         // Find special events by officer id.
         int officerid = officer.getId();
+
         String permissionGroup = officer.getPermissionGroup().getRole();
+
         List<Event> allEvent = new ArrayList<Event>();
 
         allEvent = eventRepository.findByAllUnionID(union_id);
@@ -288,6 +300,13 @@ public class CreateEventController {
         return ResponseEntity.ok(allCurrentEvent);
     }
 
+    /**
+     * Get all events for current union.
+     *
+     * @param union_id the union id
+     * @param model    the data model
+     * @return 200 success
+     */
     @RequestMapping(value = "/allUnionEvent", method = RequestMethod.GET)
     public ResponseEntity getAllUnionEvent(@RequestParam(value = "union_id") int union_id,
                                            Model model) {
@@ -301,9 +320,11 @@ public class CreateEventController {
         Officer officer = officerRepository.findByUID(username);
         // Find special events by officer id.
         int officerid = officer.getId();
+
         String permissionGroup = officer.getPermissionGroup().getRole();
-        List<Event> allEvent = new ArrayList<Event>();
-        allEvent = eventRepository.findByAllUnionID(union_id);
+
+        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
@@ -327,6 +348,15 @@ public class CreateEventController {
         return ResponseEntity.ok(allCurrentEvent);
     }
 
+    /**
+     * Get the number of officer for current shift in this union
+     *
+     * @param start_date start date
+     * @param union_id   union id
+     * @param shiftType  shift type
+     * @param model      data model
+     * @return 200 success
+     */
     @RequestMapping(value = "/getOfficerNumber", method = RequestMethod.GET)
     public ResponseEntity getOfficeNumber(@RequestParam(value = "date") Date start_date, @RequestParam(value = "union_id") int union_id, @RequestParam(value = "shiftType") int shiftType, Model model) {
 
@@ -347,6 +377,11 @@ public class CreateEventController {
         return ResponseEntity.ok(rst);
     }
 
+    /**
+     * @param date
+     * @param days
+     * @return
+     */
     public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
