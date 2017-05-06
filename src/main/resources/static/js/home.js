@@ -658,7 +658,7 @@ function updateEvent() {
             }
         }
         location.reload();
-        // changeToRequest();
+        changeToRequest();
     });
 
 }
@@ -697,6 +697,7 @@ function cancelAddEvent() {
     $('#endTime_ID').val("");
     $('#event_description').val("");
     $('#individualRequestType').val("");
+    changeToRequest();
 }
 function cancelAssignHoliday() {
     $('input:checkbox').prop("checked", false);
@@ -827,7 +828,7 @@ $(document)
         $('#submit_button').click(addUser);
         $('#cancel_button').click(cancelAddUser);
         $('#submit_Event').click(addEvent);
-        $('#cancel_Event').click(cancelAddUser);
+        $('#cancel_Event').click(cancelAddEvent);
         $('#submit_Edit_Event').click(updateEvent);
         $('#cancel_Edit_Event').click(changeToRequest);
         $('#update_holiday_button').click(updateHolidayDate);
