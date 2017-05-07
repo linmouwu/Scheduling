@@ -567,8 +567,7 @@ function addGroupEvent(start_times, end_times) {
                         "</td><td>" + shift_type +
                         "</td><td>" + selected_officers.length +
                         "</td><td>" + description +
-                        "</td><td>" + data[i].scheduleStatus +
-                        "<td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
+                        "</td><td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a></td></tr>";
                     $('#group_schedule_list_table > tbody').append(mark).hide().slideDown();
                 }
 

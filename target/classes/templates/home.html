@@ -137,11 +137,6 @@
                         <a href="javascript:void(0);" onclick="changeToUserProfile()"><i
                                 class="fa fa-fw fa-user"></i> Profile</a>
                     </li>
-                    <!--<li th:if="${officer.permissionGroup.id} == 1" class="divider"></li>-->
-                    <!--<li th:if="${officer.permissionGroup.id} == 1">-->
-                        <!--<a href="javascript:void(0);" onclick="changeToTCC()"><i-->
-                                <!--class="fa fa-fw fa-user"></i> Configure Time Cycle</a>-->
-                    <!--</li>-->
                     <li th:if="${officer.permissionGroup.id} == 1" class="divider"></li>
                     <li th:if="${officer.permissionGroup.id} == 1">
                         <a href="javascript:void(0);" onclick="changeToPGM()"><i
@@ -154,7 +149,6 @@
                 </ul>
             </li>
         </ul>
-        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav" th:if="${officer.permissionGroup.id} == 1"
                 th:include="masterAdminSideBar :: masterAdminSideBar">
@@ -173,18 +167,14 @@
 
     <div id="page-wrapper">
 
-        <!--Display the main according to permission group.-->
-
         <div th:if="${officer.permissionGroup.id} == 1">
             <div th:replace="timeCyclePage :: timeCyclePage"></div>
             <div th:replace="holidaymanagement :: holidaymanagement"></div>
         </div>
 
         <div th:if="${officer.permissionGroup.id} == 2">
-            <!--<div th:replace="timeCyclePage :: timeCyclePage"></div>-->
         </div>
 
-        <!--Other components.-->
 
         <div class="container-fluid" id="group_calendar" style="display: none">
             <input type="hidden" th:value="1" id="currentShiftType"/>
@@ -224,28 +214,32 @@
 
         <div th:replace="createEvent :: createEvent">
         </div>
+
         <div th:replace="groupScheduleManagement :: groupScheduleManagement">
         </div>
+
         <div th:replace="staffManagement :: staffManagement">
         </div>
+
         <div th:replace="shiftTypeManagement :: shiftTypeManagement">
         </div>
 
         <div th:replace="permissionGroupPage :: permissionGroupPage">
         </div>
+
         <div th:replace="editGroupSchedule :: editGroupSchedule">
         </div>
 
         <div th:replace="userProfile :: userProfile">
         </div>
+
         <div th:replace="holidayManagement :: holidayManagement">
         </div>
+
         <div th:replace="assignHoliday :: assignHoliday">
         </div>
 
-
     </div>
-    <!-- /#page-wrapper -->
 
 </div>
 
