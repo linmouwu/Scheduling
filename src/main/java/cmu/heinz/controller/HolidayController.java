@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -28,6 +30,7 @@ public class HolidayController {
     private HolidayRepository holidayRepository;
     @Autowired
     private UnionRepository unionRepository;
+
     /**
      * Get all events of one union.
      *
@@ -37,7 +40,7 @@ public class HolidayController {
      */
     @RequestMapping(value = "/allHoliday", method = RequestMethod.GET)
     public ResponseEntity getAllHoliday(@RequestParam(value = "union_id") int union_id,
-                                      Model model) {
+                                        Model model) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         UserDetails userDetails = (UserDetails) principal;
@@ -53,7 +56,7 @@ public class HolidayController {
 
         if (allHoliday != null) {
             for (Union_Holiday e : allHoliday) {
-                CurrentEvent cur = new CurrentEvent(e.getId(), e.getHoliday().getDescription(), e.getHoliday().getDate(),e.getHoliday().getDate());
+                CurrentEvent cur = new CurrentEvent(e.getId(), e.getHoliday().getDescription(), e.getHoliday().getDate(), e.getHoliday().getDate());
                 allCurrentHoliday.add(cur);
             }
             model.addAttribute("allHoliday", allCurrentHoliday);
@@ -63,8 +66,8 @@ public class HolidayController {
     }
 
     @RequestMapping(value = "/assignHoliday", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResponseEntity addHoliday (@RequestParam(value = "unionId") int union_id,@RequestParam(value = "selectedHoliday[]")List<Integer> selectedHoliday,
-                                      Model model){
+    public ResponseEntity addHoliday(@RequestParam(value = "unionId") int union_id, @RequestParam(value = "selectedHoliday[]") List<Integer> selectedHoliday,
+                                     Model model) {
         for (Integer holidayId : selectedHoliday) {
             Union_Holiday uh = new Union_Holiday();
             Union union = unionRepository.findOne(union_id);
@@ -75,9 +78,10 @@ public class HolidayController {
         }
         return ResponseEntity.ok(200);
     }
+
     @RequestMapping(value = "/updateHolidayDate", method = {RequestMethod.POST})
-    public ResponseEntity updateHolidayDate (@RequestParam(value = "dateList[]") @DateTimeFormat(pattern = "yyyy-MM-dd") List<Date> dateList,
-                                      Model model){
+    public ResponseEntity updateHolidayDate(@RequestParam(value = "dateList[]") @DateTimeFormat(pattern = "yyyy-MM-dd") List<Date> dateList,
+                                            Model model) {
         List<Holiday> holidayList = (List<Holiday>) holidayRepository.findAll();
         for (int i = 0; i < dateList.size(); i++) {
             holidayList.get(i).setDate(dateList.get(i));
