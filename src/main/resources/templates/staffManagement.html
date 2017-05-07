@@ -29,10 +29,9 @@
                             <th>Seniority</th>
                             <th>Permission Group</th>
                             <th>Union</th>
-                            <th>Recruit</th>
                             <th>Hire Date</th>
                             <th>Promotion Date</th>
-                            <th>Operation</th>
+                            <th th:if="${officer.permissionGroup.id} == 1">Operation</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,21 +52,23 @@
                             <td th:if="${officer1.seniority} != null" th:text="${officer1.seniority}"></td>
 
                             <td th:if="${officer1.permissionGroup} == null"></td>
-                            <td th:if="${officer1.permissionGroup} != null" th:text="${officer1.permissionGroup.role}"></td>
+                            <td th:if="${officer1.permissionGroup} != null"
+                                th:text="${officer1.permissionGroup.role}"></td>
 
                             <td th:if="${officer1.union} == null"></td>
                             <td th:if="${officer1.union} != null" th:text="${officer1.union.name}"></td>
 
-                            <td th:if="${officer1.recruitId} == null"></td>
-                            <td th:if="${officer1.recruitId} != null" th:text="${officer1.recruitId}"></td>
-
                             <td th:if="${officer1.hireDate} == null"></td>
-                            <td th:if="${officer1.hireDate} != null" th:text="${#calendars.format(officer1.hireDate,'MM/dd/yyyy')} "></td>
+                            <td th:if="${officer1.hireDate} != null"
+                                th:text="${#calendars.format(officer1.hireDate,'MM/dd/yyyy')} "></td>
 
                             <td th:if="${officer1.promotionDate} == null"></td>
-                            <td th:if="${officer1.promotionDate} != null" th:text="${#calendars.format(officer1.promotionDate,'MM/dd/yyyy')} "></td>
+                            <td th:if="${officer1.promotionDate} != null"
+                                th:text="${#calendars.format(officer1.promotionDate,'MM/dd/yyyy')} "></td>
                             <td th:if="${officer.permissionGroup.id} == 1">
-                                <input type="button" value="Edit" th:onclick="'javascript:newEditUserForm('+${officer1.id}+');'"/></td>
+                                <input type="button" value="Edit"
+                                       th:onclick="'javascript:newEditUserForm('+${officer1.id}+');'"/>
+                            </td>
                             <input type="hidden" id="current_edit_user"/>
                         </tr>
                         </tbody>
