@@ -30,7 +30,7 @@
                         <tr th:each="holiday:${holidayList}" id="holidayList">
                             <td th:text="${holiday.name}"></td>
                             <td th:text="${#calendars.format(holiday.date,'MM/dd/yyyy')}"></td>
-                            <td><input name="holidayDate" id="holidayDate_ID" type="date"
+                            <td><input name="holidayDate" th:id="holidayDate_ID+${holiday.id}" type="text"
                                        placeholder="MM/DD/YYYY"/></td>
                         </tr>
                         </tbody>

@@ -1,13 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div class="container-fluid" id="pending_request"
-     th:if="${officer.permissionGroup.id} != 1 AND ${officer.permissionGroup.id} != 2"
      th:fragment="scheduleRequestList">
 
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Dashboard
+                Schedule Requests
                 <small>Statistics Overview</small>
             </h1>
         </div>
@@ -73,7 +72,6 @@
                                 <td th:text="${#calendars.format(previousRequest.endTime,'MM/dd/yyyy')}"></td>
                                 <td th:text="${previousRequest.eventType}"></td>
                                 <td th:text="${previousRequest.eventStatus}"></td>
-
                             </tr>
                             </tbody>
                         </table>

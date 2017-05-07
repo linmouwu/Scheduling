@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import java.util.Date;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,7 +116,7 @@ public class HomeController {
             pendingEventList = eventRepository.findByPendingUID(uid);
             previousEventList = eventRepository.findByPreviousUID(uid);
 
-        } else if (permissionGroup.getId() == 6) {
+        } else if (permissionGroup.getId() <= 6) {
 
             // If the current user  is a administrator.
             int unionId = officer.getUnion().getId();
@@ -128,22 +128,24 @@ public class HomeController {
             pendingEventList = eventRepository.findByPendingUnionID(unionID);
             previousEventList = eventRepository.findByPreviousUnionID(unionID);
 
-        } else if (permissionGroup.getId() == 1) {
+            if (permissionGroup.getId() == 1) {
 
-            // If the current user is a master administrator.
-            TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
+                // If the current user is a master administrator.
+                TimeCycle timeCycleActivated = timeCycleRepository.findActivate();
 
-            officerList = (List<Officer>) officerRepository.findAll();
+                officerList = (List<Officer>) officerRepository.findAll();
 
-            if (timeCycleActivated != null) {
-                model.addAttribute("activatedTimeCycle", timeCycleActivated);
-            } else {
-                model.addAttribute("activatedTimeCycle");
+                if (timeCycleActivated != null) {
+                    model.addAttribute("activatedTimeCycle", timeCycleActivated);
+                } else {
+                    model.addAttribute("activatedTimeCycle");
+                }
+
+            } else if (permissionGroup.getId() == 2) {
+
+                officerList = (List<Officer>) officerRepository.findAll();
+
             }
-
-        } else if (permissionGroup.getId() == 2) {
-
-            officerList = (List<Officer>) officerRepository.findAll();
 
         } else {
             // Other users.
@@ -152,7 +154,7 @@ public class HomeController {
         }
 
         //List all Permission Group
-        List<PermissionGroup> permissionGroups = (List<PermissionGroup>)permissionGroupRepository.findAll();
+        List<PermissionGroup> permissionGroups = (List<PermissionGroup>) permissionGroupRepository.findAll();
 
         model.addAttribute(("permissionGroupList"), permissionGroups);
         // Model attributes.
@@ -169,6 +171,7 @@ public class HomeController {
         model.addAttribute("previousEventList", previousEventList);
 
         model.addAttribute("shiftTypeList", shiftTypeList);
+
         model.addAttribute("currentTime", new Date());
 
         model.addAttribute("permissionGroupList", permissionGroupList);
