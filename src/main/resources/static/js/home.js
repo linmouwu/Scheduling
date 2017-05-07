@@ -599,6 +599,35 @@ function deleteGroupSchedule(id){
 
 }
 
+function newEditUserForm(edit_user_id) {
+    $('#edit_user_div_id').slideToggle();
+    $('#current_edit_user').val(edit_user_id);
+    console.log(edit_user_id);
+    $.get("getEditUser", {
+        'id': edit_user_id
+    }).done(function (data) {
+        console.log(data);
+        $('#current_edit_user_uid').text(data.uid);
+        $('#current_edit_user_fname').text(data.firstName);
+        $('#current_edit_user_lname').text(data.lastName);
+
+    })
+}
+function cancelEditUser() {
+
+
+    $('#edit_badgeNum_ID').val("");
+    $('#edit_title_ID').val("");
+    $('#edit_gender_ID').val("");
+    $('#edit_permissionGroup_ID').val("");
+    $('#edit_union_ID').val("");
+    $('#edit_recruit_ID').val("1");
+    $('#edit_contractEmployee_id').val("");
+    $('#edit_hireDate_ID').val("");
+    $('#edit_promoteDate_ID').val("");
+    $('#edit_trainerID_ID').val("");
+
+}
 function addEvent() {
 
 
@@ -654,6 +683,54 @@ function addEvent() {
     })
 
 }
+function editUser() {
+
+    var uid_ID = $('#current_edit_user_uid').text();
+    var lastName_ID = $('#current_edit_user_lname').text();
+    var firstName_ID = $('#current_edit_user_fname').text();
+    var badgeNum_ID = $('#edit_badgeNum_ID').val();
+    var title_ID = $('#edit_title_ID').val();
+    var gender_ID = $('#edit_gender_ID').val();
+    var permissionGroup_ID = $('#edit_permissionGroup_ID').val();
+    var union_ID = $('#edit_unio_ID').val();
+    var recruit_ID = $('#edit_recrui_ID').val();
+    var contractEmployee_id = $('#edit_contractEmployee_id').val();
+    var hireDate_ID = $('#edit_hireDate_ID').val();
+    var promoteDate_ID = $('#edit_promoteDate_ID').val();
+    var trainerID_ID = $('#edit_trainerID_ID').val();
+    console.log(recruit_ID);
+    var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
+        : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
+    console.log(promoteDate_ID);
+    $.post("add_user", {
+        'uid': uid_ID,
+        'lastName': lastName_ID,
+        'firstName': firstName_ID,
+        'badgeNum': badgeNum_ID,
+        'title': title_ID,
+        'gender': gender_ID,
+        'seniority': seniority,
+        'permissionGroup': permissionGroup_ID,
+        'union': union_ID,
+        'recruit': recruit_ID,
+        'contractEmployee': contractEmployee_id,
+        'hireDate': hireDate_ID,
+        'promoteDate': promoteDate_ID,
+        'trainer': trainerID_ID
+    }).done(function (data) {
+
+        console.log(data);
+        console.log("guess what happened");
+        if (data == "Already existed") {
+            $('#staff_management').append(data);
+        }
+
+        $('#edit_user_div_id').slideToggle();
+        cancelEditUser();
+    })
+
+}
+
 function assignHoliday() {
     var unionid = $('#current_assign_union_id').val();
     var selectedHoliday = [];
@@ -898,6 +975,8 @@ $(document)
         $('#cancel_holiday_assign').click(cancelAssignHoliday);
         $('#submit_shift_type').click(addShiftType);
         $('#cancel_shift_type').click(cancelShiftType);
+        $('#submit_edit_user_button').click(editUser);
+        $('#cancel_edit_user_button').click(cancelEditUser);
         var union_ID = $('#currentUnionId').val();
 
         var eventsUrl = '/allShiftTypeEvent?shiftType=' + 1;

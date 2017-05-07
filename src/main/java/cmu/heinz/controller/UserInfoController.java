@@ -88,7 +88,7 @@ public class UserInfoController {
                                       @RequestParam(value = "title") String title,
                                       @RequestParam(value = "gender") String gender,
                                       @RequestParam(value = "seniority") int seniority,
-                                      @RequestParam(value = "permissionGroup") String permissionGroupString,
+                                      @RequestParam(value = "permissionGroup") String permissionGroup,
                                       @RequestParam(value = "union") String union,
                                       @RequestParam(value = "contractEmployee") String contractEmployee,
                                       @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date hireDate,
@@ -98,8 +98,6 @@ public class UserInfoController {
         // Create a new officer object.
         Officer officer = new Officer();
 
-        // Get permission group by name.
-        PermissionGroup permissionGroup = permissionGroupRepository.findByRole(permissionGroupString);
 
         // Update corresponding properties.
         officer.setUid(uid);
@@ -108,7 +106,8 @@ public class UserInfoController {
         officer.setBadgeNum(badgeNum);
         officer.setTitle(title);
         officer.setGender(gender);
-        officer.setPermissionGroup(permissionGroup);
+        PermissionGroup pm = permissionGroupRepository.findByRole(permissionGroup);
+        officer.setPermissionGroup(pm);
         officer.setUnion(unionRepository.findByName(union));
         officer.setRecruitId("1");
         officer.setSeniority(seniority);
@@ -119,9 +118,15 @@ public class UserInfoController {
         if (officerRepository.findByUID(uid) != null) {
 
             // New user already existed.
-            HttpHeaders responseHeaders = new HttpHeaders();
-            responseHeaders.set("MyResponseHeader", "MyValue");
-            return new ResponseEntity<String>("Already existed", responseHeaders, HttpStatus.CREATED);
+            Officer officer1 = officerRepository.findByUID(uid);
+
+            if (officer1.getUnion() != null && officer1.getBadgeNum() != null) {
+                HttpHeaders responseHeaders = new HttpHeaders();
+                responseHeaders.set("MyResponseHeader", "MyValue");
+                return new ResponseEntity<String>("Already existed", responseHeaders, HttpStatus.CREATED);
+            } else {
+                officerRepository.delete(officer1);
+            }
 
         }
 
@@ -162,4 +167,12 @@ public class UserInfoController {
 
         return ResponseEntity.ok().build();
     }
+    @RequestMapping(value = "/getEditUser", method = RequestMethod.GET)
+    public ResponseEntity updateUser(@RequestParam(value = "id") int id) {
+
+        Officer officer = officerRepository.findOne(id);
+
+        return ResponseEntity.ok(officer);
+    }
+
 }

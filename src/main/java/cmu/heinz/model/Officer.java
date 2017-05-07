@@ -32,7 +32,8 @@ public class Officer {
 
     private String title;
 
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "Union_ID")
     private Union union;
 
@@ -44,13 +45,14 @@ public class Officer {
 
     private Date hireDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "Trainer_ID")
     private Officer trainer;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "Permission_Group")
     private PermissionGroup permissionGroup;
+
 
     public int getId() {
         return id;

@@ -151,6 +151,10 @@ public class HomeController {
             previousEventList = new ArrayList<Event>();
         }
 
+        //List all Permission Group
+        List<PermissionGroup> permissionGroups = (List<PermissionGroup>)permissionGroupRepository.findAll();
+
+        model.addAttribute(("permissionGroupList"), permissionGroups);
         // Model attributes.
         model.addAttribute("officer", officer);
 
