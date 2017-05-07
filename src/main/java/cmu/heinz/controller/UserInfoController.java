@@ -65,19 +65,19 @@ public class UserInfoController {
     /**
      * Add new user.
      *
-     * @param uid                   username/UID
-     * @param lastName              last name
-     * @param firstName             first name
-     * @param badgeNum              badge number
-     * @param title                 title
-     * @param gender                gender
-     * @param seniority             seniority
-     * @param permissionGroupString permission group role
-     * @param union                 union
-     * @param contractEmployee      contract indicator
-     * @param hireDate              hire date
-     * @param promoteDate           promote date
-     * @param trainer               trainer if existed
+     * @param uid              username/UID
+     * @param lastName         last name
+     * @param firstName        first name
+     * @param badgeNum         badge number
+     * @param title            title
+     * @param gender           gender
+     * @param seniority        seniority
+     * @param permissionGroup  permission group role
+     * @param union            union
+     * @param contractEmployee contract indicator
+     * @param hireDate         hire date
+     * @param promoteDate      promote date
+     * @param trainer          trainer if existed
      * @return new user object
      */
     @RequestMapping(value = "/add_user", method = RequestMethod.POST)
@@ -167,12 +167,67 @@ public class UserInfoController {
 
         return ResponseEntity.ok().build();
     }
+
     @RequestMapping(value = "/getEditUser", method = RequestMethod.GET)
     public ResponseEntity updateUser(@RequestParam(value = "id") int id) {
 
         Officer officer = officerRepository.findOne(id);
 
         return ResponseEntity.ok(officer);
+    }
+
+    @RequestMapping(value = "/edit_user", method = RequestMethod.POST)
+    public ResponseEntity editUserInfo(@RequestParam(value = "uid") String uid,
+                                       @RequestParam(value = "lastName") String lastName,
+                                       @RequestParam(value = "firstName") String firstName,
+                                       @RequestParam(value = "badgeNum") String badgeNum,
+                                       @RequestParam(value = "title") String title,
+                                       @RequestParam(value = "gender") String gender,
+                                       @RequestParam(value = "seniority") int seniority,
+                                       @RequestParam(value = "permissionGroup") String permissionGroup,
+                                       @RequestParam(value = "union") String union,
+                                       @RequestParam(value = "contractEmployee") String contractEmployee,
+                                       @RequestParam(value = "hireDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date hireDate,
+                                       @RequestParam(value = "promoteDate") @DateTimeFormat(pattern = "MM/dd/yyyy") Date promoteDate,
+                                       @RequestParam(value = "trainer") String trainer) {
+
+        // Create a new officer object.
+        Officer officer = officerRepository.findByUID(uid);
+
+        if(officer == null){
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("MyResponseHeader", "MyValue");
+            return new ResponseEntity<String>("User does not exist.", responseHeaders, HttpStatus.CREATED);
+        }
+
+
+        // Update corresponding properties.
+        officer.setUid(uid);
+        officer.setLastName(lastName);
+        officer.setFirstName(firstName);
+        officer.setBadgeNum(badgeNum);
+        officer.setTitle(title);
+        officer.setGender(gender);
+        PermissionGroup pm = permissionGroupRepository.findByRole(permissionGroup);
+        officer.setPermissionGroup(pm);
+        officer.setUnion(unionRepository.findByName(union));
+        officer.setRecruitId("1");
+        officer.setSeniority(seniority);
+        officer.setContractEmployee(contractEmployee);
+        officer.setHireDate(hireDate);
+        officer.setPromotionDate(promoteDate);
+
+        if (trainer != null && !trainer.isEmpty() && !trainer.equals("")) {
+
+            // If the new user has a training, update the field.
+            officer.setTrainer(officerRepository.findByUID(trainer));
+
+        }
+
+        Officer newOfficer = officerRepository.save(officer);
+        newOfficer.setTrainer(null);
+
+        return ResponseEntity.ok(newOfficer);
     }
 
 }

@@ -270,13 +270,11 @@ function updateGroupSchedule() {
 
         $("#edit_group_officers input").each(function () {
             selected_officers.push($(this).val());
-            console.log(selected_officers);
 
         });
     } else {
         $("#edit_group_officers input:checked").each(function () {
             selected_officers.push($(this).val());
-            console.log(selected_officers);
 
         });
 
@@ -307,6 +305,7 @@ function updateGroupSchedule() {
             'selectedOfficers[]': selected_officers
         }).done(function (data) {
 
+            alert("Event updated. When re-login you could see the change.");
             //location.reload();
             changeToCreateGroupRequest();
 
@@ -333,16 +332,13 @@ function changeToEditGroupSchedule(schedule_id) {
     $('#editEvent').fadeOut();
     $('#shift_type_management').fadeOut();
 
-    console.log(1);
     $.get("getEditSchedule", {
         'id': schedule_id
     }).done(function (data) {
 
         var formattedStart = getFormattedDate(new Date(data.startTime));
-        console.log(formattedStart);
         var formattedEnd = getFormattedDate(new Date(data.endTime));
         $('#edit_id').val(schedule_id);
-        console.log(data.shiftType.shiftName);
         $('#edit_shift_type').val(data.shiftType.shiftName).prop('selected', true);
         $('#edit_start_time_group').val(formattedStart);
         $('#edit_end_time_group').val(formattedEnd);
@@ -373,7 +369,7 @@ function updatePG(uid) {
         'permissionGroup': updatePG
     }).done(function () {
 
-        alert("Permission Group Updated: " + uid);
+        alert("Permission Group Updated: " + uid + ", when re-login you could see the change.");
 
     });
 
@@ -422,7 +418,15 @@ function addUser() {
     var trainerID_ID = $('#trainerID_ID').val();
     var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
         : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
-    console.log(promoteDate_ID);
+
+    if (uid_ID === "" || lastName_ID === "" || firstName_ID === "" || badgeNum_ID === ""
+        || title_ID === "" || gender_ID === "" || permissionGroup_ID === "" || union_ID === ""
+        || contractEmployee_id === "" || hireDate_ID === "" || promoteDate_ID === ""
+    ) {
+        $('#add_user_div_id').prepend("<p style='color: red'>Please input all values.</p>");
+        return;
+    }
+
     $.post("add_user", {
         'uid': uid_ID,
         'lastName': lastName_ID,
@@ -439,12 +443,11 @@ function addUser() {
         'trainer': trainerID_ID
     }).done(function (data) {
 
-        console.log(data);
-        console.log("guess what happened");
         if (data == "Already existed") {
-            $('#staff_management').append(data);
+            $('#staff_management').prepend("<p style='color: red'>UID already taken.</p>");
         }
         else {
+
             var markup =
                 "<tr><td>" + data.badgeNum +
                 "</td><td>" + data.lastName +
@@ -456,7 +459,7 @@ function addUser() {
                 "</td><td>" + data.union.name +
                 "</td><td>" + hireDate_ID +
                 "</td><td>" + promoteDate_ID +
-                (data.trainer != null ? "</td><td>" + data.trainer.uid : "</td><td>") +
+                "</td><td><input type=\"button\" value=\"Edit\" onclick='newEditUserForm(" + data.id + ");'/>" +
                 "</td></tr>";
             $('#user_list_table > tbody').append(markup).hide().slideDown();
         }
@@ -489,8 +492,7 @@ function addShiftType() {
                 "</td><td>" + data.startTime +
                 "</td><td>" + data.endTime +
                 "</td><td>" + data.description +
-                "</td><td><button id=\"remove_shift_type\" type=\"button\" onclick='remove_shift_type\(" + data.id
-                + "\)' class=\"btn btn-danger\">Remove</button></td></tr>";
+                ad + "\)' class=\"btn btn-danger\">Remove</button></td></tr>";
             $('#shift_type_list_table > tbody').append(markup).hide().slideDown();
         }
 
@@ -501,8 +503,6 @@ function addShiftType() {
 
 function addGroupEvent(start_times, end_times) {
 
-    console.log('add group event');
-    // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#start_time_group').val();
     var endTime_id = $('#end_time_group').val();
     if (startTime_id != '' && endTime_id != '') {
@@ -516,100 +516,100 @@ function addGroupEvent(start_times, end_times) {
 
         $("#group_officers input").each(function () {
             selected_officers.push($(this).val());
-            console.log(selected_officers);
 
         });
     } else {
 
         $("#group_officers input:checked").each(function () {
             selected_officers.push($(this).val());
-            console.log(selected_officers);
 
         });
     }
 
     var markup = "";
-    console.log(shift_type);
 
-    if(!shift_type) {
+    if (!shift_type) {
         markup += "You didn't select your shift type.";
     }
-    if(start_times.length == 0) {
+    if (start_times.length == 0) {
         markup += "You didn't select any start time.";
     }
-    if(end_times.length == 0){
+    if (end_times.length == 0) {
         markup += "You didn't select any end time.";
     }
-    if(selected_officers.length == 0) {
+    if (selected_officers.length == 0) {
         markup += "You didn't select any officers.";
     }
-    if(markup.length == 0) {
+    if (markup.length == 0) {
 
-    // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
-    //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
-    $.post("createGroupEvent", {
-        'selectedOfficers[]': selected_officers,
-        'startTime[]':start_times,
-        'endTime[]':end_times,
-        'description': description,
-        'shift_type': shift_type,
-    }).done(function (data) {
-        console.log(data);
-        console.log("guess what happened");
-        if (data == "Remain Day is not enough") {
-            // $('#staff_management').append(data);
-        }
-        else {
-            for(var i = 0; i < data.length; i++) {
+        // var totalDays = (startTime_id == '' || endTime_id == '') ? 0
+        //     : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
+        $.post("createGroupEvent", {
+            'selectedOfficers[]': selected_officers,
+            'startTime[]': start_times,
+            'endTime[]': end_times,
+            'description': description,
+            'shift_type': shift_type,
+        }).done(function (data) {
+            if (data == "Remain Day is not enough") {
+                // $('#staff_management').append(data);
+            }
+            else {
+                for (var i = 0; i < data.length; i++) {
 
-                var mark =
-                    "<tr><td>" + data[i].id +
-                    "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
-                    "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
-                    "</td><td>" + shift_type +
-                    "</td><td>" + selected_officers.length +
-                    "</td><td>" + description;
-                mark += "</td><td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule("+ data[i].id +")' class='btn btn-xs btn-default'>Edit</a><a href='javascript:void(0);' onclick='deleteGroupSchedule(" +data[i].id+ ");removeRow(this);' class='btn btn-xs btn-default'>Delete</a></td></tr>";
-                $('#group_schedule_list_table > tbody').prepend(mark).hide().slideDown();
-               }
+                    var mark =
+                        "<tr><td>" + data[i].id +
+                        "</td><td>" + getFormattedDate(new Date(data[i].startTime)) +
+                        "</td><td>" + getFormattedDate(new Date(data[i].endTime)) +
+                        "</td><td>" + shift_type +
+                        "</td><td>" + selected_officers.length +
+                        "</td><td>" + description;
+                    mark += "</td><td><a href='javascript:void(0);' onclick='changeToEditGroupSchedule(" + data[i].id + ")' class='btn btn-xs btn-default'>Edit</a><a href='javascript:void(0);' onclick='deleteGroupSchedule(" + data[i].id + ");removeRow(this);' class='btn btn-xs btn-default'>Delete</a></td></tr>";
+                    $('#group_schedule_list_table > tbody').prepend(mark).hide().slideDown();
+                }
 
-        }
-        //location.reload();
-        clearGroupSchedule();
-        $('#selected-time-ranges').empty();
-        changeToCreateGroupRequest();
+            }
+            //location.reload();
+            clearGroupSchedule();
+            $('#selected-time-ranges').empty();
+            changeToCreateGroupRequest();
 
-    });} else {
+        });
+    } else {
 
         $("#group_message p").text(markup);
     }
 
 }
-function removeRow(element){
+function removeRow(element) {
     $(element).closest('tr').remove();
 }
 
-function deleteGroupSchedule(id){
+function deleteGroupSchedule(id) {
     $.post("deleteGroupSchedule", {
-        'id':id,
-    }).done(function(data){
-        console.log('waht');
+        'id': id,
+    }).done(function (data) {
         $(this).closest('tr').remove();
     });
 
 }
 
 function newEditUserForm(edit_user_id) {
-    $('#edit_user_div_id').slideToggle();
+    $('#edit_user_div_id').slideUp();
+    $('#edit_user_div_id').slideDown();
     $('#current_edit_user').val(edit_user_id);
-    console.log(edit_user_id);
     $.get("getEditUser", {
         'id': edit_user_id
     }).done(function (data) {
-        console.log(data);
+
         $('#current_edit_user_uid').text(data.uid);
         $('#current_edit_user_fname').text(data.firstName);
         $('#current_edit_user_lname').text(data.lastName);
+        $('#edit_badgeNum_ID').text(data.badgeNum);
+        $('#edit_title_ID').text(data.title);
+        $('#edit_hireDate_ID').text(data.hireDate);
+        $('#edit_promoteDate_ID').text(data.promotionDate);
+        $('#edit_trainerid_id').text(data.trainer.id);
 
     })
 }
@@ -630,14 +630,12 @@ function cancelEditUser() {
 }
 function addEvent() {
 
-
-    // var recruit_ID = $('#recrui_ID').val();
     var startTime_id = $('#startTime_ID').val();
     var endTime_id = $('#endTime_ID').val();
     var description = $('#event_description').val();
     var event_type = $('#individualRequestType').val();
     var shift_type = $('#shift_off_ID').val();
-    // console.log(promoteDate_ID);
+
     var totalDays = (startTime_id == '' || endTime_id == '') ? 0
         : new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
     $.post("create_Event", {
@@ -693,16 +691,22 @@ function editUser() {
     var gender_ID = $('#edit_gender_ID').val();
     var permissionGroup_ID = $('#edit_permissionGroup_ID').val();
     var union_ID = $('#edit_unio_ID').val();
-    var recruit_ID = $('#edit_recrui_ID').val();
     var contractEmployee_id = $('#edit_contractEmployee_id').val();
     var hireDate_ID = $('#edit_hireDate_ID').val();
     var promoteDate_ID = $('#edit_promoteDate_ID').val();
     var trainerID_ID = $('#edit_trainerID_ID').val();
-    console.log(recruit_ID);
     var seniority = (promoteDate_ID == '' || hireDate_ID == '') ? 0
         : new Date(promoteDate_ID).getFullYear() - new Date(hireDate_ID).getFullYear();
-    console.log(promoteDate_ID);
-    $.post("add_user", {
+
+    if (uid_ID === "" || lastName_ID === "" || firstName_ID === "" || badgeNum_ID === ""
+        || title_ID === "" || gender_ID === "" || permissionGroup_ID === "" || union_ID === ""
+        || contractEmployee_id === "" || hireDate_ID === "" || promoteDate_ID === ""
+    ) {
+        $('#edit_user_div_id').prepend("<p style='color: red'>Please input all values.</p>");
+        return;
+    }
+
+    $.post("edit_user", {
         'uid': uid_ID,
         'lastName': lastName_ID,
         'firstName': firstName_ID,
@@ -712,20 +716,20 @@ function editUser() {
         'seniority': seniority,
         'permissionGroup': permissionGroup_ID,
         'union': union_ID,
-        'recruit': recruit_ID,
         'contractEmployee': contractEmployee_id,
         'hireDate': hireDate_ID,
         'promoteDate': promoteDate_ID,
         'trainer': trainerID_ID
     }).done(function (data) {
 
-        console.log(data);
-        console.log("guess what happened");
-        if (data == "Already existed") {
-            $('#staff_management').append(data);
+        if (data == "User does not exist.") {
+            $('#edit_user_div_id').prepend("<p style='color: red'>User does not exist.</p>");
         }
 
-        $('#edit_user_div_id').slideToggle();
+        $('#edit_user_div_id').slideUp();
+
+        alert("User updated. When re-login you could see the change.");
+
         cancelEditUser();
     })
 
@@ -737,7 +741,6 @@ function assignHoliday() {
     $("#assign_holiday_list input:checked").each(function () {
         selectedHoliday.push($(this).val());
     });
-    console.log(selectedHoliday);
     $.post("assignHoliday", {
         'unionId': unionid,
         'selectedHoliday[]': selectedHoliday
@@ -756,8 +759,6 @@ function updateEvent() {
     var event_type = $('#selected_request_type').val();
     var event_status = $('#editEventStatus').val() === undefined ? 'pending' : $('#editEventStatus').val();
     var totalDays = new Date(startTime_id).getDate() - new Date(endTime_id).getDate();
-
-    console.log(editRequest_id);
 
     $.post("update_Event", {
         'edit_id': editRequest_id,
@@ -792,7 +793,9 @@ function updateEvent() {
 
             }
         }
-        // location.reload();
+
+        alert("Event updated. When re-login you could see the change.");
+
         changeToRequest();
     });
 
@@ -847,6 +850,7 @@ function deactivate_time_cycle(timeCycleId) {
             alert("Time Cycle Deactivated");
 
             //location.reload();
+
         });
 
 }
@@ -889,12 +893,11 @@ function add_time_cycle() {
 function updateEventByShift() {
     var shift = $("#shiftTypeMenu option:selected").text();
     var shiftId = $("#shiftTypeMenu option:selected").attr('id');
-    // console.log(shiftId);
+
     var previousShiftId = $('#previousShiftId').val();
     var previousUrl = '/allShiftTypeEvent?shiftType=' + previousShiftId;
     var eventsUrl = '/allShiftTypeEvent?shiftType=' + shiftId;
-    console.log(eventsUrl);
-    console.log(previousUrl);
+
     $('#group_calendar').fullCalendar('removeEventSource', previousUrl);
     $('#group_calendar').fullCalendar('addEventSource', eventsUrl);
 
@@ -954,7 +957,7 @@ $(document)
         $('#submit_group_event').click(function () {
             addGroupEvent(start_times, end_times);
             var error = $('#group_message').text();
-            if(!error){
+            if (!error) {
                 start_times = [];
                 end_times = [];
             }
@@ -982,8 +985,6 @@ $(document)
         var eventsUrl = '/allShiftTypeEvent?shiftType=' + 1;
         var unionEventsUrl = '/allUnionEvent?union_id=' + union_ID;
         var holidaysUrl = '/allHoliday?union_id=' + union_ID;
-        console.log(holidaysUrl);
-
 
         $('#group_calendar').fullCalendar({
 
@@ -1013,7 +1014,7 @@ $(document)
             dayClick: function (date, jsEvent, view) {
                 var shiftType = $('#currentShiftType').val();
                 var date1 = new Date(date);
-                console.log(date);
+
                 getOffNumbers(date1, union_ID, shiftType);
 
             }

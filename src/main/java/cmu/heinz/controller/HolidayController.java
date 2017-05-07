@@ -50,12 +50,12 @@ public class HolidayController {
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
 
-        List<Union_Holiday> allHoliday = unionHolidayRepository.findByUnionID(union_id);
+        List<UnionHoliday> allHoliday = unionHolidayRepository.findByUnionID(union_id);
 
         List<CurrentEvent> allCurrentHoliday = new ArrayList<CurrentEvent>();
 
         if (allHoliday != null) {
-            for (Union_Holiday e : allHoliday) {
+            for (UnionHoliday e : allHoliday) {
                 CurrentEvent cur = new CurrentEvent(e.getId(), e.getHoliday().getDescription(), e.getHoliday().getDate(), e.getHoliday().getDate());
                 allCurrentHoliday.add(cur);
             }
@@ -69,7 +69,7 @@ public class HolidayController {
     public ResponseEntity addHoliday(@RequestParam(value = "unionId") int union_id, @RequestParam(value = "selectedHoliday[]") List<Integer> selectedHoliday,
                                      Model model) {
         for (Integer holidayId : selectedHoliday) {
-            Union_Holiday uh = new Union_Holiday();
+            UnionHoliday uh = new UnionHoliday();
             Union union = unionRepository.findOne(union_id);
             Holiday holiday = holidayRepository.findOne(holidayId);
             uh.setHoliday(holiday);

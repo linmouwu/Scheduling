@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @Transactional
-public interface UnionHolidayRepository extends CrudRepository<Union_Holiday, Integer> {
+public interface UnionHolidayRepository extends CrudRepository<UnionHoliday, Integer> {
     @Query(value = "select * from Union_Holiday where unions_id = (:param1)", nativeQuery = true)
-    List<Union_Holiday> findByUnionID(@Param("param1") int unionid);
+    List<UnionHoliday> findByUnionID(@Param("param1") int unionid);
 }
