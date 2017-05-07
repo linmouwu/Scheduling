@@ -29,41 +29,66 @@
                             <th>Seniority</th>
                             <th>Permission Group</th>
                             <th>Union</th>
+                            <th>Recruit</th>
                             <th>Hire Date</th>
                             <th>Promotion Date</th>
-                            <th>Trainer ID</th>
+                            <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="officer:${officerList}">
-                            <td th:text="${officer.badgeNum}"></td>
-                            <td th:text="${officer.lastName}"></td>
-                            <td th:text="${officer.firstName}"></td>
-                            <td th:text="${officer.title}"></td>
-                            <td th:text="${officer.gender}"></td>
-                            <td th:text="${officer.seniority}"></td>
-                            <td th:text="${officer.permissionGroup.role}"></td>
-                            <td th:text="${officer.union.name}"></td>
-                            <td th:text="${#calendars.format(officer.hireDate,'MM/dd/yyyy')} "></td>
-                            <td th:text="${#calendars.format(officer.promotionDate,'MM/dd/yyyy')} "></td>
-                            <td th:if="${officer.trainer} == null"></td>
-                            <td th:if="${officer.trainer} != null" th:text="${officer.trainer.uid}"></td>
+                        <tr th:each="officer1:${officerList}">
+                            <td th:if="${officer1.badgeNum} == null"></td>
+                            <td th:if="${officer1.badgeNum} != null" th:text="${officer1.badgeNum}"></td>
+
+                            <td th:text="${officer1.lastName}"></td>
+                            <td th:text="${officer1.firstName}"></td>
+
+                            <td th:if="${officer1.title} == null"></td>
+                            <td th:if="${officer1.title} != null" th:text="${officer1.title}"></td>
+
+                            <td th:if="${officer1.gender} == null"></td>
+                            <td th:if="${officer1.gender} != null" th:text="${officer1.gender}"></td>
+
+                            <td th:if="${officer1.seniority} == null"></td>
+                            <td th:if="${officer1.seniority} != null" th:text="${officer1.seniority}"></td>
+
+                            <td th:if="${officer1.permissionGroup} == null"></td>
+                            <td th:if="${officer1.permissionGroup} != null" th:text="${officer1.permissionGroup.role}"></td>
+
+                            <td th:if="${officer1.union} == null"></td>
+                            <td th:if="${officer1.union} != null" th:text="${officer1.union.name}"></td>
+
+                            <td th:if="${officer1.recruitId} == null"></td>
+                            <td th:if="${officer1.recruitId} != null" th:text="${officer1.recruitId}"></td>
+
+                            <td th:if="${officer1.hireDate} == null"></td>
+                            <td th:if="${officer1.hireDate} != null" th:text="${#calendars.format(officer1.hireDate,'MM/dd/yyyy')} "></td>
+
+                            <td th:if="${officer1.promotionDate} == null"></td>
+                            <td th:if="${officer1.promotionDate} != null" th:text="${#calendars.format(officer1.promotionDate,'MM/dd/yyyy')} "></td>
+                            <td th:if="${officer.permissionGroup.id} == 1">
+                                <input type="button" value="Edit" th:onclick="'javascript:newEditUserForm('+${officer1.id}+');'"/></td>
+                            <input type="hidden" id="current_edit_user"/>
                         </tr>
                         </tbody>
 
                     </table>
                     <div class="text-right">
-                        <a href="javascript:void(0);" onclick="newUserForm()">Add New User <i
-                                class="fa fa-arrow-circle-right"></i></a>
+                        <div th:if="${officer.permissionGroup.id} == 1">
+                            <a href="javascript:void(0);" onclick="newUserForm()">Add New User <i
+                                    class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                     <div class="col-lg-4"></div>
 
                     <div th:replace="addUser :: addUser"></div>
+                    <div th:replace="editUser :: editUser"></div>
 
                 </div>
             </div>
         </div>
     </div>
+    <!-- /.row -->
 
 </div>
 

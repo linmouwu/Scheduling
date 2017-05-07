@@ -16,10 +16,10 @@ public class GroupSchedule {
     private String description;
     private Date startTime;
     private Date endTime;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "admin_ID")
     private Officer admin;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "union_ID")
     private Union union;
 

@@ -16,7 +16,7 @@ public interface GroupScheduleRepository extends CrudRepository<GroupSchedule, S
     Integer findByAllDate(@Param("param1") int unionid, @Param("param2") String date, @Param("param3") int shiftId);
 //@Query(value = "select COUNT(DISTINCT officer_id) from EVENT_REQUEST where union_id = (:param1) AND event_status != 'pending' AND event_status != 'declined' AND start_time <= (:param2) AND end_time >= (:param3)", nativeQuery = true)
 //Integer findByAllDate(@Param("param1") int unionid,@Param("param2") String sd, @Param("param3") String ed);
-    @Query(value = "select * from GROUP_SCHEDULE where union_id = (:param1)", nativeQuery = true)
+    @Query(value = "select * from GROUP_SCHEDULE where union_id = (:param1) order by start_time desc", nativeQuery = true)
     List<GroupSchedule> findByUnion(@Param("param1") int unionId);
     @Query(value = "select * from GROUP_SCHEDULE where id = (:param1)", nativeQuery = true)
     GroupSchedule findById(@Param("param1") int id);

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -121,6 +121,7 @@ public class HomeController {
             // If the current user  is a administrator.
             int unionId = officer.getUnion().getId();
             List<GroupSchedule> schedules = groupScheduleRepository.findByUnion(unionId);
+
             officerList = (List<Officer>) officerRepository.findByUnion(unionId);
 
             model.addAttribute("groupScheduleList", schedules);
@@ -150,6 +151,10 @@ public class HomeController {
             previousEventList = new ArrayList<Event>();
         }
 
+        //List all Permission Group
+        List<PermissionGroup> permissionGroups = (List<PermissionGroup>)permissionGroupRepository.findAll();
+
+        model.addAttribute(("permissionGroupList"), permissionGroups);
         // Model attributes.
         model.addAttribute("officer", officer);
 
@@ -164,6 +169,7 @@ public class HomeController {
         model.addAttribute("previousEventList", previousEventList);
 
         model.addAttribute("shiftTypeList", shiftTypeList);
+        model.addAttribute("currentTime", new Date());
 
         model.addAttribute("permissionGroupList", permissionGroupList);
 

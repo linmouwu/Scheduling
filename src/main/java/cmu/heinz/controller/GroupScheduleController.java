@@ -66,8 +66,9 @@ public class GroupScheduleController {
         ShiftType shiftType = shiftTypeRepository.findByName(type);
         int recruitId = Integer.valueOf(officer.getRecruitId());
         List<GroupSchedule> results = new ArrayList<GroupSchedule>();
-        for (int i = 0; i < startTime.size(); i++) {
-            GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, shiftType, "pending", selectedOfficers.size());
+        for(int i = 0; i < startTime.size(); i++) {
+            GroupSchedule schedule = new GroupSchedule(recruitId, description, startTime.get(i), endTime.get(i), officer, union, shiftType, "appoved", selectedOfficers.size());
+
             schedule = group_scheduleRepository.save(schedule);
             for (String selectedOfficer : selectedOfficers) {
                 ScheduleOfficer record = new ScheduleOfficer();
@@ -205,6 +206,27 @@ public class GroupScheduleController {
         model.addAttribute("groupScheduleList", schedules);
 
         return ResponseEntity.ok("ok");
+    }
+
+    /**
+     * Get all events of one union.
+     *
+     * @param model    session model of the event
+     * @return corresponding http response
+     */
+    @RequestMapping(value = "/deleteGroupSchedule", method = RequestMethod.POST)
+    public ResponseEntity deleteGroupSchedule(@RequestParam(value = "id") Integer id,
+                                              Model model) {
+        int myId = Integer.valueOf(id);
+        GroupSchedule schedule = group_scheduleRepository.findById(myId);
+
+
+        //change schedule_officer records
+
+        List<ScheduleOfficer> officers = schedule_officerRepository.findByScheduleId(myId);
+        for(ScheduleOfficer each : officers) schedule_officerRepository.delete(each);
+        group_scheduleRepository.delete(schedule);
+        return ResponseEntity.ok("ok" );
     }
 
 }
