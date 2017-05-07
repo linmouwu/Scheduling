@@ -1075,14 +1075,7 @@
       <workItem from="1494119575975" duration="858000" />
       <workItem from="1494120908379" duration="391000" />
       <workItem from="1494121730634" duration="798000" />
-      <workItem from="1494164103117" duration="7367000" />
-    </task>
-    <task id="LOCAL-00040" summary="Merge branch 'develop' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;">
-      <created>1492095117088</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1492095117088</updated>
+      <workItem from="1494164103117" duration="7385000" />
     </task>
     <task id="LOCAL-00041" summary="Merge branch 'develop' of https://github.com/rubyfrea/CityOfLansing into linmouwu&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/resources/templates/groupScheduleManagement.html&#10;">
       <created>1492870174246</created>
@@ -1420,11 +1413,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494171433958</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="05/03/2017 Debugging.">
+      <created>1494171496144</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1494171496144</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177551000" />
+    <option name="totallyTimeSpent" value="177569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="6" />
