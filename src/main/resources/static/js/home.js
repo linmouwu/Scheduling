@@ -307,7 +307,7 @@ function updateGroupSchedule() {
             'selectedOfficers[]': selected_officers
         }).done(function (data) {
 
-            location.reload();
+            //location.reload();
             changeToCreateGroupRequest();
 
         });
@@ -792,7 +792,7 @@ function updateEvent() {
 
             }
         }
-        location.reload();
+        // location.reload();
         changeToRequest();
     });
 
@@ -846,7 +846,7 @@ function deactivate_time_cycle(timeCycleId) {
 
             alert("Time Cycle Deactivated");
 
-            location.reload();
+            //location.reload();
         });
 
 }
@@ -880,7 +880,7 @@ function add_time_cycle() {
 
             alert("Time Cycle Configured Successfully.");
 
-            location.reload();
+            //location.reload();
         });
 
 
