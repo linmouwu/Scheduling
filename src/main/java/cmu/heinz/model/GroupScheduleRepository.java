@@ -1,11 +1,11 @@
 package cmu.heinz.model;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+        import org.springframework.data.jpa.repository.Query;
+        import org.springframework.data.repository.CrudRepository;
+        import org.springframework.data.repository.query.Param;
 
-import javax.transaction.Transactional;
-import java.util.List;
+        import javax.transaction.Transactional;
+        import java.util.List;
 
 /**
  * Created by hhahann on 4/12/17.
@@ -26,3 +26,4 @@ public interface GroupScheduleRepository extends CrudRepository<GroupSchedule, S
 
 
 }
+
