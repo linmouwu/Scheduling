@@ -86,6 +86,7 @@ public class HomeController {
 
             // Temporarily set the new user to the union 'New User';
             officer.setUnion(union);
+            officer.setPermissionGroup(permissionGroupRepository.findByRole("Staff Member"));
 
             officer = officerRepository.save(officer);
         }
