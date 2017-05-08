@@ -244,7 +244,7 @@ function changeToEditEvent(editRequest_id) {
 
         var formattedStart = getFormattedDate(new Date(data.startTime));
         var formattedEnd = getFormattedDate(new Date(data.endTime));
-
+        $('#EditRequestUid').text(data.uid);
         $('#edit_StartTime_ID').val(formattedStart);
         $('#edit_EndTime_ID').val(formattedEnd);
         $('#selected_request_type').val(data.eventType);
