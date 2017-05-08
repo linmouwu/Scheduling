@@ -76,7 +76,10 @@ public class ShiftTypeController {
         try {
 
             // Try to deactivate time cycle.
-            shiftTypeRepository.removeShiftType(id);
+            ShiftType shiftType = shiftTypeRepository.findOne(id);
+            shiftType.setActivated(false);
+
+            shiftTypeRepository.save(shiftType);
 
         } catch (Exception e) {
 

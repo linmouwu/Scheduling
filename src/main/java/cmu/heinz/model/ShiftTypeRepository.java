@@ -16,9 +16,10 @@ import java.util.List;
 @Transactional
 public interface ShiftTypeRepository extends CrudRepository<ShiftType, Integer> {
 
-    @Query(value = "select * from shift_type where union_id = (:param1)", nativeQuery = true)
+    @Query(value = "select * from shift_type where union_id = (:param1) and activated = true", nativeQuery = true)
     List<ShiftType> getShiftTypeByUnionId(@Param("param1") Integer unionId);
-    @Query(value = "select * from shift_type where Shift_name = (:param1)", nativeQuery = true)
+
+    @Query(value = "select * from shift_type where Shift_name = (:param1) and activated = true", nativeQuery = true)
     ShiftType findByName(@Param("param1") String type);
 
     @Modifying

@@ -24,6 +24,8 @@ public class ShiftType {
 
     private String description;
 
+    private boolean activated;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "union_id")
     private Union union;
@@ -74,6 +76,15 @@ public class ShiftType {
 
     public void setUnion(Union union) {
         this.union = union;
+    }
+
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
     @Override
