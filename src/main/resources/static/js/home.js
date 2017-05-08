@@ -1034,7 +1034,7 @@ $(document)
             selectable: true,
             eventSources: [
                 {
-                    url: eventsUrl, // use the `url` property
+                    url: unionEventsUrl, // use the `url` property
                     color: 'orange',    // an option!
                     textColor: 'black'  // an option!
                 },

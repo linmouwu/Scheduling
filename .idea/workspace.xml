@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b9644b27-b6bf-49f3-a15f-aea6d16998ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" afterPath="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/home.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
     </list>
     <ignored path="CityOfLansing.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,6 +34,10 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - scheduleappdb@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -50,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="permissionGroupPage.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="permissionGroupPage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="443">
@@ -85,28 +91,62 @@
       <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8475">
-              <caret line="565" column="9" selection-start-line="565" selection-start-column="9" selection-end-line="565" selection-end-column="9" />
+            <state relative-caret-position="137">
+              <caret line="1022" column="0" selection-start-line="1022" selection-start-column="0" selection-end-line="1022" selection-end-column="0" />
               <folding>
-                <marker date="1494271879000" expanded="true" signature="31:550" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="2225:2700" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="34635:34709" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="34635:34720" ph="{&quot;color&quot;: '##378006'...}" />
-                <marker date="1494271879000" expanded="true" signature="34635:36819" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="34759:35693" ph="{&quot;defaultView&quot;: 'month'...}" />
-                <marker date="1494271879000" expanded="true" signature="34782:34912" ph="{&quot;left&quot;: 'prev,next today '...}" />
-                <marker date="1494271879000" expanded="true" signature="35144:35617" ph="[...]" />
-                <marker date="1494271879000" expanded="true" signature="35162:35351" ph="{&quot;url&quot;: eventsUrl...}" />
-                <marker date="1494271879000" expanded="true" signature="35369:35602" ph="{&quot;url&quot;: holidaysUrl...}" />
-                <marker date="1494271879000" expanded="true" signature="35754:35994" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="35794:35916" ph="{&quot;date&quot;: date...}" />
-                <marker date="1494271879000" expanded="true" signature="35939:35983" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36029:36601" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36125:36559" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36242:36545" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36380:36527" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36671:36811" ph="{...}" />
-                <marker date="1494271879000" expanded="true" signature="36722:36801" ph="{...}" />
+                <marker date="1494277401000" expanded="true" signature="14129:14139" ph="..." />
+                <marker date="1494277401000" expanded="true" signature="14786:14796" ph="..." />
+                <marker date="1494277401000" expanded="true" signature="23876:23886" ph="..." />
+                <marker date="1494277401000" expanded="true" signature="24539:24549" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scheduleappdb.event_request" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/b6513a62/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.event_request">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupScheduleRepository.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateEventController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
+              <folding>
+                <element signature="e#8037#8051#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,58 +162,6 @@
                 <marker date="1494271879000" expanded="true" signature="735:1304" ph="..." />
                 <marker date="1494271879000" expanded="true" signature="767:1304" ph="..." />
                 <marker date="1494271879000" expanded="true" signature="796:1304" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userinfo.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/userinfo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3195">
-              <caret line="213" column="36" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
-              <folding>
-                <marker date="1494271851000" expanded="true" signature="933:1133" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1152:10857" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1172:4898" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1272:4898" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1318:2107" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1352:2093" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1428:1625" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1575:1621" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1668:2075" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1693:1864" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1762:1838" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1765:1826" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="1935:2053" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2278:4898" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2370:4285" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2391:2554" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2456:2532" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2575:2729" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2625:2707" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2750:2872" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="2893:3010" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3031:4267" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3130:3299" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3180:3237" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3355:4245" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3384:3561" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3442:3531" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3445:3510" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3590:3759" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3648:3729" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3651:3716" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3788:3966" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3846:3936" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3850:3915" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="3995:4219" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4098:4189" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4101:4166" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4377:4898" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4398:4545" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4566:4722" ph="..." />
-                <marker date="1494271851000" expanded="true" signature="4743:4898" ph="..." />
               </folding>
             </state>
           </provider>
@@ -244,7 +232,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/Officer.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/PermissionGroupRepository.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/userProfile.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/timeCyclePage.html" />
@@ -279,7 +266,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/userinfo.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/userinfo_backup.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/userSideBar.html" />
-        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/util/WebSecurityConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/GroupScheduleController.java" />
@@ -292,9 +278,11 @@
         <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/UserInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/editUser.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/home.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/addUser.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/permissionGroupPage.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/home.js" />
+        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java" />
       </list>
     </option>
   </component>
@@ -1115,7 +1103,7 @@
       <workItem from="1494120908379" duration="391000" />
       <workItem from="1494121730634" duration="798000" />
       <workItem from="1494164103117" duration="7170000" />
-      <workItem from="1494271988189" duration="102000" />
+      <workItem from="1494271988189" duration="1162000" />
     </task>
     <task id="LOCAL-00038" summary="04/12/2017 Merge Nan.">
       <created>1492045983590</created>
@@ -1464,10 +1452,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177456000" />
+    <option name="totallyTimeSpent" value="178516000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="796" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="796" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1557,48 +1545,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/assignHoliday.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/assignHolidayToUnion.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/calendar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/createEvent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/editEvent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="81" column="45" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/greeting.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/error.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -1670,14 +1616,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5155">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CustomErrorController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -1730,6 +1668,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="76" selection-start-line="1" selection-start-column="76" selection-end-line="1" selection-end-column="76" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1737,6 +1676,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="70" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="70" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1744,6 +1686,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="73" column="82" selection-start-line="73" selection-start-column="82" selection-end-line="73" selection-end-column="82" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1762,6 +1705,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1777,8 +1721,8 @@
         <state relative-caret-position="785">
           <caret line="99" column="48" selection-start-line="99" selection-start-column="48" selection-end-line="99" selection-end-column="48" />
           <folding>
-            <element signature="e#2690#2697#0" expanded="true" />
-            <element signature="e#2754#2761#0" expanded="true" />
+            <element signature="e#2690#2697#0" expanded="false" />
+            <element signature="e#2754#2761#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1892,34 +1836,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="70" column="65" selection-start-line="70" selection-start-column="49" selection-end-line="70" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8475">
-          <caret line="565" column="9" selection-start-line="565" selection-start-column="9" selection-end-line="565" selection-end-column="9" />
-          <folding>
-            <marker date="1494271879000" expanded="true" signature="31:550" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="2225:2700" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="34635:34709" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="34635:34720" ph="{&quot;color&quot;: '##378006'...}" />
-            <marker date="1494271879000" expanded="true" signature="34635:36819" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="34759:35693" ph="{&quot;defaultView&quot;: 'month'...}" />
-            <marker date="1494271879000" expanded="true" signature="34782:34912" ph="{&quot;left&quot;: 'prev,next today '...}" />
-            <marker date="1494271879000" expanded="true" signature="35144:35617" ph="[...]" />
-            <marker date="1494271879000" expanded="true" signature="35162:35351" ph="{&quot;url&quot;: eventsUrl...}" />
-            <marker date="1494271879000" expanded="true" signature="35369:35602" ph="{&quot;url&quot;: holidaysUrl...}" />
-            <marker date="1494271879000" expanded="true" signature="35754:35994" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="35794:35916" ph="{&quot;date&quot;: date...}" />
-            <marker date="1494271879000" expanded="true" signature="35939:35983" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36029:36601" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36125:36559" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36242:36545" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36380:36527" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36671:36811" ph="{...}" />
-            <marker date="1494271879000" expanded="true" signature="36722:36801" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1931,6 +1848,94 @@
           <caret line="69" column="28" selection-start-line="69" selection-start-column="28" selection-end-line="69" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="1022" column="0" selection-start-line="1022" selection-start-column="0" selection-end-line="1022" selection-end-column="0" />
+          <folding>
+            <marker date="1494277401000" expanded="true" signature="14129:14139" ph="..." />
+            <marker date="1494277401000" expanded="true" signature="14786:14796" ph="..." />
+            <marker date="1494277401000" expanded="true" signature="23876:23886" ph="..." />
+            <marker date="1494277401000" expanded="true" signature="24539:24549" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/b6513a62/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.event_request">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/b6513a62/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.event_request">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/b6513a62/540b2353-94e8-4ce6-bfc7-f6e85b1bab14/scheduleappdb.event_request">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/controller/CreateEventController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
+          <folding>
+            <element signature="e#8037#8051#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cmu/heinz/model/GroupScheduleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

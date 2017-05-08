@@ -230,21 +230,21 @@ public class CreateEventController {
 
         allEvent = eventRepository.findByAllUnionIDAndShift(union_id, shiftType);
 
-        List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
+        List<GroupSchedule> groupSchedule = group_scheduleRepository.findByAllDateUnionShift(union_id,shiftType);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                String description = e.getOfficerId() + " : " + e.getDescription();
+                String description = e.getUid() + " : " + e.getDescription();
                 CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }
             model.addAttribute("allShiftEvent", allCurrentEvent);
         }
         if (groupSchedule != null) {
-            for (ScheduleOfficer s : groupSchedule) {
-                CurrentEvent cur = new CurrentEvent(s.getId(), s.getGroupSchedule().getDescription(), s.getGroupSchedule().getStartTime(), s.getGroupSchedule().getEndTime());
+            for (GroupSchedule s : groupSchedule) {
+                CurrentEvent cur = new CurrentEvent(s.getId(), s.getDescription(), s.getStartTime(), s.getEndTime());
                 allCurrentEvent.add(cur);
             }
         }
@@ -323,7 +323,7 @@ public class CreateEventController {
 
         String permissionGroup = officer.getPermissionGroup().getRole();
 
-        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+        List<Event> allEvent = eventRepository.findByOfficerID(officerid);
 
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
@@ -332,7 +332,7 @@ public class CreateEventController {
 
         if (allEvent != null) {
             for (Event e : allEvent) {
-                String description = e.getUid() + " : " + e.getDescription();
+                String description = officer.getUid() + " : " + e.getDescription();
                 CurrentEvent cur = new CurrentEvent(e.getId(), description, e.getStartTime(), e.getEndTime());
                 allCurrentEvent.add(cur);
             }
