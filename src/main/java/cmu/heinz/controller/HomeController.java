@@ -82,7 +82,7 @@ public class HomeController {
         if (officer == null) {
             officer = new Officer();
             officer.setUid(username);
-            Union union = unionRepository.findByName("Contract");
+            Union union = unionRepository.findByName("New User");
 
             // Temporarily set the new user to the union 'New User';
             officer.setUnion(union);
