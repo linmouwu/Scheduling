@@ -69,6 +69,16 @@ sn: Lin
 uid: mouwul
 userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
 
+dn: uid=eric,ou=people,dc=springframework,dc=org
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Eric Xing
+sn: Xing
+uid: eric
+userPassword: {SHA}nFCebWjxfaLbHHG1Qk5UU4trbvQ=
+
 dn: uid=nanx,ou=people,dc=springframework,dc=org
 objectclass: top
 objectclass: person
