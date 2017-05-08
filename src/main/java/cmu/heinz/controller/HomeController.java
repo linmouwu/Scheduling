@@ -79,8 +79,18 @@ public class HomeController {
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
 
+        if (officer == null) {
+            officer = new Officer();
+            officer.setUid(username);
+            Union union = unionRepository.findByName("Contract");
+
+            // Temporarily set the new user to the union 'New User';
+            officer.setUnion(union);
+
+            officer = officerRepository.save(officer);
+        }
+
         int id = officer.getId();
-        System.out.println(id);
 
         // User details.
         String uid = officer.getUid();
@@ -88,8 +98,6 @@ public class HomeController {
         String unionID = "1";
 
         PermissionGroup permissionGroup = officer.getPermissionGroup();
-
-        System.out.println("the id is " + uid);
 
         // List all users.
         List<Officer> officerList = new ArrayList<Officer>();
