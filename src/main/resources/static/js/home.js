@@ -492,9 +492,12 @@ function addShiftType() {
                 "</td><td>" + data.startTime +
                 "</td><td>" + data.endTime +
                 "</td><td>" + data.description +
-                ad + "\)' class=\"btn btn-danger\">Remove</button></td></tr>";
+                "</td><td><button class='btn btn-danger' onclick='remove_shift_type(" + data.id + ")'>Remove</button>" +
+                "</td></tr>";
             $('#shift_type_list_table > tbody').append(markup).hide().slideDown();
         }
+
+        alert("Shift type added, when re-login you could see the change.");
 
         cancelShiftType();
     })
