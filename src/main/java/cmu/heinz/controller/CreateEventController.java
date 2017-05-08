@@ -323,7 +323,7 @@ public class CreateEventController {
 
         String permissionGroup = officer.getPermissionGroup().getRole();
 
-        List<Event> allEvent = eventRepository.findByAllUnionID(union_id);
+        List<Event> allEvent = eventRepository.findByOfficerID(officerid);
 
         List<ScheduleOfficer> groupSchedule = schedule_officerRepository.findByOfficer(officerid);
 
