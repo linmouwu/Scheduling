@@ -109,9 +109,9 @@ function changeToShiftType() {
 }
 
 function newUserForm() {
+    $('#edit_user_div_id').slideUp();
     $('#add_user_div_id').slideToggle();
 }
-
 function newShiftType() {
     $('#add_shift_type_div_id').slideToggle();
 }
@@ -462,6 +462,23 @@ function addUser() {
                 "</td><td><input type=\"button\" value=\"Edit\" onclick='newEditUserForm(" + data.id + ");'/>" +
                 "</td></tr>";
             $('#user_list_table > tbody').append(markup).hide().slideDown();
+
+            // var markup2 =
+            //     "<tr><td>" + data.uid +
+            //     "</td><td>" + data.badgeNum +
+            //     "</td><td>" + data.lastName +
+            //     "</td><td>" + data.firstName +
+            //     "</td><td>" + data.title +
+            //     "</td><td>" + data.gender +
+            //     "</td><td>" + data.seniority +
+            //     "</td><td>" + data.permissionGroup.role +
+            //     "</td><td>" + data.union.name +
+            //     "</td><td>" + hireDate_ID +
+            //     "</td><td>" + promoteDate_ID +
+            //     "</td><td><input type=\"button\" value=\"Edit\" onclick='newEditUserForm(" + data.id + ");'/>" +
+            //     "</td></tr>";
+            // $('#permission_group_list > tbody').append(markup2).hide().slideDown();
+
         }
 
         cancelAddUser();
@@ -598,8 +615,8 @@ function deleteGroupSchedule(id) {
 }
 
 function newEditUserForm(edit_user_id) {
-    $('#edit_user_div_id').slideUp();
-    $('#edit_user_div_id').slideDown();
+    $('#edit_user_div_id').slideToggle();
+    $('#add_user_div_id').slideUp();
     $('#current_edit_user').val(edit_user_id);
     $.get("getEditUser", {
         'id': edit_user_id
