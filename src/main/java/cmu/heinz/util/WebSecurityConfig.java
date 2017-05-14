@@ -18,9 +18,6 @@ import java.util.Arrays;
 /**
  * Security configuration class.
  * Within this class we define the user authentication strategy.
- *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Configuration
@@ -58,8 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .ldapAuthentication()
-                .userDnPatterns("uid={0},ou=people")
+                .userDnPatterns("uid={0},OU=Police")
                 .groupSearchBase("ou=groups")
+//                .userDnPatterns("uid={0},ou=Departments")
+//                .groupSearchBase("ou=Departments,OU=Fire,OU=Police")
                 .contextSource(contextSource())
                 .passwordCompare()
                 .passwordEncoder(new LdapShaPasswordEncoder())
@@ -68,7 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
 
     @Bean
     public DefaultSpringSecurityContextSource contextSource() {
-        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"), "dc=springframework,dc=org");
+//        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"), "dc=springframework,dc=org");
+        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://10.250.1.32/"), "dc=lansing,dc=local");
     }
 
     @Override

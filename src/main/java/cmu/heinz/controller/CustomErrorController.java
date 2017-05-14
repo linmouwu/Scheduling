@@ -5,11 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Customized error info.
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 @RestController
-public class CustomErrorController implements ErrorController{
+public class CustomErrorController implements ErrorController {
 
     @Override
     public String getErrorPath() {

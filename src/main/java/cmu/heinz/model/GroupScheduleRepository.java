@@ -8,7 +8,6 @@ package cmu.heinz.model;
         import java.util.List;
 
 /**
- * Created by hhahann on 4/12/17.
  */
 @Transactional
 public interface GroupScheduleRepository extends CrudRepository<GroupSchedule, String> {

@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * Event Reponsitory interface.
- * Created by Nan Xia on 3/19/17.
  */
 
 public interface EventRepository extends CrudRepository<Event, String> {

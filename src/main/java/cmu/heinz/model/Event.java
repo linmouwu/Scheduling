@@ -7,8 +7,6 @@ import java.util.Date;
  * Event model.
  * Referring to Event_Request table.
  *
- * @author Nan
- * @AndrewID nxia
  */
 
 @Entity

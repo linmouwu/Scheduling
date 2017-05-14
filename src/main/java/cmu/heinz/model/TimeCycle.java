@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Entity

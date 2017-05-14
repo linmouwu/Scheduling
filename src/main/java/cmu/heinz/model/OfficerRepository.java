@@ -11,8 +11,6 @@ import java.util.List;
 /**
  * Officer repository.
  *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Transactional

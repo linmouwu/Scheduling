@@ -18,8 +18,6 @@ import java.util.List;
 
 /**
  * This is the controller for creating new event.
- * Created by rui tian on 4/19/17.
- * Andrew ID :rtian
  */
 @Controller
 public class GroupScheduleController {

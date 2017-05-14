@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Union Repositor.
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Transactional

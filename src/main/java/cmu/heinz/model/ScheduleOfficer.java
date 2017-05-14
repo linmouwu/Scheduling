@@ -3,7 +3,6 @@ package cmu.heinz.model;
 import javax.persistence.*;
 
 /**
- * Created by hhahann on 4/12/17.
  */
 @Entity
 @Table(name = "Schedule_Officer")

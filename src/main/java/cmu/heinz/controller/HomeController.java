@@ -18,8 +18,6 @@ import java.util.List;
  * When user visit the home page, we needs to retrieve the basic user info
  * and all listing events.
  *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Controller

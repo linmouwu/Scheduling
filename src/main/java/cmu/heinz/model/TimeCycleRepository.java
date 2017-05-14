@@ -8,8 +8,6 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 @Transactional
 public interface TimeCycleRepository extends CrudRepository<TimeCycle, Integer> {

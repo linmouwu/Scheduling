@@ -10,8 +10,6 @@ import java.util.Optional;
 
 /**
  * Login controller.
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Controller

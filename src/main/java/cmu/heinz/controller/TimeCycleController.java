@@ -15,8 +15,6 @@ import java.util.Date;
 /**
  * Controller to manage the time cycle.
  *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 @Controller
 public class TimeCycleController {

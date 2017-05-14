@@ -7,7 +7,6 @@ import org.springframework.data.repository.query.Param;
 import javax.transaction.Transactional;
 import java.util.*;
 /**
- * Created by hhahann on 4/12/17.
  */
 @Transactional
 public interface ScheduleOfficerRepository extends CrudRepository<ScheduleOfficer,String> {

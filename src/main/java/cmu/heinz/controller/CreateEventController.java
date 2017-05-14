@@ -20,8 +20,6 @@ import java.util.List;
 
 /**
  * This is the controller for creating new event.
- * Created by nan xia on 3/5/17.
- * Andrew ID :nxia
  */
 @Controller
 public class CreateEventController {
@@ -230,7 +228,7 @@ public class CreateEventController {
 
         allEvent = eventRepository.findByAllUnionIDAndShift(union_id, shiftType);
 
-        List<GroupSchedule> groupSchedule = group_scheduleRepository.findByAllDateUnionShift(union_id,shiftType);
+        List<GroupSchedule> groupSchedule = group_scheduleRepository.findByAllDateUnionShift(union_id, shiftType);
 
         List<CurrentEvent> allCurrentEvent = new ArrayList<CurrentEvent>();
 
@@ -378,9 +376,10 @@ public class CreateEventController {
     }
 
     /**
-     * @param date
-     * @param days
-     * @return
+     * add days to the group schedule
+     * @param date the date to add
+     * @param days numbers of days
+     * @return Date
      */
     public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();

@@ -9,9 +9,6 @@ import java.util.List;
 
 /**
  * Holiday repository.
- *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Transactional

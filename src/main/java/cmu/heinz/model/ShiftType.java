@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.sql.Time;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Entity

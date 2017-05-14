@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Schedule request list controller.
  * List the schedule requests of the user.
  *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Controller

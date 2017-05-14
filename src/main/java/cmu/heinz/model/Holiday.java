@@ -5,8 +5,6 @@ import java.util.*;
 /**
  * Holiday model.
  * Referring to HOLIDAY table.
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Entity

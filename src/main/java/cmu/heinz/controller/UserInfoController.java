@@ -16,9 +16,6 @@ import java.util.Date;
 
 /**
  * Controller to manage user information.
- *
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 @Controller
 public class UserInfoController {

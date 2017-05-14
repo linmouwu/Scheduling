@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * Schedule controller.
  * Routing the schedule pages.
- * Created by nan xia on 3/5/17.
- * Andrew ID :nxia
  */
 @Controller
 public class ScheduleController {

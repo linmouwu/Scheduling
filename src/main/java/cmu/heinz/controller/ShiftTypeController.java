@@ -18,19 +18,34 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
+ * Shift type controller.
  */
 
 @Controller
 public class ShiftTypeController {
 
+
+    /**
+     * Officer repository interface;
+     */
     @Autowired
     OfficerRepository officerRepository;
 
+    /**
+     * Shift type repository interface;
+     */
     @Autowired
     ShiftTypeRepository shiftTypeRepository;
 
+    /**
+     * Add new shift type
+     *
+     * @param shiftTypeName specified shift type name
+     * @param startTime     start time
+     * @param endTime       end time
+     * @param description   description
+     * @return 200 if added successfully, 400 otherwise
+     */
     @RequestMapping(value = "/add_shift_type", method = RequestMethod.POST)
     public ResponseEntity addShiftType(@RequestParam(value = "shiftTypeName") String shiftTypeName,
                                        @RequestParam(value = "startTime") String startTime,

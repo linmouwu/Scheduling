@@ -18,7 +18,6 @@ import java.util.List;
 
 
 /**
- * Created by hhahann on 4/29/17.
  */
 @Controller
 public class HolidayController {

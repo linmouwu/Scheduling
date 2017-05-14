@@ -3,8 +3,6 @@ package cmu.heinz.model;
 import javax.persistence.*;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Entity

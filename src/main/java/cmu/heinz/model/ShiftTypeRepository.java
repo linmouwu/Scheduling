@@ -9,8 +9,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * @author Mouwu Lin
- * @AndrewID mouwul
  */
 
 @Transactional
