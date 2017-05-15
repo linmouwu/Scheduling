@@ -1,6 +1,7 @@
 package cmu.heinz.controller;
 
 import cmu.heinz.model.*;
+import cmu.heinz.util.SyncActiveDirectory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -258,4 +259,14 @@ public class UserInfoController {
         return ResponseEntity.ok(newOfficer);
     }
 
+    /**
+     * Synchronize user method.
+     * @return 200
+     */
+    @RequestMapping(value = "/syncactivedirectory", method = RequestMethod.POST)
+    public ResponseEntity syncActiveDirectory() {
+        SyncActiveDirectory.initializeSync();
+
+        return ResponseEntity.ok().build();
+    }
 }

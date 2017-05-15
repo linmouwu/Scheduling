@@ -1,5 +1,6 @@
 package cmu.heinz.util;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,6 +24,10 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements AuthenticationProvider {
+
+
+    @Value("${activedirectory.url}")
+    private String activedirectoryUrl;
 
     /**
      * Basic user authentication configuration, including login in path, authentications and so on.
@@ -55,10 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .ldapAuthentication()
-                .userDnPatterns("uid={0},OU=Police")
+                .userDnPatterns("uid={0},ou=people")
                 .groupSearchBase("ou=groups")
-//                .userDnPatterns("uid={0},ou=Departments")
-//                .groupSearchBase("ou=Departments,OU=Fire,OU=Police")
                 .contextSource(contextSource())
                 .passwordCompare()
                 .passwordEncoder(new LdapShaPasswordEncoder())
@@ -67,8 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
 
     @Bean
     public DefaultSpringSecurityContextSource contextSource() {
-//        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://localhost:8389/"), "dc=springframework,dc=org");
-        return new DefaultSpringSecurityContextSource(Arrays.asList("ldap://10.250.1.32/"), "dc=lansing,dc=local");
+
+        return new DefaultSpringSecurityContextSource(Arrays.asList(activedirectoryUrl), "dc=springframework,dc=org");
     }
 
     @Override

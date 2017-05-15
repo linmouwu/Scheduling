@@ -879,8 +879,6 @@ function add_time_cycle() {
 
             //location.reload();
         });
-
-
 }
 
 function updateEventByShift() {
@@ -897,6 +895,14 @@ function updateEventByShift() {
     $('#group_calendar').fullCalendar('refetchEvents');
     var previousShiftId = $('#previousShiftId').val(shiftId);
     var shiftType = $('#currentShiftType').val(shiftId);
+}
+
+function syncActiveDirectory() {
+    $.post('/syncactivedirectory').done(function () {
+
+        alert("Staffing in sync with Active Directory");
+
+    });
 }
 
 $(document)
