@@ -72,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
     public DefaultSpringSecurityContextSource contextSource() {
 
         return new DefaultSpringSecurityContextSource(Arrays.asList(activedirectoryUrl), "dc=springframework,dc=org");
+        // return new DefaultSpringSecurityContextSource(Arrays.asList(activedirectoryUrl), "dc=lansing,dc=local");
     }
 
     @Override
