@@ -28,14 +28,37 @@ public class GroupScheduleController {
      */
     @Autowired
     private OfficerRepository officerRepository;
+
+
+    /**
+     * Group schedule repository
+     */
     @Autowired
     private GroupScheduleRepository group_scheduleRepository;
+
+    /**
+     * Schedule officer repository
+     */
     @Autowired
     private ScheduleOfficerRepository schedule_officerRepository;
+
+    /**
+     * Shift type repository
+     */
     @Autowired
     private ShiftTypeRepository shiftTypeRepository;
 
 
+    /**
+     * Create group schedule
+     *
+     * @param type             schedule type
+     * @param description      schedule description
+     * @param selectedOfficers list of selected officers
+     * @param startTime        schedule start time
+     * @param endTime          end time
+     * @return 200 OK if success
+     */
     @RequestMapping(value = "/createGroupEvent", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity createGroupEvent(
             @RequestParam(value = "shift_type") String type,
@@ -170,12 +193,6 @@ public class GroupScheduleController {
         // Find event by given id.
         int thisId = id;
         GroupSchedule schedule = group_scheduleRepository.findById(thisId);
-
-        // Set session value.
-//        if (schedule != null) {
-//            model.addAttribute("currentEditSchedule", schedule);
-//        }
-
 
         return ResponseEntity.ok(schedule);
     }

@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CustomErrorController implements ErrorController {
 
+    /**
+     * Error path.
+     * @return error page.
+     */
     @Override
     public String getErrorPath() {
         return "error";

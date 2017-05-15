@@ -1,3 +1,5 @@
+// Here is a list of functions that updates the viewable divs.
+// Each method would display one div and hide all other divs.
 function changeToUserProfile() {
     $('#edit_group_schedule').fadeOut();
     $('#group_schedule').fadeOut();
@@ -116,11 +118,6 @@ function newShiftType() {
     $('#add_shift_type_div_id').slideToggle();
 }
 
-function newAssignHoliday(id) {
-    $('#assign_holiday_union_div_id').slideToggle();
-    $('#current_assign_union_id').val(id);
-    document.getElementById("assign_union_id_div").innerHTML = "Edit Union: " + id;
-}
 function changeToCreateRequest() {
     $('#edit_group_schedule').fadeOut();
     $('#group_schedule').fadeOut();
@@ -139,18 +136,12 @@ function changeToCreateRequest() {
 
 }
 
-//
-// function changeToSchedule() {
-//     $('#schedule').delay(350).fadeIn();
-//     $('#pending_request').fadeOut();
-//     $('#calendar').fadeOut();
-//     $('#group_calendar').fadeOut();
-//     $('#staff_management').fadeOut();
-//     $('#editEvent').fadeOut();
-//     $('#user_profile').fadeOut();
-//     $('#time_cycle_div').fadeOut();
-//     $('#permission_group').fadeOut();
-// }
+function newAssignHoliday(id) {
+    $('#assign_holiday_union_div_id').slideToggle();
+    $('#current_assign_union_id').val(id);
+    document.getElementById("assign_union_id_div").innerHTML = "Edit Union: " + id;
+}
+
 function changeToCreateGroupRequest() {
     $("#group_message p").text("");
     $("#edit_group_message p").text("");
@@ -167,10 +158,6 @@ function changeToCreateGroupRequest() {
     $('#time_cycle_div').fadeOut();
     $('#permission_group').fadeOut();
     $('#shift_type_management').fadeOut();
-    // $.get('allGroupSchedule').done(function(data){
-    //     $('')
-    // });
-
 }
 function changeToTCC() {
     $('#edit_group_schedule').fadeOut();
@@ -200,7 +187,6 @@ function changeToHolidayManagement() {
     $('#editEvent').fadeOut();
     $('#assign_holiday').fadeOut();
     $('#shift_type_management').fadeOut();
-
 }
 
 function changeToPGM() {
@@ -220,6 +206,7 @@ function changeToPGM() {
     $('#assign_holiday').fadeOut();
 }
 
+// Change the current div into 'Edit Request' page.
 function changeToEditEvent(editRequest_id) {
     $('#group_schedule').fadeOut();
     $('#edit_group_schedule').fadeOut();
@@ -257,6 +244,8 @@ function changeToEditEvent(editRequest_id) {
 
     })
 }
+
+// Change the current div into 'Edit Group Schedule' page.
 function updateGroupSchedule() {
     var editRequest_id = $('#edit_id').val();
     // var recruit_ID = $('#recrui_ID').val();
@@ -914,11 +903,13 @@ $(document)
     .ready(function () {
         var start_times = [];
         var end_times = [];
-        $("#select_all input").change(function () {  //"select all" change
-            $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+        $("#select_all input").change(function () {
+            //"select all" change
+            $(".checkbox").prop('checked', $(this).prop("checked"));
+            //change all ".checkbox" checked status
         });
 
-//".checkbox" change
+        //".checkbox" change
         $('#group_officers .checkbox').change(function () {
             //uncheck "select all", if one of the listed checkbox item is unchecked
             if (false == $(this).prop("checked")) { //if this item is unchecked
@@ -933,7 +924,7 @@ $(document)
             $("#edit_group_officers .checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
         });
 
-//".checkbox" change
+        //".checkbox" change
         $('#edit_group_officers .checkbox').change(function () {
             //uncheck "select all", if one of the listed checkbox item is unchecked
             if (false == $(this).prop("checked")) { //if this item is unchecked

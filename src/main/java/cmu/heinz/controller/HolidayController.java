@@ -18,15 +18,32 @@ import java.util.List;
 
 
 /**
+ * Holiday controller.
  */
 @Controller
 public class HolidayController {
+
+    /**
+     * Union holiday repository
+     */
     @Autowired
     private UnionHolidayRepository unionHolidayRepository;
+
+    /**
+     * Officer repository
+     */
     @Autowired
     private OfficerRepository officerRepository;
+
+    /**
+     * Holiday repository
+     */
     @Autowired
     private HolidayRepository holidayRepository;
+
+    /**
+     * Union Repository
+     */
     @Autowired
     private UnionRepository unionRepository;
 
@@ -45,7 +62,7 @@ public class HolidayController {
         UserDetails userDetails = (UserDetails) principal;
 
         String username = userDetails.getUsername();
-        System.out.println("hahahahahah");
+
         // Fetch user details by username(UID).
         Officer officer = officerRepository.findByUID(username);
 
@@ -64,6 +81,14 @@ public class HolidayController {
         return ResponseEntity.ok(allCurrentHoliday);
     }
 
+    /**
+     * Assign new holidays to union
+     *
+     * @param union_id        union id
+     * @param selectedHoliday selected holiday
+     * @param model           model
+     * @return 200
+     */
     @RequestMapping(value = "/assignHoliday", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseEntity addHoliday(@RequestParam(value = "unionId") int union_id, @RequestParam(value = "selectedHoliday[]") List<Integer> selectedHoliday,
                                      Model model) {
@@ -78,6 +103,13 @@ public class HolidayController {
         return ResponseEntity.ok(200);
     }
 
+    /**
+     * Update holiday
+     *
+     * @param dateList date list for the holiday
+     * @param model    model
+     * @return 200
+     */
     @RequestMapping(value = "/updateHolidayDate", method = {RequestMethod.POST})
     public ResponseEntity updateHolidayDate(@RequestParam(value = "dateList[]") @DateTimeFormat(pattern = "yyyy-MM-dd") List<Date> dateList,
                                             Model model) {

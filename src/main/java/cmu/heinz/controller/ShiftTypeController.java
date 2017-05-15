@@ -84,6 +84,12 @@ public class ShiftTypeController {
         return ResponseEntity.ok(shiftType);
     }
 
+    /**
+     * Remove shift type
+     *
+     * @param id shift type id
+     * @return 200
+     */
     @RequestMapping(value = "/remove_shift_type", method = {RequestMethod.GET})
     public ResponseEntity removeShiftType(
             @RequestParam(value = "shiftTypeId") Integer id) {

@@ -141,6 +141,13 @@ public class UserInfoController {
     }
 
 
+    /**
+     * Update user's permission group
+     *
+     * @param uid             user id
+     * @param permissionGroup permission group name
+     * @return 200
+     */
     @RequestMapping(value = "/update_permission_group", method = RequestMethod.POST)
     public ResponseEntity updatePermissionGroup(@RequestParam(value = "uid") String uid,
                                                 @RequestParam(value = "permissionGroup") String permissionGroup) {
@@ -165,6 +172,12 @@ public class UserInfoController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Get user info by id
+     *
+     * @param id user id
+     * @return 200
+     */
     @RequestMapping(value = "/getEditUser", method = RequestMethod.GET)
     public ResponseEntity updateUser(@RequestParam(value = "id") int id) {
 
@@ -173,6 +186,24 @@ public class UserInfoController {
         return ResponseEntity.ok(officer);
     }
 
+    /**
+     * Update user info
+     *
+     * @param uid              username/UID
+     * @param lastName         last name
+     * @param firstName        first name
+     * @param badgeNum         badge number
+     * @param title            title
+     * @param gender           gender
+     * @param seniority        seniority
+     * @param permissionGroup  permission group role
+     * @param union            union
+     * @param contractEmployee contract indicator
+     * @param hireDate         hire date
+     * @param promoteDate      promote date
+     * @param trainer          trainer if existed
+     * @return 200
+     */
     @RequestMapping(value = "/edit_user", method = RequestMethod.POST)
     public ResponseEntity editUserInfo(@RequestParam(value = "uid") String uid,
                                        @RequestParam(value = "lastName") String lastName,
@@ -191,7 +222,7 @@ public class UserInfoController {
         // Create a new officer object.
         Officer officer = officerRepository.findByUID(uid);
 
-        if(officer == null){
+        if (officer == null) {
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("MyResponseHeader", "MyValue");
             return new ResponseEntity<String>("User does not exist.", responseHeaders, HttpStatus.CREATED);
